@@ -7,19 +7,19 @@
 class Character
 {
 public:
-  Character(std::string name, int health, unsigned int damage);
+  Character(const std::string name, int health, const unsigned int damage);
 
   std::string GetName() const;
   int GetHealth() const;
   unsigned int GetDamage() const;
-  bool IsAlive();
+  bool IsAlive() const;
   void TakeDamage(const int damage);
-  void Attack(std::shared_ptr<Character> enemy);
-  friend std::ostream& operator<<(std::ostream& os, const std::shared_ptr<Character>& character);
+  void Attack(Character& enemy) const;
+  friend std::ostream& operator<<(std::ostream& os, const std::shared_ptr<Character> character);
 private:
-  std::string name;
+  const std::string name;
   int health;
-  unsigned int damage;
+  const unsigned int damage;
 };
 
 #endif // CHARACTER_H

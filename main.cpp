@@ -2,8 +2,6 @@
 
 #include <gamemanager.h>
 
-GameManager* GameManager::instance = 0;
-
 int main()
 {
   GameManager* game_manager = game_manager->Instance();
