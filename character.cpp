@@ -1,6 +1,6 @@
 #include "character.h"
 
-Character::Character(const std::string name, int health, const unsigned int damage) :
+Character::Character(std::string name, int health, unsigned int damage) :
                     name(name),
                     health(health),
                     damage(damage) {}
@@ -21,17 +21,19 @@ bool Character::IsAlive() const{
   return health > 0;
 }
 
-void Character::TakeDamage(const int damage){
-  health -= damage;
-  health < 0 ? 0 : health;
+void Character::GetAttacked(const Character& enemy){
+  health -= enemy.GetDamage();
+  if(health < 0){
+    health = 0;
+  }
 }
 
 void Character::Attack(Character& enemy) const{
-  enemy.TakeDamage(damage);
+  enemy.GetAttacked(*this);
 }
 
-std::ostream& operator<<(std::ostream& os, const std::shared_ptr<Character> character)
+std::ostream& operator<<(std::ostream& os, const Character& character)
 {
-    os << character->GetName() << ": HP: " << character->GetHealth() << ", DMG: " << character->GetDamage() << '\n';
+    os << character.GetName() << ": HP: " << character.GetHealth() << ", DMG: " << character.GetDamage() << '\n';
     return os;
 }

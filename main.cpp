@@ -1,15 +1,37 @@
 #include <iostream>
 
-#include <gamemanager.h>
+#include <character.h>
+
+void battle(Character& character1, Character& character2){
+  while(character1.IsAlive() && character2.IsAlive()){
+    std::cout << character1;
+    std::cout << character2;
+    std::cout << character1.GetName() << " -> " << character2.GetName() << '\n';
+
+    character1.Attack(character2);
+    std::cout << character1;
+    std::cout << character2;
+
+    if(character2.IsAlive()){
+      std::cout << character2.GetName() << " -> " << character1.GetName() << '\n';
+      character2.Attack(character1);
+    }
+  }
+
+  if(character1.IsAlive()){
+    std::cout << character2.GetName() << " died. " << character1.GetName() << " wins.\n";
+  }
+  else{
+    std::cout << character1.GetName() << " died. " << character2.GetName() << " wins.\n";
+  }
+}
 
 int main()
 {
-  GameManager* game_manager = game_manager->Instance();
+  Character Maple("Maple", 150, 50);
+  Character Sally("Sally", 45, 30);
 
-  std::shared_ptr<Character> Maple(new Character("Maple", 150, 50));
-  std::shared_ptr<Character> Sally(new Character("Sally", 45, 30));
-
-  game_manager->Battle(Maple, Sally);
+  battle(Maple, Sally);
 
   return 0;
 }
