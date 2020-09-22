@@ -1,0 +1,12 @@
+name: Battles test
+
+on: push
+
+jobs:
+    build_and_test:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+            - run: g++ -Wall main.cpp -o mosze_01
+            - run: ./units/run_battles_test.py mosze_01 program_outputs.txt
+            - run: diff program_outputs.txt good_outputs.txt
