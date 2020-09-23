@@ -1,3 +1,4 @@
+#include <sys/stat.h>
 #include <iostream>
 #include <fstream>
 #include "character.h"
@@ -39,6 +40,12 @@ std::vector<std::string> splittedString(std::string text, char delimiter){
   return splittedStrings;
 }
 
+bool fileExists(const std::string& fileName)
+{
+	std::ifstream f(fileName.c_str());
+	return f.good();
+}
+
 static Character* parseUnit(const std::string& fileName){
   std::string name = "";
   int health = 0;
@@ -46,7 +53,7 @@ static Character* parseUnit(const std::string& fileName){
 
   std::fstream characterDataFile;
   characterDataFile.open(fileName);
-
+ 
   std::string line;
   int lineIndex = 0;
   if(characterDataFile.is_open()){
@@ -75,13 +82,46 @@ static Character* parseUnit(const std::string& fileName){
 
 int main(int argc, char *argv[])
 {
-  if(argc < 2){
-    std::cout << "You have to give me an input file\n";
+  if(argc != 3){
+    std::cout << "You have to give me two input files!\n";
 
     return 1;
   }
   else{
-    battle(*parseUnit(argv[1]), *parseUnit(argv[2]));
+	  unsigned int counter = 0;
+	  for (int i = 1; i < argc; i++)
+	  {
+		  try
+		  {
+
+			  bool exists = fileExists(argv[i]);
+			  throw exists;
+		  }
+		  catch (const bool& exists)
+		  {
+			  if (!exists&&i==1)
+			  {
+				  std::cout << "First file doesn't exists!\n";
+				  counter++;
+			  }
+			  else if (!exists&&i == 2)
+			  {
+				  std::cout << "Second file doesn't exists!\n";
+				  counter++;
+			  }
+		  }
+	  }
+	  if (counter!=0)
+	  {
+		  return 1;
+	  }
+	  else
+	  {
+		  battle(*parseUnit(argv[1]), *parseUnit(argv[2]));
+	  }
+
+	  
+    
   }
 
   return 0;
