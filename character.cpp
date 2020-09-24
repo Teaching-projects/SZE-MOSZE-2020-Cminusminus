@@ -1,4 +1,5 @@
 #include "character.h"
+#include <string>
 
 Character::Character(std::string name, int health, unsigned int damage) :
                     name(name),
@@ -34,6 +35,6 @@ void Character::Attack(Character& enemy) const{
 
 std::ostream& operator<<(std::ostream& os, const Character& character)
 {
-    os << character.GetName() << ": HP: " << character.GetHealth() << ", DMG: " << character.GetDamage() << '\n';
+    os << ":name: " << character.GetName() << ": HP: " << character.GetHealth() << ", DMG: " << character.GetDamage() << '\n';
     return os;
 }
