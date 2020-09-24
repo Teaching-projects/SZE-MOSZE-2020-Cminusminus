@@ -7,15 +7,15 @@ jobs:
         runs-on: ubuntu-latest
         strategy:
             matrix:
-              python-version: [2.7, 3.5, 3.6, 3.7, 3.8]
+              python-version: [3.8]
       
         steps:
             - uses: actions/checkout@v2
             - run: g++ -Wall character.cpp main.cpp -I character.h -o mosze_01
-            - run: python_test.py
             - name: Set up Python ${{ matrix.python-version }}
-              uses: actions/setup-python@v2
-              with:
-                  python-version: ${{ matrix.python-version }}
+            uses: actions/setup-python@v2
+            with:
+                python-version: ${{ matrix.python-version }}
+            - run: python_test.py
             - run: run_battles_test.py mosze_01 program_outputs.txt
             - run: diff program_outputs.txt good_outputs.txt
