@@ -9,5 +9,5 @@ jobs:
         steps:
             - uses: actions/checkout@v2
             - run: g++ -Wall character.cpp main.cpp -I character.h -o mosze_01
-            - run: battles_test.sh mosze_01 program_outputs.txt
+            - run: run_battle_test.sh mosze_01 program_outputs.txt
             - run: diff program_outputs.txt good_outputs.txt
