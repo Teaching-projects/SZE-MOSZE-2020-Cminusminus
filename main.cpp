@@ -54,20 +54,20 @@ static Character* parseUnit(const std::string& fileName){
   if(characterDataFile.is_open()){
     while (std::getline(characterDataFile, line))
     {
-      if(lineIndex == 1){
-        name = splittedString(line, ':').back();
+      std::vector<std::string> splittedLine = splittedString(line, ':');
+      if(splittedLine.front().find("name") != std::string::npos){
+        name = splittedLine.back();
         name = name.substr(2, name.length() - 4);
       }
-      else if(lineIndex == 2){
-        std::string inputHealth =  splittedString(line, ':').back();
+      else  if(splittedLine.front().find("hp") != std::string::npos){
+        std::string inputHealth =  splittedLine.back();
         inputHealth = inputHealth.substr(0, inputHealth.length()-1);
         health = std::stoi(inputHealth);
       }
-      else if(lineIndex == 3){
-        std::string damageHealth =  splittedString(line, ':').back();
+      else  if(splittedLine.front().find("dmg") != std::string::npos){
+       std::string damageHealth =  splittedLine.back();
         damage = std::stoi(damageHealth);
       }
-      lineIndex++;
     }
     characterDataFile.close();
   }
