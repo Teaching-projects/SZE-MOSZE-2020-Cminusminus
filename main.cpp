@@ -1,81 +1,102 @@
+#include <sys/stat.h>
 #include <iostream>
-
-#include <character.h>
+#include <fstream>
+#include "character.h"
 #include <string>
+#include <vector>
 
 void battle(Character& character1, Character& character2){
   while(character1.IsAlive() && character2.IsAlive()){
-    std::cout << character1;
-    std::cout << character2;
-    std::cout << character1.GetName() << " -> " << character2.GetName() << '\n';
-
     character1.Attack(character2);
-    std::cout << character1;
-    std::cout << character2;
-
     if(character2.IsAlive()){
-      std::cout << character2.GetName() << " -> " << character1.GetName() << '\n';
       character2.Attack(character1);
     }
   }
 
   if(character1.IsAlive()){
-    std::cout << character2.GetName() << " died. " << character1.GetName() << " wins.\n";
+    std::cout << character1.GetName() << " wins. Remaining HP:" << character1.GetHealth() << '\n';
   }
   else{
-    std::cout << character1.GetName() << " died. " << character2.GetName() << " wins.\n";
+    std::cout << character2.GetName() << " wins. Remaining HP:" << character2.GetHealth() << '\n';
   }
 }
 
-int checkHealthOrDamageInputArgument(char *argument){
-  int number;
-  try {
-    number = std::atoi(argument);
-  } catch (...) {}
+std::vector<std::string> splittedString(std::string text, char delimiter){
+  std::vector<std::string> splittedStrings;
+  std::string addString = "";
 
-  return number;
+  for(unsigned int i = 0; i < text.length(); i++){
+    if(text[i] == delimiter){
+      splittedStrings.push_back(addString);
+      addString = "";
+    }
+    else{
+      addString += text[i];
+    }
+  }
+
+  splittedStrings.push_back(addString);
+
+  return splittedStrings;
+}
+
+
+static Character* parseUnit(const std::string& fileName){
+  std::string name = "";
+  int health = 0;
+  int damage = 0;
+
+  std::fstream characterDataFile;
+  characterDataFile.open(fileName);
+ 
+  std::string line;
+  int lineIndex = 0;
+  if(characterDataFile.is_open()){
+    while (std::getline(characterDataFile, line))
+    {
+      std::vector<std::string> splittedLine = splittedString(line, ':');
+      if(splittedLine.front().find("name") != std::string::npos){
+        name = splittedLine.back();
+        name = name.substr(2, name.length() - 4);
+      }
+      else  if(splittedLine.front().find("hp") != std::string::npos){
+        std::string inputHealth =  splittedLine.back();
+        inputHealth = inputHealth.substr(0, inputHealth.length()-1);
+        health = std::stoi(inputHealth);
+      }
+      else  if(splittedLine.front().find("dmg") != std::string::npos){
+       std::string damageHealth =  splittedLine.back();
+        damage = std::stoi(damageHealth);
+      }
+    }
+    characterDataFile.close();
+  }
+  else 
+  {
+	  throw 1;
+  }
+
+  return new Character(name, health, damage);
 }
 
 int main(int argc, char *argv[])
 {
-  if(argc != 7){
-    std::cout << "Something is wrong with the arguments.\nExample: Maple 150 10 Sally 45 30\n";
+  if(argc != 3){
+    std::cout << "You have to give me two input files!\n";
+
     return 1;
   }
-  else{
-    std::string character1_name(argv[1]);
-
-    int character1_health = checkHealthOrDamageInputArgument(argv[2]);
-    if(character1_health == 0){
-      std::cout << argv[2] << " is not valid for health\n";
-      return 1;
-    }
-
-    int character1_damage = checkHealthOrDamageInputArgument(argv[3]);
-    if(character1_damage == 0){
-      std::cout << argv[3] << " is not valid for damage\n";
-      return 1;
-    }
-
-    Character character1(character1_name, character1_health, character1_damage);
-
-    std::string character2_name(argv[4]);
-
-    int character2_health = checkHealthOrDamageInputArgument(argv[5]);
-    if(character2_health == 0){
-      std::cout << argv[5] << " is not valid for health\n";
-      return 1;
-    }
-
-    int character2_damage = checkHealthOrDamageInputArgument(argv[6]);
-    if(character2_damage == 0){
-      std::cout << argv[6] << " is not valid for damage\n";
-      return 1;
-    }
-
-    Character character2(character2_name, character2_health, character2_damage);
-
-    battle(character1, character2);
+  else
+  {
+	  try
+	  {
+		  battle(*parseUnit(argv[1]), *parseUnit(argv[2]));
+	  }
+	  catch (const int& ex)
+	  {
+		  std::cout << "First and/or second file doesn't exists.\n";
+		  exit(ex);
+	  }	 
   }
 
   return 0;
