@@ -1,23 +1,28 @@
 #include <sys/stat.h>
 #include <iostream>
 #include <fstream>
-#include "character.h"
+#include "player.h"
 #include <string>
 #include <vector>
 
-void battle(Character& character1, Character& character2){
+void battle(Player& character1, Player& character2){
+  
   while(character1.IsAlive() && character2.IsAlive()){
+
     character1.Attack(character2);
+	character1.XPManager(character1);
     if(character2.IsAlive()){
       character2.Attack(character1);
+	  character2.XPManager(character2);
     }
+
   }
 
   if(character1.IsAlive()){
-    std::cout << character1.GetName() << " wins. Remaining HP:" << character1.GetHealth() << '\n';
+    std::cout << character1.GetName() << " wins. Remaining HP:" << character1.GetHealth() << ". Level:" << character1.GetLevel() << '\n';
   }
   else{
-    std::cout << character2.GetName() << " wins. Remaining HP:" << character2.GetHealth() << '\n';
+    std::cout << character2.GetName() << " wins. Remaining HP:" << character2.GetHealth() << ". Level:" << character2.GetLevel() << '\n';
   }
 }
 
@@ -41,7 +46,7 @@ std::vector<std::string> splittedString(std::string text, char delimiter){
 }
 
 
-static Character* parseUnit(const std::string& fileName){
+static Player* parseUnit(const std::string& fileName){
   std::string name = "";
   int health = 0;
   int damage = 0;
@@ -50,7 +55,6 @@ static Character* parseUnit(const std::string& fileName){
   characterDataFile.open(fileName);
  
   std::string line;
-  int lineIndex = 0;
   if(characterDataFile.is_open()){
     while (std::getline(characterDataFile, line))
     {
@@ -76,7 +80,7 @@ static Character* parseUnit(const std::string& fileName){
 	  throw 1;
   }
 
-  return new Character(name, health, damage);
+  return new Player(name, health, damage);
 }
 
 int main(int argc, char *argv[])
@@ -95,9 +99,8 @@ int main(int argc, char *argv[])
 	  catch (const int& ex)
 	  {
 		  std::cout << "First and/or second file doesn't exists.\n";
-		  exit(ex);
+		  return 1;
 	  }	 
   }
-
   return 0;
 }

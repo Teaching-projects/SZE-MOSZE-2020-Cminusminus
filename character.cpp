@@ -1,7 +1,7 @@
 #include "character.h"
 #include <string>
 
-Character::Character(std::string name, int health, unsigned int damage) :
+Character::Character(const std::string& name, unsigned long health, unsigned long damage) :
                     name(name),
                     health(health),
                     damage(damage) {}
@@ -14,8 +14,18 @@ int Character::GetHealth() const{
   return health;
 }
 
+void Character::SetHealth(const int health)
+{
+	this->health = health;
+}
+
 unsigned int Character::GetDamage() const{
   return damage;
+}
+
+void Character::GainDamage(const double multiplier)
+{
+	damage = (unsigned long)round(multiplier*this->damage);
 }
 
 bool Character::IsAlive() const{
@@ -31,10 +41,4 @@ void Character::GetAttacked(const Character& enemy){
 
 void Character::Attack(Character& enemy) const{
   enemy.GetAttacked(*this);
-}
-
-std::ostream& operator<<(std::ostream& os, const Character& character)
-{
-    os << ":name: " << character.GetName() << ": HP: " << character.GetHealth() << ", DMG: " << character.GetDamage() << '\n';
-    return os;
 }
