@@ -1,10 +1,11 @@
 #include "character.h"
 #include <string>
 
-Character::Character(std::string name, int health, unsigned int damage) :
+Character::Character(std::string name, int health, unsigned int damage, double attackCooldown) :
                     name(name),
                     health(health),
-                    damage(damage) {}
+                    damage(damage), 
+					attackCooldown(attackCooldown) {}
 
 std::string Character::GetName() const{
   return name;
@@ -22,19 +23,20 @@ bool Character::IsAlive() const{
   return health > 0;
 }
 
-void Character::GetAttacked(const Character& enemy){
+void Character::getAttacked(const Character& enemy){
   health -= enemy.GetDamage();
   if(health < 0){
     health = 0;
   }
 }
 
-void Character::Attack(Character& enemy) const{
-  enemy.GetAttacked(*this);
+double Character::GetAttackCooldown() const
+{
+	return attackCooldown;
 }
 
-std::ostream& operator<<(std::ostream& os, const Character& character)
-{
-    os << ":name: " << character.GetName() << ": HP: " << character.GetHealth() << ", DMG: " << character.GetDamage() << '\n';
-    return os;
+void Character::Attack(Character& enemy) const{
+
+  enemy.getAttacked(*this);
 }
+
