@@ -2,9 +2,9 @@
 #include <string>
 #include <math.h>
 
-Player::Player(const std::string& name, unsigned long health, unsigned long damage) : Character(name, health, damage) { xp = 0; level = 1, maxHP = health; }
+Player::Player(const std::string& name, int health, int damage) : Character(name, health, damage) { xp = 0; level = 1, maxHP = health; }
 
-unsigned int Player::GetLevel() const
+int Player::GetLevel() const
 {
 	return level;
 }
@@ -21,7 +21,7 @@ void Player::XPManager(const Player& player)
 		for (int j = 0; j < i; j++)
 		{
 			level++;
-			maxHP = (unsigned long)(round(1.1*maxHP));
+			maxHP = (int)(round(1.1*maxHP));
 			SetHealth(maxHP);
 			GainDamage(1.1);
 			xp -= 100;

@@ -7,12 +7,12 @@
 class Character
 {
 public:
-  Character(const std::string& name, unsigned long health, unsigned long damage);
+  Character(const std::string& name, int health, int damage);
 
   std::string GetName() const;
   int GetHealth() const;
   void SetHealth(const int health);
-  unsigned int GetDamage() const;
+  int GetDamage() const;
   void GainDamage(const double multiplier);
   bool IsAlive() const;
   void GetAttacked(const Character& enemy);
@@ -20,7 +20,7 @@ public:
 private:
   const std::string name;
   int health;
-  unsigned int damage;
+  int damage;
 };
 
 #endif // CHARACTER_H

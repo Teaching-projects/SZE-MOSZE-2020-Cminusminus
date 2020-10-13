@@ -8,15 +8,15 @@
 class Player : public Character
 {
 public:
-	Player(const std::string& name, unsigned long health, unsigned long damage);
+	Player(const std::string& name, int health, int damage);
 
 	void XPManager(const Player& player);
-	unsigned int GetLevel() const;
+	int GetLevel() const;
 private:
 
-	unsigned int level;
-	unsigned long xp;
-	unsigned long maxHP;
+	int level;
+	int xp;
+	int maxHP;
 
 };
 

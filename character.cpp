@@ -2,7 +2,7 @@
 #include <string>
 #include <math.h>
 
-Character::Character(const std::string& name, unsigned long health, unsigned long damage) :
+Character::Character(const std::string& name, int health, int damage) :
                     name(name),
                     health(health),
                     damage(damage) {}
@@ -20,13 +20,13 @@ void Character::SetHealth(const int health)
 	this->health = health;
 }
 
-unsigned int Character::GetDamage() const{
+int Character::GetDamage() const{
   return damage;
 }
 
 void Character::GainDamage(const double multiplier)
 {
-	damage = (unsigned long)round(multiplier*this->damage);
+	damage = (int)round(multiplier*this->damage);
 }
 
 bool Character::IsAlive() const{
