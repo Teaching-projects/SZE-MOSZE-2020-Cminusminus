@@ -16,7 +16,7 @@ jobs:
               with:
                 name: perfomance_style-artifact
                 path: ./cppcheck_performance.txt
-            - run: valgrind --leak-check=yes --error-exitcode=1 ./mosze_01 ./a.out units/test_unit_1.json units/test_unit_2.json
+            - run: valgrind --leak-check=yes --error-exitcode=1 ./a.out units/test_unit_1.json units/test_unit_2.json
             
     build_and_test:
         runs-on: ubuntu-latest
