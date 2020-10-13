@@ -11,3 +11,16 @@ jobs:
             - run: g++ -Wall character.cpp player.cpp main.cpp -I player.h character.h -o mosze_01
             - run: ./run_battle_test.sh mosze_01 program_outputs.txt
             - run: diff program_outputs.txt good_outputs.txt
+            
+    mem_test_and_cppcheck:
+        runs-on: ubuntu-latest
+      
+        steps:
+            - uses: actions/checkout@v2
+            - run: sudo apt install cppcheck valgrind
+            - run: g++ -Wall character.cpp player.cpp main.cpp -I player.h character.h -o mosze_01
+            - run: ./cppcheck.sh
+              uses: actions/upload-artifact@v2
+              with:
+              path: ./cppcheck_performance.txt
+            
