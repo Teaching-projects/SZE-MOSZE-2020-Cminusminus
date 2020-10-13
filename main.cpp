@@ -30,7 +30,7 @@ std::vector<std::string> splittedString(std::string text, char delimiter){
   std::vector<std::string> splittedStrings;
   std::string addString = "";
 
-  for(int i = 0; i < text.length(); i++){
+  for(unsigned int i = 0; i < text.length(); i++){
     if(text[i] == delimiter){
       splittedStrings.push_back(addString);
       addString = "";
