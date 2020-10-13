@@ -1,6 +1,6 @@
-Timmy wins. Remaining HP:27662
-Towelie wins. Remaining HP:49000
-Timmy wins. Remaining HP:27676
-Timmy wins. Remaining HP:23000
-Towelie wins. Remaining HP:49014
-Timmy wins. Remaining HP:22000
+Boo wins. Remaining HP:593079. Level:79
+Boo wins. Remaining HP:4593. Level:28
+Boo wins. Remaining HP:593079. Level:79
+Timmy wins. Remaining HP:449996. Level:77
+Boo wins. Remaining HP:15855. Level:41
+Timmy wins. Remaining HP:449996. Level:77
