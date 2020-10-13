@@ -106,7 +106,8 @@ int main(int argc, char *argv[])
 		  return 1;
 	  }
 	  battle(*p1, *p2);
-	  delete p1, p2;
+	  delete p1;
+	  delete p2;
   }
   
   return 0;
