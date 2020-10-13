@@ -22,5 +22,6 @@ jobs:
             - run: ./cppcheck.sh
             - uses: actions/upload-artifact@v2
               with:
-              path: ./cppcheck_performance.txt
+                name: perfomance_style-artifact
+                path: ./cppcheck_performance.txt
             
