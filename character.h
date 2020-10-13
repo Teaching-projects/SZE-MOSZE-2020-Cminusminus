@@ -16,6 +16,8 @@ public:
   void GetAttacked(const Character& enemy);
   void Attack(Character& enemy) const;
   friend std::ostream& operator<<(std::ostream& os, const Character& character);
+  friend bool operator==(const Character character1, const Character character2);
+  friend bool operator!=(const Character character1, const Character character2);
 private:
   const std::string name;
   int health;

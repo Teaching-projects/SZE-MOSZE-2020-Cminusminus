@@ -1,0 +1,1 @@
+/usr/bin/c++  -std=gnu++11  -rdynamic CMakeFiles/Proj2.dir/main.cpp.o  -o Proj2 libcodeToTest.a 

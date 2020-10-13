@@ -4,22 +4,7 @@
 #include "character.h"
 #include <string>
 #include <vector>
-
-void battle(Character& character1, Character& character2){
-  while(character1.IsAlive() && character2.IsAlive()){
-    character1.Attack(character2);
-    if(character2.IsAlive()){
-      character2.Attack(character1);
-    }
-  }
-
-  if(character1.IsAlive()){
-    std::cout << character1.GetName() << " wins. Remaining HP:" << character1.GetHealth() << '\n';
-  }
-  else{
-    std::cout << character2.GetName() << " wins. Remaining HP:" << character2.GetHealth() << '\n';
-  }
-}
+#include <gtest/gtest.h>
 
 std::vector<std::string> splittedString(std::string text, char delimiter){
   std::vector<std::string> splittedStrings;
@@ -92,7 +77,7 @@ static Character* parseUnit(const std::string& fileNameOrContent){
 
   std::ifstream characterDataFile;
 
-  if(FILE *file = fopen(fileNameOrContent.c_str(), "r")){  //file exists (fájlnév szerinti)
+  if(FILE *file = fopen(fileNameOrContent.c_str(), "r")){ //file exists (fájlnév szerinti)
     characterDataFile.open(fileNameOrContent);
     return parseUnit(&characterDataFile);
   }
@@ -102,25 +87,31 @@ static Character* parseUnit(const std::string& fileNameOrContent){
   }
 }
 
-int main(int argc, char *argv[])
-{
-  if(argc != 3){
-    std::cout << "You have to give me two input files!\n";
 
-    return 1;
-  }
-  else
-  {
-	  try
-	  {
-		  battle(*parseUnit(argv[1]), *parseUnit(argv[2]));
-	  }
-	  catch (const int& ex)
-	  {
-		  std::cout << "First and/or second file doesn't exists.\n";
-		  exit(ex);
-	  }	 
-  }
+TEST(fileNameTest, checkIfEquals){
+  Character* character1 = parseUnit("units/test_unit_1.json");
+  Character* character2 = new Character("Béla",1500000,14);
 
-  return 0;
+  EXPECT_EQ(*character1, *character2); 
+}
+
+TEST(fileContentTest, checkIfEquals){
+  Character* character1 = parseUnit("{\n\"name\": \"Béla\",\n\"hp\": 1500000,\n\"dmg\": 14\n}");
+  Character* character2 = new Character("Béla",1500000,14);
+
+  EXPECT_EQ(*character1, *character2); 
+}
+
+TEST(ifstreamTest, checkIfEquals){
+  std::ifstream character1DataFile;
+  character1DataFile.open("units/test_unit_1.json");
+  Character* character1 = parseUnit(&character1DataFile);
+  Character* character2 = new Character("Béla",1500000,14);
+
+  EXPECT_EQ(*character1, *character2); 
+}
+
+int main(int argc, char **argv){
+    ::testing::InitGoogleTest(&argc, argv);
+    return RUN_ALL_TESTS();
 }

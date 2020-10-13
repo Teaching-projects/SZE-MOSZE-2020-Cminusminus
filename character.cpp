@@ -35,6 +35,17 @@ void Character::Attack(Character& enemy) const{
 
 std::ostream& operator<<(std::ostream& os, const Character& character)
 {
-    os << ":name: " << character.GetName() << ": HP: " << character.GetHealth() << ", DMG: " << character.GetDamage() << '\n';
+    os << "name: " << character.GetName() << ": HP: " << character.GetHealth() << ", DMG: " << character.GetDamage() << '\n';
     return os;
+}
+
+
+bool operator==(const Character character1, const Character character2){
+  return character1.GetName() == character2.GetName() &&
+         character1.GetDamage() == character2.GetDamage() &&
+         character1.GetHealth() == character2.GetHealth();
+}
+
+bool operator!=(const Character character1, const Character character2){
+  return !(character1 == character2);
 }

@@ -1,0 +1,28 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/ricsi/egyetem/SZE-MOSZE-2020-Cminusminus/character.h
+iostream
+-
+memory
+-
+
+/home/ricsi/egyetem/SZE-MOSZE-2020-Cminusminus/main.cpp
+sys/stat.h
+-
+iostream
+-
+fstream
+-
+character.h
+/home/ricsi/egyetem/SZE-MOSZE-2020-Cminusminus/character.h
+string
+-
+vector
+-
+
