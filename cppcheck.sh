@@ -3,10 +3,11 @@
 IFS=$'\n'
 
 
-echo "$(cppcheck *.cpp --enable=warning --output-file=cppcheck_errors.txt)"
+$(cppcheck *.cpp --enable=warning --output-file=cppcheck_errors.txt)
 	if  [ ! -s .cppcheck_errors.txt ]
 	then
-			echo "$(cppcheck *.cpp --enable=performance, style --output-file=cppcheck_performance.txt)"
+			echo "Not found any errors and warnings."
+			echo (cppcheck *.cpp --enable=performance,style --output-file=cppcheck_performance.txt)
 		
 		if [ ! -s cppcheck_performance.txt ]
 		then
