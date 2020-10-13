@@ -92,15 +92,22 @@ int main(int argc, char *argv[])
   }
   else
   {
+	  Player* p1 = NULL;
+	  Player* p2 = NULL;
 	  try
 	  {
-		  battle(*parseUnit(argv[1]), *parseUnit(argv[2]));
+		  p1 = parseUnit(argv[1]);
+		  p2 = parseUnit(argv[2]);
+		  
 	  }
 	  catch (const int& ex)
 	  {
 		  std::cout << "First and/or second file doesn't exists.\n";
 		  return 1;
-	  }	 
+	  }
+	  battle(*p1, *p2);
+	  delete p1, p2;
   }
+  
   return 0;
 }
