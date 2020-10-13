@@ -9,3 +9,4 @@ echo "$(cppcheck *.cpp --enable=warning --output-file=cppcheck_errors.txt)"
 		exit 1
 	else
 		echo "$(cppcheck *.cpp --enable=performance, style --output-file=cppcheck_performance.txt)"
+	fi 
