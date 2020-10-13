@@ -1,5 +1,6 @@
 #include "character.h"
 #include <string>
+#include <math.h>
 
 Character::Character(const std::string& name, unsigned long health, unsigned long damage) :
                     name(name),
