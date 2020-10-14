@@ -69,9 +69,9 @@ void battle(Character& character1, Character& character2){
 }
 
 /**
-*\brief 
-*\param text 
-*\param delimiter
+*\brief A function to split lines from a text at a given delimiter.
+*\param text The text the function splits.
+*\param delimiter The character the function splits the text at.
 *\return splttedStrings
 */
 std::vector<std::string> splittedString(std::string text, char delimiter){
