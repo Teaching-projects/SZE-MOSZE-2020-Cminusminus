@@ -1,8 +1,8 @@
 var indexSectionsWithContent =
 {
-  0: "bcgis",
+  0: "bcgips",
   1: "c",
-  2: "bcgi",
+  2: "bcgip",
   3: "s"
 };
 
