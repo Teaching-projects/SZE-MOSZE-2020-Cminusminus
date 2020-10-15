@@ -27,3 +27,8 @@ A **JSON** fájl kiegészül egy újabb sorral **attackCooldown** néven, amely 
 ```
 A **battle** nevű függvény, annyiban változott így, hogy a karakterek akkor támadják csak meg a másikat, ha az *attackCooldown* eléri a 0-t.
 
+
+**Dokumentáció link** \
+
+https://teaching-projects.github.io/SZE-MOSZE-2020-Cminusminus/
+
