@@ -48,8 +48,7 @@ Character* Character::parseUnit(const std::string& fileName) {
 	if (characterDataFile.is_open()) {
 		while (std::getline(characterDataFile, line))
 		{
-			Character kar;
-			std::vector<std::string> splittedLine = kar.splittedString(line, ':');
+			std::vector<std::string> splittedLine = splittedString(line, ':');
 			
 			if (splittedLine.front().find("name") != std::string::npos) {
 				name = splittedLine.back();
@@ -102,4 +101,62 @@ void Character::Attack(Character& enemy) const{
 
   enemy.getAttacked(*this);
 }
+void Character::battle(Character& enemy) {
+
+
+	this->Attack(enemy);
+	enemy.Attack(*this);
+	double temp1 = this->GetAttackCooldown();
+	double temp2 = enemy.GetAttackCooldown();
+
+	while (this->IsAlive() && enemy.IsAlive())
+	{
+		if (temp1 >= temp2)
+		{
+			temp1 -= temp2;
+			temp2 = 0;
+		}
+		else
+		{
+			temp2 -= temp1;
+			temp1 = 0;
+
+		}
+
+		if ((temp1 == 0) && (temp2 != 0))
+		{
+			this->Attack(enemy);
+			temp1 = this->GetAttackCooldown();
+		}
+		else if ((temp2 == 0) && (temp1 != 0))
+		{
+			enemy.Attack(*this);
+			temp2 = enemy.GetAttackCooldown();
+		}
+		else if ((temp1 == 0) && (temp2 == 0))
+		{
+			this->Attack(enemy);
+			if (enemy.IsAlive())
+			{
+				enemy.Attack(*this);
+			}
+			else
+			{
+				break;
+			}
+			temp1 = this->GetAttackCooldown();
+			temp2 = enemy.GetAttackCooldown();
+		}
+
+	}
+
+	if (this->IsAlive()) {
+		std::cout << this->GetName() << " wins. Remaining HP:" << this->GetHealth() << '\n';
+	}
+	else {
+
+		std::cout << enemy.GetName() << " wins. Remaining HP:" << enemy.GetHealth() << '\n';
+	}
+}
+
 
