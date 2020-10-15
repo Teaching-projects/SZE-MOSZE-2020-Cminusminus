@@ -3,6 +3,7 @@
 
 #include<iostream>
 #include<memory>
+#include <vector>
 
 class Character
 {
@@ -15,7 +16,7 @@ class Character
   */
 public:
   Character(std::string name, int health, unsigned int damage, double attackCooldown);
-
+  Character() {};
   ///It returns the name of the character.
   ///\return name
   std::string GetName() const;
@@ -36,12 +37,14 @@ public:
   ///It returns the attack speed of the character.
   ///\return attackCooldown
   double GetAttackCooldown() const;
+  static Character* parseUnit(const std::string& fileName);
 private:
 	void getAttacked(const Character& enemy);
-  const std::string name;
-  int health;
-  const unsigned int damage;
-  double attackCooldown;
+	std::vector<std::string> splittedString(std::string text, char delimiter);
+  const std::string name = "";
+  int health = 0;
+  const unsigned int damage = 0;
+  double attackCooldown = 0;
 };
 
 #endif // CHARACTER_H

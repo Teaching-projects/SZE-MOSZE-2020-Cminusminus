@@ -1,9 +1,7 @@
 #include <sys/stat.h>
 #include <iostream>
-#include <fstream>
 #include "character.h"
 #include <string>
-#include <vector>
 
 /**
 *\brief A function to simulate the battle of two given characters. 
@@ -69,75 +67,6 @@ void battle(Character& character1, Character& character2){
 }
 
 /**
-*\brief A function to split lines from a text at a given delimiter.
-*\param text The text the function splits.
-*\param delimiter The character the function splits the text at.
-*\return splttedStrings
-*/
-std::vector<std::string> splittedString(std::string text, char delimiter){
-  std::vector<std::string> splittedStrings;
-  std::string addString = "";
-
-  for(unsigned int i = 0; i < text.length(); i++){
-    if(text[i] == delimiter){
-      splittedStrings.push_back(addString);
-      addString = "";
-    }
-    else{
-      addString += text[i];
-    }
-  }
-
-  splittedStrings.push_back(addString);
-
-  return splittedStrings;
-}
-
-
-static Character* parseUnit(const std::string& fileName){
-  std::string name = "";
-  int health = 0;
-  int damage = 0;
-  double attackCooldown = 0;
-
-  std::fstream characterDataFile;
-  characterDataFile.open(fileName);
- 
-  std::string line;
-  int lineIndex = 0;
-  if(characterDataFile.is_open()){
-    while (std::getline(characterDataFile, line))
-    {
-      std::vector<std::string> splittedLine = splittedString(line, ':');
-      if(splittedLine.front().find("name") != std::string::npos){
-        name = splittedLine.back();
-        name = name.substr(2, name.length() - 4);
-      }
-      else  if(splittedLine.front().find("hp") != std::string::npos){
-        std::string inputHealth =  splittedLine.back();
-        inputHealth = inputHealth.substr(0, inputHealth.length()-1);
-        health = std::stoi(inputHealth);
-      }
-      else  if(splittedLine.front().find("dmg") != std::string::npos){
-       std::string damageHealth =  splittedLine.back();
-        damage = std::stoi(damageHealth);
-      }
-	  else  if (splittedLine.front().find("attackCooldown") != std::string::npos) {
-		  std::string timerInput = splittedLine.back();
-		  attackCooldown = std::stod(timerInput);
-	  }
-    }
-    characterDataFile.close();
-  }
-  else 
-  {
-	  throw 1;
-  }
-
-  return new Character(name, health, damage, attackCooldown);
-}
-
-/**
 *\brief The main function of the program.
 *\param argc The count of the command line arguments.
 *\param argv A vector array containing the command lines.
@@ -154,15 +83,21 @@ int main(int argc, char *argv[])
   else
   {
 	  
+	  Character* char1 = nullptr;
+	  Character* char2 = nullptr;
 	  try
 	  {
-		  battle(*parseUnit(argv[1]), *parseUnit(argv[2]));
+		  char1 = Character::parseUnit(argv[1]);
+		  char2 = Character::parseUnit(argv[2]);
 	  }
 	  catch (const int& fileExist)
 	  {
 		  std::cout << "First and/or second file doesn't exists.\n";
 		  exit(fileExist);
-	  }	 
+	  }	
+	  battle(*char1, *char2);
+	  delete char1;
+	  delete char2;
   }
   return 0;
 }
