@@ -1,14 +1,11 @@
 var menudata={children:[
-{text:"Főoldal",url:"index.html"},
-{text:"Kapcsolódó lapok",url:"pages.html"},
-{text:"Osztályok",url:"annotated.html",children:[
-{text:"Osztálylista",url:"annotated.html"},
-{text:"Osztálymutató",url:"classes.html"},
-{text:"Osztálytagok",url:"functions.html",children:[
-{text:"Összes",url:"functions.html"},
-{text:"Függvények",url:"functions_func.html"}]}]},
-{text:"Fájl",url:"files.html",children:[
-{text:"Fájllista",url:"files.html"},
-{text:"Fájlelemek",url:"globals.html",children:[
-{text:"Összes",url:"globals.html"},
-{text:"Függvények",url:"globals_func.html"}]}]}]}
+{text:"Main Page",url:"index.html"},
+{text:"Related Pages",url:"pages.html"},
+{text:"Classes",url:"annotated.html",children:[
+{text:"Class List",url:"annotated.html"},
+{text:"Class Index",url:"classes.html"},
+{text:"Class Members",url:"functions.html",children:[
+{text:"All",url:"functions.html"},
+{text:"Functions",url:"functions_func.html"}]}]},
+{text:"Files",url:"files.html",children:[
+{text:"File List",url:"files.html"}]}]}

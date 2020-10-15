@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['battle',['battle',['../main_8cpp.html#aa45c56d8ffa98ffac33d7ad8fb1826d1',1,'main.cpp']]]
+  ['character',['Character',['../classCharacter.html',1,'Character'],['../classCharacter.html#a7dc35e79785535ec01cd5a2965d949cb',1,'Character::Character()']]]
 ];
