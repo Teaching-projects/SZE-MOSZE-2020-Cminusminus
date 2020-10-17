@@ -8,13 +8,13 @@
 class Player : public Character
 {
 public:
-	Player(const std::string& name, int health, int damage);
-	
-	void Attack(Character& enemy) override;
+	Player(const std::string& name, int health, unsigned int damage, double attackCooldown);
 	int GetLevel() const;
+	static Player* parseUnit(const std::string& fileName);
 private:
 	void XPManager(Character& enemy);
-
+	void Attack(Character& enemy) override;
+	
 	int level;
 	int xp;
 	int maxHP;

@@ -1,8 +1,9 @@
 #include "player.h"
 #include <string>
 #include <cmath>
+#include <fstream>
 
-Player::Player(const std::string& name, int health, int damage) : Character(name, health, damage) { xp = 0; level = 1, maxHP = health; }
+Player::Player(const std::string& name, int health, unsigned int damage, double attackCooldown) : Character(name, health, damage, attackCooldown) { xp = 0; level = 1, maxHP = health; }
 
 int Player::GetLevel() const
 {
@@ -10,7 +11,7 @@ int Player::GetLevel() const
 }
 
 void Player::Attack(Character& enemy){
-	enemy.GetAttacked(*this);
+	enemy.Character::getAttacked(*this);
 	XPManager(enemy);
 }
 
