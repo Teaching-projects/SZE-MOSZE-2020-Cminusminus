@@ -1,6 +1,6 @@
 #include "player.h"
 #include <string>
-#include <math.h>
+#include <cmath>
 
 Player::Player(const std::string& name, int health, int damage) : Character(name, health, damage) { xp = 0; level = 1, maxHP = health; }
 
@@ -9,13 +9,23 @@ int Player::GetLevel() const
 	return level;
 }
 
-void Player::XPManager(const Player& player)
+void Player::Attack(Player& enemy) {
+	enemy.GetAttacked(*this);
+	XPManager(*this, enemy);
+}
+
+void Player::XPManager(Player& player, Player& enemy)
 {
-	xp += player.GetDamage();
-	
-	if (xp >= 100)
+	if (enemy.GetHealth() < player.GetDamage())
 	{
-		
+		xp += enemy.GetHealth();
+	}
+	else
+	{
+		xp += player.GetDamage();
+	}
+	
+
 		int i = xp / 100;
 		
 		for (int j = 0; j < i; j++)
@@ -26,7 +36,5 @@ void Player::XPManager(const Player& player)
 			GainDamage(1.1);
 			xp -= 100;
 		}	
-		//std::cout << player.GetName() << "'s level: " << player.GetLevel() << ". DMG: " << player.GetDamage() << ". HP: " << player.GetHealth() << std::endl;
-	}
 
 }

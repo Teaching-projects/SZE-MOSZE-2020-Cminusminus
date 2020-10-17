@@ -9,10 +9,11 @@ class Player : public Character
 {
 public:
 	Player(const std::string& name, int health, int damage);
-
-	void XPManager(const Player& player);
+	
+	void Attack(Player& enemy);
 	int GetLevel() const;
 private:
+	void XPManager(Player& player, Player& enemy);
 
 	int level;
 	int xp;

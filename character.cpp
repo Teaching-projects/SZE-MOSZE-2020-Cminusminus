@@ -1,6 +1,6 @@
 #include "character.h"
 #include <string>
-#include <math.h>
+#include <cmath>
 
 Character::Character(const std::string& name, int health, int damage) :
                     name(name),

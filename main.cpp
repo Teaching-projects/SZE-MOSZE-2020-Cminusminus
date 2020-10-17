@@ -10,10 +10,8 @@ void battle(Player& character1, Player& character2){
   while(character1.IsAlive() && character2.IsAlive()){
 
     character1.Attack(character2);
-	character1.XPManager(character1);
     if(character2.IsAlive()){
       character2.Attack(character1);
-	  character2.XPManager(character2);
     }
 
   }
