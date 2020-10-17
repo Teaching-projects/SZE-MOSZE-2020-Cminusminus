@@ -10,10 +10,10 @@ class Player : public Character
 public:
 	Player(const std::string& name, int health, int damage);
 	
-	void Attack(Player& enemy);
+	void Attack(Character& enemy) override;
 	int GetLevel() const;
 private:
-	void XPManager(Player& player, Player& enemy);
+	void XPManager(Character& enemy);
 
 	int level;
 	int xp;

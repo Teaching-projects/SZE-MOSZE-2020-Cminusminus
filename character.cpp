@@ -40,6 +40,6 @@ void Character::GetAttacked(const Character& enemy){
   }
 }
 
-void Character::Attack(Character& enemy) const{
+void Character::Attack(Character& enemy){
   enemy.GetAttacked(*this);
 }

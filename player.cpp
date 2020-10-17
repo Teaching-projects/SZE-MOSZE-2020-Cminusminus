@@ -9,20 +9,20 @@ int Player::GetLevel() const
 	return level;
 }
 
-void Player::Attack(Player& enemy) {
+void Player::Attack(Character& enemy){
 	enemy.GetAttacked(*this);
-	XPManager(*this, enemy);
+	XPManager(enemy);
 }
 
-void Player::XPManager(Player& player, Player& enemy)
+void Player::XPManager(Character& enemy)
 {
-	if (enemy.GetHealth() < player.GetDamage())
+	if (enemy.GetHealth() < this->GetDamage())
 	{
 		xp += enemy.GetHealth();
 	}
 	else
 	{
-		xp += player.GetDamage();
+		xp += this->GetDamage();
 	}
 	
 

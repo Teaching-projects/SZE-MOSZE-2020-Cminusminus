@@ -16,7 +16,7 @@ public:
   void GainDamage(const double multiplier);
   bool IsAlive() const;
   void GetAttacked(const Character& enemy);
-  void Attack(Character& enemy) const;
+  virtual void Attack(Character& enemy);
 private:
   const std::string name;
   int health;
