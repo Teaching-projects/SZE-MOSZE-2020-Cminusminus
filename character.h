@@ -47,13 +47,13 @@ public:
   ///\param fileName The name of the file used to read the data from.
   ///\return Character*
   static Character* parseUnit(const std::string& fileName);
+  static std::vector<std::string> splittedString(std::string text, char delimiter);
   ///Attack the enemy character
   ///\param enemy
   void getAttacked(Character& enemy);
 private:
 	virtual void Attack(Character& enemy);
 	
-	static std::vector<std::string> splittedString(std::string text, char delimiter);
 	const std::string name = "";
 	int health = 0;
 	int damage = 0;

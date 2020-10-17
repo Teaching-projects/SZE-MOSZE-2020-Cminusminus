@@ -19,6 +19,7 @@ public:
 	///\brief Returns the player's level
 	///\return level
 	int GetLevel() const;
+	static Player* parseUnit(const std::string& fileName);
 private:
 	void XPManager(Character& enemy);
 	void Attack(Character& enemy) override;

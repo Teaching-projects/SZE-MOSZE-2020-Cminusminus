@@ -18,8 +18,8 @@ int main(int argc, char *argv[])
 	  Player *p2 = nullptr;
 	  try
 	  {
-		  p1 = (Player*) Character::parseUnit(argv[2]);
-		  p2 = (Player*) Character::parseUnit(argv[1]);
+		  p1 = Player::parseUnit(argv[2]);
+		  p2 = Player::parseUnit(argv[1]);
 		  
 
 	  }
