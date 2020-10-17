@@ -17,7 +17,7 @@ class Character
 public:
 
 
-	Character(std::string name, int health, unsigned int damage, double attackCooldown);
+	Character(std::string name, int health, int damage, double attackCooldown);
 	Character() {};
 	///It returns the name of the character.
 	///\return name
@@ -28,7 +28,7 @@ public:
   void SetHealth(const int health);
   ///It returns the damage of the character.
   ///\return damage
-  unsigned int GetDamage() const;
+  int GetDamage() const;
   void GainDamage(const double multiplier);
   //It checks if the character is alive.
   ///\return true or false.
@@ -50,7 +50,7 @@ private:
 	static std::vector<std::string> splittedString(std::string text, char delimiter);
 	const std::string name = "";
 	int health = 0;
-	unsigned int damage = 0;
+	int damage = 0;
 	double attackCooldown = 0;
 };
 

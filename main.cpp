@@ -20,9 +20,6 @@ int main(int argc, char *argv[])
 	  {
 		  p1 = static_cast<Player*>(Character::parseUnit(argv[2]));
 		  p2 = static_cast<Player*>(Character::parseUnit(argv[1]));
-		  
-		  std::cout << p1 << " " << &p1 << std::endl;
-		  std::cout << p2 << " " << &p2 << std::endl;
 
 	  }
 	  catch (const int& ex)

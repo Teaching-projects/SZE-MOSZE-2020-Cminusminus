@@ -3,7 +3,7 @@
 #include <cmath>
 #include <fstream>
 
-Character::Character(std::string name, int health, unsigned int damage, double attackCooldown) :
+Character::Character(std::string name, int health, int damage, double attackCooldown) :
 	name(name),
 	health(health),
 	damage(damage),
@@ -22,7 +22,7 @@ void Character::SetHealth(const int health)
 	this->health = health;
 }
 
-unsigned int Character::GetDamage() const{
+int Character::GetDamage() const{
   return damage;
 }
 std::vector<std::string> Character::splittedString(std::string text, char delimiter) {
@@ -88,7 +88,7 @@ Character* Character::parseUnit(const std::string& fileName) {
 }
 void Character::GainDamage(const double multiplier)
 {
-	damage = (unsigned int)round(multiplier*this->damage);
+	damage = (int)round(multiplier*this->damage);
 }
 
 bool Character::IsAlive() const{
