@@ -25,10 +25,14 @@ public:
   ///It returns the health of the character.
 	///\return health
   int GetHealth() const;
+  ///It sets the health of the character
+  ///\param health 
   void SetHealth(const int health);
   ///It returns the damage of the character.
   ///\return damage
   int GetDamage() const;
+  ///It sets the damage of the character after level up
+  ///\param multiplier
   void GainDamage(const double multiplier);
   //It checks if the character is alive.
   ///\return true or false.
@@ -43,6 +47,8 @@ public:
   ///\param fileName The name of the file used to read the data from.
   ///\return Character*
   static Character* parseUnit(const std::string& fileName);
+  ///Attack the enemy character
+  ///\param enemy
   void getAttacked(Character& enemy);
 private:
 	virtual void Attack(Character& enemy);

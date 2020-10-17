@@ -18,13 +18,17 @@ int main(int argc, char *argv[])
 	  Player *p2 = nullptr;
 	  try
 	  {
-		  p1 = static_cast<Player*>(Character::parseUnit(argv[2]));
-		  p2 = static_cast<Player*>(Character::parseUnit(argv[1]));
+		  p1 = (Player*) Character::parseUnit(argv[2]);
+		  p2 = (Player*) Character::parseUnit(argv[1]);
+		  
 
 	  }
 	  catch (const int& ex)
 	  {
 		  std::cout << "First and/or second file doesn't exists.\n";
+		  delete p1;
+		  delete p2;
+
 		  return 1;
 	  }
 	  p1->battle(*p2);
