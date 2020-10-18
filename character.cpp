@@ -1,12 +1,13 @@
 #include "character.h"
 #include <string>
+#include <cmath>
 #include <fstream>
 
-Character::Character(std::string name, int health, unsigned int damage, double attackCooldown) :
-                    name(name),
-                    health(health),
-                    damage(damage), 
-					attackCooldown(attackCooldown) {}
+Character::Character(std::string name, int health, int damage, double attackCooldown) :
+	name(name),
+	health(health),
+	damage(damage),
+	attackCooldown(attackCooldown) {}
 
 std::string Character::GetName() const{
   return name;
@@ -16,6 +17,14 @@ int Character::GetHealth() const{
   return health;
 }
 
+void Character::SetHealth(const int health)
+{
+	this->health = health;
+}
+
+int Character::GetDamage() const{
+  return damage;
+}
 std::vector<std::string> Character::splittedString(std::string text, char delimiter) {
 	std::vector<std::string> splittedStrings;
 	std::string addString = "";
@@ -49,7 +58,7 @@ Character* Character::parseUnit(const std::string& fileName) {
 		while (std::getline(characterDataFile, line))
 		{
 			std::vector<std::string> splittedLine = splittedString(line, ':');
-			
+
 			if (splittedLine.front().find("name") != std::string::npos) {
 				name = splittedLine.back();
 				name = name.substr(2, name.length() - 4);
@@ -77,19 +86,24 @@ Character* Character::parseUnit(const std::string& fileName) {
 
 	return new Character(name, health, damage, attackCooldown);
 }
-unsigned int Character::GetDamage() const{
-  return damage;
+void Character::GainDamage(const double multiplier)
+{
+	damage = (int)round(multiplier*this->damage);
 }
 
 bool Character::IsAlive() const{
   return health > 0;
 }
 
-void Character::getAttacked(const Character& enemy){
+void Character::getAttacked(Character& enemy){
   health -= enemy.GetDamage();
   if(health < 0){
     health = 0;
   }
+}
+
+void Character::Attack(Character& enemy){
+	enemy.getAttacked(*this);
 }
 
 double Character::GetAttackCooldown() const
@@ -97,10 +111,6 @@ double Character::GetAttackCooldown() const
 	return attackCooldown;
 }
 
-void Character::Attack(Character& enemy) const{
-
-  enemy.getAttacked(*this);
-}
 void Character::battle(Character& enemy) {
 
 
@@ -158,5 +168,3 @@ void Character::battle(Character& enemy) {
 		std::cout << enemy.GetName() << " wins. Remaining HP:" << enemy.GetHealth() << '\n';
 	}
 }
-
-

@@ -1,15 +1,9 @@
 #include <sys/stat.h>
 #include <iostream>
-#include "character.h"
+#include "player.h"
 #include <string>
+#include <vector>
 
-/**
-*\brief The main function of the program.
-*\param argc The count of the command line arguments.
-*\param argv A vector array containing the command lines.
-*\return 0 or 1
-*\exception fileExist It throws an exception if one of the files doesn't exists.
-*/
 int main(int argc, char *argv[])
 {
   if(argc != 3){
@@ -19,24 +13,29 @@ int main(int argc, char *argv[])
   }
   else
   {
-	  
-	  Character* char1 = nullptr;
-	  Character* char2 = nullptr;
+	 
+	  Player *p1 = nullptr;
+	  Player *p2 = nullptr;
 	  try
 	  {
-		  char1 = Character::parseUnit(argv[1]);
-		  char2 = Character::parseUnit(argv[2]);
+		  p1 = Player::parseUnit(argv[2]);
+		  p2 = Player::parseUnit(argv[1]);
+		  
+
 	  }
-	  catch (const int& fileExist)
+	  catch (const int& ex)
 	  {
 		  std::cout << "First and/or second file doesn't exists.\n";
-		  exit(fileExist);
+		  delete p1;
+		  delete p2;
+
+		  return 1;
 	  }
-
-	  char1->battle(*char2);
-
-	  delete char1;
-	  delete char2;
+	  p1->battle(*p2);
+	  delete p1;
+	  delete p2;
+	  
   }
+  
   return 0;
 }

@@ -7,7 +7,7 @@
 
 class Character
 {
-  /**
+	/**
   *\brief A class for creating a character.
   *\param name The name of the character.
   *\param health The health of the character.
@@ -15,21 +15,28 @@ class Character
   *\param attackCooldown The speed of the character's attack.
   */
 public:
-  Character(std::string name, int health, unsigned int damage, double attackCooldown);
-  Character() {};
-  ///It returns the name of the character.
-  ///\return name
+
+
+	Character(std::string name, int health, int damage, double attackCooldown);
+	Character() {};
+	///It returns the name of the character.
+	///\return name
   std::string GetName() const;
   ///It returns the health of the character.
-  ///\return health
+	///\return health
   int GetHealth() const;
+  ///It sets the health of the character
+  ///\param health 
+  void SetHealth(const int health);
   ///It returns the damage of the character.
   ///\return damage
-  unsigned int GetDamage() const;
-  ///It checks if the character is alive.
+  int GetDamage() const;
+  ///It sets the damage of the character after level up
+  ///\param multiplier
+  void GainDamage(const double multiplier);
+  //It checks if the character is alive.
   ///\return true or false.
   bool IsAlive() const;
-  
   ///\brief A function to simulate the battle of two given characters.
   ///\param enemy The enemy which the character attacks.
   void battle(Character& enemy);
@@ -40,14 +47,17 @@ public:
   ///\param fileName The name of the file used to read the data from.
   ///\return Character*
   static Character* parseUnit(const std::string& fileName);
+  static std::vector<std::string> splittedString(std::string text, char delimiter);
+  ///Attack the enemy character
+  ///\param enemy
+  void getAttacked(Character& enemy);
 private:
-	void getAttacked(const Character& enemy);
-	void Attack(Character& enemy) const;
-	static std::vector<std::string> splittedString(std::string text, char delimiter);
-  const std::string name = "";
-  int health = 0;
-  const unsigned int damage = 0;
-  double attackCooldown = 0;
+	virtual void Attack(Character& enemy);
+	
+	const std::string name = "";
+	int health = 0;
+	int damage = 0;
+	double attackCooldown = 0;
 };
 
 #endif // CHARACTER_H
