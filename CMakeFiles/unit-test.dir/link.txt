@@ -1,1 +1,0 @@
-/usr/bin/c++  -std=gnu++11  -rdynamic CMakeFiles/unit-test.dir/main_test.cpp.o  -o unit-test -lgtest -lgtest_main -lrt -lpthread libcodeToTest.a 

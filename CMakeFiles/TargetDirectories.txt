@@ -1,5 +1,0 @@
-/home/ricsi/egyetem/SZE-MOSZE-2020-Cminusminus/CMakeFiles/rebuild_cache.dir
-/home/ricsi/egyetem/SZE-MOSZE-2020-Cminusminus/CMakeFiles/unit-test.dir
-/home/ricsi/egyetem/SZE-MOSZE-2020-Cminusminus/CMakeFiles/codeToTest.dir
-/home/ricsi/egyetem/SZE-MOSZE-2020-Cminusminus/CMakeFiles/edit_cache.dir
-/home/ricsi/egyetem/SZE-MOSZE-2020-Cminusminus/CMakeFiles/mosze.dir
