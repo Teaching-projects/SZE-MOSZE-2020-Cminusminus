@@ -1,5 +1,5 @@
 *.pro
 *.pro.user
 *.out
-CMakeCache.txt
-CMakeFiles
+*CMakeCache.txt
+*CMakeFiles
