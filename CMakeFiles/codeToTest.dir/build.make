@@ -81,17 +81,43 @@ CMakeFiles/codeToTest.dir/character.cpp.o.provides: CMakeFiles/codeToTest.dir/ch
 CMakeFiles/codeToTest.dir/character.cpp.o.provides.build: CMakeFiles/codeToTest.dir/character.cpp.o
 
 
+CMakeFiles/codeToTest.dir/JSONParser.cpp.o: CMakeFiles/codeToTest.dir/flags.make
+CMakeFiles/codeToTest.dir/JSONParser.cpp.o: JSONParser.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/ricsi/egyetem/SZE-MOSZE-2020-Cminusminus/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/codeToTest.dir/JSONParser.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/codeToTest.dir/JSONParser.cpp.o -c /home/ricsi/egyetem/SZE-MOSZE-2020-Cminusminus/JSONParser.cpp
+
+CMakeFiles/codeToTest.dir/JSONParser.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/codeToTest.dir/JSONParser.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/ricsi/egyetem/SZE-MOSZE-2020-Cminusminus/JSONParser.cpp > CMakeFiles/codeToTest.dir/JSONParser.cpp.i
+
+CMakeFiles/codeToTest.dir/JSONParser.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/codeToTest.dir/JSONParser.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/ricsi/egyetem/SZE-MOSZE-2020-Cminusminus/JSONParser.cpp -o CMakeFiles/codeToTest.dir/JSONParser.cpp.s
+
+CMakeFiles/codeToTest.dir/JSONParser.cpp.o.requires:
+
+.PHONY : CMakeFiles/codeToTest.dir/JSONParser.cpp.o.requires
+
+CMakeFiles/codeToTest.dir/JSONParser.cpp.o.provides: CMakeFiles/codeToTest.dir/JSONParser.cpp.o.requires
+	$(MAKE) -f CMakeFiles/codeToTest.dir/build.make CMakeFiles/codeToTest.dir/JSONParser.cpp.o.provides.build
+.PHONY : CMakeFiles/codeToTest.dir/JSONParser.cpp.o.provides
+
+CMakeFiles/codeToTest.dir/JSONParser.cpp.o.provides.build: CMakeFiles/codeToTest.dir/JSONParser.cpp.o
+
+
 # Object files for target codeToTest
 codeToTest_OBJECTS = \
-"CMakeFiles/codeToTest.dir/character.cpp.o"
+"CMakeFiles/codeToTest.dir/character.cpp.o" \
+"CMakeFiles/codeToTest.dir/JSONParser.cpp.o"
 
 # External object files for target codeToTest
 codeToTest_EXTERNAL_OBJECTS =
 
 libcodeToTest.a: CMakeFiles/codeToTest.dir/character.cpp.o
+libcodeToTest.a: CMakeFiles/codeToTest.dir/JSONParser.cpp.o
 libcodeToTest.a: CMakeFiles/codeToTest.dir/build.make
 libcodeToTest.a: CMakeFiles/codeToTest.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/ricsi/egyetem/SZE-MOSZE-2020-Cminusminus/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX static library libcodeToTest.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/ricsi/egyetem/SZE-MOSZE-2020-Cminusminus/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX static library libcodeToTest.a"
 	$(CMAKE_COMMAND) -P CMakeFiles/codeToTest.dir/cmake_clean_target.cmake
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/codeToTest.dir/link.txt --verbose=$(VERBOSE)
 
@@ -101,6 +127,7 @@ CMakeFiles/codeToTest.dir/build: libcodeToTest.a
 .PHONY : CMakeFiles/codeToTest.dir/build
 
 CMakeFiles/codeToTest.dir/requires: CMakeFiles/codeToTest.dir/character.cpp.o.requires
+CMakeFiles/codeToTest.dir/requires: CMakeFiles/codeToTest.dir/JSONParser.cpp.o.requires
 
 .PHONY : CMakeFiles/codeToTest.dir/requires
 

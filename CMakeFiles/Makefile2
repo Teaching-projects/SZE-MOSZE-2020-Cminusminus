@@ -66,7 +66,7 @@ CMAKE_BINARY_DIR = /home/ricsi/egyetem/SZE-MOSZE-2020-Cminusminus
 CMakeFiles/unit-test.dir/all: CMakeFiles/codeToTest.dir/all
 	$(MAKE) -f CMakeFiles/unit-test.dir/build.make CMakeFiles/unit-test.dir/depend
 	$(MAKE) -f CMakeFiles/unit-test.dir/build.make CMakeFiles/unit-test.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ricsi/egyetem/SZE-MOSZE-2020-Cminusminus/CMakeFiles --progress-num=5,6 "Built target unit-test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ricsi/egyetem/SZE-MOSZE-2020-Cminusminus/CMakeFiles --progress-num=6,7 "Built target unit-test"
 .PHONY : CMakeFiles/unit-test.dir/all
 
 # Include target in all.
@@ -76,7 +76,7 @@ all: CMakeFiles/unit-test.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/unit-test.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ricsi/egyetem/SZE-MOSZE-2020-Cminusminus/CMakeFiles 4
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ricsi/egyetem/SZE-MOSZE-2020-Cminusminus/CMakeFiles 5
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/unit-test.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/ricsi/egyetem/SZE-MOSZE-2020-Cminusminus/CMakeFiles 0
 .PHONY : CMakeFiles/unit-test.dir/rule
@@ -103,7 +103,7 @@ clean: CMakeFiles/unit-test.dir/clean
 CMakeFiles/codeToTest.dir/all:
 	$(MAKE) -f CMakeFiles/codeToTest.dir/build.make CMakeFiles/codeToTest.dir/depend
 	$(MAKE) -f CMakeFiles/codeToTest.dir/build.make CMakeFiles/codeToTest.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ricsi/egyetem/SZE-MOSZE-2020-Cminusminus/CMakeFiles --progress-num=1,2 "Built target codeToTest"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ricsi/egyetem/SZE-MOSZE-2020-Cminusminus/CMakeFiles --progress-num=1,2,3 "Built target codeToTest"
 .PHONY : CMakeFiles/codeToTest.dir/all
 
 # Include target in all.
@@ -113,7 +113,7 @@ all: CMakeFiles/codeToTest.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/codeToTest.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ricsi/egyetem/SZE-MOSZE-2020-Cminusminus/CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ricsi/egyetem/SZE-MOSZE-2020-Cminusminus/CMakeFiles 3
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/codeToTest.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/ricsi/egyetem/SZE-MOSZE-2020-Cminusminus/CMakeFiles 0
 .PHONY : CMakeFiles/codeToTest.dir/rule
@@ -140,7 +140,7 @@ clean: CMakeFiles/codeToTest.dir/clean
 CMakeFiles/mosze.dir/all: CMakeFiles/codeToTest.dir/all
 	$(MAKE) -f CMakeFiles/mosze.dir/build.make CMakeFiles/mosze.dir/depend
 	$(MAKE) -f CMakeFiles/mosze.dir/build.make CMakeFiles/mosze.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ricsi/egyetem/SZE-MOSZE-2020-Cminusminus/CMakeFiles --progress-num=3,4 "Built target mosze"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ricsi/egyetem/SZE-MOSZE-2020-Cminusminus/CMakeFiles --progress-num=4,5 "Built target mosze"
 .PHONY : CMakeFiles/mosze.dir/all
 
 # Include target in all.
@@ -150,7 +150,7 @@ all: CMakeFiles/mosze.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/mosze.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/ricsi/egyetem/SZE-MOSZE-2020-Cminusminus/CMakeFiles 4
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/ricsi/egyetem/SZE-MOSZE-2020-Cminusminus/CMakeFiles 5
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/mosze.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/ricsi/egyetem/SZE-MOSZE-2020-Cminusminus/CMakeFiles 0
 .PHONY : CMakeFiles/mosze.dir/rule

@@ -8,7 +8,7 @@ jobs:
       
         steps:
             - uses: actions/checkout@v2
-            - run: g++ -Wall character.cpp main.cpp -I character.h -o mosze_01
+            - run: g++ -Wall character.cpp JSONParser.cpp main.cpp -I character.h JSONParser.h -o mosze_01
             - run: ./run_battle_test.sh mosze_01 program_outputs.txt
             - run: diff program_outputs.txt good_outputs.txt
             - run: ./unit-test

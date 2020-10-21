@@ -6,6 +6,18 @@
 
 #IncludeRegexTransform: 
 
+/home/ricsi/egyetem/SZE-MOSZE-2020-Cminusminus/JSONParser.h
+character.h
+/home/ricsi/egyetem/SZE-MOSZE-2020-Cminusminus/character.h
+string
+-
+vector
+-
+iostream
+-
+fstream
+-
+
 /home/ricsi/egyetem/SZE-MOSZE-2020-Cminusminus/character.h
 iostream
 -
@@ -25,4 +37,6 @@ string
 -
 vector
 -
+JSONParser.h
+/home/ricsi/egyetem/SZE-MOSZE-2020-Cminusminus/JSONParser.h
 

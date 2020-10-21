@@ -1,5 +1,6 @@
 file(REMOVE_RECURSE
   "CMakeFiles/codeToTest.dir/character.cpp.o"
+  "CMakeFiles/codeToTest.dir/JSONParser.cpp.o"
   "libcodeToTest.pdb"
   "libcodeToTest.a"
 )

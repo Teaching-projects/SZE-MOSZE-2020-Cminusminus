@@ -4,6 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
+  "/home/ricsi/egyetem/SZE-MOSZE-2020-Cminusminus/JSONParser.cpp" "/home/ricsi/egyetem/SZE-MOSZE-2020-Cminusminus/CMakeFiles/codeToTest.dir/JSONParser.cpp.o"
   "/home/ricsi/egyetem/SZE-MOSZE-2020-Cminusminus/character.cpp" "/home/ricsi/egyetem/SZE-MOSZE-2020-Cminusminus/CMakeFiles/codeToTest.dir/character.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")

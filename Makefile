@@ -149,6 +149,33 @@ mosze/fast:
 	$(MAKE) -f CMakeFiles/mosze.dir/build.make CMakeFiles/mosze.dir/build
 .PHONY : mosze/fast
 
+JSONParser.o: JSONParser.cpp.o
+
+.PHONY : JSONParser.o
+
+# target to build an object file
+JSONParser.cpp.o:
+	$(MAKE) -f CMakeFiles/codeToTest.dir/build.make CMakeFiles/codeToTest.dir/JSONParser.cpp.o
+.PHONY : JSONParser.cpp.o
+
+JSONParser.i: JSONParser.cpp.i
+
+.PHONY : JSONParser.i
+
+# target to preprocess a source file
+JSONParser.cpp.i:
+	$(MAKE) -f CMakeFiles/codeToTest.dir/build.make CMakeFiles/codeToTest.dir/JSONParser.cpp.i
+.PHONY : JSONParser.cpp.i
+
+JSONParser.s: JSONParser.cpp.s
+
+.PHONY : JSONParser.s
+
+# target to generate assembly for a file
+JSONParser.cpp.s:
+	$(MAKE) -f CMakeFiles/codeToTest.dir/build.make CMakeFiles/codeToTest.dir/JSONParser.cpp.s
+.PHONY : JSONParser.cpp.s
+
 character.o: character.cpp.o
 
 .PHONY : character.o
@@ -241,6 +268,9 @@ help:
 	@echo "... codeToTest"
 	@echo "... edit_cache"
 	@echo "... mosze"
+	@echo "... JSONParser.o"
+	@echo "... JSONParser.i"
+	@echo "... JSONParser.s"
 	@echo "... character.o"
 	@echo "... character.i"
 	@echo "... character.s"

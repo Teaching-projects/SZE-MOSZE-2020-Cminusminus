@@ -7,9 +7,7 @@ find_package(GTest REQUIRED)
 include_directories(${GTEST_INCLUDE_DIRS})
 
 
-
-
-set(FILES_TO_TEST character.cpp)
+set(FILES_TO_TEST character.cpp JSONParser.cpp)
 set(UNIT_TESTS main_test.cpp)
 set(MAIN_FILE main.cpp)
 
