@@ -8,10 +8,6 @@
 #include <fstream>
 
 class JSONParser{
-private:
-    std::vector<std::string> splittedString(std::string text, char delimiter);
-
-    Character* createCharacter(const std::string& fileContent);
 public:
     Character* parseUnitFromStream(std::ifstream* stream);
     Character* parseUnitFromFileName(const std::string& fileName);
