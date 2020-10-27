@@ -3,3 +3,5 @@
 *.out
 *CMakeCache.txt
 *CMakeFiles
+*.a
+*.ghc
