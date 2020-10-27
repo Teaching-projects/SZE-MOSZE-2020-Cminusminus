@@ -6,11 +6,11 @@
 #include <vector>
 #include <iostream>
 #include <fstream>
+#include<map>
 
 class CharacterMaker{
 public:
-    std::vector<std::string> splittedString(std::string text, char delimiter);
-    Character* createCharacter(const std::string& fileContent);
+    Character* createCharacter(std::map<std::string, std::string> parsedData);
 private:
     void showErrorMessage(std::string message);
 };

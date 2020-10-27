@@ -203,6 +203,33 @@ character.cpp.s:
 	$(MAKE) -f CMakeFiles/codeToTest.dir/build.make CMakeFiles/codeToTest.dir/character.cpp.s
 .PHONY : character.cpp.s
 
+characterMaker.o: characterMaker.cpp.o
+
+.PHONY : characterMaker.o
+
+# target to build an object file
+characterMaker.cpp.o:
+	$(MAKE) -f CMakeFiles/codeToTest.dir/build.make CMakeFiles/codeToTest.dir/characterMaker.cpp.o
+.PHONY : characterMaker.cpp.o
+
+characterMaker.i: characterMaker.cpp.i
+
+.PHONY : characterMaker.i
+
+# target to preprocess a source file
+characterMaker.cpp.i:
+	$(MAKE) -f CMakeFiles/codeToTest.dir/build.make CMakeFiles/codeToTest.dir/characterMaker.cpp.i
+.PHONY : characterMaker.cpp.i
+
+characterMaker.s: characterMaker.cpp.s
+
+.PHONY : characterMaker.s
+
+# target to generate assembly for a file
+characterMaker.cpp.s:
+	$(MAKE) -f CMakeFiles/codeToTest.dir/build.make CMakeFiles/codeToTest.dir/characterMaker.cpp.s
+.PHONY : characterMaker.cpp.s
+
 main.o: main.cpp.o
 
 .PHONY : main.o
@@ -274,6 +301,9 @@ help:
 	@echo "... character.o"
 	@echo "... character.i"
 	@echo "... character.s"
+	@echo "... characterMaker.o"
+	@echo "... characterMaker.i"
+	@echo "... characterMaker.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

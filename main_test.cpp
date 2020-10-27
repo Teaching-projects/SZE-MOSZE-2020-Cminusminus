@@ -2,58 +2,65 @@
 #include <iostream>
 #include <fstream>
 #include "character.h"
+#include "characterMaker.h"
 #include "JSONParser.h"
 #include <string>
 #include <vector>
 #include <gtest/gtest.h>
 
-TEST(fileNameTest, checkIfEqualsGood){
+TEST(fileNameTest, checkIfEquals){
   JSONParser parser;
-  Character* character1 = parser.parseUnitFromFileName("units/test_unit_1.json");
+  CharacterMaker characterMaker;
+  Character* character1 = characterMaker.createCharacter(parser.parseUnitFromFileName("units/test_unit_1.json"));
   Character* character2 = new Character("Béla",1500000,14);
 
   EXPECT_EQ(*character1, *character2); 
 }
 
-TEST(fileNameTest, checkIfEqualsBad){
+TEST(fileNameTest, checkIfNotEquals){
   JSONParser parser;
-  Character* character1 = parser.parseUnitFromFileName("units/test_unit_1.json");
+  CharacterMaker characterMaker;
+  Character* character1 = characterMaker.createCharacter(parser.parseUnitFromFileName("units/test_unit_1.json"));
   Character* character2 = new Character("Béla",1500001,14);
 
   EXPECT_NE(*character1, *character2); 
 }
 
-TEST(fileContentTest, checkIfEqualsGood){
+TEST(fileContentTest, checkIfEquals){
   JSONParser parser;
-  Character* character1 = parser.parseUnitFromContent("{\n\"name\": \"Béla\",\n\"hp\": 1500000,\n\"dmg\": 14\n}");
+  CharacterMaker characterMaker;
+  Character* character1 =characterMaker.createCharacter(parser.parseUnitFromContent("{\n\"name\": \"Béla\",\n\"hp\": 1500000,\n\"dmg\": 14\n}"));
   Character* character2 = new Character("Béla",1500000,14);
 
   EXPECT_EQ(*character1, *character2); 
 }
 
-TEST(fileContentTest, checkIfEqualsBad){
+TEST(fileContentTest, checkIfNotEquals){
+  CharacterMaker characterMaker;
   JSONParser parser;
-  Character* character1 = parser.parseUnitFromContent("{\n\"name\": \"Béla\",\n\"hp\": 1500000,\n\"dmg\": 14\n}");
+  Character* character1 = characterMaker.createCharacter(parser.parseUnitFromContent("{\n\"name\": \"Béla\",\n\"hp\": 1500000,\n\"dmg\": 14\n}"));
   Character* character2 = new Character("Béla",1500001,14);
 
   EXPECT_NE(*character1, *character2); 
 }
 
-TEST(ifstreamTest, checkIfEqualsGood){
+TEST(ifstreamTest, checkIfEquals){
   JSONParser parser;
+  CharacterMaker characterMaker;
   std::ifstream character1DataFile;
   character1DataFile.open("units/test_unit_1.json");
-  Character* character1 = parser.parseUnitFromStream(&character1DataFile);
+  Character* character1 =characterMaker.createCharacter(parser.parseUnitFromStream(&character1DataFile));
   Character* character2 = new Character("Béla",1500000,14);
 
   EXPECT_EQ(*character1, *character2); 
 }
 
-TEST(ifstreamTest, checkIfEqualsBad){
+TEST(ifstreamTest, checkIfNotEquals){
   JSONParser parser;
+  CharacterMaker characterMaker;
   std::ifstream character1DataFile;
   character1DataFile.open("units/test_unit_1.json");
-  Character* character1 = parser.parseUnitFromStream(&character1DataFile);
+  Character* character1 = characterMaker.createCharacter(parser.parseUnitFromStream(&character1DataFile));
   Character* character2 = new Character("Béla",1500001,14);
 
   EXPECT_NE(*character1, *character2); 

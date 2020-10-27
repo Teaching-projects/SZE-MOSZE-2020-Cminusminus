@@ -5,6 +5,7 @@
 #include <string>
 #include <vector>
 #include "JSONParser.h"
+#include "characterMaker.h"
 
 void battle(Character& character1, Character& character2){
   while(character1.IsAlive() && character2.IsAlive()){
@@ -33,8 +34,9 @@ int main(int argc, char *argv[])
   {
 	  try
 	  {
+      CharacterMaker characterMaker;
       JSONParser parser;
-		  battle(*parser.parseUnitFromFileName(argv[1]), *parser.parseUnitFromFileName(argv[2]));
+		  battle(*characterMaker.createCharacter(parser.parseUnitFromFileName(argv[1])), *characterMaker.createCharacter(parser.parseUnitFromFileName(argv[2])));
 	  }
 	  catch (const int& ex)
 	  {

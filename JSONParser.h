@@ -6,12 +6,16 @@
 #include <vector>
 #include <iostream>
 #include <fstream>
+#include<map>
 
 class JSONParser{
+private:
+    std::vector<std::string> splittedString(std::string text, char delimiter);
+    std::map<std::string, std::string> parse(const std::string text);
 public:
-    Character* parseUnitFromStream(std::ifstream* stream);
-    Character* parseUnitFromFileName(const std::string& fileName);
-    Character* parseUnitFromContent(const std::string& content);
+    std::map<std::string, std::string> parseUnitFromStream(std::ifstream* stream);
+    std::map<std::string, std::string> parseUnitFromFileName(const std::string& fileName);
+    std::map<std::string, std::string> parseUnitFromContent(const std::string& content);
 };
 
 #endif //JSONPARSER_H
