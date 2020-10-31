@@ -4,4 +4,6 @@
 *CMakeCache.txt
 *CMakeFiles
 *.a
-*.ghc
+*.gch
+mosze
+unit-test

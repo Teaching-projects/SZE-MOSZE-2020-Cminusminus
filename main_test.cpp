@@ -66,6 +66,28 @@ TEST(ifstreamTest, checkIfNotEquals){
   EXPECT_NE(*character1, *character2); 
 }
 
+TEST(ifstreamTest, checkIfNotEqualsBadHP){
+  JSONParser parser;
+  CharacterMaker characterMaker;
+  std::ifstream character1DataFile;
+  character1DataFile.open("units/test_unit_badHP.json");
+  Character* character1 = characterMaker.createCharacter(parser.parseUnitFromStream(&character1DataFile));
+  Character* character2 = new Character("Towelie",70000,1000);
+
+  EXPECT_NE(*character1, *character2); 
+}
+
+TEST(ifstreamTest, checkIfNotEqualsBadDamage){
+  JSONParser parser;
+  CharacterMaker characterMaker;
+  std::ifstream character1DataFile;
+  character1DataFile.open("units/test_unit_badDamage.json");
+  Character* character1 = characterMaker.createCharacter(parser.parseUnitFromStream(&character1DataFile));
+  Character* character2 = new Character("Towelie",70000,1000);
+
+  EXPECT_NE(*character1, *character2); 
+}
+
 int main(int argc, char **argv){
     ::testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
