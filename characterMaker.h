@@ -7,7 +7,7 @@
 #include <iostream>
 #include <fstream>
 #include<map>
-#include "player.h"
+//#include "player.h"
 
 class CharacterMaker{
 public:

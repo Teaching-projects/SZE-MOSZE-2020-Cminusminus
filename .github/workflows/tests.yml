@@ -9,7 +9,7 @@ jobs:
         steps:
             - uses: actions/checkout@v2
             - run: sudo apt install cppcheck valgrind
-            - run: g++ -Wall character.cpp player.cpp main.cpp -I player.h character.h -o mosze_01
+            - run: g++ -Wall character.cpp main.cpp -I character.h -o mosze_01
             - run: chmod a+x ./cppcheck.sh
             - run: ./cppcheck.sh
             - uses: actions/upload-artifact@v2
