@@ -9,6 +9,10 @@
 #include<map>
 
 class CharacterMaker{
+	/**
+  *\brief A helper class to create a character.
+  *\param parsedData the data which we parse.
+  */
 public:
     Character* createCharacter(std::map<std::string, std::string> parsedData);
 private:
