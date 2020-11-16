@@ -23,6 +23,6 @@ jobs:
       
         steps:
             - uses: actions/checkout@v2
-            - run: g++ -Wall character.cpp JSONParser.cpp characterMaker.cpp player.cpp main.cpp -I JSONParser.h characterMaker.h player.h character.h -o mosze_01
+            - run: g++ -Wall character.cpp JSONParser.cpp characterMaker.cpp main.cpp -I JSONParser.h characterMaker.h character.h -o mosze_01
             - run: ./run_battle_test.sh mosze_01 program_outputs.txt
             - run: diff program_outputs.txt good_outputs.txt
