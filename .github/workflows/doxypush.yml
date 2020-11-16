@@ -5,6 +5,9 @@ on:
         branches:
             - attackspeed
             - gh-pages
+            - levelup
+            - jsonparser
+            - documentation-expansion
 
 jobs:
     deploy:
