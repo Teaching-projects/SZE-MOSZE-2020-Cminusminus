@@ -2,6 +2,8 @@
 #include <iostream>
 #include "player.h"
 #include "character.h"
+#include "JSONParser.h"
+#include "CharacterMaker.h"
 #include <string>
 #include <vector>
 
