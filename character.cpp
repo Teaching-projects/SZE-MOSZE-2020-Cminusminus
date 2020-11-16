@@ -95,7 +95,8 @@ bool Character::IsAlive() const{
   return health > 0;
 }
 
-void Character::getAttacked(Character& enemy){
+
+void Character::getAttacked(const Character& enemy){
   health -= enemy.GetDamage();
   if(health < 0){
     health = 0;
@@ -167,4 +168,15 @@ void Character::battle(Character& enemy) {
 
 		std::cout << enemy.GetName() << " wins. Remaining HP:" << enemy.GetHealth() << '\n';
 	}
+}
+
+
+bool operator==(const Character character1, const Character character2){
+  return character1.GetName() == character2.GetName() &&
+         character1.GetDamage() == character2.GetDamage() &&
+         character1.GetHealth() == character2.GetHealth();
+}
+
+bool operator!=(const Character character1, const Character character2){
+  return !(character1 == character2);
 }
