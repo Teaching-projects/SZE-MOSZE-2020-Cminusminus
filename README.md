@@ -35,5 +35,5 @@ https://teaching-projects.github.io/SZE-MOSZE-2020-Cminusminus/
 **Feladat 3 - Level up** \
 A program kiegészül egy új osztállyal, amely a **Character** osztályból származik és **Player** a neve. A **Player** annyiban különbözik a **Character**-től, hogyha az **XP**-je eléri a *100*-at, akkor szintet lép, amely következtében a **damage** megnövekszik *10*%-kal, valamint a **maxHP** szintúgy megnövekszik *10*%-kal és a **HP** a **maxHP**-vel lesz egyenlő.
 
-**Feladat 3 - JSON Parser**
+**Feladat 3 - JSON Parser** \
 Ebben a feladatban egy json parsert valósítottam meg, ami 3 féle képpen képes működni. Paraméterként kaphat egy fájl **nevet**, fájl **tartalmát** vagy egy **istreamet**.

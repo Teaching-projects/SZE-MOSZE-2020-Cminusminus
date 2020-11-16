@@ -41,6 +41,9 @@ std::map<std::string, std::string> JSONParser::parse(const std::string text){
         else  if(splittedLine.front().find("dmg") != std::string::npos){
             parsedData.insert(std::pair<std::string, std::string>("damage", splittedLine.back()));
         }
+        else  if (splittedLine.front().find("acd") != std::string::npos) {
+            parsedData.insert(std::pair<std::string, std::string>("attackCooldown", splittedLine.back()));
+        }
     }
 
     return parsedData;
