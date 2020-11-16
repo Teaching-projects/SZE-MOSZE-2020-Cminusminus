@@ -31,10 +31,14 @@ int main(int argc, char *argv[])
 	  catch (const int& ex)
 	  {
 		  std::cout << "First and/or second file doesn't exists.\n";
+		  delete p1;
+		  delete p2;
 		  return 1;
 	  }
 
 	  p1->battle(*p2);
+	  delete p1;
+	  delete p2;
   }
   
   return 0;
