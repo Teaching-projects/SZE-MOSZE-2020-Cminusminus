@@ -1,6 +1,9 @@
 #include <sys/stat.h>
 #include <iostream>
 #include "player.h"
+#include "character.h"
+#include "JSONParser.h"
+#include "characterMaker.h"
 #include <string>
 #include <vector>
 
@@ -13,14 +16,16 @@ int main(int argc, char *argv[])
   }
   else
   {
-	 
-	  Player *p1 = nullptr;
-	  Player *p2 = nullptr;
+
+	  JSONParser parser;
+	  CharacterMaker characterMaker;
+	  Character* p1;
+	  Character* p2;
 	  try
 	  {
-		  p1 = Player::parseUnit(argv[2]);
-		  p2 = Player::parseUnit(argv[1]);
 		  
+		  p1 = characterMaker.createCharacter(parser.parseUnitFromFileName(argv[1]));
+		  p2 = characterMaker.createCharacter(parser.parseUnitFromFileName(argv[2]));
 
 	  }
 	  catch (const int& ex)
@@ -28,13 +33,12 @@ int main(int argc, char *argv[])
 		  std::cout << "First and/or second file doesn't exists.\n";
 		  delete p1;
 		  delete p2;
-
 		  return 1;
 	  }
+
 	  p1->battle(*p2);
 	  delete p1;
 	  delete p2;
-	  
   }
   
   return 0;

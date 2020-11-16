@@ -50,7 +50,9 @@ public:
   static std::vector<std::string> splittedString(std::string text, char delimiter);
   ///Attack the enemy character
   ///\param enemy
-  void getAttacked(Character& enemy);
+  void getAttacked(const Character& enemy);
+  friend bool operator==(const Character character1, const Character character2);
+  friend bool operator!=(const Character character1, const Character character2);
 private:
 	virtual void Attack(Character& enemy);
 	
