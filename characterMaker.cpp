@@ -4,6 +4,7 @@
 #include <map>
 #include<iterator>
 
+
 void CharacterMaker::showErrorMessage(std::string message){
     std::cerr << message << '\n';
     exit(1);

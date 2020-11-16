@@ -28,9 +28,9 @@ A **JSON** fájl kiegészül egy újabb sorral **attackCooldown** néven, amely 
 A **battle** nevű függvény, annyiban változott így, hogy a karakterek akkor támadják csak meg a másikat, ha az *attackCooldown* eléri a 0-t.
 
 
-**Dokumentáció link** \
+**Dokumentáció link** 
 
-https://teaching-projects.github.io/SZE-MOSZE-2020-Cminusminus/
+https://teaching-projects.github.io/SZE-MOSZE-2020-Cminusminus--Closed/
 
 **Feladat 3 - Level up** \
 A program kiegészül egy új osztállyal, amely a **Character** osztályból származik és **Player** a neve. A **Player** annyiban különbözik a **Character**-től, hogyha az **XP**-je eléri a *100*-at, akkor szintet lép, amely következtében a **damage** megnövekszik *10*%-kal, valamint a **maxHP** szintúgy megnövekszik *10*%-kal és a **HP** a **maxHP**-vel lesz egyenlő.
