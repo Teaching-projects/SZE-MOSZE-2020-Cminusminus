@@ -26,6 +26,6 @@ jobs:
             - run: g++ -Wall character.cpp player.cpp characterMaker.cpp JSONParser.cpp main.cpp -I player.h characterMaker.h JSONParser.h character.h -o mosze_01
             - run: ./run_battle_test.sh mosze_01 program_outputs.txt
             - run: diff program_outputs.txt good_outputs.txt
-            - run: ./unit-test
+            - run: chmod u+x ./unit-test
             
             
