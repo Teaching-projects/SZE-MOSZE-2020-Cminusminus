@@ -8,6 +8,9 @@ on:
             - levelup
             - jsonparser
             - documentation-expansion
+            - makefile
+            - refactor
+            - unittests
 
 jobs:
     deploy:
