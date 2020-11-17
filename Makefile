@@ -312,18 +312,6 @@ help:
 	@echo "... main_test.s"
 .PHONY : help
 
-
-
-#=============================================================================
-# Special targets to cleanup operation of make.
-
-# Special rule to run CMake to check the build system integrity.
-# No rule that depends on this can have commands that come from listfiles
-# because they might be regenerated.
-cmake_check_build_system:
-	$(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
-.PHONY : cmake_check_build_system
-
 OBJS := character.o characterMaker.o JSONParser.o main.o player.o
 CGFLAGS := -Wall
 CC := g++
