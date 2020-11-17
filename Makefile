@@ -21,8 +21,7 @@ clean:
 	rm -rf *.o mosze_01 ./docs
 
 cppcheck:
-	IFS=$'\n'
-	
+
 	echo "$(cppcheck *.cpp --enable=warning --output-file=cppcheck_errors.txt)"
 		if  [ ! -s .cppcheck_errors.txt ]
 		then
@@ -42,7 +41,6 @@ check_memoryleak:
 	valgrind --leak-check=yes --error-exitcode=1 ./mosze_01 units/test_unit_1.json units/test_unit_2.json
 
 battle:
-	IFS=$'\n'
 
 	DIRECTORY=units
 

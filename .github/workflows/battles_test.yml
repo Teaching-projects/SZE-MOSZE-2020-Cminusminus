@@ -9,8 +9,6 @@ jobs:
         steps:
             - uses: actions/checkout@v2
             - run: sudo apt install cppcheck valgrind
-            - run: g++ -Wall character.cpp player.cpp characterMaker.cpp JSONParser.cpp main.cpp -I player.h characterMaker.h JSONParser.h character.h -o mosze_01
-            - run: chmod a+x ./cppcheck.sh
             - run: make cppcheck
             - uses: actions/upload-artifact@v2
               with:
@@ -23,7 +21,6 @@ jobs:
       
         steps:
             - uses: actions/checkout@v2
-            - run: g++ -Wall character.cpp player.cpp characterMaker.cpp JSONParser.cpp main.cpp -I player.h characterMaker.h JSONParser.h character.h -o mosze_01
             - run: make battle
             - run: make battle_diff
             - run: make parser_testing
