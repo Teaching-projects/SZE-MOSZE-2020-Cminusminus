@@ -27,7 +27,7 @@ cppcheck:
 	cppcheck *.cpp --enable=performance,style --output-file=cppcheck_performance.txt
 
 check_memoryleak:
-	valgrind --leak-check=yes --error-exitcode=1 mosze_01 units/test_unit_1.json units/test_unit_2.json
+	valgrind --leak-check=yes --error-exitcode=1 ./mosze_01 units/test_unit_1.json units/test_unit_2.json
 
 battle:
 
