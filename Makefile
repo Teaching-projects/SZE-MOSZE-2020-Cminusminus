@@ -30,7 +30,7 @@ check_memoryleak:
 	valgrind --leak-check=yes --error-exitcode=1 ./mosze_01 units/test_unit_1.json units/test_unit_2.json
 
 battle:
-
+	#!/bin/bash
 	for file1 in `ls $(FOLDER)`
 	do
 		for file2 in `ls $(FOLDER)`
