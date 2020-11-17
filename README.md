@@ -37,3 +37,9 @@ A program kiegészül egy új osztállyal, amely a **Character** osztályból sz
 
 **Feladat 3 - JSON Parser** \
 Ebben a feladatban egy json parsert valósítottam meg, ami 3 féle képpen képes működni. Paraméterként kaphat egy fájl **nevet**, fájl **tartalmát** vagy egy **istreamet**.
+
+**Feladat 4 - Documentation** \
+A program kimaradt függvényeit kiegészítettük, amelyekben hiányoztak a doxygen-hez szükséges kommentek.
+
+**Feladat 4 - Makefile** \
+Ebben a feladatrészben a ,,miniscripteket" egységesen egy Makefile fájlba helyeztük, ami kicsit egységesíti a GHA kódokat és a doxygen dokumentáció generálást.
