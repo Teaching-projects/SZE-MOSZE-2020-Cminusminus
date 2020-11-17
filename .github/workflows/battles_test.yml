@@ -22,6 +22,7 @@ jobs:
       
         steps:
             - uses: actions/checkout@v2
+            - run: make
             - run: make battle
             - run: make battle_diff
             - run: make unit_test
