@@ -1,9 +1,7 @@
 OBJS := character.o characterMaker.o JSONParser.o main.o player.o
 CGFLAGS := -Wall
 CC := g++
-UNIT1 := units/test_unit_1.json
-UNIT2 := units/test_unit_2.json
-UNIT3 := units/test_unit_3.json
+FOLDER := units/test_unit_1.json units/test_unit_2.json units/test_unit_3.json
 
 mosze_01: $(OBJS)
 	$(CC) $(CGFLAGS) -o mosze_01 $(OBJS)
@@ -31,14 +29,16 @@ check_memoryleak:
 	valgrind --leak-check=yes --error-exitcode=1 ./mosze_01 units/test_unit_1.json units/test_unit_2.json
 
 battle:
-	touch "program_outputs.txt"
+	touch program_outputs.txt
 	> program_outputs.txt
-	./mosze_01 $(UNIT1) $(UNIT2) >> program_outputs.txt
-	./mosze_01 $(UNIT1) $(UNIT3) >> program_outputs.txt
-	./mosze_01 $(UNIT2) $(UNIT1) >> program_outputs.txt
-	./mosze_01 $(UNIT2) $(UNIT3) >> program_outputs.txt
-	./mosze_01 $(UNIT3) $(UNIT2) >> program_outputs.txt
-	./mosze_01 $(UNIT3) $(UNIT1) >> program_outputs.txt
+
+	for f1 in $(FOLDER); do \
+		for f2 in $(FOLDER); do \
+			if [ $$f1 != $$f2 ]; then \
+				./mosze_01 $$f1 $$f2 >> program_outputs.txt; \
+			fi; \
+		done; \
+	done
 
 battle_diff: battle
 	diff program_outputs.txt good_outputs.txt
