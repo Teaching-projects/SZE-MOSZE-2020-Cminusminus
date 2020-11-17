@@ -33,11 +33,11 @@ battle:
 
 	touch program_outputs.txt
 	> program_outputs.txt
-	
-	for file1 in $(FOLDER); do \ 
-		for file2 in $(FOLDER); do \
-			if [[ $$file1 != $$file2 ]] then \
-				./mosze_01 $$file1 $$file2 >> program_outputs.txt; \
+
+	for f1 in $(FOLDER); do \
+		for f2 in $(FOLDER); do \
+			if [ $$f1 != $$f2 ]; then \
+				./mosze_01 $$f1 $$f2 >> program_outputs.txt; \
 			fi; \
 		done; \
 	done
