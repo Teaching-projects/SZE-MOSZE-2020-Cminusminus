@@ -86,7 +86,7 @@ TEST(ifstreamTest, checkIfNotEqualsBadDamage){
   Character* character2 = new Character("Towelie",70000,1000,10.3);
 
   EXPECT_NE(*character1, *character2); 
-
+}
 
 int main(int argc, char **argv){
     ::testing::InitGoogleTest(&argc, argv);
