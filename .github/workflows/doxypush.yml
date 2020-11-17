@@ -1,16 +1,6 @@
 name: Documentation workflow
 
-on:
-    push:
-        branches:
-            - attackspeed
-            - gh-pages
-            - levelup
-            - jsonparser
-            - documentation-expansion
-            - makefile
-            - refactor
-            - unittests
+on: pull_request
 
 jobs:
     deploy:

@@ -44,12 +44,12 @@ battle_diff: battle
 	diff program_outputs.txt good_outputs.txt
 
 unit_test:
-	sudo apt install libgtest-dev
-	sudo apt install cmake
-	cd usr/src/gtest && sudo cmake CMakeLists.txt && sudo make
+	sudo apt install libgtest-dev cmake
+	cd /usr/src/gtest && sudo cmake CMakeLists.txt && sudo make
 	sudo ln -st /usr/lib/ /usr/src/gtest/libgtest.a
 	sudo ln -st /usr/lib/ /usr/src/gtest/libgtest_main.a
-	cd test && cmake CMakeLists.txt && make && ./runTests
+	cmake ./CMakeLists.txt
+	cd unit-test && make
 
 documentation:
 	doxygen doxconf
