@@ -70,7 +70,7 @@ TEST(ifstreamTest, checkIfNotEqualsBadHP){
   JSONParser parser;
   CharacterMaker characterMaker;
   std::ifstream character1DataFile;
-  character1DataFile.open("incorrect_units/test_unit_badHP.json");
+  character1DataFile.open("units/test_unit_badHP.json");
   Character* character1 = characterMaker.createCharacter(parser.parseUnitFromStream(&character1DataFile));
   Character* character2 = new Character("Towelie",70000,1000,10.3);
 
@@ -81,7 +81,7 @@ TEST(ifstreamTest, checkIfNotEqualsBadDamage){
   JSONParser parser;
   CharacterMaker characterMaker;
   std::ifstream character1DataFile;
-  character1DataFile.open("incorrect_units/test_unit_badDamage.json");
+  character1DataFile.open("units/test_unit_badDamage.json");
   Character* character1 = characterMaker.createCharacter(parser.parseUnitFromStream(&character1DataFile));
   Character* character2 = new Character("Towelie",70000,1000,10.3);
 
