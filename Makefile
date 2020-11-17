@@ -19,7 +19,7 @@ main.o: main.cpp character.h player.h JSONParser.h characterMaker.h
 	$(CC) $(CGFLAGS) -c main.cpp
 
 clean:
-	rm -rf *.o *.out ./docs 
+	rm -rf *.o mosze_01 *.out ./docs 
 
 cppcheck:
 	cppcheck *.cpp --enable=warning --output-file=cppcheck_errors.txt
@@ -48,7 +48,6 @@ unit_test:
 	sudo ln -st /usr/lib/ /usr/src/gtest/libgtest.a
 	sudo ln -st /usr/lib/ /usr/src/gtest/libgtest_main.a
 	cmake ./CMakeLists.txt
-	./configure
 	cd unit-testing && make && ./runTests
 
 documentation:
