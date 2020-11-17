@@ -1,7 +1,7 @@
 OBJS := character.o characterMaker.o JSONParser.o main.o player.o
 CGFLAGS := -Wall
 CC := g++
-FOLDER := ./units
+FOLDER := units/test_unit_1.json units/test_unit_2.json units/test_unit_3.json
 
 mosze_01: $(OBJS)
 	$(CC) $(CGFLAGS) -o mosze_01 $(OBJS)
@@ -30,19 +30,19 @@ check_memoryleak:
 	valgrind --leak-check=yes --error-exitcode=1 ./mosze_01 units/test_unit_1.json units/test_unit_2.json
 
 battle:
-	#!/bin/bash
-	for file1 in `ls $(FOLDER)`
-	do
-		for file2 in `ls $(FOLDER)`
-		do
-			if [[ $file1 != $file2 ]]
-			then
-				./$1 $(FOLDER)/$file1 $(FOLDER)/$file2 >> $2
-			fi
-		done
+
+	touch program_outputs.txt
+	> program_outputs.txt
+	
+	for file1 in $(FOLDER); do \ 
+		for file2 in $(FOLDER); do \
+			if [[ $$file1 != $$file2 ]] then \
+				./mosze_01 $$file1 $$file2 >> program_outputs.txt; \
+			fi; \
+		done; \
 	done
 
-battle_diff:
+battle_diff: battle
 	diff program_outputs.txt good_outputs.txt
 
 parser_testing:
