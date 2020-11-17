@@ -84,11 +84,9 @@ TEST(ifstreamTest, checkIfNotEqualsBadDamage){
   character1DataFile.open("incorrect_units/test_unit_badDamage.json");
   Character* character1 = characterMaker.createCharacter(parser.parseUnitFromStream(&character1DataFile));
   Character* character2 = new Character("Towelie",70000,1000,10.3);
-try{
+
   EXPECT_NE(*character1, *character2); 
-}
-catch(std::exception ex) { std::cout << ex;}
-}
+
 
 int main(int argc, char **argv){
     ::testing::InitGoogleTest(&argc, argv);
