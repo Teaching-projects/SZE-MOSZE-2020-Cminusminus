@@ -15,7 +15,7 @@ set(MAIN_FILE main.cpp)
 add_library(codeToTest ${FILES_TO_TEST})
 
 add_executable(mosze ${MAIN_FILE})
-target_link_libraries(mosze_01 codeToTest)
+target_link_libraries(mosze codeToTest)
 
 add_executable(unit-test ${UNIT_TESTS})
 target_link_libraries(unit-test gtest gtest_main rt pthread codeToTest)
