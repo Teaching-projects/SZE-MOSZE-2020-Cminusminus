@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/ricsi/egyetem/SZE-MOSZE-2020-Cminusminus
+CMAKE_SOURCE_DIR = C:\Users\KuruczÁdám\Documents\GitHub\SZE-MOSZE-2020-Cminusminus
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/ricsi/egyetem/SZE-MOSZE-2020-Cminusminus
+CMAKE_BINARY_DIR = C:\Users\KuruczÁdám\Documents\GitHub\SZE-MOSZE-2020-Cminusminus
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -311,6 +311,15 @@ help:
 	@echo "... main_test.i"
 	@echo "... main_test.s"
 .PHONY : help
+#=============================================================================
+# Special targets to cleanup operation of make.
+
+# Special rule to run CMake to check the build system integrity.
+# No rule that depends on this can have commands that come from listfiles
+# because they might be regenerated.
+cmake_check_build_system:
+	$(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+.PHONY : cmake_check_build_system
 
 OBJS := character.o characterMaker.o JSONParser.o main.o player.o
 CGFLAGS := -Wall
