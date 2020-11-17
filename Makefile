@@ -49,7 +49,7 @@ unit_test:
 	sudo ln -st /usr/lib/ /usr/src/gtest/libgtest.a
 	sudo ln -st /usr/lib/ /usr/src/gtest/libgtest_main.a
 	cmake ./CMakeLists.txt
-	cd unit-test && make
+	make && ./runTests
 
 documentation:
 	doxygen doxconf
