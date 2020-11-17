@@ -22,7 +22,6 @@ clean:
 	rm -rf *.o mosze_01 ./docs
 
 cppcheck:
-
 	cppcheck *.cpp --enable=warning --output-file=cppcheck_errors.txt
 	cppcheck *.cpp --enable=performance,style --output-file=cppcheck_performance.txt
 
@@ -30,7 +29,6 @@ check_memoryleak:
 	valgrind --leak-check=yes --error-exitcode=1 ./mosze_01 units/test_unit_1.json units/test_unit_2.json
 
 battle:
-
 	touch program_outputs.txt
 	> program_outputs.txt
 
@@ -42,7 +40,7 @@ battle:
 		done; \
 	done
 
-battle_diff: :battle
+battle_diff: battle
 	diff program_outputs.txt good_outputs.txt
 
 unit_test:
