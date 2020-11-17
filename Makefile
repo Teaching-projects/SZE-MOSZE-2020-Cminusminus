@@ -48,6 +48,7 @@ unit_test:
 	sudo ln -st /usr/lib/ /usr/src/gtest/libgtest.a
 	sudo ln -st /usr/lib/ /usr/src/gtest/libgtest_main.a
 	cmake ./CMakeLists.txt
+	./configure
 	cd unit-testing && make && ./runTests
 
 documentation:
