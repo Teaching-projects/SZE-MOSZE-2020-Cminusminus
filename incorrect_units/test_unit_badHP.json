@@ -2,4 +2,5 @@
     "name": "Towelie",
     "hp": "alma",
     "dmg": 1000
+	"attackCooldown": 10.3
 }
