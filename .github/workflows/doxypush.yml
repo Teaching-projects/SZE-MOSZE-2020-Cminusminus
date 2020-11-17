@@ -1,13 +1,6 @@
 name: Documentation workflow
 
-on:
-    push:
-        branches:
-            - attackspeed
-            - gh-pages
-            - levelup
-            - jsonparser
-            - documentation-expansion
+on: pull_request
 
 jobs:
     deploy:
@@ -21,7 +14,7 @@ jobs:
               run: sudo apt-get install graphviz
 
             - name: Generate docs
-              run: doxygen doxconf
+              run: make documentation
 
             - name: Push git subdir branch
               uses: s0/git-publish-subdir-action@v2.4.0
