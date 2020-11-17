@@ -42,14 +42,8 @@ battle:
 		done; \
 	done
 
-battle_diff: battle
+battle_diff:
 	diff program_outputs.txt good_outputs.txt
-
-parser_testing:
-	d /usr/src/gtest && sudo cmake CMakeLists.txt && sudo make
-	sudo ln -st /usr/lib/ /usr/src/gtest/libgtest.a
-	sudo ln -st /usr/lib/ /usr/src/gtest/libgtest_main.a
-	cd test && cmake CMakeLists.txt && make && ./unit-test
 
 documentation:
 	doxygen doxconf
