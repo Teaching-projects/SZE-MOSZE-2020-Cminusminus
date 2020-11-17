@@ -1,6 +1,7 @@
 OBJS := character.o characterMaker.o JSONParser.o main.o player.o
 CGFLAGS := -Wall
 CC := g++
+FOLDER := ./units
 
 mosze_01: $(OBJS)
 	$(CC) $(CGFLAGS) -o mosze_01 $(OBJS)
@@ -22,35 +23,21 @@ clean:
 
 cppcheck:
 
-	echo "$(cppcheck *.cpp --enable=warning --output-file=cppcheck_errors.txt)"
-		if  [ ! -s .cppcheck_errors.txt ]
-		then
-				echo "Not found any errors and warnings."
-				echo "$(cppcheck *.cpp --enable=performance,style --output-file=cppcheck_performance.txt)"
-		
-			if [ ! -s cppcheck_performance.txt ]
-			then
-				echo "Not found any performance and style errors."
-			fi
-		else
-				echo "Found some errors or warnings."
-				exit 1
-		fi 
+	cppcheck *.cpp --enable=warning --output-file=cppcheck_errors.txt
+	cppcheck *.cpp --enable=performance,style --output-file=cppcheck_performance.txt
 
 check_memoryleak:
 	valgrind --leak-check=yes --error-exitcode=1 ./mosze_01 units/test_unit_1.json units/test_unit_2.json
 
 battle:
 
-	DIRECTORY=units
-
-	for file1 in `ls $DIRECTORY`
+	for file1 in `ls $(FOLDER)`
 	do
-		for file2 in `ls $DIRECTORY`
+		for file2 in `ls $(FOLDER)`
 		do
 			if [[ $file1 != $file2 ]]
 			then
-				./$1 $DIRECTORY/$file1 $DIRECTORY/$file2 >> $2
+				./$1 $(FOLDER)/$file1 $(FOLDER)/$file2 >> $2
 			fi
 		done
 	done
