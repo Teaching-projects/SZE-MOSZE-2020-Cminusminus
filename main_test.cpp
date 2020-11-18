@@ -79,7 +79,7 @@ TEST(LVLTest, checkIfEquals){
   Character* character = new Character("Uzi",1500,140,10.3);
   Player* player = new Player("Timmy",3000,90,10.1);
   player->battle(*character);
-  unsigned int expectedLVL = 13;
+  unsigned int expectedLVL = 16;
   EXPECT_EQ(expectedLVL, player->GetLevel()); 
 }
 
@@ -89,7 +89,7 @@ TEST(MAXHPTest, checkIfEquals){
   Character* character = new Character("Uzi",1500,140,10.3);
   Player* player = new Player("Timmy",3000,90,10.1);
   player->battle(*character);
-  unsigned int expectedMaxHP = 9414;
+  unsigned int expectedMaxHP = 12530;
   EXPECT_EQ(expectedMaxHP, player->GetMaxHP()); 
 }
 
@@ -99,7 +99,7 @@ TEST(DMGTest, checkIfEquals){
   Character* character = new Character("Uzi",1500,140,10.3);
   Player* player = new Player("Timmy",3000,90,10.1);
   player->battle(*character);
-  unsigned int expectedDMG = 283;
+  unsigned int expectedDMG = 376;
   EXPECT_EQ(expectedDMG, player->GetDamage()); 
 }
 
