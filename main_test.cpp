@@ -79,7 +79,7 @@ TEST(LVLTest, checkIfEquals){
   Character* character = new Character("Uzi",1500,140,10.3);
   Player* player = new Player("Timmy",3000,90,10.1);
   player->battle(*character);
-  unsigned int expectedLVL = 24;
+  unsigned int expectedLVL = 13;
   EXPECT_EQ(expectedLVL, player->GetLevel()); 
 }
 
