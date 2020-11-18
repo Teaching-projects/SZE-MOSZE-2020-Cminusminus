@@ -113,6 +113,16 @@ TEST(XPGainTest, checkIfEquals){
   EXPECT_EQ(expectedXP, player->GetXP()); 
 }
 
+TEST(MultipleLevelTest, checkIfEquals){
+  JSONParser parser;
+  CharacterMaker characterMaker;
+  Character* character = new Character("Uzi",300,90,10.3);
+  Player* player = new Player("Timmy",3000,400,10.1);
+  player->battle(*character);
+  unsigned int expectedLVL = 4;
+  EXPECT_EQ(expectedLVL, player->GetLevel()); 
+}
+
 int main(int argc, char **argv){
     ::testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
