@@ -32,7 +32,23 @@ std::map<std::string, std::string> JSONParser::parse(const std::string text){
 
         if(splittedLine.front().find("name") != std::string::npos){
             std::vector<std::string> name = splittedString(splittedLine.back(), '"');
-            parsedData.insert(std::pair<std::string, std::string>("name", name[1]));
+            
+            unsigned int i = 0;
+            int spaces = 0;
+           while (name[1].at(i) == ' ')
+            {
+               spaces++;
+               i++;
+            }
+           name[1].erase(0, spaces);
+           unsigned int j = name[1].length()-1;
+           while (name[1].at(j) == ' ')
+           {
+               j--;
+           }
+           j++;
+           name[1].erase(j, name[1].length()+1);
+           parsedData.insert(std::pair<std::string, std::string>("name", name[1]));
         }
         else  if(splittedLine.front().find("hp") != std::string::npos){
             std::vector<std::string> health = splittedString(splittedLine.back(), ',');
