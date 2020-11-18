@@ -83,6 +83,16 @@ TEST(LVLTest, checkIfEquals){
   EXPECT_EQ(expectedLVL, player->GetLevel()); 
 }
 
+TEST(MAXHPTest, checkIfEquals){
+  JSONParser parser;
+  CharacterMaker characterMaker;
+  Character* character = new Character("Uzi",1500,140,10.3);
+  Player* player = new Player("Timmy",3000,90,10.1);
+  player->battle(*character);
+  unsigned int expectedMaxHP = 9414;
+  EXPECT_EQ(expectedMaxHP, player->GetMaxHP()); 
+}
+
 int main(int argc, char **argv){
     ::testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();

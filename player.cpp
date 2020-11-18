@@ -10,6 +10,11 @@ int Player::GetLevel() const
 	return level;
 }
 
+int Player::GetMaxHP() const
+{
+	return maxHP;
+}
+
 void Player::Attack(Character& enemy){
 	enemy.Character::getAttacked(*this);
 	XPManager(enemy);

@@ -19,6 +19,7 @@ public:
 	///\brief Returns the player's level
 	///\return level
 	int GetLevel() const;
+	int GetMaxHP() const;
 private:
 	void XPManager(Character& enemy);
 	void Attack(Character& enemy) override;
