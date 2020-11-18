@@ -1,8 +1,0 @@
-*.pro
-*.pro.user
-*.out
-*CMakeCache.txt
-*CMakeFiles
-*.a
-*.gch
-mosze
