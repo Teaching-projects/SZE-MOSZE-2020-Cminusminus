@@ -93,6 +93,26 @@ TEST(MAXHPTest, checkIfEquals){
   EXPECT_EQ(expectedMaxHP, player->GetMaxHP()); 
 }
 
+TEST(DMGTest, checkIfEquals){
+  JSONParser parser;
+  CharacterMaker characterMaker;
+  Character* character = new Character("Uzi",1500,140,10.3);
+  Player* player = new Player("Timmy",3000,90,10.1);
+  player->battle(*character);
+  unsigned int expectedDMG = 283;
+  EXPECT_EQ(expectedDMG, player->GetDamage()); 
+}
+
+TEST(XPGainTest, checkIfEquals){
+  JSONParser parser;
+  CharacterMaker characterMaker;
+  Character* character = new Character("Uzi",80,90,10.3);
+  Player* player = new Player("Timmy",3000,90,10.1);
+  player->battle(*character);
+  unsigned int expectedXP = 80;
+  EXPECT_EQ(expectedXP, player->GetXP()); 
+}
+
 int main(int argc, char **argv){
     ::testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();

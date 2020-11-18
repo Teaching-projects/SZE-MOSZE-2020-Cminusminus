@@ -20,6 +20,7 @@ public:
 	///\return level
 	int GetLevel() const;
 	int GetMaxHP() const;
+	int GetXP() const;
 private:
 	void XPManager(Character& enemy);
 	void Attack(Character& enemy) override;
