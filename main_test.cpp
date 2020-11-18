@@ -3,6 +3,7 @@
 #include <fstream>
 #include "character.h"
 #include "characterMaker.h"
+#include "player.h"
 #include "JSONParser.h"
 #include <string>
 #include <vector>
@@ -64,6 +65,15 @@ TEST(mixedInputsTest, checkIfEquals){
   EXPECT_EQ(*character1, *character2); 
 }
 TEST(plusDataWhSpaceTest, checkIfEquals){
+  JSONParser parser;
+  CharacterMaker characterMaker;
+  Character* character1 = characterMaker.createCharacter(parser.parseUnitFromFileName("bad_units/test_unit_plusDataWhSpace.json"));
+  Character* character2 = new Character("Tricky Tricky",320,200,10.1);
+
+  EXPECT_EQ(*character1, *character2); 
+}
+
+TEST(, checkIfEquals){
   JSONParser parser;
   CharacterMaker characterMaker;
   Character* character1 = characterMaker.createCharacter(parser.parseUnitFromFileName("bad_units/test_unit_plusDataWhSpace.json"));

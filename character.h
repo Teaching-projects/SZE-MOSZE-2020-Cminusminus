@@ -43,11 +43,6 @@ public:
   ///It returns the attack speed of the character.
   ///\return attackCooldown
   double GetAttackCooldown() const;
-  ///\brief A function to get the characters parameters from a file.
-  ///\param fileName The name of the file used to read the data from.
-  ///\return Character*
-  static Character* parseUnit(const std::string& fileName);
-  static std::vector<std::string> splittedString(std::string text, char delimiter);
   ///Attack the enemy character
   ///\param enemy
   void getAttacked(const Character& enemy);

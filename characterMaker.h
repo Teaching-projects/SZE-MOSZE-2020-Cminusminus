@@ -2,6 +2,7 @@
 #define CHARACTER_MAKER_H
 
 #include "character.h"
+#include "player.h"
 #include <string>
 #include <vector>
 #include <iostream>
@@ -16,6 +17,12 @@ class CharacterMaker{
   */
 public:
     Character* createCharacter(std::map<std::string, std::string> parsedData);
+	/**
+  *\brief A helper class to create a player.
+  *\param parsedData the data which we parse.
+  ///\return Player*
+  */
+	Player* createPlayer(std::map<std::string, std::string> parsedData);
 private:
     void showErrorMessage(std::string message);
 };
