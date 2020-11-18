@@ -15,7 +15,7 @@ class Player : public Character
 *\param attackCooldown The speed of the player's attack.
 */
 public:
-	Player(const std::string& name, int health, int damage, double attackCooldown);
+	Player(const std::string name, int health, int damage, double attackCooldown);
 	///\brief Returns the player's level
 	///\return level
 	int GetLevel() const;

@@ -3,7 +3,7 @@
 #include <cmath>
 #include <fstream>
 
-Player::Player(const std::string& name, int health, int damage, double attackCooldown) : Character(name, health, damage, attackCooldown) { xp = 0; level = 1, maxHP = health; }
+Player::Player(const std::string name, int health, int damage, double attackCooldown) : Character(name, health, damage, attackCooldown) { xp = 0; level = 1, maxHP = health; }
 
 int Player::GetLevel() const
 {

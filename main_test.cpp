@@ -2,8 +2,8 @@
 #include <iostream>
 #include <fstream>
 #include "character.h"
-#include "characterMaker.h"
 #include "player.h"
+#include "characterMaker.h"
 #include "JSONParser.h"
 #include <string>
 #include <vector>
@@ -73,13 +73,14 @@ TEST(plusDataWhSpaceTest, checkIfEquals){
   EXPECT_EQ(*character1, *character2); 
 }
 
-TEST(, checkIfEquals){
+TEST(LVLTest, checkIfEquals){
   JSONParser parser;
   CharacterMaker characterMaker;
-  Character* character1 = characterMaker.createCharacter(parser.parseUnitFromFileName("bad_units/test_unit_plusDataWhSpace.json"));
-  Character* character2 = new Character("Tricky Tricky",320,200,10.1);
-
-  EXPECT_EQ(*character1, *character2); 
+  Character* character = new Character("Uzi",1500,140,10.3);
+  Player* player = new Player("Timmy",3000,90,10.1);
+  character->battle(*player);
+  unsigned int expectedLVL = 24;
+  EXPECT_EQ(expectedLVL, player->GetLevel()); 
 }
 
 int main(int argc, char **argv){
