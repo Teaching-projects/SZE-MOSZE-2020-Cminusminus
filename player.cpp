@@ -21,10 +21,18 @@ int Player::GetXP() const
 }
 
 void Player::Attack(Character& enemy){
-	XPManager(enemy);
-	enemy.Character::getAttacked(*this);
+	if (this->GetDamage() >= enemy.GetHealth())
+	{
+		XPManager(enemy);
+		enemy.Character::getAttacked(*this);
+	}
+	else
+	{
+		enemy.Character::getAttacked(*this);
+		XPManager(enemy);
+	}
+	
 }
-
 void Player::XPManager(Character& enemy)
 {
 	if (enemy.GetHealth() < this->GetDamage())
