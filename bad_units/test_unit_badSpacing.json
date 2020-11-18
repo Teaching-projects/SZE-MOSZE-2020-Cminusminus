@@ -1,0 +1,7 @@
+{
+    "name":		 "Béla",
+    "dmg": 500,
+	"hp": 1500000
+	
+	"attackCooldown":       10.3
+}

@@ -1,0 +1,26 @@
+name: Documentation workflow
+
+on: pull_request
+
+jobs:
+    deploy:
+        name: Deploy to Github pages
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@master
+            - name: Installing Doxygen
+              run: sudo apt-get install doxygen
+            - name: Installing Graphviz
+              run: sudo apt-get install graphviz
+
+            - name: Generate docs
+              run: make documentation
+
+            - name: Push git subdir branch
+              uses: s0/git-publish-subdir-action@v2.4.0
+
+              env:
+                REPO: self
+                BRANCH: gh-pages
+                FOLDER: docs/html
+                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
