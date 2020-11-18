@@ -63,6 +63,14 @@ TEST(mixedInputsTest, checkIfEquals){
 
   EXPECT_EQ(*character1, *character2); 
 }
+TEST(plusDataWhSpaceTest, checkIfEquals){
+  JSONParser parser;
+  CharacterMaker characterMaker;
+  Character* character1 = characterMaker.createCharacter(parser.parseUnitFromFileName("bad_units/test_unit_plusDataWhSpace.json"));
+  Character* character2 = new Character("Tricky Tricky",320,200,10.1);
+
+  EXPECT_EQ(*character1, *character2); 
+}
 
 int main(int argc, char **argv){
     ::testing::InitGoogleTest(&argc, argv);
