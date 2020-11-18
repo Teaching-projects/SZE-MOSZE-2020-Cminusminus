@@ -15,11 +15,12 @@ class Player : public Character
 *\param attackCooldown The speed of the player's attack.
 */
 public:
-	Player(const std::string& name, int health, int damage, double attackCooldown);
+	Player(const std::string name, int health, int damage, double attackCooldown);
 	///\brief Returns the player's level
 	///\return level
 	int GetLevel() const;
-	static Player* parseUnit(const std::string& fileName);
+	int GetMaxHP() const;
+	int GetXP() const;
 private:
 	void XPManager(Character& enemy);
 	void Attack(Character& enemy) override;
