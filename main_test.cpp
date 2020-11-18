@@ -46,6 +46,24 @@ TEST(badLineTest, checkIfEquals){
   EXPECT_EQ(*character1, *character2); 
 }
 
+TEST(badSpacingTest, checkIfEquals){
+  JSONParser parser;
+  CharacterMaker characterMaker;
+  Character* character1 = characterMaker.createCharacter(parser.parseUnitFromFileName("bad_units/test_unit_badSpacing.json"));
+  Character* character2 = new Character("Béla",1500000,500,10.3);
+
+  EXPECT_EQ(*character1, *character2); 
+}
+
+TEST(mixedInputsTest, checkIfEquals){
+  JSONParser parser;
+  CharacterMaker characterMaker;
+  Character* character1 = characterMaker.createCharacter(parser.parseUnitFromFileName("bad_units/test_unit_mixedInputs.json"));
+  Character* character2 = new Character("Tricky Tricky",320,200,10.1);
+
+  EXPECT_EQ(*character1, *character2); 
+}
+
 int main(int argc, char **argv){
     ::testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
