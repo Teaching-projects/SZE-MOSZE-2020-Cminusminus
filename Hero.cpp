@@ -25,7 +25,7 @@ Hero Hero::parse(std::string file)
 	}
 	else
 	{
-		throw 1;
+		throw JSON::ParseException("error");
 	}
 	std::map<std::string, std::string> parsedData;
 

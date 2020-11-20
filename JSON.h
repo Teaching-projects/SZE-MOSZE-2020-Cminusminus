@@ -34,9 +34,10 @@ public:
 	};
 	static std::map<std::string, std::string> parseUnitFromStream(std::ifstream* stream);
 	static std::map<std::string, std::string> parseUnitFromFileName(const std::string& fileName);
-	class ParseException : public std::exception
+	class ParseException : public std::runtime_error
 	{
-		ParseException() {};
+	public:
+		explicit ParseException(const std::string& content) : std::runtime_error(content) {}
 	};
 private:
 	 std::map<std::string, std::string> hero_map;

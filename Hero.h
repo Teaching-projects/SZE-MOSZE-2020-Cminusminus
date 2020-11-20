@@ -4,6 +4,7 @@
 #include<iostream>
 #include "Monster.h"
 #include<memory>
+#include "JSON.h"
 
 class Hero : public Monster
 {
