@@ -55,13 +55,13 @@ std::map<std::string, std::string> JSON::parseUnitFromStream(std::ifstream* stre
         {
             fileContent += line + '\n';
         }
-        stream->close();
+        
     }
     else
     {
-        throw 1;
+        std::cerr << "Can't open file";
     }
-
+	stream->close;
     return parse(fileContent);
 }
 

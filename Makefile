@@ -35,7 +35,6 @@ battle:
 	> program_outputs.txt
 
 		./mosze_01 $(SCENARIO1) >> program_outputs.txt; \
-		./mosze_01 $(SCENARIO2) >> program_outputs.txt; \
 	
 battle_diff: battle
 	diff program_outputs.txt good_outputs.txt
