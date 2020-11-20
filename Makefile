@@ -1,6 +1,6 @@
 OBJS := JSON.o Monster.o Hero.o main.o 
-CGFLAGS := -Wall
-CC := g++
+CGFLAGS := -std=c++17 -Wall
+CC := g++-9
 FOLDER := units/scenario1.json units/scenario2.json
 
 mosze_01: $(OBJS)
