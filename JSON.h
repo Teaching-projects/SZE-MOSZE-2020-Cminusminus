@@ -27,6 +27,10 @@ public:
 		{
 			return monsters_map.find("monsters")->second;
 		}
+		else
+		{
+			return "";
+		}
 	};
 	static std::map<std::string, std::string> parseUnitFromStream(std::ifstream* stream);
 	static std::map<std::string, std::string> parseUnitFromFileName(const std::string& fileName);
