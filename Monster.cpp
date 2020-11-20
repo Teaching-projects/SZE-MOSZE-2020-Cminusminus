@@ -26,7 +26,6 @@ Monster Monster::parse(std::string file)
 
 	std::string fileContent = "";
 	std::string line;
-	int lineIndex = 0;
 
 	if (characterDataFile.is_open()) {
 		while (std::getline(characterDataFile, line))

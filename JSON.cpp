@@ -49,7 +49,7 @@ std::map<std::string, std::string> JSON::parse(const std::string text) {
 std::map<std::string, std::string> JSON::parseUnitFromStream(std::ifstream* stream) {
     std::string fileContent = "";
     std::string line;
-    int lineIndex = 0;
+
     if (stream->is_open()) {
         while (std::getline(*stream, line))
         {
