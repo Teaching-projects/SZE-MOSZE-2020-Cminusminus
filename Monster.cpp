@@ -32,13 +32,13 @@ Monster Monster::parse(std::string file)
 		{
 			fileContent += line + '\n';
 		}
-		
+		}	
 	else
 	{
 		std::cerr << "Can't open file";
 	}
 	characterDataFile.close();
-	}
+
 	std::map<std::string, std::string> parsedData;
 
 	for (const auto& line : splittedString(fileContent, ','))
