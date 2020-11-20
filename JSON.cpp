@@ -61,7 +61,7 @@ std::map<std::string, std::string> JSON::parseUnitFromStream(std::ifstream* stre
     {
         std::cerr << "Can't open file";
     }
-	stream->close;
+	stream->close();
     return parse(fileContent);
 }
 
