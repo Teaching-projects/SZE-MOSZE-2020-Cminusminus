@@ -1,11 +1,11 @@
-#ifndef PLAYER_H
-#define PLAYER_H
+#ifndef HERO_H
+#define HERO_H
 
 #include<iostream>
-#include "character.h"
+#include "Monster.h"
 #include<memory>
 
-class Player : public Character
+class Hero : public Monster
 {
 	/**
 *\brief A class for creating a player.
@@ -15,20 +15,25 @@ class Player : public Character
 *\param attackCooldown The speed of the player's attack.
 */
 public:
-	Player(const std::string name, int health, int damage, double attackCooldown);
+	Hero(const std::string name, int base_health, int base_damage, double base_attackCooldown, int xpPerLevel, int hpPerLevel, int dmgBonusPerLevel, double atcdMultiplier);
+
+	static Hero parse(std::string file);
 	///\brief Returns the player's level
 	///\return level
-	int GetLevel() const;
-	int GetMaxHP() const;
+	int getLevel() const;
+	int getMaxHealthPoints() const;
 	int GetXP() const;
 private:
-	void XPManager(Character& enemy);
-	void Attack(Character& enemy) override;
+	void XPManager(Monster& enemy);
+	void Attack(Monster& enemy) override;
 	
 	int level;
 	int xp;
 	int maxHP;
-
+	int xpPerLevel;
+	int hpPerLevel;
+	int dmgBonusPerLevel;
+	double atcdMultiplier;
 };
 
 #endif
