@@ -18,7 +18,7 @@ class Hero : public Monster
 public:
 	Hero(const std::string name, int base_health, int base_damage, double base_attackCooldown, int xpPerLevel, int hpPerLevel, int dmgBonusPerLevel, double atcdMultiplier);
 
-	static Hero parse(std::string& file);
+	static Hero& parse(std::string& file);
 	///\brief Returns the player's level
 	///\return level
 	int getLevel() const;

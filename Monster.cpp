@@ -18,20 +18,17 @@ Monster::Monster(std::string name, int health, int damage, double attackCooldown
 	damage(damage),
 	attackCooldown(attackCooldown) {}
 
-Monster Monster::parse(std::string file)
+Monster& Monster::parse(std::string file)
 {
 	std::map <std::string, std::string> parsedMap = JSON::parseUnitFromFileName(file);
-
-	return Monster
-	(
-		parsedMap.find("name")->second,
+	Monster* m = new Monster(parsedMap.find("name")->second,
 		std::stoi(parsedMap.find("hp")->second),
 		std::stoi(parsedMap.find("dmg")->second),
 		std::stod(parsedMap.find("atc")->second),
 		parsedMap.find("lore")->second,
 		parsedMap.find("info")->second,
-		parsedMap.find("race")->second
-	);
+		parsedMap.find("race")->second);
+	return *m;
 }
 
 std::string Monster::getName() const{

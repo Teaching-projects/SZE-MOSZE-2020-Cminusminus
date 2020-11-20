@@ -7,14 +7,15 @@ Hero::Hero(const std::string name, int base_health, int base_damage, double base
 	Monster(name, base_health, base_damage, base_attackCooldown), xpPerLevel(xpPerLevel), hpPerLevel(hpPerLevel), dmgBonusPerLevel(dmgBonusPerLevel), atcdMultiplier(atcdMultiplier) 
 	{ xp = 0; level = 1, maxHP = base_health; }
 
-Hero Hero::parse(std::string& file)
+Hero& Hero::parse(std::string& file)
 {
 	std::map <std::string, std::string> parsedMap = JSON::parseUnitFromFileName(file);
-
-	return Hero(parsedMap.find("name")->second, std::stoi(parsedMap.find("bhp")->second),
+	Hero* h = new Hero(parsedMap.find("name")->second, std::stoi(parsedMap.find("bhp")->second),
 		std::stoi(parsedMap.find("bd")->second), std::stod(parsedMap.find("bac")->second),
 		std::stoi(parsedMap.find("epl")->second), std::stoi(parsedMap.find("hpbpl")->second),
 		std::stoi(parsedMap.find("dbpl")->second), std::stod(parsedMap.find("cmpl")->second));
+	
+	return *h;
 	
 }
 

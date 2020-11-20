@@ -22,7 +22,7 @@ public:
     Monster(std::string name, int health, int damage, double attackCooldown);
 	Monster() {};
 
-    static Monster parse(std::string file);
+    static Monster& parse(std::string file);
 	///It returns the name of the character.
 	///\return name
   std::string getName() const;
