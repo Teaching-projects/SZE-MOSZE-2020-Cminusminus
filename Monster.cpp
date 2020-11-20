@@ -3,14 +3,6 @@
 #include <cmath>
 #include <fstream>
 
-Monster::Monster(std::string name, int health, int damage, double attackCooldown, std::string lore, std::string add_info, std::string race) :
-	name(name),
-	health(health),
-	damage(damage),
-	attackCooldown(attackCooldown),
-	lore(lore),
-	add_info(add_info),
-	race(race) {}
 
 Monster::Monster(std::string name, int health, int damage, double attackCooldown) :
 	name(name),
@@ -18,25 +10,18 @@ Monster::Monster(std::string name, int health, int damage, double attackCooldown
 	damage(damage),
 	attackCooldown(attackCooldown) {}
 
-Monster& Monster::parse(std::string file)
+Monster Monster::parse(const std::string& fileName)
 {
-	std::map <std::string, std::string> parsedMap = JSON::parseUnitFromFileName(file);
-	Monster* m = new Monster(parsedMap.find("name")->second,
-		std::stoi(parsedMap.find("hp")->second),
-		std::stoi(parsedMap.find("dmg")->second),
-		std::stod(parsedMap.find("atc")->second),
-		parsedMap.find("lore")->second,
-		parsedMap.find("info")->second,
-		parsedMap.find("race")->second);
-	return *m;
+	JSON data = JSON::parseFromFile(fileName);
+	return Monster(data.get<std::string>("name"), data.get<int>("health_points"), data.get<int>("damage"), data.get<double>("attack_cooldown"));
 }
 
-std::string Monster::getName() const{
-  return name;
+std::string Monster::getName() const {
+	return name;
 }
 
-int Monster::getHealthPoints() const{
-  return health;
+int Monster::getHealthPoints() const {
+	return health;
 }
 
 void Monster::SetHealth(const int health)
@@ -44,13 +29,13 @@ void Monster::SetHealth(const int health)
 	this->health = health;
 }
 
-int Monster::getDamage() const{
-  return damage;
+int Monster::getDamage() const {
+	return damage;
 }
 
 void Monster::GainDamage(const int bonus)
 {
-	damage+= bonus;
+	damage += bonus;
 }
 
 void Monster::AcdMultiplier(double multiplier)
@@ -58,19 +43,19 @@ void Monster::AcdMultiplier(double multiplier)
 	attackCooldown *= multiplier;
 }
 
-bool Monster::isAlive() const{
-  return health > 0;
+bool Monster::isAlive() const {
+	return health > 0;
 }
 
 
-void Monster::getAttacked(const Monster& enemy){
-  health -= enemy.getDamage();
-  if(health < 0){
-    health = 0;
-  }
+void Monster::getAttacked(const Monster& enemy) {
+	health -= enemy.getDamage();
+	if (health < 0) {
+		health = 0;
+	}
 }
 
-void Monster::Attack(Monster& enemy){
+void Monster::Attack(Monster& enemy) {
 	enemy.getAttacked(*this);
 }
 
@@ -149,17 +134,17 @@ void Monster::fightTilDeath(Monster& enemy) {
 			}
 			temp1 = this->getAttackCoolDown();
 			temp2 = enemy.getAttackCoolDown();
-		}		
+		}
 	}
 }
 
 
-bool operator==(const Monster character1, const Monster character2){
-  return character1.getName() == character2.getName() &&
-         character1.getDamage() == character2.getDamage() &&
-         character1.getHealthPoints() == character2.getHealthPoints();
+bool operator==(const Monster character1, const Monster character2) {
+	return character1.getName() == character2.getName() &&
+		character1.getDamage() == character2.getDamage() &&
+		character1.getHealthPoints() == character2.getHealthPoints();
 }
 
-bool operator!=(const Monster character1, const Monster character2){
-  return !(character1 == character2);
+bool operator!=(const Monster character1, const Monster character2) {
+	return !(character1 == character2);
 }

@@ -18,7 +18,7 @@ class Hero : public Monster
 public:
 	Hero(const std::string name, int base_health, int base_damage, double base_attackCooldown, int xpPerLevel, int hpPerLevel, int dmgBonusPerLevel, double atcdMultiplier);
 
-	static Hero& parse(std::string& file);
+	static Hero parse(const std::string&);
 	///\brief Returns the player's level
 	///\return level
 	int getLevel() const;
@@ -27,7 +27,7 @@ public:
 private:
 	void XPManager(Monster& enemy);
 	void Attack(Monster& enemy) override;
-	
+
 	int level;
 	int xp;
 	int maxHP;

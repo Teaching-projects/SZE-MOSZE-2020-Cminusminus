@@ -1,52 +1,38 @@
-#ifndef JSON_H
-#define JSON_H
+#ifndef JSON_HEADER
+#define JSON_HEADER
 
+#include <map>
 #include <string>
-#include <vector>
+#include <any>
 #include <iostream>
-#include <fstream>
-#include<map>
-#include <sstream>
-
 
 class JSON
 {
-public:
-	JSON(std::map<std::string, std::string> hero_map, std::map<std::string, std::string> monsters_map) : hero_map(hero_map), monsters_map(monsters_map) {};
+    std::map<std::string, std::any> data;
 
-	static JSON parseFromFile(const std::string& fileName);
-	int count(const std::string& type);
-	template <class T>
-	T get(T type)
-	{
-		if (type == "hero")
-		{
-			return hero_map.find("hero")->second;
-
-		}
-		else if (type == "monsters")
-		{
-			return monsters_map.find("monsters")->second;
-		}
-		return "";
-	};
-	static std::map<std::string, std::string> parseUnitFromStream(std::ifstream* stream);
-	static std::map<std::string, std::string> parseStreamM(std::ifstream* stream);
-	static std::map<std::string, std::string> parseStreamH(std::ifstream* stream);
-	static std::map<std::string, std::string> parseUnitFromFileName(const std::string& fileName);
-	class ParseException : public std::runtime_error
-	{
-	public:
-		explicit ParseException(const std::string& content) : std::runtime_error(content) {}
-	};
 private:
-	std::map<std::string, std::string> hero_map;
-	std::map<std::string, std::string> monsters_map;
+    static void Validator(const std::string&);
+    static bool isNumber(const std::string&);
 
-	static std::vector<std::string> splittedString(std::string text, char delimiter);
-	static std::map<std::string, std::string> parse(const std::string text);
-	static std::map<std::string, std::string> parseh(const std::string text);
-	static std::map<std::string, std::string> parsem(const std::string text);
+public:
+    JSON(std::map<std::string, std::any>);
+    int count(const std::string&);
+    static JSON parseFromString(const std::string&);
+    static JSON parseFromStream(std::istream&);
+    static JSON parseFromFile(const std::string&);
+
+    template <typename T>
+    T get(const std::string& key)
+    {
+        return std::any_cast<T>(data[key]);
+    }
+
+    class ParseException : virtual public std::runtime_error
+    {
+    public:
+        explicit ParseException(const std::string& description) : std::runtime_error("Parsing error: " + description) {}
+    };
+
 };
 
-#endif //JSON_H
+#endif 
