@@ -20,79 +20,17 @@ Monster::Monster(std::string name, int health, int damage, double attackCooldown
 
 Monster Monster::parse(std::string file)
 {
-	std::ifstream characterDataFile;
-
-	characterDataFile.open(file);
-
-	std::string fileContent = "";
-	std::string line;
-
-	if (characterDataFile.is_open()) {
-		while (std::getline(characterDataFile, line))
-		{
-			fileContent += line + '\n';
-		}
-		}	
-	else
-	{
-		std::cerr << "Can't open file";
-	}
-	characterDataFile.close();
-
-	std::map<std::string, std::string> parsedData;
-
-	for (const auto& line : splittedString(fileContent, ','))
-	{
-		std::vector<std::string> splittedLine = splittedString(line, ':');
-		
-		if (splittedLine.front().find("name") != std::string::npos) {
-			std::vector<std::string> hero = splittedString(splittedLine.back(), ',');
-			hero[0].erase(hero[0].begin(), hero[0].begin() + 2);
-			hero[0].erase(hero[0].end() - 1, hero[0].end());
-			parsedData.insert(std::pair<std::string, std::string>("name", hero[0]));
-			
-		}
-		 if (splittedLine.front().find("health_points") != std::string::npos) {
-			 std::vector<std::string> monst = splittedString(splittedLine.back(), ',');
-
-			parsedData.insert(std::make_pair<std::string, std::string>("hp", (std::string)monst[0]));
-		}
-		else if (splittedLine.front().find("damage") != std::string::npos) {
-			std::vector<std::string> monst = splittedString(splittedLine.back(), ',');
-
-			parsedData.insert(std::pair<std::string, std::string>("dmg", monst[0]));
-		}
-		else if (splittedLine.front().find("attack_cooldown") != std::string::npos) {
-			std::vector<std::string> monst = splittedString(splittedLine.back(), ',');
-
-			parsedData.insert(std::pair<std::string, std::string>("atc", monst[0]));
-		}
-		else if (splittedLine.front().find("lore") != std::string::npos) {
-			std::vector<std::string> monst = splittedString(splittedLine.back(), ',');
-
-			parsedData.insert(std::pair<std::string, std::string>("lore", monst[0]));
-		}
-		else if (splittedLine.front().find("additional_info") != std::string::npos) {
-			std::vector<std::string> monst = splittedString(splittedLine.back(), ',');
-
-			parsedData.insert(std::pair<std::string, std::string>("info", monst[0]));
-		}
-		else if (splittedLine.front().find("race") != std::string::npos) {
-
-			parsedData.insert(std::pair<std::string, std::string>("race", splittedLine.back()));
-		}
-	}
-	//std::string name, int health, int damage, double attackCooldown, std::string lore, std::string add_info, std::string race
+	std::map <std::string, std::string> parsedMap = JSON::parseUnitFromFileName(file);
 
 	return Monster
 	(
-		parsedData.find("name")->second, 
-		std::stoi(parsedData.find("hp")->second),
-		std::stoi(parsedData.find("dmg")->second),
-		std::stod(parsedData.find("atc")->second),
-		parsedData.find("lore")->second,
-		parsedData.find("info")->second,
-		parsedData.find("race")->second
+		parsedMap.find("name")->second,
+		std::stoi(parsedMap.find("hp")->second),
+		std::stoi(parsedMap.find("dmg")->second),
+		std::stod(parsedMap.find("atc")->second),
+		parsedMap.find("lore")->second,
+		parsedMap.find("info")->second,
+		parsedMap.find("race")->second
 	);
 }
 

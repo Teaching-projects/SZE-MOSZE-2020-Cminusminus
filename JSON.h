@@ -8,6 +8,7 @@
 #include<map>
 #include <sstream>
 
+
 class JSON
 {
 public:
@@ -27,12 +28,11 @@ public:
 		{
 			return monsters_map.find("monsters")->second;
 		}
-		else
-		{
-			return "";
-		}
+		return "";
 	};
 	static std::map<std::string, std::string> parseUnitFromStream(std::ifstream* stream);
+	static std::map<std::string, std::string> parseStreamM(std::ifstream* stream);
+	static std::map<std::string, std::string> parseStreamH(std::ifstream* stream);
 	static std::map<std::string, std::string> parseUnitFromFileName(const std::string& fileName);
 	class ParseException : public std::runtime_error
 	{
@@ -40,11 +40,13 @@ public:
 		explicit ParseException(const std::string& content) : std::runtime_error(content) {}
 	};
 private:
-	 std::map<std::string, std::string> hero_map;
+	std::map<std::string, std::string> hero_map;
 	std::map<std::string, std::string> monsters_map;
-	
+
 	static std::vector<std::string> splittedString(std::string text, char delimiter);
 	static std::map<std::string, std::string> parse(const std::string text);
+	static std::map<std::string, std::string> parseh(const std::string text);
+	static std::map<std::string, std::string> parsem(const std::string text);
 };
 
 #endif //JSON_H
