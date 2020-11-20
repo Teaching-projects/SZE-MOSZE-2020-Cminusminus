@@ -1,7 +1,8 @@
 OBJS := JSON.o Monster.o Hero.o main.o 
 CGFLAGS := -std=c++17 -Wall
 CC := g++-9
-FOLDER := units/scenario1.json units/scenario2.json
+SCENARIO1 := units/scenario1.json
+SCENARIO2 := units/scenario2.json
 
 mosze_01: $(OBJS)
 	$(CC) $(CGFLAGS) -o mosze_01 $(OBJS)
@@ -33,9 +34,8 @@ battle:
 	touch program_outputs.txt
 	> program_outputs.txt
 
-	for f1 in $(FOLDER); do \
-		./mosze_01 $$f1 >> program_outputs.txt; \
-	done
+		./mosze_01 $(SCENARIO1) >> program_outputs.txt; \
+		./mosze_01 $(SCENARIO2) >> program_outputs.txt; \
 	
 battle_diff: battle
 	diff program_outputs.txt good_outputs.txt
