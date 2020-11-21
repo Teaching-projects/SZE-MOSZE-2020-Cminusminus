@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 2.6)
 
-set(CMAKE_CXX_FLAGS "-std=gnu++17") #Turn on C++17 Support
+SET(CMAKE_CXX_FLAGS "-std=gnu++17") #Turn on C++11 Support
 
 # Locate GTest
 find_package(GTest REQUIRED)
@@ -19,4 +19,5 @@ target_link_libraries(mosze codeToTest)
 
 add_executable(unit-test ${UNIT_TESTS})
 target_link_libraries(unit-test gtest gtest_main rt pthread codeToTest)
+target_compile_features(unit-test PRIVATE cxx_std_17)
 
