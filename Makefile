@@ -5,7 +5,7 @@ SCENARIO1 := scenario1.json
 SCENARIO2 := scenario2.json
 
 mosze_01: -Wall $(OBJS)
-	g++ -fPIC -std=c++17 -Wall -Wextra -o mosze_01 $(OBJS)
+	$(CC) $(CGFLAGS) -o mosze_01 $(OBJS)
 
 Monster.o: Monster.cpp Monster.h JSON.h
 	$(CC) $(CGFLAGS) -c Monster.cpp
@@ -17,7 +17,7 @@ JSON.o: JSON.cpp JSON.h Monster.h
 	$(CC) $(CGFLAGS) -c JSON.cpp
 
 main.o: main.cpp Monster.h Hero.h JSON.h
-	$(CC) $(CGFLAGS) -c main.cpp
+	clang++ $(CGFLAGS) -c main.cpp
 
 clean:
 	rm -rf *.o *.out ./docs 
