@@ -114,7 +114,7 @@ TEST(LVLupTest, checkHero){
 		hero.fightTilDeath(m1);
 		hero.fightTilDeath(m3);
 		
-        ASSERT_EQ(8,h.getLevel());
+        ASSERT_EQ(8,hero.getLevel());
     } catch(std::runtime_error& e){
         ASSERT_STREQ(e.what(), "Wrong JSON syntax!");
     }
