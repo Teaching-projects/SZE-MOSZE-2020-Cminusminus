@@ -28,12 +28,13 @@ cppcheck:
 
 check_memoryleak:
 	valgrind --leak-check=yes --error-exitcode=1 ./mosze_01 scenario1.json
-
+	valgrind --leak-check=yes --error-exitcode=1 ./mosze_01 scenario2.json
 battle:
 	touch program_outputs.txt
 	> program_outputs.txt
 
 		./mosze_01 $(SCENARIO1) >> program_outputs.txt; \
+		./mosze_01 $(SCENARIO2) >> program_outputs.txt; \
 	
 battle_diff: battle
 	diff program_outputs.txt good_outputs.txt
