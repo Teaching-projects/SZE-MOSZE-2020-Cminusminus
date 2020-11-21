@@ -48,7 +48,7 @@ TEST(dmgTest, checkHero){
 		Monster m = Monster(monsterData.get<std::string>("name"), monsterData.get<int>("health_points"),
 		monsterData.get<int>("damage"), monsterData.get<float>("attack_cooldown"));
 		
-        ASSERT_EQ(5,testhero.getDamage());;
+        ASSERT_EQ(5,h.getDamage());;
     } catch(std::runtime_error& e){
         ASSERT_STREQ(e.what(), "Wrong JSON syntax!");
     }
