@@ -1,6 +1,6 @@
 OBJS := JSON.o Monster.o Hero.o main.o 
 CGFLAGS := -std=c++17 -Wall
-CC := g++-9
+CC := g++-10
 SCENARIO1 := scenario1.json
 SCENARIO2 := scenario2.json
 
