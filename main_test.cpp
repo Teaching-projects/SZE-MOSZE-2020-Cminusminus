@@ -27,6 +27,17 @@ TEST(ParseTest, badInputTest) {
     }
 }
 
+TEST(ParseTest, goodInputTest) {
+    std::string testfile = "units/test_unit_1.json";
+
+    try{
+        JSON::parseFromFile(testfile);
+        ASSERT_TRUE(true);
+    } catch(std::runtime_error& e){
+        ASSERT_STREQ(e.what(), "Wrong JSON syntax!");
+    }
+}
+
 TEST(dmgTest, checkHero){
 	
 	 std::string herofile = "Dark_Wanderer.json";
@@ -78,6 +89,49 @@ TEST(dmgAfterFightTest, checkHero){
 		h.fightTilDeath(m);
 		
         ASSERT_EQ(3,h.getDamage());
+    } catch(std::runtime_error& e){
+        ASSERT_STREQ(e.what(), "Wrong JSON syntax!");
+    }
+
+}
+
+TEST(LVLupTest, checkHero){
+	
+	 std::string file = "scenario1.json";
+	 
+	try{
+     std::string hero_file;
+    std::list<std::string> monster_files;
+    try {
+        JSON scenario = JSON::parseFromFile(argv[1]); 
+        if (!(scenario.count("hero")&&scenario.count("monsters"))) std::cout << "error";
+        else {
+            hero_file=scenario.get<std::string>("hero");
+            std::istringstream monsters(scenario.get<std::string>("monsters"));
+            std::copy(std::istream_iterator<std::string>(monsters),
+                std::istream_iterator<std::string>(),
+                std::back_inserter(monster_files));
+        }
+    } catch (const JSON::ParseException& e) {std::cout << "error"}
+ 
+    try { 
+        Hero hero{Hero::parse(hero_file)};
+        std::list<Monster> monsters;
+        for (const auto& monster_file : monster_files)
+            monsters.push_back(Monster::parse(monster_file));        
+ 
+        while (hero.isAlive() && !monsters.empty()) {
+            std::cout 
+                << hero.getName() << "(" << hero.getLevel()<<")"
+                << " vs "
+                << monsters.front().getName()
+                <<std::endl;
+            hero.fightTilDeath(monsters.front());
+            if (!monsters.front().isAlive()) monsters.pop_front();
+        }
+    } catch (const JSON::ParseException& e) { std::cout << "JSON parsing error."}
+		
+        ASSERT_EQ(8,hero.getLevel());
     } catch(std::runtime_error& e){
         ASSERT_STREQ(e.what(), "Wrong JSON syntax!");
     }
