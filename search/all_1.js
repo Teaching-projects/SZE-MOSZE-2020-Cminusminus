@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['battle',['battle',['../classCharacter.html#a8bac8f4f3ad0a8bace378eb0732ca423',1,'Character']]]
+  ['count',['count',['../classJSON.html#aa95c8567c7aa2e21dc93a9d4edbd6d32',1,'JSON']]]
 ];
