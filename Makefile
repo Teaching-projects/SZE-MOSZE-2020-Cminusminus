@@ -20,7 +20,7 @@ main.o: main.cpp Monster.h Hero.h JSON.h
 	$(CC) $(CGFLAGS) -c main.cpp
 
 clean:
-	rm -rf *.o mosze_01 *.out ./docs 
+	rm -rf *.o *.out ./docs 
 
 cppcheck:
 	cppcheck *.cpp --enable=warning --output-file=cppcheck_errors.txt

@@ -26,6 +26,7 @@ jobs:
             - run: make battle
             - run: make battle_diff
             - run: sudo apt install libgtest-dev cmake
+            - run: make clean
             - run: make unit_test
             
             
