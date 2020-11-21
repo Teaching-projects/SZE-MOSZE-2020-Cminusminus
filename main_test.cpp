@@ -136,7 +136,7 @@ TEST(HPTest, checkHero){
 		hero.fightTilDeath(m1);
 		hero.fightTilDeath(m3);
 		
-        ASSERT_EQ(57,hero.getHealthPoints());
+        ASSERT_EQ(60,hero.getHealthPoints());
     } catch(std::runtime_error& e){
         ASSERT_STREQ(e.what(), "Wrong JSON syntax!");
     }
@@ -160,7 +160,7 @@ TEST(XPTest, checkHero){
 		hero.fightTilDeath(m1);
 		hero.fightTilDeath(m3);
 		
-        ASSERT_EQ(400,hero.GetXP());
+        ASSERT_EQ(127,hero.GetXP());
     } catch(std::runtime_error& e){
         ASSERT_STREQ(e.what(), "Wrong JSON syntax!");
     }
