@@ -103,7 +103,7 @@ TEST(LVLupTest, checkHero){
      std::string hero_file;
     std::list<std::string> monster_files;
     try {
-        JSON scenario = JSON::parseFromFile(argv[1]); 
+        JSON scenario = JSON::parseFromFile(file); 
         if (!(scenario.count("hero")&&scenario.count("monsters"))) std::cout << "error";
         else {
             hero_file=scenario.get<std::string>("hero");
@@ -112,7 +112,7 @@ TEST(LVLupTest, checkHero){
                 std::istream_iterator<std::string>(),
                 std::back_inserter(monster_files));
         }
-    } catch (const JSON::ParseException& e) {std::cout << "error"}
+    } catch (const JSON::ParseException& e) {std::cout << "error";}
  
     try { 
         Hero hero{Hero::parse(hero_file)};
@@ -129,7 +129,7 @@ TEST(LVLupTest, checkHero){
             hero.fightTilDeath(monsters.front());
             if (!monsters.front().isAlive()) monsters.pop_front();
         }
-    } catch (const JSON::ParseException& e) { std::cout << "JSON parsing error."}
+    } catch (const JSON::ParseException& e) { std::cout << "JSON parsing error.";}
 		
         ASSERT_EQ(8,hero.getLevel());
     } catch(std::runtime_error& e){
