@@ -7,5 +7,5 @@ set(CMAKE_CXX_STANDARD 17)
 find_package(GTest REQUIRED)
 include_directories(${GTEST_INCLUDE_DIRS})
 
-add_executable(unit-test projectTest.cpp JSON.cpp Hero.cpp Monster.cpp) 
+add_executable(unit-test main_test.cpp JSON.cpp Hero.cpp Monster.cpp) 
 target_link_libraries(unit-test ${GTEST_LIBRARIES} pthread)
