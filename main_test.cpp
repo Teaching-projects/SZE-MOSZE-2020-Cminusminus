@@ -97,8 +97,6 @@ TEST(dmgAfterFightTest, checkHero){
 
 TEST(LVLupTest, checkHero){
 	
-	 
-
 	try{
         Hero hero{Hero::parse("Dark_Wanderer.json")};
 		Monster m1 = Monster::parse("Fallen.json");
@@ -114,7 +112,55 @@ TEST(LVLupTest, checkHero){
 		hero.fightTilDeath(m1);
 		hero.fightTilDeath(m3);
 		
-        ASSERT_EQ(8,hero.getLevel());
+        ASSERT_EQ(7,hero.getLevel());
+    } catch(std::runtime_error& e){
+        ASSERT_STREQ(e.what(), "Wrong JSON syntax!");
+    }
+
+}
+
+TEST(HPTest, checkHero){
+	
+	try{
+        Hero hero{Hero::parse("Dark_Wanderer.json")};
+		Monster m1 = Monster::parse("Fallen.json");
+		Monster m2 = Monster::parse("Zombie.json");
+		Monster m3 = Monster::parse("Blood_Raven.json");
+		
+		hero.fightTilDeath(m1);
+		hero.fightTilDeath(m1);
+		hero.fightTilDeath(m2);
+		hero.fightTilDeath(m1);
+		hero.fightTilDeath(m1);
+		hero.fightTilDeath(m2);
+		hero.fightTilDeath(m1);
+		hero.fightTilDeath(m3);
+		
+        ASSERT_EQ(57,hero.getHealthPoints());
+    } catch(std::runtime_error& e){
+        ASSERT_STREQ(e.what(), "Wrong JSON syntax!");
+    }
+
+}
+
+TEST(XPTest, checkHero){
+	
+	try{
+        Hero hero{Hero::parse("Dark_Wanderer.json")};
+		Monster m1 = Monster::parse("Fallen.json");
+		Monster m2 = Monster::parse("Zombie.json");
+		Monster m3 = Monster::parse("Blood_Raven.json");
+		
+		hero.fightTilDeath(m1);
+		hero.fightTilDeath(m1);
+		hero.fightTilDeath(m2);
+		hero.fightTilDeath(m1);
+		hero.fightTilDeath(m1);
+		hero.fightTilDeath(m2);
+		hero.fightTilDeath(m1);
+		hero.fightTilDeath(m3);
+		
+        ASSERT_EQ(400,hero.GetXP());
     } catch(std::runtime_error& e){
         ASSERT_STREQ(e.what(), "Wrong JSON syntax!");
     }
