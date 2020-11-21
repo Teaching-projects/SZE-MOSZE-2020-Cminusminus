@@ -77,7 +77,7 @@ TEST(dmgAfterFightTest, checkHero){
 		monsterData.get<int>("damage"), monsterData.get<float>("attack_cooldown"));
 		h.fightTilDeath(m);
 		
-        ASSERT_EQ(3,h.getDamage());;
+        ASSERT_EQ(10,h.getDamage());
     } catch(std::runtime_error& e){
         ASSERT_STREQ(e.what(), "Wrong JSON syntax!");
     }
