@@ -16,25 +16,14 @@ TEST(ParseFromStringTest, checkIfEquals){
   ASSERT_FLOAT_EQ(json.get<float>("atc"), 1.4);
 }
 
-TEST(ParsingTest, checkIfEquals){
-	
-	JSON json = JSON::parseFromFile("units/test_unit_1.json");
-
-  ASSERT_EQ(json.get<std::string>("name", "Béla")
-  ASSERT_EQ(json.get<int>("hp", 1500000)
-  ASSERT_EQ(json.get<int>("dmg", 14)
-  ASSERT_FLOAT_EQ(json.get<float>("attackCooldown"), 1.4);
-}
-
-TEST(BadFileTest, checkIfGood){
-	
-	std::string file = "bad_units/test_unit_badDMG.json";
+TEST(ParseTest, badInputTest) {
+    std::string testfile = "bad_units/test_unit_badDMG.json";
 
     try{
         JSON::parseFromFile(testfile);
         ASSERT_TRUE(true);
     } catch(std::runtime_error& e){
-        ASSERT_STREQ(e.what(), "Bad JSON file.");
+        ASSERT_STREQ(e.what(), "Wrong JSON syntax!");
     }
 }
 
