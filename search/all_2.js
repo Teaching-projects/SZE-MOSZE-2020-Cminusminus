@@ -1,10 +1,8 @@
 var searchData=
 [
-  ['gaindamage',['GainDamage',['../classCharacter.html#aaf840ac11eae4211c1f7aaf558140235',1,'Character']]],
-  ['getattackcooldown',['GetAttackCooldown',['../classCharacter.html#aa2fed31109174bd5507c8f705e6ec200',1,'Character']]],
-  ['getattacked',['getAttacked',['../classCharacter.html#a87d15b889abeb26706a0c343cf94602a',1,'Character']]],
-  ['getdamage',['GetDamage',['../classCharacter.html#a4de97a38e67666b2442f27677eb8649a',1,'Character']]],
-  ['gethealth',['GetHealth',['../classCharacter.html#afccec033c459be725065e945be54187a',1,'Character']]],
-  ['getlevel',['GetLevel',['../classPlayer.html#aff4ab97fc298001b64ef74c7556f4211',1,'Player']]],
-  ['getname',['GetName',['../classCharacter.html#ab628b1575df8337331c479267425e1fe',1,'Character']]]
+  ['character',['Character',['../classCharacter.html',1,'Character'],['../classCharacter.html#a1361491499d1d833e9083df5a70db927',1,'Character::Character()']]],
+  ['charactermaker',['CharacterMaker',['../classCharacterMaker.html',1,'']]],
+  ['count',['count',['../classJSON.html#aa95c8567c7aa2e21dc93a9d4edbd6d32',1,'JSON']]],
+  ['createcharacter',['createCharacter',['../classCharacterMaker.html#ae8a2faecbbcb742fc7c1dcf7aea0ba78',1,'CharacterMaker']]],
+  ['createplayer',['createPlayer',['../classCharacterMaker.html#a329a608bf29c38240f96ee86c3220d4a',1,'CharacterMaker']]]
 ];
