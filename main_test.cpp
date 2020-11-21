@@ -1,170 +1,126 @@
 #include <sys/stat.h>
 #include <iostream>
 #include <fstream>
-#include "Monster.h"
-#include "Hero.h"
-#include "JSON.h"
+#include "character.h"
+#include "player.h"
+#include "characterMaker.h"
+#include "JSONParser.h"
 #include <string>
 #include <vector>
 #include <gtest/gtest.h>
 
-TEST(ParseFromStringTest, checkIfEquals){
-	std::string text = 
-	"{\"name\": \"Bela\",\"hp\": 500,\"dmg\": 20, \"atc\": 1.4}";
-	JSON json = JSON::parseFromString(text);
-	
-  ASSERT_FLOAT_EQ(json.get<float>("atc"), 1.4);
+TEST(fileNameTest, checkIfEquals){
+  JSONParser parser;
+  CharacterMaker characterMaker;
+  Character* character1 = characterMaker.createCharacter(parser.parseUnitFromFileName("units/test_unit_1.json"));
+  Character* character2 = new Character("Béla",1500000,14, 10.3);
+
+  EXPECT_EQ(*character1, *character2); 
 }
 
-TEST(ParseTest, badInputTest) {
-    std::string testfile = "bad_units/test_unit_badDMG.json";
+TEST(fileNameTest, checkIfNotEquals){
+  JSONParser parser;
+  CharacterMaker characterMaker;
+  Character* character1 = characterMaker.createCharacter(parser.parseUnitFromFileName("units/test_unit_1.json"));
+  Character* character2 = new Character("Béla",1500001,14, 10.3);
 
-    try{
-        JSON::parseFromFile(testfile);
-        ASSERT_TRUE(true);
-    } catch(std::runtime_error& e){
-        ASSERT_STREQ(e.what(), "Wrong JSON syntax!");
-    }
+  EXPECT_NE(*character1, *character2); 
 }
 
-TEST(ParseTest, goodInputTest) {
-    std::string testfile = "units/test_unit_1.json";
+TEST(ifstreamTest, checkIfEquals){
+  JSONParser parser;
+  CharacterMaker characterMaker;
+  std::ifstream character1DataFile;
+  character1DataFile.open("units/test_unit_1.json");
+  Character* character1 =characterMaker.createCharacter(parser.parseUnitFromStream(&character1DataFile));
+  Character* character2 = new Character("Béla",1500000,14, 10.3);
 
-    try{
-        JSON::parseFromFile(testfile);
-        ASSERT_TRUE(true);
-    } catch(std::runtime_error& e){
-        ASSERT_STREQ(e.what(), "Wrong JSON syntax!");
-    }
+  EXPECT_EQ(*character1, *character2); 
 }
 
-TEST(dmgTest, checkHero){
-	
-	 std::string herofile = "Dark_Wanderer.json";
-	 std::string monsterfile = "Fallen.json";
-	 
-	try{
-        JSON heroData = JSON::parseFromFile(herofile);
-		JSON monsterData = JSON::parseFromFile(monsterfile);
-		
-		Hero h = Hero(heroData.get<std::string>("name"),
-		heroData.get<int>("base_health_points"),
-		heroData.get<int>("base_damage"),
-		heroData.get<float>("base_attack_cooldown"),
-		heroData.get<int>("experience_per_level"),
-		heroData.get<int>("health_point_bonus_per_level"),
-		heroData.get<int>("damage_bonus_per_level"),
-		heroData.get<float>("cooldown_multiplier_per_level"));
-		
-		Monster m = Monster(monsterData.get<std::string>("name"), monsterData.get<int>("health_points"),
-		monsterData.get<int>("damage"), monsterData.get<float>("attack_cooldown"));
-		
-        ASSERT_EQ(3,h.getDamage());
-    } catch(std::runtime_error& e){
-        ASSERT_STREQ(e.what(), "Wrong JSON syntax!");
-    }
+TEST(badLineTest, checkIfEquals){
+  JSONParser parser;
+  CharacterMaker characterMaker;
+  Character* character1 = characterMaker.createCharacter(parser.parseUnitFromFileName("bad_units/test_unit_badLines.json"));
+  Character* character2 = new Character("Timmy",30000,400,10.1);
 
+  EXPECT_EQ(*character1, *character2); 
 }
 
-TEST(dmgAfterFightTest, checkHero){
-	
-	 std::string herofile = "Dark_Wanderer.json";
-	 std::string monsterfile = "Blood_Raven.json";
-	 
-	try{
-        JSON heroData = JSON::parseFromFile(herofile);
-		JSON monsterData = JSON::parseFromFile(monsterfile);
-		
-		Hero h = Hero(heroData.get<std::string>("name"),
-		heroData.get<int>("base_health_points"),
-		heroData.get<int>("base_damage"),
-		heroData.get<float>("base_attack_cooldown"),
-		heroData.get<int>("experience_per_level"),
-		heroData.get<int>("health_point_bonus_per_level"),
-		heroData.get<int>("damage_bonus_per_level"),
-		heroData.get<float>("cooldown_multiplier_per_level"));
-		
-		Monster m = Monster(monsterData.get<std::string>("name"), monsterData.get<int>("health_points"),
-		monsterData.get<int>("damage"), monsterData.get<float>("attack_cooldown"));
-		h.fightTilDeath(m);
-		
-        ASSERT_EQ(3,h.getDamage());
-    } catch(std::runtime_error& e){
-        ASSERT_STREQ(e.what(), "Wrong JSON syntax!");
-    }
+TEST(badSpacingTest, checkIfEquals){
+  JSONParser parser;
+  CharacterMaker characterMaker;
+  Character* character1 = characterMaker.createCharacter(parser.parseUnitFromFileName("bad_units/test_unit_badSpacing.json"));
+  Character* character2 = new Character("Béla",1500000,500,10.3);
 
+  EXPECT_EQ(*character1, *character2); 
 }
 
-TEST(LVLupTest, checkHero){
-	
-	try{
-        Hero hero{Hero::parse("Dark_Wanderer.json")};
-		Monster m1 = Monster::parse("Fallen.json");
-		Monster m2 = Monster::parse("Zombie.json");
-		Monster m3 = Monster::parse("Blood_Raven.json");
-		
-		hero.fightTilDeath(m1);
-		hero.fightTilDeath(m1);
-		hero.fightTilDeath(m2);
-		hero.fightTilDeath(m1);
-		hero.fightTilDeath(m1);
-		hero.fightTilDeath(m2);
-		hero.fightTilDeath(m1);
-		hero.fightTilDeath(m3);
-		
-        ASSERT_EQ(7,hero.getLevel());
-    } catch(std::runtime_error& e){
-        ASSERT_STREQ(e.what(), "Wrong JSON syntax!");
-    }
+TEST(mixedInputsTest, checkIfEquals){
+  JSONParser parser;
+  CharacterMaker characterMaker;
+  Character* character1 = characterMaker.createCharacter(parser.parseUnitFromFileName("bad_units/test_unit_mixedInputs.json"));
+  Character* character2 = new Character("Tricky Tricky",320,200,10.1);
 
+  EXPECT_EQ(*character1, *character2); 
+}
+TEST(plusDataWhSpaceTest, checkIfEquals){
+  JSONParser parser;
+  CharacterMaker characterMaker;
+  Character* character1 = characterMaker.createCharacter(parser.parseUnitFromFileName("bad_units/test_unit_plusDataWhSpace.json"));
+  Character* character2 = new Character("Tricky Tricky",320,200,10.1);
+
+  EXPECT_EQ(*character1, *character2); 
 }
 
-TEST(HPTest, checkHero){
-	
-	try{
-        Hero hero{Hero::parse("Dark_Wanderer.json")};
-		Monster m1 = Monster::parse("Fallen.json");
-		Monster m2 = Monster::parse("Zombie.json");
-		Monster m3 = Monster::parse("Blood_Raven.json");
-		
-		hero.fightTilDeath(m1);
-		hero.fightTilDeath(m1);
-		hero.fightTilDeath(m2);
-		hero.fightTilDeath(m1);
-		hero.fightTilDeath(m1);
-		hero.fightTilDeath(m2);
-		hero.fightTilDeath(m1);
-		hero.fightTilDeath(m3);
-		
-        ASSERT_EQ(60,hero.getHealthPoints());
-    } catch(std::runtime_error& e){
-        ASSERT_STREQ(e.what(), "Wrong JSON syntax!");
-    }
-
+TEST(LVLTest, checkIfEquals){
+  JSONParser parser;
+  CharacterMaker characterMaker;
+  Character* character = new Character("Uzi",1500,140,10.3);
+  Player* player = new Player("Timmy",3000,90,10.1);
+  player->battle(*character);
+  unsigned int expectedLVL = 16;
+  EXPECT_EQ(expectedLVL, player->GetLevel()); 
 }
 
-TEST(XPTest, checkHero){
-	
-	try{
-        Hero hero{Hero::parse("Dark_Wanderer.json")};
-		Monster m1 = Monster::parse("Fallen.json");
-		Monster m2 = Monster::parse("Zombie.json");
-		Monster m3 = Monster::parse("Blood_Raven.json");
-		
-		hero.fightTilDeath(m1);
-		hero.fightTilDeath(m1);
-		hero.fightTilDeath(m2);
-		hero.fightTilDeath(m1);
-		hero.fightTilDeath(m1);
-		hero.fightTilDeath(m2);
-		hero.fightTilDeath(m1);
-		hero.fightTilDeath(m3);
-		
-        ASSERT_EQ(127,hero.GetXP());
-    } catch(std::runtime_error& e){
-        ASSERT_STREQ(e.what(), "Wrong JSON syntax!");
-    }
+TEST(MAXHPTest, checkIfEquals){
+  JSONParser parser;
+  CharacterMaker characterMaker;
+  Character* character = new Character("Uzi",1500,140,10.3);
+  Player* player = new Player("Timmy",3000,90,10.1);
+  player->battle(*character);
+  unsigned int expectedMaxHP = 12530;
+  EXPECT_EQ(expectedMaxHP, player->GetMaxHP()); 
+}
 
+TEST(DMGTest, checkIfEquals){
+  JSONParser parser;
+  CharacterMaker characterMaker;
+  Character* character = new Character("Uzi",1500,140,10.3);
+  Player* player = new Player("Timmy",3000,90,10.1);
+  player->battle(*character);
+  unsigned int expectedDMG = 376;
+  EXPECT_EQ(expectedDMG, player->GetDamage()); 
+}
+
+TEST(XPGainTest, checkIfEquals){
+  JSONParser parser;
+  CharacterMaker characterMaker;
+  Character* character = new Character("Uzi",80,90,10.3);
+  Player* player = new Player("Timmy",3000,90,10.1);
+  player->battle(*character);
+  unsigned int expectedXP = 80;
+  EXPECT_EQ(expectedXP, player->GetXP()); 
+}
+
+TEST(MultipleLevelTest, checkIfEquals){
+  JSONParser parser;
+  CharacterMaker characterMaker;
+  Character* character = new Character("Uzi",300,90,10.3);
+  Player* player = new Player("Timmy",3000,400,10.1);
+  player->battle(*character);
+  unsigned int expectedLVL = 4;
+  EXPECT_EQ(expectedLVL, player->GetLevel()); 
 }
 
 int main(int argc, char **argv){
