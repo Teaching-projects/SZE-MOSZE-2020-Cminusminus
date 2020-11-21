@@ -1,7 +1,6 @@
 cmake_minimum_required(VERSION 2.6)
 
-SET(CMAKE_CXX_STANDARD_REQUIRED ON)
-SET(CMAKE__CXX_STANDARD 17)
+SET(CMAKE_CXX_FLAGS "-std=gnu++17") #Turn on C++17 Support
 
 # Locate GTest
 find_package(GTest REQUIRED)
