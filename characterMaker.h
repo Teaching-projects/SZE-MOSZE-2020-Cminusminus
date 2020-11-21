@@ -1,0 +1,30 @@
+#ifndef CHARACTER_MAKER_H
+#define CHARACTER_MAKER_H
+
+#include "character.h"
+#include "player.h"
+#include <string>
+#include <vector>
+#include <iostream>
+#include <fstream>
+#include<map>
+
+class CharacterMaker{
+	/**
+  *\brief A helper class to create a character.
+  *\param parsedData the data which we parse.
+  ///\return Character*
+  */
+public:
+    Character* createCharacter(std::map<std::string, std::string> parsedData);
+	/**
+  *\brief A helper class to create a player.
+  *\param parsedData the data which we parse.
+  ///\return Player*
+  */
+	Player* createPlayer(std::map<std::string, std::string> parsedData);
+private:
+    void showErrorMessage(std::string message);
+};
+
+#endif // CHARACTER_MAKER_H
