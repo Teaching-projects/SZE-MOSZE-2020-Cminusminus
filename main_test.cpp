@@ -27,12 +27,31 @@ TEST(ParseTest, badInputTest) {
     }
 }
 
-TEST(LVLupTest, checkHero){
+TEST(dmgTest, checkHero){
 	
-	Hero testhero ("Hero", 500, 10, 50, 20, 20, 0.9, 1.1);
-	Monster testmonster("Monster", 5000, 20, 2.5);
-	testhero.fightTilDeath(testmonster);
-	ASSERT_EQ(5,testhero.getLevel());
+	 std::string herofile = "Dark_Wanderer.json";
+	 std::string monsterfile = "Fallen.json";
+	 
+	try{
+        JSON heroData = JSON::parseFromFile(herofile);
+		JSON monsterData = JSON::parseFromFile(monsterfile);
+		
+		Hero h = Hero(heroData.get<std::string>("name"),
+		heroData.get<int>("base_health_points"),
+		heroData.get<int>("base_damage"),
+		heroData.get<float>("base_attack_cooldown"),
+		heroData.get<int>("experience_per_level"),
+		heroData.get<int>("health_point_bonus_per_level"),
+		heroData.get<int>("damage_bonus_per_level"),
+		heroData.get<float>("cooldown_multiplier_per_level"));
+		
+		Monster m = Monster(monsterData.get<std::string>("name"), monsterData.get<int>("health_points"),
+		monsterData.get<int>("damage"), monsterData.get<float>("attack_cooldown"));
+		
+        ASSERT_EQ(5,testhero.getDamage());;
+    } catch(std::runtime_error& e){
+        ASSERT_STREQ(e.what(), "Wrong JSON syntax!");
+    }
 
 }
 
