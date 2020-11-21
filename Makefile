@@ -1,5 +1,5 @@
 OBJS := JSON.o Monster.o Hero.o main.o 
-CGFLAGS := -std=c++17 -Wall
+CGFLAGS := -std=c++17 -Wall -Wextra
 CC := g++-9
 SCENARIO1 := scenario1.json
 SCENARIO2 := scenario2.json
@@ -17,7 +17,7 @@ JSON.o: JSON.cpp JSON.h Monster.h
 	$(CC) $(CGFLAGS) -c JSON.cpp
 
 main.o: main.cpp Monster.h Hero.h JSON.h
-	clang++ $(CGFLAGS) -c main.cpp
+	$(CC) $(CGFLAGS) -c main.cpp
 
 clean:
 	rm -rf *.o *.out ./docs 
