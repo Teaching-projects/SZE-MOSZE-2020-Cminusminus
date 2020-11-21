@@ -13,17 +13,25 @@ Monster::Monster(std::string name, int health, int damage, float attackCooldown)
 Monster Monster::parse(const std::string& s)
 {
 
-	JSON monsterData = JSON::parseFromFile(s);
-	return Monster(monsterData.get<std::string>("name"), monsterData.get<int>("health_points"),
-		monsterData.get<int>("damage"), monsterData.get<float>("attack_cooldown"));
+	JSON file = JSON::parseFromFile(s);
+	return Monster
+	(file.get<std::string>("name"),
+     file.get<int>("health_points"),
+	 file.get<int>("damage"),
+	 file.get<float>("attack_cooldown")
+	 );
 }
 
 Monster Monster::parse(std::istream& stream)
 {
 
-	JSON monsterData = JSON::parseFromStream(stream);
-	return Monster(monsterData.get<std::string>("name"), monsterData.get<int>("health_points"),
-		monsterData.get<int>("damage"), monsterData.get<float>("attack_cooldown"));
+	JSON file = JSON::parseFromStream(stream);
+	return Monster
+	(file.get<std::string>("name"),
+	 file.get<int>("health_points"),
+	 file.get<int>("damage"),
+	 file.get<float>("attack_cooldown")
+	);
 }
 
 std::string Monster::getName() const {
@@ -69,26 +77,6 @@ void Monster::Attack(Monster& enemy) {
 	enemy.getAttacked(*this);
 }
 
-std::vector<std::string> Monster::splittedString(std::string text, char delimiter)
-{
-	std::vector<std::string> splittedStrings;
-	std::string addString = "";
-
-	for (unsigned int i = 0; i < text.length(); i++) {
-		if (text[i] == delimiter) {
-			splittedStrings.push_back(addString);
-			addString = "";
-		}
-		else {
-			addString += text[i];
-		}
-	}
-
-	splittedStrings.push_back(addString);
-
-	return splittedStrings;
-}
-
 double Monster::getAttackCoolDown() const
 {
 	return attackCooldown;
@@ -96,8 +84,7 @@ double Monster::getAttackCoolDown() const
 
 void Monster::fightTilDeath(Monster& enemy) {
 
-	//this->Attack(enemy); 
-	//enemy.Attack(*this);
+
 	double temp1 = this->getAttackCoolDown();
 	double temp2 = enemy.getAttackCoolDown();
 
@@ -119,23 +106,19 @@ void Monster::fightTilDeath(Monster& enemy) {
 		{
 			this->Attack(enemy);
 			temp1 = this->getAttackCoolDown();
-			//std::cout << this->getName() << " - HP:" << this->getHealthPoints() << ", DMG:"  << this->getDamage() << ", ATCD:"<< this->getAttackCoolDown() << " attacks " << enemy.getName() << " - HP:" << enemy.getHealthPoints() << ", DMG:" << enemy.getDamage() << ", ATCD:" << enemy.getAttackCoolDown() << std::endl << std::endl;
 		}
 		else if ((temp2 == 0) && (temp1 != 0))
 		{
 			enemy.Attack(*this);
-			//std::cout << enemy.getName() << " - HP:" << enemy.getHealthPoints() << ", DMG:" << enemy.getDamage() << ", ATCD:" << enemy.getAttackCoolDown() << " attacks " << this->getName() << " - HP:" << this->getHealthPoints() << ", DMG:" << this->getDamage() << ", ATCD:" << this->getAttackCoolDown() << std::endl << std::endl;
 			temp2 = enemy.getAttackCoolDown();
 		}
 		else if ((temp1 == 0) && (temp2 == 0))
 		{
 			this->Attack(enemy);
-			//std::cout << this->getName() << " - HP:" << this->getHealthPoints() << ", DMG:" << this->getDamage() << ", ATCD:" << this->getAttackCoolDown() << " attacks " << enemy.getName() << " - HP:" << enemy.getHealthPoints() << ", DMG:" << enemy.getDamage() << ", ATCD:" << enemy.getAttackCoolDown() << std::endl << std::endl;
 
 			if (enemy.isAlive())
 			{
 				enemy.Attack(*this);
-				//std::cout << enemy.getName() << " - HP:" << enemy.getHealthPoints() << ", DMG:" << enemy.getDamage() << ", ATCD:" << enemy.getAttackCoolDown() << " attacks " << this->getName() << " - HP:" << this->getHealthPoints() << ", DMG:" << this->getDamage() << ", ATCD:" << this->getAttackCoolDown() << std::endl << std::endl;
 
 			}
 			else

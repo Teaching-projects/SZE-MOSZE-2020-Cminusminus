@@ -9,47 +9,54 @@
 class Monster
 {
     /**
-  *\brief A class for creating a character.
-  *\param name The name of the character.
-  *\param health The health of the character.
-  *\param damage The damage of the character.
-  *\param attackCooldown The speed of the character's attack.
+  *\brief A class for creating a monster.
+  *\param name The name of the monster.
+  *\param health The health of the monster.
+  *\param damage The damage of the monster.
+  *\param attackCooldown The speed of the monster's attack.
   */
 public:
 
 
     Monster(std::string name, int health, int damage, float attackCooldown);
     Monster() {};
-
+	///This function parse a Monster from a file.
+	///\param s The file name we parse.
+    ///\return Monster
     static Monster parse(const std::string& s);
+	///This function parse a Monster using istream.
+	///\param stream The stream we parse from.
+    ///\return Monster
     static Monster parse(std::istream& stream);
-    ///It returns the name of the character.
+    ///It returns the name of the monster.
     ///\return name
     std::string getName() const;
-    ///It returns the health of the character.
+    ///It returns the health of the monster.
       ///\return health
     int getHealthPoints() const;
-    ///It sets the health of the character
-    ///\param health 
+    ///It sets the health of the monster.
+    ///\param health The current health of the monster
     void SetHealth(const int health);
-    ///It returns the damage of the character.
+    ///It returns the damage of the monster.
     ///\return damage
     int getDamage() const;
-    ///It sets the damage of the character after level up
+    ///It sets the damage of the monster after level up
     ///\param multiplier
     void GainDamage(const int bonus);
-    //It checks if the character is alive.
-    ///\return true or false.
+    ///It multiplies the attack cooldown with the given amount.
+    ///\param multplier The amound we multiply the attack cooldown.
     void AcdMultiplier(double multiplier);
+	///It checks if the monster is alive.
+    ///\return true or false.
     bool isAlive() const;
-    ///\brief A function to simulate the battle of two given characters.
-    ///\param enemy The enemy which the character attacks.
+    ///\brief A function to simulate the battle of two given monster.
+    ///\param enemy The enemy which the monster attacks.
     void fightTilDeath(Monster& enemy);
-    ///It returns the attack speed of the character.
+    ///It returns the attack speed of the monster.
     ///\return attackCooldown
     double getAttackCoolDown() const;
-    ///Attack the enemy character
-    ///\param enemy
+    ///Attacks the enemy.
+    ///\param enemy The monster we attack
     void getAttacked(const Monster& enemy);
     friend bool operator==(const Monster character1, const Monster character2);
     friend bool operator!=(const Monster character1, const Monster character2);
@@ -63,8 +70,6 @@ private:
     std::string lore = "";
     std::string add_info = "";
     std::string race = "";
-protected:
-    static std::vector<std::string> splittedString(std::string text, char delimiter);
 };
 
 #endif // CHARACTER_H

@@ -12,27 +12,31 @@ Hero::Hero(const std::string name, int base_health, int base_damage, float base_
 Hero Hero::parse(const std::string& s)
 {
 
-	JSON heroData = JSON::parseFromFile(s);
-	return Hero(heroData.get<std::string>("name"), 
-		heroData.get<int>("base_health_points"), 
-		heroData.get<int>("base_damage"),
-		heroData.get<float>("base_attack_cooldown"),
-		heroData.get<int>("experience_per_level"), 
-		heroData.get<int>("health_point_bonus_per_level"), 
-		heroData.get<int>("damage_bonus_per_level"),
-		heroData.get<float>("cooldown_multiplier_per_level"));
+	JSON file = JSON::parseFromFile(s);
+	return Hero
+	(	file.get<std::string>("name"), 
+		file.get<int>("base_health_points"), 
+		file.get<int>("base_damage"),
+		file.get<float>("base_attack_cooldown"),
+		file.get<int>("experience_per_level"), 
+		file.get<int>("health_point_bonus_per_level"), 
+		file.get<int>("damage_bonus_per_level"),
+		file.get<float>("cooldown_multiplier_per_level")
+		);
 }
 Hero Hero::parse(std::istream& stream) {
 
-	JSON heroData = JSON::parseFromStream(stream);
-	return Hero(heroData.get<std::string>("name"),
-		heroData.get<int>("base_health_points"),
-		heroData.get<int>("base_damage"),
-		heroData.get<float>("base_attack_cooldown"),
-		heroData.get<int>("experience_per_level"),
-		heroData.get<int>("health_point_bonus_per_level"),
-		heroData.get<int>("damage_bonus_per_level"),
-		heroData.get<float>("cooldown_multiplier_per_level"));
+	JSON file = JSON::parseFromStream(stream);
+	return Hero
+	(	file.get<std::string>("name"),
+		file.get<int>("base_health_points"),
+		file.get<int>("base_damage"),
+		file.get<float>("base_attack_cooldown"),
+		file.get<int>("experience_per_level"),
+		file.get<int>("health_point_bonus_per_level"),
+		file.get<int>("damage_bonus_per_level"),
+		file.get<float>("cooldown_multiplier_per_level")
+	);
 }
 
 int Hero::getLevel() const
