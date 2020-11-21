@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 2.6)
 
-SET(CMAKE_CXX_FLAGS "-std=gnu++17") #Turn on C++11 Support
+set(CMAKE_CXX_FLAGS "-std=gnu++17") #Turn on C++11 Support
 set(CMAKE_CXX_STANDARD 17)
 
 set(CMAKE_CXX_STANDARD_REQUIRED ON)

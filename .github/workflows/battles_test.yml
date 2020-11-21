@@ -22,7 +22,6 @@ jobs:
       
         steps:
             - uses: actions/checkout@v2
-            - run: sudo apt upgrade gcc
             - run: make
             - run: make battle
             - run: make battle_diff
