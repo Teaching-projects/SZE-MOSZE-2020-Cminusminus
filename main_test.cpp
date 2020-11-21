@@ -30,7 +30,7 @@ TEST(ParseTest, badInputTest) {
 TEST(LVLupTest, checkHero){
 	
 	Hero testhero ("Hero", 500, 10, 50, 20, 20, 0.9, 1.1);
-	Monster testmonster("Monster", 500, 20, 2.5);
+	Monster testmonster("Monster", 5000, 20, 2.5);
 	testhero.fightTilDeath(testmonster);
 	ASSERT_EQ(5,testhero.getLevel());
 
