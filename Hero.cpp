@@ -3,26 +3,36 @@
 #include <cmath>
 #include <fstream>
 
-Hero::Hero(const std::string name, int base_health, int base_damage, double base_attackCooldown, int xpPerLevel, int hpPerLevel, int dmgBonusPerLevel, double atcdMultiplier) :
+Hero::Hero(const std::string name, int base_health, int base_damage, float base_attackCooldown, int xpPerLevel, int hpPerLevel, int dmgBonusPerLevel, float atcdMultiplier) :
 	Monster(name, base_health, base_damage, base_attackCooldown), xpPerLevel(xpPerLevel), hpPerLevel(hpPerLevel), dmgBonusPerLevel(dmgBonusPerLevel), atcdMultiplier(atcdMultiplier)
 {
 	xp = 0; level = 1, maxHP = base_health;
 }
 
-Hero Hero::parse(const std::string& fileName)
+Hero Hero::parse(const std::string& s)
 {
-	JSON data = JSON::parseFromFile(fileName);
 
-	return Hero(
-		data.get<std::string>("name"),
-		data.get<int>("base_health_points"),
-		data.get<int>("base_damage"),
-		data.get<double>("base_attack_cooldown"),
-		data.get<int>("experience_per_level"),
-		data.get<int>("health_point_bonus_per_level"),
-		data.get<int>("damage_bonus_per_level"),
-		data.get<double>("cooldown_multiplier_per_level")
-	);
+	JSON heroData = JSON::parseFromFile(s);
+	return Hero(heroData.get<std::string>("name"), 
+		heroData.get<int>("base_health_points"), 
+		heroData.get<int>("base_damage"),
+		heroData.get<float>("base_attack_cooldown"),
+		heroData.get<int>("experience_per_level"), 
+		heroData.get<int>("health_point_bonus_per_level"), 
+		heroData.get<int>("damage_bonus_per_level"),
+		heroData.get<float>("cooldown_multiplier_per_level"));
+}
+Hero Hero::parse(std::istream& stream) {
+
+	JSON heroData = JSON::parseFromStream(stream);
+	return Hero(heroData.get<std::string>("name"),
+		heroData.get<int>("base_health_points"),
+		heroData.get<int>("base_damage"),
+		heroData.get<float>("base_attack_cooldown"),
+		heroData.get<int>("experience_per_level"),
+		heroData.get<int>("health_point_bonus_per_level"),
+		heroData.get<int>("damage_bonus_per_level"),
+		heroData.get<float>("cooldown_multiplier_per_level"));
 }
 
 int Hero::getLevel() const

@@ -18,10 +18,11 @@ class Monster
 public:
 
 
-    Monster(std::string name, int health, int damage, double attackCooldown);
+    Monster(std::string name, int health, int damage, float attackCooldown);
     Monster() {};
 
-    static Monster parse(const std::string& fileName);
+    static Monster parse(const std::string& s);
+    static Monster parse(std::istream& stream);
     ///It returns the name of the character.
     ///\return name
     std::string getName() const;

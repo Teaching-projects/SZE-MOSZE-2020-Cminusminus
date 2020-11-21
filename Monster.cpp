@@ -4,16 +4,26 @@
 #include <fstream>
 
 
-Monster::Monster(std::string name, int health, int damage, double attackCooldown) :
+Monster::Monster(std::string name, int health, int damage, float attackCooldown) :
 	name(name),
 	health(health),
 	damage(damage),
 	attackCooldown(attackCooldown) {}
 
-Monster Monster::parse(const std::string& fileName)
+Monster Monster::parse(const std::string& s)
 {
-	JSON data = JSON::parseFromFile(fileName);
-	return Monster(data.get<std::string>("name"), data.get<int>("health_points"), data.get<int>("damage"), data.get<double>("attack_cooldown"));
+
+	JSON monsterData = JSON::parseFromFile(s);
+	return Monster(monsterData.get<std::string>("name"), monsterData.get<int>("health_points"),
+		monsterData.get<int>("damage"), monsterData.get<float>("attack_cooldown"));
+}
+
+Monster Monster::parse(std::istream& stream)
+{
+
+	JSON monsterData = JSON::parseFromStream(stream);
+	return Monster(monsterData.get<std::string>("name"), monsterData.get<int>("health_points"),
+		monsterData.get<int>("damage"), monsterData.get<float>("attack_cooldown"));
 }
 
 std::string Monster::getName() const {

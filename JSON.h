@@ -1,38 +1,57 @@
-#ifndef JSON_HEADER
-#define JSON_HEADER
+#ifndef JSON_H
+#define JSON_H
 
-#include <map>
 #include <string>
-#include <any>
+#include <map>
+#include <fstream>
 #include <iostream>
+#include <variant>
+
+
+typedef std::map<std::string, std::variant<std::string, int, float>> jsonMap;
 
 class JSON
 {
-    std::map<std::string, std::any> data;
-
 private:
-    static void Validator(const std::string&);
-    static bool isNumber(const std::string&);
 
+    static std::string searchandCleanJsonWord(std::string& line);
+
+    static jsonMap parsePair(const std::string& line);
+    jsonMap inputdatas; 
 public:
-    JSON(std::map<std::string, std::any>);
-    int count(const std::string&);
-    static JSON parseFromString(const std::string&);
-    static JSON parseFromStream(std::istream&);
-    static JSON parseFromFile(const std::string&);
 
     template <typename T>
     T get(const std::string& key)
     {
-        return std::any_cast<T>(data[key]);
+        if (inputdatas.find(key) == inputdatas.end()) throw "Wrong JSON key!";
+        try {
+            return std::get<T>(inputdatas[key]);
+        }
+        catch (const std::exception & e) {
+            throw ParseException("Wrong JSON type!");
+        }
     }
 
-    class ParseException : virtual public std::runtime_error
-    {
-    public:
-        explicit ParseException(const std::string& description) : std::runtime_error("Parsing error: " + description) {}
-    };
+    JSON(jsonMap _inputdatas) : inputdatas(_inputdatas) {}
 
+    static JSON parseFromFile(const std::string& filename);
+
+    static JSON parseFromString(const std::string& inputtext);
+
+    static JSON parseFromStream(std::istream& inputStream);
+
+    bool count(std::string key) { return inputdatas.count(key); }
+
+
+    class ParseException : public std::string
+    {
+    private:
+        std::string msg;
+
+    public:
+        ParseException(std::string msg) : msg(msg) {}
+        ~ParseException() {}
+    };
 };
 
 #endif 

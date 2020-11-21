@@ -16,9 +16,10 @@ class Hero : public Monster
 *\param attackCooldown The speed of the player's attack.
 */
 public:
-	Hero(const std::string name, int base_health, int base_damage, double base_attackCooldown, int xpPerLevel, int hpPerLevel, int dmgBonusPerLevel, double atcdMultiplier);
+	Hero(const std::string name, int base_health, int base_damage, float base_attackCooldown, int xpPerLevel, int hpPerLevel, int dmgBonusPerLevel, float atcdMultiplier);
 
-	static Hero parse(const std::string&);
+	static Hero parse(const std::string& s);
+	static Hero parse(std::istream& stream);
 	///\brief Returns the player's level
 	///\return level
 	int getLevel() const;
