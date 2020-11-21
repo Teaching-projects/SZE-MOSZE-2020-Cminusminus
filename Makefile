@@ -4,8 +4,8 @@ CC := g++-9
 SCENARIO1 := scenario1.json
 SCENARIO2 := scenario2.json
 
-mosze_01: $(OBJS)
-	$(CC) $(CGFLAGS) -o mosze_01 $(OBJS)
+mosze_01: -Wall $(OBJS)
+	g++ -fPIC -std=c++17 -Wall -Wextra -o mosze_01 $(OBJS)
 
 Monster.o: Monster.cpp Monster.h JSON.h
 	$(CC) $(CGFLAGS) -c Monster.cpp
