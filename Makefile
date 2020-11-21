@@ -1,10 +1,10 @@
 OBJS := JSON.o Monster.o Hero.o main.o 
-CGFLAGS := -std=c++17 -Wall -Wextra
+CGFLAGS := -std=c++17 -Wall
 CC := g++-9
 SCENARIO1 := scenario1.json
 SCENARIO2 := scenario2.json
 
-mosze_01: -Wall $(OBJS)
+mosze_01: $(OBJS)
 	$(CC) $(CGFLAGS) -o mosze_01 $(OBJS)
 
 Monster.o: Monster.cpp Monster.h JSON.h
@@ -20,7 +20,7 @@ main.o: main.cpp Monster.h Hero.h JSON.h
 	$(CC) $(CGFLAGS) -c main.cpp
 
 clean:
-	rm -rf *.o *.out ./docs 
+	rm -rf *.o mosze_01 *.out ./docs 
 
 cppcheck:
 	cppcheck *.cpp --enable=warning --output-file=cppcheck_errors.txt
