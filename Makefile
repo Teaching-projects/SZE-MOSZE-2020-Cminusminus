@@ -39,7 +39,7 @@ battle:
 battle_diff: battle
 	diff program_outputs.txt good_outputs.txt
 unit_test :
-	cd /usr/src/gtest
+	
 	cmake CMakeLists.txt
 	make
 	./unit-test
