@@ -8,10 +8,6 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@master
-            - name: Installing Doxygen
-              run: sudo apt-get install doxygen
-            - name: Installing Graphviz
-              run: sudo apt-get install graphviz
 
             - name: Generate docs
               run: make documentation
