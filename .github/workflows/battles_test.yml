@@ -24,7 +24,6 @@ jobs:
             - run: make
             - run: make battle
             - run: make battle_diff
-            - run: make clean
             - run: make unit_test
             
             
