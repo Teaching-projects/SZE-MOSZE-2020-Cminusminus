@@ -39,9 +39,7 @@ battle:
 battle_diff: battle
 	diff program_outputs.txt good_outputs.txt
 unit_test :
-	ln -st /usr/lib/ /usr/src/gtest/libgtest.a && ln -st /usr/lib/ /usr/src/gtest/libgtest_main.a
-	cmake CMakeLists.txt
-	make
+	cmake CMakeLists.txt && make
 	./unit-test
 documentation:
 	doxygen doxconf
