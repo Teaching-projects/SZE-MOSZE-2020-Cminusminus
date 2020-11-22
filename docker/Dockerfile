@@ -11,6 +11,7 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
 	cppcheck \
 	libgtest-dev \
 	cmake \
+	build-essential \
 	g++ \
 	g++-10 \
 && rm -rf /var/lib/apt/lists/*
