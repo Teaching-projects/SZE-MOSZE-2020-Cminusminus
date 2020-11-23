@@ -13,7 +13,7 @@ TEST(ParseFromStringTest, checkIfEquals){
 	"{\"name\": \"Bela\",\"hp\": 500,\"dmg\": 20, \"atc\": 1.4}";
 	JSON json = JSON::parseFromString(text);
 	
-  ASSERT_double_EQ(json.get<double>("atc"), 1.4);
+  ASSERT_DOUBLE_EQ(json.get<double>("atc"), 1.4);
 }
 
 TEST(ParseTest, badInputTest) {
