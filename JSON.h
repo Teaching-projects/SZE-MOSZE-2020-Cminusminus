@@ -20,7 +20,7 @@ private:
 public:
 	/**
 	*\brief A class for JSON parsing.
-	*\param _input_datas The map_data we give.
+	*\param input_datas The map_data we give.
 	*/
 	JSON(map_data input_datas) : input_datas(input_datas) {}
 
@@ -28,7 +28,7 @@ public:
 	
 	///\brief Get function for the JSON class.
 	///\param key the JSON element's key
-	///\return T template
+	///\return T template(std::list)
 	template <typename T>
 	inline typename std::enable_if<std::is_same<T, JSON::list>::value, JSON::list>::type get(const std::string& key)
 	{
@@ -65,11 +65,18 @@ public:
 	///\param key The name of the key
 	///\return bool
 	bool count(std::string key) { return input_datas.count(key); }
-
+	///\brief It parses a JSON from a file.
+	///\param filename The name of the file we parse
+	///\return JSON
 	static JSON parseFromFile(const std::string& filename);
+	///\brief It parses a JSON from a string.
+	///\param inputtext The text we parse
+	///\return JSON
 	static JSON parseFromString(const std::string& inputtext);
+	///\brief It parses a JSON from an istream.
+	///\param inputStream The name of the isteam we parse from
+	///\return JSON
 	static JSON parseFromStream(std::istream& inputStream);
-
 	///\brief Get function for the JSON class.
 	///\param key the JSON element's key
 	///\return T template
