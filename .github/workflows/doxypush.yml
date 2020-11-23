@@ -5,13 +5,10 @@ on: pull_request
 jobs:
     deploy:
         name: Deploy to Github pages
-        runs-on: ubuntu-latest
+        runs-on: ubuntu-20.04
+        container: kurucc/test_image
         steps:
             - uses: actions/checkout@master
-            - name: Installing Doxygen
-              run: sudo apt-get install doxygen
-            - name: Installing Graphviz
-              run: sudo apt-get install graphviz
 
             - name: Generate docs
               run: make documentation

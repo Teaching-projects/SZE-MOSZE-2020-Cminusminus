@@ -4,11 +4,10 @@ on: push
 
 jobs:
     mem_test_and_cppcheck:
-        runs-on: ubuntu-latest
-      
+        runs-on: ubuntu-20.04
+        container: kurucc/test_image
         steps:
             - uses: actions/checkout@v2
-            - run: sudo apt install cppcheck valgrind
             - run: make
             - run: make cppcheck
             - uses: actions/upload-artifact@v2
@@ -18,15 +17,14 @@ jobs:
             - run: make check_memoryleak
             
     build_and_test:
-        runs-on: ubuntu-latest
+        runs-on: ubuntu-20.04
+        container: kurucc/test_image
       
         steps:
             - uses: actions/checkout@v2
             - run: make
             - run: make battle
             - run: make battle_diff
-            - run: sudo apt install libgtest-dev cmake
-            - run: make clean
             - run: make unit_test
             
             
