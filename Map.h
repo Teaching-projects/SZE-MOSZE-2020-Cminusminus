@@ -19,9 +19,10 @@ public:
 	
 	///brief The enum ,,type" for the map
 	enum type
-	{
-		Free, ///This represents the free spaces: ' '
-		Wall ///This represents the walls: '#'
+	{	///This represents the free spaces: ' '
+		Free, 
+		///This represents the walls: '#'
+		Wall 
 	};
 
 	class WrongIndexException : std::exception
