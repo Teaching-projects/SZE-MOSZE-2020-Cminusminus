@@ -54,4 +54,7 @@ Ebben a feladatban egy adott **main.cpp**-hez kellett a programot igazítani, il
 Ebben a feladatrészben **Docker** segítségével a különböző sudo-kat, installokat helyeztük egységesen egy **imagebe**, **containerbe**.
 
 **Feladat 6 - JSONPimp** \
-Ebben a feladatrészben a main.cpp-ben és a különböző scenariok-ban lévő változtatásokhoz kiegészítettük a JSON parzerünket, és hozzáadtuk a listbe való parzolást is. 
+Ebben a feladatrészben a main.cpp-ben és a különböző scenariok-ban lévő változtatásokhoz kiegészítettük a JSON parzerünket, és hozzáadtuk a listbe való parzolást is.
+
+**Feladat 7 - Map** \
+Ebben a feladatban egy új osztály került létrehozásra, melynek **Map** a neve, és a célja az, hogy egy adott fájlból egy térképet töltsön be. 
