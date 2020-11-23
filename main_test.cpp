@@ -13,7 +13,7 @@ TEST(ParseFromStringTest, checkIfEquals){
 	"{\"name\": \"Bela\",\"hp\": 500,\"dmg\": 20, \"atc\": 1.4}";
 	JSON json = JSON::parseFromString(text);
 	
-  ASSERT_FLOAT_EQ(json.get<float>("atc"), 1.4);
+  ASSERT_double_EQ(json.get<double>("atc"), 1.4);
 }
 
 TEST(ParseTest, badInputTest) {
@@ -50,14 +50,14 @@ TEST(dmgTest, checkHero){
 		Hero h = Hero(heroData.get<std::string>("name"),
 		heroData.get<int>("base_health_points"),
 		heroData.get<int>("base_damage"),
-		heroData.get<float>("base_attack_cooldown"),
+		heroData.get<double>("base_attack_cooldown"),
 		heroData.get<int>("experience_per_level"),
 		heroData.get<int>("health_point_bonus_per_level"),
 		heroData.get<int>("damage_bonus_per_level"),
-		heroData.get<float>("cooldown_multiplier_per_level"));
+		heroData.get<double>("cooldown_multiplier_per_level"));
 		
 		Monster m = Monster(monsterData.get<std::string>("name"), monsterData.get<int>("health_points"),
-		monsterData.get<int>("damage"), monsterData.get<float>("attack_cooldown"));
+		monsterData.get<int>("damage"), monsterData.get<double>("attack_cooldown"));
 		
         ASSERT_EQ(3,h.getDamage());
     } catch(std::runtime_error& e){
@@ -78,14 +78,14 @@ TEST(dmgAfterFightTest, checkHero){
 		Hero h = Hero(heroData.get<std::string>("name"),
 		heroData.get<int>("base_health_points"),
 		heroData.get<int>("base_damage"),
-		heroData.get<float>("base_attack_cooldown"),
+		heroData.get<double>("base_attack_cooldown"),
 		heroData.get<int>("experience_per_level"),
 		heroData.get<int>("health_point_bonus_per_level"),
 		heroData.get<int>("damage_bonus_per_level"),
-		heroData.get<float>("cooldown_multiplier_per_level"));
+		heroData.get<double>("cooldown_multiplier_per_level"));
 		
 		Monster m = Monster(monsterData.get<std::string>("name"), monsterData.get<int>("health_points"),
-		monsterData.get<int>("damage"), monsterData.get<float>("attack_cooldown"));
+		monsterData.get<int>("damage"), monsterData.get<double>("attack_cooldown"));
 		h.fightTilDeath(m);
 		
         ASSERT_EQ(3,h.getDamage());
