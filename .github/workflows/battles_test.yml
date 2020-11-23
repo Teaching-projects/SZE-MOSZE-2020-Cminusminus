@@ -17,7 +17,8 @@ jobs:
             - run: make check_memoryleak
             
     build_and_test:
-        runs-on: ubuntu-latest
+        runs-on: ubuntu-20.04
+        container: kurucc/test_image
       
         steps:
             - uses: actions/checkout@v2
