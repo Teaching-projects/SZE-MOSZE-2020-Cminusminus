@@ -20,7 +20,7 @@ class Hero : public Monster
 *\param atcdMultiplier The attack cooldown multiplier we multiply the attack cooldown after level up.
 */
 public:
-	Hero(const std::string name, int base_health, int base_damage, float base_attackCooldown, int xpPerLevel, int hpPerLevel, int dmgBonusPerLevel, float atcdMultiplier);
+	Hero(const std::string name, int base_health, int base_damage, double base_attackCooldown, int xpPerLevel, int hpPerLevel, int dmgBonusPerLevel, double atcdMultiplier);
 	///This function parse a Hero from a file.
 	///\param s
     ///\return Hero

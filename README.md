@@ -42,4 +42,16 @@ Ebben a feladatban egy json parsert valósítottam meg, ami 3 féle képpen kép
 A program kimaradt függvényeit kiegészítettük, amelyekben hiányoztak a doxygen-hez szükséges kommentek.
 
 **Feladat 4 - Makefile** \
-Ebben a feladatrészben a ,,miniscripteket" egységesen egy Makefile fájlba helyeztük, ami kicsit egységesíti a GHA kódokat és a doxygen dokumentáció generálást.
+Ebben a feladatrészben a ,,miniscripteket" egységesen egy **Makefile** fájlba helyeztük, ami kicsit egységesíti a GHA kódokat és a doxygen dokumentáció generálást.
+
+**Feladat 4 - Unittests** \
+Ebben a feladatban különböző **Unittesteket** hoztunk létre a különböző funkciók teszteléséhez.
+
+**Feladat 4 - Refactor** \
+Ebben a feladatban egy adott **main.cpp**-hez kellett a programot igazítani, illetve átalakítani a megfelelő működés elérésének érdekében.
+
+**Feladat 5 - Docker** \
+Ebben a feladatrészben **Docker** segítségével a különböző sudo-kat, installokat helyeztük egységesen egy **imagebe**, **containerbe**.
+
+**Feladat 6 - JSONPimp** \
+Ebben a feladatrészben a main.cpp-ben és a különböző scenariok-ban lévő változtatásokhoz kiegészítettük a JSON parzerünket, és hozzáadtuk a listbe való parzolást is. 

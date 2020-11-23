@@ -4,7 +4,7 @@
 #include <fstream>
 
 
-Monster::Monster(std::string name, int health, int damage, float attackCooldown) :
+Monster::Monster(std::string name, int health, int damage, double attackCooldown) :
 	name(name),
 	health(health),
 	damage(damage),
@@ -18,7 +18,7 @@ Monster Monster::parse(const std::string& s)
 	(file.get<std::string>("name"),
      file.get<int>("health_points"),
 	 file.get<int>("damage"),
-	 file.get<float>("attack_cooldown")
+	 file.get<double>("attack_cooldown")
 	 );
 }
 
@@ -30,7 +30,7 @@ Monster Monster::parse(std::istream& stream)
 	(file.get<std::string>("name"),
 	 file.get<int>("health_points"),
 	 file.get<int>("damage"),
-	 file.get<float>("attack_cooldown")
+	 file.get<double>("attack_cooldown")
 	);
 }
 
