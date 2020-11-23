@@ -58,8 +58,10 @@ public:
     ///Attacks the enemy.
     ///\param enemy The monster we attack
     void getAttacked(const Monster& enemy);
+	///Operator overwrite.
     friend bool operator==(const Monster character1, const Monster character2);
-    friend bool operator!=(const Monster character1, const Monster character2);
+    ///Operator overwrite.
+	friend bool operator!=(const Monster character1, const Monster character2);
 private:
     virtual void Attack(Monster& enemy);
 
