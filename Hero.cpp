@@ -3,7 +3,7 @@
 #include <cmath>
 #include <fstream>
 
-Hero::Hero(const std::string name, int base_health, int base_damage, float base_attackCooldown, int xpPerLevel, int hpPerLevel, int dmgBonusPerLevel, float atcdMultiplier) :
+Hero::Hero(const std::string name, int base_health, int base_damage, double base_attackCooldown, int xpPerLevel, int hpPerLevel, int dmgBonusPerLevel, double atcdMultiplier) :
 	Monster(name, base_health, base_damage, base_attackCooldown), xpPerLevel(xpPerLevel), hpPerLevel(hpPerLevel), dmgBonusPerLevel(dmgBonusPerLevel), atcdMultiplier(atcdMultiplier)
 {
 	xp = 0; level = 1, maxHP = base_health;
@@ -17,11 +17,11 @@ Hero Hero::parse(const std::string& s)
 	(	file.get<std::string>("name"), 
 		file.get<int>("base_health_points"), 
 		file.get<int>("base_damage"),
-		file.get<float>("base_attack_cooldown"),
+		file.get<double>("base_attack_cooldown"),
 		file.get<int>("experience_per_level"), 
 		file.get<int>("health_point_bonus_per_level"), 
 		file.get<int>("damage_bonus_per_level"),
-		file.get<float>("cooldown_multiplier_per_level")
+		file.get<double>("cooldown_multiplier_per_level")
 		);
 }
 Hero Hero::parse(std::istream& stream) {
@@ -31,11 +31,11 @@ Hero Hero::parse(std::istream& stream) {
 	(	file.get<std::string>("name"),
 		file.get<int>("base_health_points"),
 		file.get<int>("base_damage"),
-		file.get<float>("base_attack_cooldown"),
+		file.get<double>("base_attack_cooldown"),
 		file.get<int>("experience_per_level"),
 		file.get<int>("health_point_bonus_per_level"),
 		file.get<int>("damage_bonus_per_level"),
-		file.get<float>("cooldown_multiplier_per_level")
+		file.get<double>("cooldown_multiplier_per_level")
 	);
 }
 

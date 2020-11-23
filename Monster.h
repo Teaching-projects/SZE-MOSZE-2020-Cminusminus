@@ -18,7 +18,7 @@ class Monster
 public:
 
 
-    Monster(std::string name, int health, int damage, float attackCooldown);
+    Monster(std::string name, int health, int damage, double attackCooldown);
     Monster() {};
 	///This function parse a Monster from a file.
 	///\param s The file name we parse.

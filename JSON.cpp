@@ -1,139 +1,167 @@
 #include "JSON.h"
 #include <string>
 
-std::string JSON::searchandCleanJsonWord(std::string& line) {
+JSON JSON::parseFromStream(std::istream& inputStream) 
+{
 
-	int firstidx = 0;
-	int lastidx = line.length() - 1;
+	std::string line = "";
+	std::string input_txt = "";
 
-	while (firstidx < (int)line.length() && (line[firstidx] == ' ' || line[firstidx] == '\"' || line[firstidx] == '{' || line[firstidx] == '\t')) { firstidx++; }
-	while (lastidx >= 0 && (line[lastidx] == ' ' || line[lastidx] == '\t' || line[lastidx] == '\"' || line[lastidx] == '}')) { lastidx--; }
-
-	line = line.substr(firstidx, lastidx - firstidx + 1);
-
-	return line;
-}
-
-jsonMap JSON::parsePair(const std::string& line) {
-
-	jsonMap dataofHero;
-	std::string keyValue = "";
-	std::string valueofKey = "";
-
-	int currentPos = 1;
-
-	while (currentPos < (int)line.length())
+	while (std::getline(inputStream, line))
 	{
-		int colonPos = line.find(':', currentPos);
-		int commaPos = line.find(',', currentPos);
-
-		if (commaPos < 0) { commaPos = line.length() - 1; }
-		if (colonPos >= 0)
-		{
-			keyValue = line.substr(currentPos, colonPos - (currentPos + 1));
-			valueofKey = line.substr(colonPos + 1, commaPos - (colonPos + 1));
-
-			keyValue = searchandCleanJsonWord(keyValue);
-			if (valueofKey.find('\"') != std::string::npos) {
-				valueofKey = searchandCleanJsonWord(valueofKey);
-				dataofHero[keyValue] = valueofKey;
-			}
-			else if (valueofKey.find('.') != std::string::npos) {
-				valueofKey = searchandCleanJsonWord(valueofKey);
-				dataofHero[keyValue] = std::stof(valueofKey);
-			}
-			else {
-				valueofKey = searchandCleanJsonWord(valueofKey);
-				dataofHero[keyValue] = std::stoi(valueofKey);
-			}
-		}
-		currentPos = commaPos + 1;
+		input_txt += line;
 	}
 
-	return dataofHero;
+	return parseFromString(input_txt);
 }
 
-JSON JSON::parseFromFile(const std::string& filename) {
+std::string JSON::word_split(std::string& line) 
+{
 
-	std::ifstream jsonIfs(filename);
+	std::size_t first_index = 0;
+	std::size_t last_index = line.length() - 1;
 
-	if (jsonIfs.fail()) {
+	while (first_index < line.length() && (line[first_index] == '{' || line[first_index] == '\"' || line[first_index] == '[' || line[first_index] == ']' || line[first_index] == '\t' || line[first_index] == ' ' )) 
+	{ 
+		first_index++; 
+	}
+	while (last_index >= 0 && (line[last_index] == ' ' || line[last_index] == '\t' || line[last_index] == '\"' || line[last_index] == '[' || line[last_index] == ']' || line[last_index] == '}')) 
+	{
+		last_index--; 
+	}
+
+	return line.substr(first_index, last_index - first_index + 1);
+}
+
+JSON JSON::parseFromFile(const std::string& filename) 
+{
+
+	std::ifstream stream(filename);
+
+	if (stream.fail())
+	{
 		throw ParseException("Can't open the json file.");
 	}
 
 	std::string line;
 	std::string textFromInput = "";
 
-	while (std::getline(jsonIfs, line)) {
-		textFromInput += line;
-	}
-
-	jsonIfs.close();
-	jsonMap datas = parsePair(textFromInput);
-	return JSON(datas);
-}
-
-JSON JSON::parseFromString(const std::string& inputtext) {
-	jsonMap dataOfHero;
-
-	int currentPos = 1;
-	int colonCount = 0;
-	int commaCount = 0;
-	int dataCount = 0;
-
-	std::string keyvalue = "";
-	std::string valueofKey = "";
-
-	while (currentPos < (int)inputtext.length())
+	while (std::getline(stream, line))
 	{
-		bool posisgood = true;
-		int colonPos = inputtext.find(':', currentPos);
-		int commaPos = currentPos;
-
-		while (commaPos < (int)inputtext.length() && (!posisgood || inputtext[commaPos] != ',')) {
-			if (inputtext[commaPos] == '\"') posisgood = !posisgood;
-			++commaPos;
-		}
-
-		if (inputtext[commaPos] == ',') commaCount++;
-
-		if (commaPos < 0) commaPos = inputtext.length();
-
-		if (colonPos >= 0) {
-			colonCount++;
-
-			keyvalue = inputtext.substr(currentPos, colonPos - (currentPos + 1));
-			valueofKey = inputtext.substr(colonPos + 1, commaPos - (colonPos + 1));
-
-			bool valueofKeyIsString = valueofKey.find('\"') != std::string::npos;
-			keyvalue = searchandCleanJsonWord(keyvalue);
-			valueofKey = searchandCleanJsonWord(valueofKey);
-			if (valueofKeyIsString) { dataOfHero[keyvalue] = valueofKey; }
-			else if (valueofKey.find('.') != std::string::npos) { dataOfHero[keyvalue] = std::stof(valueofKey); }
-			else { dataOfHero[keyvalue] = std::stoi(valueofKey); }
-
-			dataCount++;
-		}
-
-		currentPos = commaPos + 1;
-	}
-
-	if (dataCount != colonCount || commaCount != colonCount - 1) {
-		throw ParseException("Bad JSON!");
-	}
-	return JSON(dataOfHero);
-}
-
-JSON JSON::parseFromStream(std::istream& inputStream) {
-	/**
-	 * This fucntion parse the inputstream line by line.
-	*/
-	std::string line = "";
-	std::string textFromInput = "";
-	while (std::getline(inputStream, line)) {
 		textFromInput += line;
 	}
 
-	jsonMap datas = parsePair(textFromInput);
-	return JSON(datas);
+	stream.close();
+	return parseFromString(textFromInput);
 }
+
+JSON JSON::parseFromString(const std::string& inputtext)
+{
+	map_data hero_data;
+
+	std::size_t current_position = 1;
+	std::size_t colon_num = 0;
+	std::size_t comma_num = 0;
+	std::size_t data_num = 0;
+
+	std::string key = "";
+	std::string key_value = "";
+	std::string monsterList = "";
+
+	while (current_position < inputtext.length())
+	{
+		bool position_good = true;
+		int colon_position = inputtext.find(':', current_position);
+		std::size_t comma_position = current_position;
+
+		while (comma_position < (int)inputtext.length() && (!position_good || inputtext[comma_position] != ','))
+		{
+			if (inputtext[comma_position] == '\"')
+			{
+				position_good = !position_good;
+			}
+			++comma_position;
+		}
+
+		if (inputtext[comma_position] == ',')
+		{
+			comma_num++;
+		}
+
+		if (comma_position < 0)
+		{
+			comma_position = inputtext.length();
+		}
+
+		if (colon_position >= 0)
+		{
+			colon_num++;
+			key = inputtext.substr(current_position + 1, colon_position - current_position - 1);
+			key_value = inputtext.substr(colon_position + 1, comma_position - (colon_position + 1));
+
+			int monsterListStart = (int)key_value.find('[');
+
+			if (monsterListStart >= 0)
+			{
+				int monsterListEnd = (int)inputtext.find(']', monsterListStart + 1);
+
+				if (monsterListEnd < 0)
+				{
+					throw "Incorrect json format";
+				}
+
+				key_value = inputtext.substr(colon_position + monsterListStart + 2, inputtext.find(']', monsterListStart + 1) - (colon_position + monsterListStart + 2));
+				key = word_split(key);
+
+				std::string monster_files = "";
+				unsigned int filenameStartPos = 0;
+				while (filenameStartPos < (unsigned int)key_value.length())
+				{
+					int nextCommaInList = (int)key_value.find(',', filenameStartPos);
+					if (nextCommaInList < 0)
+					{
+						nextCommaInList = (int)key_value.length() - 1;
+					}
+					std::string filename = key_value.substr(filenameStartPos + 1, nextCommaInList - (filenameStartPos + 1));
+					filename = word_split(filename);
+					monster_files += filename + ",";
+					filenameStartPos = (unsigned int)nextCommaInList + 1;
+				}
+
+				monster_files.erase(monster_files.end() - 1);
+				hero_data[key] = monster_files;
+				data_num++;
+				comma_position = monsterListEnd;
+
+				if (monster_files.find(',' != std::string::npos))
+				{
+					comma_num--;
+				}
+			}
+			else
+			{
+				bool string_keyvalue = key_value.find('\"') != std::string::npos;
+				key = word_split(key);
+				key_value = word_split(key_value);
+				if (string_keyvalue)
+				{
+					hero_data[key] = key_value;
+				}
+				else if (key_value.find('.') != std::string::npos)
+				{
+					hero_data[key] = std::stod(key_value);
+				}
+				else
+				{
+					hero_data[key] = std::stoi(key_value);
+				}
+
+				data_num++;
+			}
+		}
+
+		current_position = comma_position + 1;
+	}
+	return JSON(hero_data);
+}
+
