@@ -32,12 +32,14 @@ check_memoryleak:
 battle:
 	touch program_outputs.txt
 	> program_outputs.txt
-
 		./mosze_01 $(SCENARIO1) >> program_outputs.txt; \
-		./mosze_01 $(SCENARIO2) >> program_outputs.txt; \
+	touch program_outputs2.txt
+	> program_outputs2.txt
+		./mosze_01 $(SCENARIO2) >> program_outputs2.txt; \
 	
 battle_diff: battle
 	diff program_outputs.txt good_outputs.txt
+	diff program_outputs2.txt good_outputs2.txt
 unit_test :
 	cd /usr/src/gtest && cmake CMakeLists.txt && make
 	ln -st /usr/lib/ /usr/src/gtest/libgtest.a
