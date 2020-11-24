@@ -84,9 +84,13 @@ Inheritance diagram for Monster:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a4393a97ddf3bf86e28918b8f4da7e481"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMonster.html#a4393a97ddf3bf86e28918b8f4da7e481">Monster</a> (std::string name, int health, int damage, double attackCooldown)</td></tr>
-<tr class="memdesc:a4393a97ddf3bf86e28918b8f4da7e481"><td class="mdescLeft">&#160;</td><td class="mdescRight">A class for creating a monster.  <a href="classMonster.html#a4393a97ddf3bf86e28918b8f4da7e481">More...</a><br /></td></tr>
-<tr class="separator:a4393a97ddf3bf86e28918b8f4da7e481"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0a029ff319715c3b2ea588a74c70a8ab"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMonster.html#a0a029ff319715c3b2ea588a74c70a8ab">Monster</a> (std::string name, int health, int damage, double attackCooldown, int defense)</td></tr>
+<tr class="memdesc:a0a029ff319715c3b2ea588a74c70a8ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">A class for creating a monster.  <a href="classMonster.html#a0a029ff319715c3b2ea588a74c70a8ab">More...</a><br /></td></tr>
+<tr class="separator:a0a029ff319715c3b2ea588a74c70a8ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afdf2ce28dedb771aeb67c48ec24710e8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMonster.html#afdf2ce28dedb771aeb67c48ec24710e8">getDefense</a> ()</td></tr>
+<tr class="separator:afdf2ce28dedb771aeb67c48ec24710e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a78cab29b853da85ca41ec86ec85139b6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMonster.html#a78cab29b853da85ca41ec86ec85139b6">setDefense</a> (int bonus)</td></tr>
+<tr class="separator:a78cab29b853da85ca41ec86ec85139b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a28ae1112e37262ce150e3c02465b3dd5"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMonster.html#a28ae1112e37262ce150e3c02465b3dd5">getName</a> () const</td></tr>
 <tr class="separator:a28ae1112e37262ce150e3c02465b3dd5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acbfb552014439fe02d10f2492e60fe34"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMonster.html#acbfb552014439fe02d10f2492e60fe34">getHealthPoints</a> () const</td></tr>
@@ -106,8 +110,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a144a4902bd6291be5671a48d71c46323"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad84dbe06c7a2aa7f75164dd9db52daf3"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMonster.html#ad84dbe06c7a2aa7f75164dd9db52daf3">getAttackCoolDown</a> () const</td></tr>
 <tr class="separator:ad84dbe06c7a2aa7f75164dd9db52daf3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a57ba66072a8c658c3ca78fd02d6b39b1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMonster.html#a57ba66072a8c658c3ca78fd02d6b39b1">getAttacked</a> (const <a class="el" href="classMonster.html">Monster</a> &amp;enemy)</td></tr>
-<tr class="separator:a57ba66072a8c658c3ca78fd02d6b39b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac114acee1a8ac926f598a58df67e8807"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMonster.html#ac114acee1a8ac926f598a58df67e8807">getAttacked</a> (int damage)</td></tr>
+<tr class="separator:ac114acee1a8ac926f598a58df67e8807"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
@@ -119,17 +123,15 @@ Static Public Member Functions</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="friends"></a>
 Friends</h2></td></tr>
 <tr class="memitem:acb638717224a57277d0f9080c8e5f287"><td class="memItemLeft" align="right" valign="top"><a id="acb638717224a57277d0f9080c8e5f287"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMonster.html#acb638717224a57277d0f9080c8e5f287">operator==</a> (const <a class="el" href="classMonster.html">Monster</a> character1, const <a class="el" href="classMonster.html">Monster</a> character2)</td></tr>
-<tr class="memdesc:acb638717224a57277d0f9080c8e5f287"><td class="mdescLeft">&#160;</td><td class="mdescRight">Operator overwrite. <br /></td></tr>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator==</b> (const <a class="el" href="classMonster.html">Monster</a> character1, const <a class="el" href="classMonster.html">Monster</a> character2)</td></tr>
 <tr class="separator:acb638717224a57277d0f9080c8e5f287"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aab533d2e096bb80c14cc4c17bf187d25"><td class="memItemLeft" align="right" valign="top"><a id="aab533d2e096bb80c14cc4c17bf187d25"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMonster.html#aab533d2e096bb80c14cc4c17bf187d25">operator!=</a> (const <a class="el" href="classMonster.html">Monster</a> character1, const <a class="el" href="classMonster.html">Monster</a> character2)</td></tr>
-<tr class="memdesc:aab533d2e096bb80c14cc4c17bf187d25"><td class="mdescLeft">&#160;</td><td class="mdescRight">Operator overwrite. <br /></td></tr>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>operator!=</b> (const <a class="el" href="classMonster.html">Monster</a> character1, const <a class="el" href="classMonster.html">Monster</a> character2)</td></tr>
 <tr class="separator:aab533d2e096bb80c14cc4c17bf187d25"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a4393a97ddf3bf86e28918b8f4da7e481"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4393a97ddf3bf86e28918b8f4da7e481">&#9670;&nbsp;</a></span>Monster()</h2>
+<a id="a0a029ff319715c3b2ea588a74c70a8ab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0a029ff319715c3b2ea588a74c70a8ab">&#9670;&nbsp;</a></span>Monster()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -156,7 +158,13 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">double&#160;</td>
-          <td class="paramname"><em>attackCooldown</em>&#160;</td>
+          <td class="paramname"><em>attackCooldown</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>defense</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -173,6 +181,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
     <tr><td class="paramname">health</td><td>The health of the monster. </td></tr>
     <tr><td class="paramname">damage</td><td>The damage of the monster. </td></tr>
     <tr><td class="paramname">attackCooldown</td><td>The speed of the monster's attack. </td></tr>
+    <tr><td class="paramname">defense</td><td>The defense of the monster. </td></tr>
   </table>
   </dd>
 </dl>
@@ -272,8 +281,8 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 
 </div>
 </div>
-<a id="a57ba66072a8c658c3ca78fd02d6b39b1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a57ba66072a8c658c3ca78fd02d6b39b1">&#9670;&nbsp;</a></span>getAttacked()</h2>
+<a id="ac114acee1a8ac926f598a58df67e8807"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac114acee1a8ac926f598a58df67e8807">&#9670;&nbsp;</a></span>getAttacked()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -281,15 +290,15 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
         <tr>
           <td class="memname">void Monster::getAttacked </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="classMonster.html">Monster</a> &amp;&#160;</td>
-          <td class="paramname"><em>enemy</em></td><td>)</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>damage</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 <p>Attacks the enemy. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">enemy</td><td>The monster we attack </td></tr>
+    <tr><td class="paramname">damage</td><td>The damage we attack the enemy with </td></tr>
   </table>
   </dd>
 </dl>
@@ -311,6 +320,24 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
       </table>
 </div><div class="memdoc">
 <p>It returns the damage of the monster. </p><dl class="section return"><dt>Returns</dt><dd>damage </dd></dl>
+
+</div>
+</div>
+<a id="afdf2ce28dedb771aeb67c48ec24710e8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afdf2ce28dedb771aeb67c48ec24710e8">&#9670;&nbsp;</a></span>getDefense()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Monster::getDefense </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>It returns the defense of the <a class="el" href="classMonster.html">Monster</a> </p><dl class="section return"><dt>Returns</dt><dd>defense </dd></dl>
 
 </div>
 </div>
@@ -431,6 +458,30 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="classMonster.html">Monster</a> </dd></dl>
+
+</div>
+</div>
+<a id="a78cab29b853da85ca41ec86ec85139b6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a78cab29b853da85ca41ec86ec85139b6">&#9670;&nbsp;</a></span>setDefense()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Monster::setDefense </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>bonus</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>It sets the defense of the <a class="el" href="classHero.html">Hero</a> when it levels up </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">bonus</td><td>The amount we add to the defense </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
