@@ -1,8 +1,8 @@
 OBJS := JSON.o Monster.o Hero.o main.o 
 CGFLAGS := -std=c++17 -Wall
 CC := g++-9
-SCENARIO1 := scenarios/scenario1.json
-SCENARIO2 := scenarios/scenario2.json
+SCENARIO1 := scenarios/.scenario1.json
+SCENARIO2 := scenarios/.scenario2.json
 
 mosze_01: $(OBJS)
 	$(CC) $(CGFLAGS) -o mosze_01 $(OBJS)
