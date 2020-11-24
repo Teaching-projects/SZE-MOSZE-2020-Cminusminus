@@ -97,7 +97,7 @@ TEST(phDMGTest, checkHero){
 		Monster m = Monster(monsterData.get<std::string>("name"), monsterData.get<int>("health_points"),
 		dmg2, monsterData.get<double>("attack_cooldown"), monsterData.get<int>("defense"));
 		
-        ASSERT_EQ(3,h.getPhysicalDmg());
+        ASSERT_EQ(5,h.getPhysicalDmg());
     } catch(std::runtime_error& e){
         ASSERT_STREQ(e.what(), "Wrong JSON syntax!");
     }
@@ -164,7 +164,7 @@ TEST(mgicalDMGAfterFightTest, checkHero){
 		dmg2, monsterData.get<double>("attack_cooldown"), monsterData.get<int>("defense"));
 		h.fightTilDeath(m);
 		
-        ASSERT_EQ(3,h.getMagicalDmg());
+        ASSERT_EQ(6,h.getMagicalDmg());
     } catch(std::runtime_error& e){
         ASSERT_STREQ(e.what(), "Wrong JSON syntax!");
     }
@@ -212,7 +212,7 @@ TEST(HPTest, checkHero){
 		hero.fightTilDeath(m1);
 		hero.fightTilDeath(m3);
 		
-        ASSERT_EQ(60,hero.getHealthPoints());
+        ASSERT_EQ(113,hero.getHealthPoints());
     } catch(std::runtime_error& e){
         ASSERT_STREQ(e.what(), "Wrong JSON syntax!");
     }
@@ -236,7 +236,7 @@ TEST(XPTest, checkHero){
 		hero.fightTilDeath(m1);
 		hero.fightTilDeath(m3);
 		
-        ASSERT_EQ(127,hero.GetXP());
+        ASSERT_EQ(131,hero.GetXP());
     } catch(std::runtime_error& e){
         ASSERT_STREQ(e.what(), "Wrong JSON syntax!");
     }
