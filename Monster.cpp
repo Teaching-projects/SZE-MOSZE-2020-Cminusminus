@@ -4,11 +4,22 @@
 #include <fstream>
 
 
-Monster::Monster(std::string name, int health, int damage, double attackCooldown) :
+Monster::Monster(std::string name, int health, int damage, double attackCooldown, int defense) :
 	name(name),
 	health(health),
 	damage(damage),
-	attackCooldown(attackCooldown) {}
+	attackCooldown(attackCooldown),
+	defense(defense) {}
+
+int Monster::getDefense()
+{
+	return defense;
+}
+
+void Monster::setDefense(int bonus)
+{
+	defense += bonus;
+}
 
 Monster Monster::parse(const std::string& s)
 {
@@ -16,10 +27,11 @@ Monster Monster::parse(const std::string& s)
 	JSON file = JSON::parseFromFile(s);
 	return Monster
 	(file.get<std::string>("name"),
-     file.get<int>("health_points"),
-	 file.get<int>("damage"),
-	 file.get<double>("attack_cooldown")
-	 );
+		file.get<int>("health_points"),
+		file.get<int>("damage"),
+		file.get<double>("attack_cooldown"),
+		file.get<int>("defense")
+	);
 }
 
 Monster Monster::parse(std::istream& stream)
@@ -28,11 +40,13 @@ Monster Monster::parse(std::istream& stream)
 	JSON file = JSON::parseFromStream(stream);
 	return Monster
 	(file.get<std::string>("name"),
-	 file.get<int>("health_points"),
-	 file.get<int>("damage"),
-	 file.get<double>("attack_cooldown")
+		file.get<int>("health_points"),
+		file.get<int>("damage"),
+		file.get<double>("attack_cooldown"),
+		file.get<int>("defense")
 	);
 }
+
 
 std::string Monster::getName() const {
 	return name;
@@ -42,9 +56,9 @@ int Monster::getHealthPoints() const {
 	return health;
 }
 
-void Monster::SetHealth(const int health)
+void Monster::SetHealth(const int hp)
 {
-	this->health = health;
+	this->health = hp;
 }
 
 int Monster::getDamage() const {
@@ -66,15 +80,18 @@ bool Monster::isAlive() const {
 }
 
 
-void Monster::getAttacked(const Monster& enemy) {
-	health -= enemy.getDamage();
+void Monster::getAttacked(int damage) {
+	health -= damage;
 	if (health < 0) {
 		health = 0;
 	}
 }
 
 void Monster::Attack(Monster& enemy) {
-	enemy.getAttacked(*this);
+	if (enemy.getDefense() < this->getDamage())
+	{
+		enemy.getAttacked(this->damage - enemy.getDefense());
+	}
 }
 
 double Monster::getAttackCoolDown() const
@@ -130,6 +147,7 @@ void Monster::fightTilDeath(Monster& enemy) {
 		}
 	}
 }
+
 
 
 bool operator==(const Monster character1, const Monster character2) {

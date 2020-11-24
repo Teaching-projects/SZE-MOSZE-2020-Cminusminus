@@ -51,13 +51,15 @@ TEST(dmgTest, checkHero){
 		heroData.get<int>("base_health_points"),
 		heroData.get<int>("base_damage"),
 		heroData.get<double>("base_attack_cooldown"),
+		heroData.get<int>("defense"),
 		heroData.get<int>("experience_per_level"),
 		heroData.get<int>("health_point_bonus_per_level"),
 		heroData.get<int>("damage_bonus_per_level"),
-		heroData.get<double>("cooldown_multiplier_per_level"));
+		heroData.get<double>("cooldown_multiplier_per_level"),
+		heroData.get<int>("defense_bonus_per_level"));
 		
 		Monster m = Monster(monsterData.get<std::string>("name"), monsterData.get<int>("health_points"),
-		monsterData.get<int>("damage"), monsterData.get<double>("attack_cooldown"));
+		monsterData.get<int>("damage"), monsterData.get<double>("attack_cooldown"), monsterData.get<int>("defense"));
 		
         ASSERT_EQ(3,h.getDamage());
     } catch(std::runtime_error& e){
@@ -79,13 +81,15 @@ TEST(dmgAfterFightTest, checkHero){
 		heroData.get<int>("base_health_points"),
 		heroData.get<int>("base_damage"),
 		heroData.get<double>("base_attack_cooldown"),
+		heroData.get<int>("defense"),
 		heroData.get<int>("experience_per_level"),
 		heroData.get<int>("health_point_bonus_per_level"),
 		heroData.get<int>("damage_bonus_per_level"),
-		heroData.get<double>("cooldown_multiplier_per_level"));
+		heroData.get<double>("cooldown_multiplier_per_level"),
+		heroData.get<int>("defense_bonus_per_level"));
 		
 		Monster m = Monster(monsterData.get<std::string>("name"), monsterData.get<int>("health_points"),
-		monsterData.get<int>("damage"), monsterData.get<double>("attack_cooldown"));
+		monsterData.get<int>("damage"), monsterData.get<double>("attack_cooldown"), monsterData.get<int>("defense"));
 		h.fightTilDeath(m);
 		
         ASSERT_EQ(3,h.getDamage());
