@@ -47,7 +47,7 @@ TEST(dmgTest, checkHero){
         JSON heroData = JSON::parseFromFile(herofile);
 		JSON monsterData = JSON::parseFromFile(monsterfile);
 		Damage dmg;
-	if (file.count("base_damage"))
+	if (heroData.count("base_damage"))
 	{
 		dmg.physical = file.get<int>("base_damage");
 	}
@@ -56,7 +56,7 @@ TEST(dmgTest, checkHero){
 		dmg.physical = 0;
 	}
 
-	if (file.count("magical-damage"))
+	if (heroData.count("magical-damage"))
 	{
 		dmg.magical = file.get<int>("magical-damage");
 	}
@@ -77,7 +77,7 @@ TEST(dmgTest, checkHero){
 		heroData.get<int>("magical_bonus_per_level"));
 		
 		Damage dmg2;
-	if (file.count("damage"))
+	if (monsterData.count("damage"))
 	{
 		dmg2.physical = file.get<int>("damage");
 	}
@@ -86,7 +86,7 @@ TEST(dmgTest, checkHero){
 		dmg2.physical = 0;
 	}
 
-	if (file.count("magical-damage"))
+	if (monsterData.count("magical-damage"))
 	{
 		dmg2.magical = file.get<int>("magical-damage");
 	}
@@ -113,7 +113,7 @@ TEST(dmgAfterFightTest, checkHero){
         JSON heroData = JSON::parseFromFile(herofile);
 		JSON monsterData = JSON::parseFromFile(monsterfile);
 		Damage dmg;
-	if (file.count("base_damage"))
+	if (heroData.count("base_damage"))
 	{
 		dmg.physical = file.get<int>("base_damage");
 	}
@@ -122,7 +122,7 @@ TEST(dmgAfterFightTest, checkHero){
 		dmg.physical = 0;
 	}
 
-	if (file.count("magical-damage"))
+	if (heroData.count("magical-damage"))
 	{
 		dmg.magical = file.get<int>("magical-damage");
 	}
@@ -143,7 +143,7 @@ TEST(dmgAfterFightTest, checkHero){
 		heroData.get<int>("magical_bonus_per_level"));
 		
 		Damage dmg2;
-	if (file.count("damage"))
+	if (monsterData.count("damage"))
 	{
 		dmg2.physical = file.get<int>("damage");
 	}
@@ -152,7 +152,7 @@ TEST(dmgAfterFightTest, checkHero){
 		dmg2.physical = 0;
 	}
 
-	if (file.count("magical-damage"))
+	if (monsterData.count("magical-damage"))
 	{
 		dmg2.magical = file.get<int>("magical-damage");
 	}
