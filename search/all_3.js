@@ -1,14 +1,5 @@
 var searchData=
 [
-  ['gaindamage_4',['GainDamage',['../classMonster.html#a2cab0a1e3f7304a98de2008a394041e7',1,'Monster']]],
-  ['get_5',['get',['../classJSON.html#a8de84d9d127678670c65199e150ac6d4',1,'JSON::get(const std::string &amp;key)'],['../classJSON.html#a2e3d7b3d03297c4b09ce1f64ad4187d7',1,'JSON::get(const std::string &amp;key)'],['../classMap.html#a74d5010209ad0da6b05595a33f36fc76',1,'Map::get()']]],
-  ['getattackcooldown_6',['getAttackCoolDown',['../classMonster.html#ad84dbe06c7a2aa7f75164dd9db52daf3',1,'Monster']]],
-  ['getattacked_7',['getAttacked',['../classMonster.html#ac114acee1a8ac926f598a58df67e8807',1,'Monster']]],
-  ['getdamage_8',['getDamage',['../classMonster.html#a5872e19f684e0a81ead15da3e82992ad',1,'Monster']]],
-  ['getdefense_9',['getDefense',['../classMonster.html#afdf2ce28dedb771aeb67c48ec24710e8',1,'Monster']]],
-  ['gethealthpoints_10',['getHealthPoints',['../classMonster.html#acbfb552014439fe02d10f2492e60fe34',1,'Monster']]],
-  ['getlevel_11',['getLevel',['../classHero.html#a17e77f3769e62aeb4e1807bbfc720f47',1,'Hero']]],
-  ['getmaxhealthpoints_12',['getMaxHealthPoints',['../classHero.html#ac6a7deeb6e390a23536d622042f4c48e',1,'Hero']]],
-  ['getname_13',['getName',['../classMonster.html#a28ae1112e37262ce150e3c02465b3dd5',1,'Monster']]],
-  ['getxp_14',['GetXP',['../classHero.html#a0cf6a0fc295388d1036eba449c7a5387',1,'Hero']]]
+  ['fighttildeath_3',['fightTilDeath',['../classMonster.html#a144a4902bd6291be5671a48d71c46323',1,'Monster']]],
+  ['free_4',['Free',['../classMap.html#a41697b848ea9a5aad1910714e0196b7ba35b413f9e0aa940cb9c0f22be9930343',1,'Map']]]
 ];
