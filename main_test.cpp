@@ -55,7 +55,7 @@ TEST(dmgTest, checkHero){
 		heroData.get<int>("experience_per_level"),
 		heroData.get<int>("health_point_bonus_per_level"),
 		heroData.get<int>("damage_bonus_per_level"),
-		heroData.get<double>("cooldown_multiplier_per_level")
+		heroData.get<double>("cooldown_multiplier_per_level"),
 		heroData.get<int>("defense_bonus_per_level"));
 		
 		Monster m = Monster(monsterData.get<std::string>("name"), monsterData.get<int>("health_points"),
@@ -85,7 +85,7 @@ TEST(dmgAfterFightTest, checkHero){
 		heroData.get<int>("experience_per_level"),
 		heroData.get<int>("health_point_bonus_per_level"),
 		heroData.get<int>("damage_bonus_per_level"),
-		heroData.get<double>("cooldown_multiplier_per_level")
+		heroData.get<double>("cooldown_multiplier_per_level"),
 		heroData.get<int>("defense_bonus_per_level"));
 		
 		Monster m = Monster(monsterData.get<std::string>("name"), monsterData.get<int>("health_points"),
