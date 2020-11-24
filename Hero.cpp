@@ -3,9 +3,10 @@
 #include <cmath>
 #include <fstream>
 
-Hero::Hero(const std::string name, int base_health, int base_damage, double base_attackCooldown, int defense, int xpPerLevel,
-	int hpPerLevel, int dmgBonusPerLevel, double atcdMultiplier,int defBonusPerLevel) :
-	Monster(name, base_health, base_damage, base_attackCooldown, defense), xpPerLevel(xpPerLevel), hpPerLevel(hpPerLevel), dmgBonusPerLevel(dmgBonusPerLevel), atcdMultiplier(atcdMultiplier), defBonusPerLevel(defBonusPerLevel)
+Hero::Hero(const std::string name, int base_health, Damage damage, double base_attackCooldown, int defense, int xpPerLevel,
+	int hpPerLevel, int dmgBonusPerLevel, double atcdMultiplier,int defBonusPerLevel, int magbonperlev) :
+	Monster(name, base_health, damage, base_attackCooldown, defense),
+	xpPerLevel(xpPerLevel), hpPerLevel(hpPerLevel), dmgBonusPerLevel(dmgBonusPerLevel), atcdMultiplier(atcdMultiplier), defBonusPerLevel(defBonusPerLevel), magicalBonusPerLevel(magbonperlev)
 {
 }
 
@@ -13,33 +14,71 @@ Hero Hero::parse(const std::string& s)
 {
 
 	JSON file = JSON::parseFromFile(s);
+	Damage dmg;
+	if (file.count("base_damage"))
+	{
+		dmg.physical = file.get<int>("base_damage");
+	}
+	else
+	{
+		dmg.physical = 0;
+	}
+
+	if (file.count("magical-damage"))
+	{
+		dmg.magical = file.get<int>("magical-damage");
+	}
+	else
+	{
+		dmg.magical = 0;
+	}
 	return Hero
 	(file.get<std::string>("name"),
 		file.get<int>("base_health_points"),
-		file.get<int>("base_damage"),
+		dmg,
 		file.get<double>("base_attack_cooldown"),
 		file.get<int>("defense"),
 		file.get<int>("experience_per_level"),
 		file.get<int>("health_point_bonus_per_level"),
 		file.get<int>("damage_bonus_per_level"),
 		file.get<double>("cooldown_multiplier_per_level"),
-		file.get<int>("defense_bonus_per_level")
+		file.get<int>("defense_bonus_per_level"),
+		file.get<int>("magical_bonus_per_level")
 	);
 }
 Hero Hero::parse(std::istream& stream) {
 
 	JSON file = JSON::parseFromStream(stream);
+	Damage dmg;
+	if (file.count("base_damage"))
+	{
+		dmg.physical = file.get<int>("base_damage");
+	}
+	else
+	{
+		dmg.physical = 0;
+	}
+
+	if (file.count("magical-damage"))
+	{
+		dmg.magical = file.get<int>("magical-damage");
+	}
+	else
+	{
+		dmg.magical = 0;
+	}
 	return Hero
 	(file.get<std::string>("name"),
 		file.get<int>("base_health_points"),
-		file.get<int>("base_damage"),
+		dmg,
 		file.get<double>("base_attack_cooldown"),
 		file.get<int>("defense"),
 		file.get<int>("experience_per_level"),
 		file.get<int>("health_point_bonus_per_level"),
 		file.get<int>("damage_bonus_per_level"),
 		file.get<double>("cooldown_multiplier_per_level"),
-		file.get<int>("defense_bonus_per_level")
+		file.get<int>("defense_bonus_per_level"),
+		file.get<int>("magical_bonus_per_level")
 	);
 }
 
@@ -59,7 +98,7 @@ int Hero::GetXP() const
 }
 
 void Hero::Attack(Monster& enemy) {
-	if (enemy.getDefense() < this->getDamage())
+	if (enemy.getDefense() < this->getPhysicalDmg())
 	{
 		XPManager(enemy);
 	}
@@ -67,15 +106,15 @@ void Hero::Attack(Monster& enemy) {
 }
 void Hero::XPManager(Monster& enemy)
 {
-	if (enemy.getHealthPoints() < (this->getDamage()-enemy.getDefense()))
+	if (enemy.getHealthPoints() < ((this->getPhysicalDmg()-enemy.getDefense())+this->getMagicalDmg()))
 	{
 		xp += enemy.getHealthPoints();
-		enemy.Monster::getAttacked(this->getDamage()-enemy.getDefense());
+		enemy.Monster::getAttacked(this->getPhysicalDmg()-enemy.getDefense()+this->getMagicalDmg());
 	}
 	else
 	{
-		xp += (this->getDamage()-enemy.getDefense());
-		enemy.Monster::getAttacked(this->getDamage() - enemy.getDefense());
+		xp += (this->getPhysicalDmg()-enemy.getDefense()+this->getMagicalDmg());
+		enemy.Monster::getAttacked(this->getPhysicalDmg() - enemy.getDefense() + this->getMagicalDmg());
 	}
 
 
@@ -86,7 +125,8 @@ void Hero::XPManager(Monster& enemy)
 		AcdMultiplier(atcdMultiplier);
 		maxHP += hpPerLevel;
 		SetHealth(maxHP);
-		GainDamage(dmgBonusPerLevel);
+		GainDamage(dmgBonusPerLevel,"physical");
+		GainDamage(magicalBonusPerLevel, "magical");
 		setDefense(defBonusPerLevel);
 	}
 

@@ -3,13 +3,12 @@
 #include <cmath>
 #include <fstream>
 
-
-Monster::Monster(std::string name, int health, int damage, double attackCooldown, int defense) :
+Monster::Monster(std::string name, int health, Damage damage, double attackCooldown, int defense) :
 	name(name),
 	health(health),
 	damage(damage),
 	attackCooldown(attackCooldown),
-	defense(defense) {}
+	defense(defense){}
 
 int Monster::getDefense()
 {
@@ -25,10 +24,28 @@ Monster Monster::parse(const std::string& s)
 {
 
 	JSON file = JSON::parseFromFile(s);
+	Damage dmg;
+	if (file.count("damage"))
+	{
+		dmg.physical = file.get<int>("damage");
+	}
+	else
+	{
+		dmg.physical = 0;
+	}
+
+	if (file.count("magical-damage"))
+	{
+		dmg.magical = file.get<int>("magical-damage");
+	}
+	else
+	{
+		dmg.magical = 0;
+	}
 	return Monster
 	(file.get<std::string>("name"),
 		file.get<int>("health_points"),
-		file.get<int>("damage"),
+		dmg,
 		file.get<double>("attack_cooldown"),
 		file.get<int>("defense")
 	);
@@ -38,10 +55,29 @@ Monster Monster::parse(std::istream& stream)
 {
 
 	JSON file = JSON::parseFromStream(stream);
+
+	Damage dmg;
+	if (file.count("damage"))
+	{
+		dmg.physical = file.get<int>("damage");
+	}
+	else
+	{
+		dmg.physical = 0;
+	}
+
+	if (file.count("magical-damage"))
+	{
+		dmg.magical = file.get<int>("magical-damage");
+	}
+	else
+	{
+		dmg.magical = 0;
+	}
 	return Monster
 	(file.get<std::string>("name"),
 		file.get<int>("health_points"),
-		file.get<int>("damage"),
+		dmg,
 		file.get<double>("attack_cooldown"),
 		file.get<int>("defense")
 	);
@@ -61,13 +97,27 @@ void Monster::SetHealth(const int hp)
 	this->health = hp;
 }
 
-int Monster::getDamage() const {
-	return damage;
+int Monster::getPhysicalDmg() const
+{
+	return damage.physical;
 }
 
-void Monster::GainDamage(const int bonus)
+int Monster::getMagicalDmg() const
 {
-	damage += bonus;
+	return damage.magical;
+}
+
+
+void Monster::GainDamage(const int bonus, std::string type)
+{
+	if (type == "physical")
+	{
+		damage.physical += bonus;
+	}
+	else if (type == "magical")
+	{
+		damage.magical += bonus;
+	}
 }
 
 void Monster::AcdMultiplier(double multiplier)
@@ -88,9 +138,9 @@ void Monster::getAttacked(int damage) {
 }
 
 void Monster::Attack(Monster& enemy) {
-	if (enemy.getDefense() < this->getDamage())
+	if (enemy.getDefense() < this->getPhysicalDmg())
 	{
-		enemy.getAttacked(this->damage - enemy.getDefense());
+		enemy.getAttacked((this->damage.physical - enemy.getDefense())+this->getMagicalDmg());
 	}
 }
 
@@ -146,16 +196,4 @@ void Monster::fightTilDeath(Monster& enemy) {
 			temp2 = enemy.getAttackCoolDown();
 		}
 	}
-}
-
-
-
-bool operator==(const Monster character1, const Monster character2) {
-	return character1.getName() == character2.getName() &&
-		character1.getDamage() == character2.getDamage() &&
-		character1.getHealthPoints() == character2.getHealthPoints();
-}
-
-bool operator!=(const Monster character1, const Monster character2) {
-	return !(character1 == character2);
 }

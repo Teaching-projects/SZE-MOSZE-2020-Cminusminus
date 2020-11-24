@@ -38,7 +38,7 @@ TEST(ParseTest, goodInputTest) {
     }
 }
 
-TEST(dmgTest, checkHero){
+TEST(phDMGTest, checkHero){
 	
 	 std::string herofile = "Dark_Wanderer.json";
 	 std::string monsterfile = "Fallen.json";
@@ -46,29 +46,65 @@ TEST(dmgTest, checkHero){
 	try{
         JSON heroData = JSON::parseFromFile(herofile);
 		JSON monsterData = JSON::parseFromFile(monsterfile);
-		
+		Damage dmg;
+	if (heroData.count("base_damage"))
+	{
+		dmg.physical = heroData.get<int>("base_damage");
+	}
+	else
+	{
+		dmg.physical = 0;
+	}
+
+	if (heroData.count("magical-damage"))
+	{
+		dmg.magical = heroData.get<int>("magical-damage");
+	}
+	else
+	{
+		dmg.magical = 0;
+	}
 		Hero h = Hero(heroData.get<std::string>("name"),
 		heroData.get<int>("base_health_points"),
-		heroData.get<int>("base_damage"),
+		dmg,
 		heroData.get<double>("base_attack_cooldown"),
 		heroData.get<int>("defense"),
 		heroData.get<int>("experience_per_level"),
 		heroData.get<int>("health_point_bonus_per_level"),
 		heroData.get<int>("damage_bonus_per_level"),
 		heroData.get<double>("cooldown_multiplier_per_level"),
-		heroData.get<int>("defense_bonus_per_level"));
+		heroData.get<int>("defense_bonus_per_level"),
+		heroData.get<int>("magical_bonus_per_level"));
 		
+		Damage dmg2;
+	if (monsterData.count("damage"))
+	{
+		dmg2.physical = monsterData.get<int>("damage");
+	}
+	else
+	{
+		dmg2.physical = 0;
+	}
+
+	if (monsterData.count("magical-damage"))
+	{
+		dmg2.magical = monsterData.get<int>("magical-damage");
+	}
+	else
+	{
+		dmg2.magical = 0;
+	}
 		Monster m = Monster(monsterData.get<std::string>("name"), monsterData.get<int>("health_points"),
-		monsterData.get<int>("damage"), monsterData.get<double>("attack_cooldown"), monsterData.get<int>("defense"));
+		dmg2, monsterData.get<double>("attack_cooldown"), monsterData.get<int>("defense"));
 		
-        ASSERT_EQ(3,h.getDamage());
+        ASSERT_EQ(5,h.getPhysicalDmg());
     } catch(std::runtime_error& e){
         ASSERT_STREQ(e.what(), "Wrong JSON syntax!");
     }
 
 }
 
-TEST(dmgAfterFightTest, checkHero){
+TEST(mgicalDMGAfterFightTest, checkHero){
 	
 	 std::string herofile = "Dark_Wanderer.json";
 	 std::string monsterfile = "Blood_Raven.json";
@@ -76,23 +112,59 @@ TEST(dmgAfterFightTest, checkHero){
 	try{
         JSON heroData = JSON::parseFromFile(herofile);
 		JSON monsterData = JSON::parseFromFile(monsterfile);
-		
+		Damage dmg;
+	if (heroData.count("base_damage"))
+	{
+		dmg.physical = heroData.get<int>("base_damage");
+	}
+	else
+	{
+		dmg.physical = 0;
+	}
+
+	if (heroData.count("magical-damage"))
+	{
+		dmg.magical = heroData.get<int>("magical-damage");
+	}
+	else
+	{
+		dmg.magical = 0;
+	}
 		Hero h = Hero(heroData.get<std::string>("name"),
 		heroData.get<int>("base_health_points"),
-		heroData.get<int>("base_damage"),
+		dmg,
 		heroData.get<double>("base_attack_cooldown"),
 		heroData.get<int>("defense"),
 		heroData.get<int>("experience_per_level"),
 		heroData.get<int>("health_point_bonus_per_level"),
 		heroData.get<int>("damage_bonus_per_level"),
 		heroData.get<double>("cooldown_multiplier_per_level"),
-		heroData.get<int>("defense_bonus_per_level"));
+		heroData.get<int>("defense_bonus_per_level"),
+		heroData.get<int>("magical_bonus_per_level"));
 		
+		Damage dmg2;
+	if (monsterData.count("damage"))
+	{
+		dmg2.physical = monsterData.get<int>("damage");
+	}
+	else
+	{
+		dmg2.physical = 0;
+	}
+
+	if (monsterData.count("magical-damage"))
+	{
+		dmg2.magical = monsterData.get<int>("magical-damage");
+	}
+	else
+	{
+		dmg2.magical = 0;
+	}
 		Monster m = Monster(monsterData.get<std::string>("name"), monsterData.get<int>("health_points"),
-		monsterData.get<int>("damage"), monsterData.get<double>("attack_cooldown"), monsterData.get<int>("defense"));
+		dmg2, monsterData.get<double>("attack_cooldown"), monsterData.get<int>("defense"));
 		h.fightTilDeath(m);
 		
-        ASSERT_EQ(3,h.getDamage());
+        ASSERT_EQ(6,h.getMagicalDmg());
     } catch(std::runtime_error& e){
         ASSERT_STREQ(e.what(), "Wrong JSON syntax!");
     }
@@ -140,7 +212,7 @@ TEST(HPTest, checkHero){
 		hero.fightTilDeath(m1);
 		hero.fightTilDeath(m3);
 		
-        ASSERT_EQ(60,hero.getHealthPoints());
+        ASSERT_EQ(113,hero.getHealthPoints());
     } catch(std::runtime_error& e){
         ASSERT_STREQ(e.what(), "Wrong JSON syntax!");
     }
@@ -164,7 +236,7 @@ TEST(XPTest, checkHero){
 		hero.fightTilDeath(m1);
 		hero.fightTilDeath(m3);
 		
-        ASSERT_EQ(127,hero.GetXP());
+        ASSERT_EQ(131,hero.GetXP());
     } catch(std::runtime_error& e){
         ASSERT_STREQ(e.what(), "Wrong JSON syntax!");
     }

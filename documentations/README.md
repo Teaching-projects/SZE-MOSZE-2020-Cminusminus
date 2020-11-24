@@ -61,3 +61,13 @@ Ebben a feladatban egy új osztály került létrehozásra, melynek **Map** a ne
 
 **Feladat 8 - Defense** \
 Ebben a feladatban a *Monster* és a *Hero* osztályokhoz kellett új funkciókat bevezetni. A karakterek támadás során védekezni is tudnak.
+
+**Feladat 9 - Damage** \
+Ebben a feladatrészben a *Monster* és *Hero* osztályok sima *int damage* változója egy *struct Damage*- re cserélődött. Amelynek a felépítése az alábbi:
+```struct Damage
+{
+    int physical;
+	int magical;
+}
+```
+Támadás során a karakterek *defense* változója csak a *physical damage* ellen védekezik, a *magical damage* ellen viszont nem.
