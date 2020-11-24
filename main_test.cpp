@@ -38,7 +38,7 @@ TEST(ParseTest, goodInputTest) {
     }
 }
 
-TEST(dmgTest, checkHero){
+TEST(phDMGTest, checkHero){
 	
 	 std::string herofile = "Dark_Wanderer.json";
 	 std::string monsterfile = "Fallen.json";
@@ -97,14 +97,14 @@ TEST(dmgTest, checkHero){
 		Monster m = Monster(monsterData.get<std::string>("name"), monsterData.get<int>("health_points"),
 		dmg2, monsterData.get<double>("attack_cooldown"), monsterData.get<int>("defense"));
 		
-        ASSERT_EQ(3,h.getDamage());
+        ASSERT_EQ(3,h.getPhysicalDmg());
     } catch(std::runtime_error& e){
         ASSERT_STREQ(e.what(), "Wrong JSON syntax!");
     }
 
 }
 
-TEST(dmgAfterFightTest, checkHero){
+TEST(mgicalDMGAfterFightTest, checkHero){
 	
 	 std::string herofile = "Dark_Wanderer.json";
 	 std::string monsterfile = "Blood_Raven.json";
@@ -164,7 +164,7 @@ TEST(dmgAfterFightTest, checkHero){
 		dmg2, monsterData.get<double>("attack_cooldown"), monsterData.get<int>("defense"));
 		h.fightTilDeath(m);
 		
-        ASSERT_EQ(3,h.getDamage());
+        ASSERT_EQ(3,h.getMagicalDmg());
     } catch(std::runtime_error& e){
         ASSERT_STREQ(e.what(), "Wrong JSON syntax!");
     }
