@@ -40,8 +40,8 @@ TEST(ParseTest, goodInputTest) {
 
 TEST(dmgTest, checkHero){
 	
-	 std::string herofile = "scenarios/Dark_Wanderer.json";
-	 std::string monsterfile = "scenarios/Fallen.json";
+	 std::string herofile = "Dark_Wanderer.json";
+	 std::string monsterfile = "Fallen.json";
 	 
 	try{
         JSON heroData = JSON::parseFromFile(herofile);
@@ -106,8 +106,8 @@ TEST(dmgTest, checkHero){
 
 TEST(dmgAfterFightTest, checkHero){
 	
-	 std::string herofile = "scenarios/Dark_Wanderer.json";
-	 std::string monsterfile = "scenarios/Blood_Raven.json";
+	 std::string herofile = "Dark_Wanderer.json";
+	 std::string monsterfile = "Blood_Raven.json";
 	 
 	try{
         JSON heroData = JSON::parseFromFile(herofile);
@@ -174,10 +174,10 @@ TEST(dmgAfterFightTest, checkHero){
 TEST(LVLupTest, checkHero){
 	
 	try{
-        Hero hero{Hero::parse("scenarios/Dark_Wanderer.json")};
-		Monster m1 = Monster::parse("scenarios/Fallen.json");
-		Monster m2 = Monster::parse("scenarios/Zombie.json");
-		Monster m3 = Monster::parse("scenarios/Blood_Raven.json");
+        Hero hero{Hero::parse("Dark_Wanderer.json")};
+		Monster m1 = Monster::parse("Fallen.json");
+		Monster m2 = Monster::parse("Zombie.json");
+		Monster m3 = Monster::parse("Blood_Raven.json");
 		
 		hero.fightTilDeath(m1);
 		hero.fightTilDeath(m1);
@@ -198,10 +198,10 @@ TEST(LVLupTest, checkHero){
 TEST(HPTest, checkHero){
 	
 	try{
-        Hero hero{Hero::parse("scenarios/Dark_Wanderer.json")};
-		Monster m1 = Monster::parse("scenarios/Fallen.json");
-		Monster m2 = Monster::parse("scenarios/Zombie.json");
-		Monster m3 = Monster::parse("scenarios/Blood_Raven.json");
+        Hero hero{Hero::parse("Dark_Wanderer.json")};
+		Monster m1 = Monster::parse("Fallen.json");
+		Monster m2 = Monster::parse("Zombie.json");
+		Monster m3 = Monster::parse("Blood_Raven.json");
 		
 		hero.fightTilDeath(m1);
 		hero.fightTilDeath(m1);
@@ -222,10 +222,10 @@ TEST(HPTest, checkHero){
 TEST(XPTest, checkHero){
 	
 	try{
-        Hero hero{Hero::parse("scenarios/Dark_Wanderer.json")};
-		Monster m1 = Monster::parse("scenarios/Fallen.json");
-		Monster m2 = Monster::parse("scenarios/Zombie.json");
-		Monster m3 = Monster::parse("scenarios/Blood_Raven.json");
+        Hero hero{Hero::parse("Dark_Wanderer.json")};
+		Monster m1 = Monster::parse("Fallen.json");
+		Monster m2 = Monster::parse("Zombie.json");
+		Monster m3 = Monster::parse("Blood_Raven.json");
 		
 		hero.fightTilDeath(m1);
 		hero.fightTilDeath(m1);
