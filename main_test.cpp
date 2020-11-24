@@ -49,7 +49,7 @@ TEST(dmgTest, checkHero){
 		Damage dmg;
 	if (heroData.count("base_damage"))
 	{
-		dmg.physical = file.get<int>("base_damage");
+		dmg.physical = heroData.get<int>("base_damage");
 	}
 	else
 	{
@@ -58,7 +58,7 @@ TEST(dmgTest, checkHero){
 
 	if (heroData.count("magical-damage"))
 	{
-		dmg.magical = file.get<int>("magical-damage");
+		dmg.magical = heroData.get<int>("magical-damage");
 	}
 	else
 	{
@@ -79,7 +79,7 @@ TEST(dmgTest, checkHero){
 		Damage dmg2;
 	if (monsterData.count("damage"))
 	{
-		dmg2.physical = file.get<int>("damage");
+		dmg2.physical = monsterData.get<int>("damage");
 	}
 	else
 	{
@@ -88,7 +88,7 @@ TEST(dmgTest, checkHero){
 
 	if (monsterData.count("magical-damage"))
 	{
-		dmg2.magical = file.get<int>("magical-damage");
+		dmg2.magical = monsterData.get<int>("magical-damage");
 	}
 	else
 	{
@@ -115,7 +115,7 @@ TEST(dmgAfterFightTest, checkHero){
 		Damage dmg;
 	if (heroData.count("base_damage"))
 	{
-		dmg.physical = file.get<int>("base_damage");
+		dmg.physical = heroData.get<int>("base_damage");
 	}
 	else
 	{
@@ -124,7 +124,7 @@ TEST(dmgAfterFightTest, checkHero){
 
 	if (heroData.count("magical-damage"))
 	{
-		dmg.magical = file.get<int>("magical-damage");
+		dmg.magical = heroData.get<int>("magical-damage");
 	}
 	else
 	{
@@ -145,7 +145,7 @@ TEST(dmgAfterFightTest, checkHero){
 		Damage dmg2;
 	if (monsterData.count("damage"))
 	{
-		dmg2.physical = file.get<int>("damage");
+		dmg2.physical = monsterData.get<int>("damage");
 	}
 	else
 	{
@@ -154,7 +154,7 @@ TEST(dmgAfterFightTest, checkHero){
 
 	if (monsterData.count("magical-damage"))
 	{
-		dmg2.magical = file.get<int>("magical-damage");
+		dmg2.magical = monsterData.get<int>("magical-damage");
 	}
 	else
 	{
