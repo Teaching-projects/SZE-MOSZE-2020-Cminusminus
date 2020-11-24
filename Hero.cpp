@@ -3,10 +3,10 @@
 #include <cmath>
 #include <fstream>
 
-Hero::Hero(const std::string name, int base_health, int base_damage, double base_attackCooldown, int xpPerLevel, int hpPerLevel, int dmgBonusPerLevel, double atcdMultiplier) :
-	Monster(name, base_health, base_damage, base_attackCooldown), xpPerLevel(xpPerLevel), hpPerLevel(hpPerLevel), dmgBonusPerLevel(dmgBonusPerLevel), atcdMultiplier(atcdMultiplier)
+Hero::Hero(const std::string name, int base_health, int base_damage, double base_attackCooldown, int defense, int xpPerLevel,
+	int hpPerLevel, int dmgBonusPerLevel, double atcdMultiplier,int defBonusPerLevel) :
+	Monster(name, base_health, base_damage, base_attackCooldown, defense), xpPerLevel(xpPerLevel), hpPerLevel(hpPerLevel), dmgBonusPerLevel(dmgBonusPerLevel), atcdMultiplier(atcdMultiplier), defBonusPerLevel(defBonusPerLevel)
 {
-	xp = 0; level = 1, maxHP = base_health;
 }
 
 Hero Hero::parse(const std::string& s)
@@ -14,28 +14,32 @@ Hero Hero::parse(const std::string& s)
 
 	JSON file = JSON::parseFromFile(s);
 	return Hero
-	(	file.get<std::string>("name"), 
-		file.get<int>("base_health_points"), 
+	(file.get<std::string>("name"),
+		file.get<int>("base_health_points"),
 		file.get<int>("base_damage"),
 		file.get<double>("base_attack_cooldown"),
-		file.get<int>("experience_per_level"), 
-		file.get<int>("health_point_bonus_per_level"), 
+		file.get<int>("defense"),
+		file.get<int>("experience_per_level"),
+		file.get<int>("health_point_bonus_per_level"),
 		file.get<int>("damage_bonus_per_level"),
-		file.get<double>("cooldown_multiplier_per_level")
-		);
+		file.get<double>("cooldown_multiplier_per_level"),
+		file.get<int>("defense_bonus_per_level")
+	);
 }
 Hero Hero::parse(std::istream& stream) {
 
 	JSON file = JSON::parseFromStream(stream);
 	return Hero
-	(	file.get<std::string>("name"),
+	(file.get<std::string>("name"),
 		file.get<int>("base_health_points"),
 		file.get<int>("base_damage"),
 		file.get<double>("base_attack_cooldown"),
+		file.get<int>("defense"),
 		file.get<int>("experience_per_level"),
 		file.get<int>("health_point_bonus_per_level"),
 		file.get<int>("damage_bonus_per_level"),
-		file.get<double>("cooldown_multiplier_per_level")
+		file.get<double>("cooldown_multiplier_per_level"),
+		file.get<int>("defense_bonus_per_level")
 	);
 }
 
@@ -55,29 +59,23 @@ int Hero::GetXP() const
 }
 
 void Hero::Attack(Monster& enemy) {
-
-	if (enemy.getHealthPoints() < this->getDamage())
+	if (enemy.getDefense() < this->getDamage())
 	{
 		XPManager(enemy);
 	}
-	else
-	{
-		XPManager(enemy);
-	}
-
 
 }
 void Hero::XPManager(Monster& enemy)
 {
-	if (enemy.getHealthPoints() < this->getDamage())
+	if (enemy.getHealthPoints() < (this->getDamage()-enemy.getDefense()))
 	{
 		xp += enemy.getHealthPoints();
-		enemy.Monster::getAttacked(*this);
+		enemy.Monster::getAttacked(this->getDamage()-enemy.getDefense());
 	}
 	else
 	{
-		xp += this->getDamage();
-		enemy.Monster::getAttacked(*this);
+		xp += (this->getDamage()-enemy.getDefense());
+		enemy.Monster::getAttacked(this->getDamage() - enemy.getDefense());
 	}
 
 
@@ -89,7 +87,7 @@ void Hero::XPManager(Monster& enemy)
 		maxHP += hpPerLevel;
 		SetHealth(maxHP);
 		GainDamage(dmgBonusPerLevel);
-		//xp -= xpPerLevel;
+		setDefense(defBonusPerLevel);
 	}
 
 
