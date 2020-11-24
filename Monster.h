@@ -7,20 +7,53 @@
 #include <vector>
 #include "JSON.h"
 
+struct Damage
+{
+	int physical;
+	int magical;
+
+	Damage operator+(const Damage& dmg) 
+	{
+		Damage return_dmg;
+
+		return_dmg.physical = dmg.physical+ this->physical;
+		return_dmg.magical = dmg.magical + this->magical;
+
+		return return_dmg;
+	}
+
+	Damage& operator+=(const Damage& dmg) 
+	{
+		this->physical += dmg.physical;
+		this->magical += dmg.magical;
+
+		return *this;
+	}
+
+	Damage& operator*=(const Damage& dmg) 
+	{
+		this->physical *= dmg.physical;
+		this->magical *= dmg.magical;
+
+		return *this;
+	}
+};
+
+
+
 class Monster
 {
 	/**
   *\brief A class for creating a monster.
   *\param name The name of the monster.
   *\param health The health of the monster.
-  *\param damage The damage of the monster.
+  *\param damage The damage of the monster (physical and magical).
   *\param attackCooldown The speed of the monster's attack.
   *\param defense The defense of the monster.
   */
 public:
 
-
-	Monster(std::string name, int health, int damage, double attackCooldown, int defense);
+	Monster(std::string name, int health, Damage damage, double attackCooldown, int defense);
 	Monster() {};
 	///It returns the defense of the Monster
 	///\return defense
@@ -45,12 +78,15 @@ public:
 	///It sets the health of the monster.
 	///\param health The current health of the monster
 	void SetHealth(const int health);
-	///It returns the damage of the monster.
-	///\return damage
-	int getDamage() const;
-	///It sets the damage of the monster after level up
-	///\param multiplier
-	void GainDamage(const int bonus);
+	///It returns the physical damage of the monster.
+	///\return damage.physical
+	int getPhysicalDmg() const;
+	///It returns the magical damage of the monster.
+	///\return damage.magical
+	int getMagicalDmg() const;
+	///It sets the damage of the hero after level up
+	///\param bonus, type The damage the hero gains after level up and the type of damage it gains
+	void GainDamage(const int bonus, std::string type);
 	///It multiplies the attack cooldown with the given amount.
 	///\param multplier The amound we multiply the attack cooldown.
 	void AcdMultiplier(double multiplier);
@@ -66,14 +102,12 @@ public:
 	///Attacks the enemy.
 	///\param damage The damage we attack the enemy with
 	void getAttacked(int damage);
-	friend bool operator==(const Monster character1, const Monster character2);
-	friend bool operator!=(const Monster character1, const Monster character2);
 private:
 	virtual void Attack(Monster& enemy);
 
 	const std::string name = "";
 	int health = 0;
-	int damage = 0;
+	Damage damage;
 	double attackCooldown = 0;
 	int defense = 0;
 	std::string lore = "";

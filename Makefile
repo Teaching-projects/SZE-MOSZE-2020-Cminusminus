@@ -1,8 +1,8 @@
 OBJS := JSON.o Monster.o Hero.o main.o 
 CGFLAGS := -std=c++17 -Wall
 CC := g++-9
-SCENARIO1 := scenario1.json
-SCENARIO2 := scenario2.json
+SCENARIO1 := scenarios/scenario1.json
+SCENARIO2 := scenarios/scenario2.json
 
 mosze_01: $(OBJS)
 	$(CC) $(CGFLAGS) -o mosze_01 $(OBJS)
@@ -27,8 +27,8 @@ cppcheck:
 	cppcheck *.cpp --enable=performance,style --output-file=cppcheck_performance.txt
 
 check_memoryleak:
-	valgrind --leak-check=yes --error-exitcode=1 ./mosze_01 scenario1.json
-	valgrind --leak-check=yes --error-exitcode=1 ./mosze_01 scenario2.json
+	valgrind --leak-check=yes --error-exitcode=1 ./mosze_01 scenarios/scenario1.json
+	valgrind --leak-check=yes --error-exitcode=1 ./mosze_01 scenarios/scenario2.json
 battle:
 	touch program_outputs.txt
 	> program_outputs.txt
@@ -45,4 +45,4 @@ unit_test :
 	cmake ./CMakeLists.txt
 	make && ./unit-test
 documentation:
-	doxygen doxconf
+	doxygen documentations/doxconf

@@ -40,26 +40,62 @@ TEST(ParseTest, goodInputTest) {
 
 TEST(dmgTest, checkHero){
 	
-	 std::string herofile = "Dark_Wanderer.json";
-	 std::string monsterfile = "Fallen.json";
+	 std::string herofile = "scenarios/Dark_Wanderer.json";
+	 std::string monsterfile = "scenarios/Fallen.json";
 	 
 	try{
         JSON heroData = JSON::parseFromFile(herofile);
 		JSON monsterData = JSON::parseFromFile(monsterfile);
-		
+		Damage dmg;
+	if (file.count("base_damage"))
+	{
+		dmg.physical = file.get<int>("base_damage");
+	}
+	else
+	{
+		dmg.physical = 0;
+	}
+
+	if (file.count("magical-damage"))
+	{
+		dmg.magical = file.get<int>("magical-damage");
+	}
+	else
+	{
+		dmg.magical = 0;
+	}
 		Hero h = Hero(heroData.get<std::string>("name"),
 		heroData.get<int>("base_health_points"),
-		heroData.get<int>("base_damage"),
+		dmg,
 		heroData.get<double>("base_attack_cooldown"),
 		heroData.get<int>("defense"),
 		heroData.get<int>("experience_per_level"),
 		heroData.get<int>("health_point_bonus_per_level"),
 		heroData.get<int>("damage_bonus_per_level"),
 		heroData.get<double>("cooldown_multiplier_per_level"),
-		heroData.get<int>("defense_bonus_per_level"));
+		heroData.get<int>("defense_bonus_per_level"),
+		heroData.get<int>("magical_bonus_per_level"));
 		
+		Damage dmg2;
+	if (file.count("damage"))
+	{
+		dmg2.physical = file.get<int>("damage");
+	}
+	else
+	{
+		dmg2.physical = 0;
+	}
+
+	if (file.count("magical-damage"))
+	{
+		dmg2.magical = file.get<int>("magical-damage");
+	}
+	else
+	{
+		dmg2.magical = 0;
+	}
 		Monster m = Monster(monsterData.get<std::string>("name"), monsterData.get<int>("health_points"),
-		monsterData.get<int>("damage"), monsterData.get<double>("attack_cooldown"), monsterData.get<int>("defense"));
+		dmg2, monsterData.get<double>("attack_cooldown"), monsterData.get<int>("defense"));
 		
         ASSERT_EQ(3,h.getDamage());
     } catch(std::runtime_error& e){
@@ -70,26 +106,62 @@ TEST(dmgTest, checkHero){
 
 TEST(dmgAfterFightTest, checkHero){
 	
-	 std::string herofile = "Dark_Wanderer.json";
-	 std::string monsterfile = "Blood_Raven.json";
+	 std::string herofile = "scenarios/Dark_Wanderer.json";
+	 std::string monsterfile = "scenarios/Blood_Raven.json";
 	 
 	try{
         JSON heroData = JSON::parseFromFile(herofile);
 		JSON monsterData = JSON::parseFromFile(monsterfile);
-		
+		Damage dmg;
+	if (file.count("base_damage"))
+	{
+		dmg.physical = file.get<int>("base_damage");
+	}
+	else
+	{
+		dmg.physical = 0;
+	}
+
+	if (file.count("magical-damage"))
+	{
+		dmg.magical = file.get<int>("magical-damage");
+	}
+	else
+	{
+		dmg.magical = 0;
+	}
 		Hero h = Hero(heroData.get<std::string>("name"),
 		heroData.get<int>("base_health_points"),
-		heroData.get<int>("base_damage"),
+		dmg,
 		heroData.get<double>("base_attack_cooldown"),
 		heroData.get<int>("defense"),
 		heroData.get<int>("experience_per_level"),
 		heroData.get<int>("health_point_bonus_per_level"),
 		heroData.get<int>("damage_bonus_per_level"),
 		heroData.get<double>("cooldown_multiplier_per_level"),
-		heroData.get<int>("defense_bonus_per_level"));
+		heroData.get<int>("defense_bonus_per_level"),
+		heroData.get<int>("magical_bonus_per_level"));
 		
+		Damage dmg2;
+	if (file.count("damage"))
+	{
+		dmg2.physical = file.get<int>("damage");
+	}
+	else
+	{
+		dmg2.physical = 0;
+	}
+
+	if (file.count("magical-damage"))
+	{
+		dmg2.magical = file.get<int>("magical-damage");
+	}
+	else
+	{
+		dmg2.magical = 0;
+	}
 		Monster m = Monster(monsterData.get<std::string>("name"), monsterData.get<int>("health_points"),
-		monsterData.get<int>("damage"), monsterData.get<double>("attack_cooldown"), monsterData.get<int>("defense"));
+		dmg2, monsterData.get<double>("attack_cooldown"), monsterData.get<int>("defense"));
 		h.fightTilDeath(m);
 		
         ASSERT_EQ(3,h.getDamage());
@@ -102,10 +174,10 @@ TEST(dmgAfterFightTest, checkHero){
 TEST(LVLupTest, checkHero){
 	
 	try{
-        Hero hero{Hero::parse("Dark_Wanderer.json")};
-		Monster m1 = Monster::parse("Fallen.json");
-		Monster m2 = Monster::parse("Zombie.json");
-		Monster m3 = Monster::parse("Blood_Raven.json");
+        Hero hero{Hero::parse("scenarios/Dark_Wanderer.json")};
+		Monster m1 = Monster::parse("scenarios/Fallen.json");
+		Monster m2 = Monster::parse("scenarios/Zombie.json");
+		Monster m3 = Monster::parse("scenarios/Blood_Raven.json");
 		
 		hero.fightTilDeath(m1);
 		hero.fightTilDeath(m1);
@@ -126,10 +198,10 @@ TEST(LVLupTest, checkHero){
 TEST(HPTest, checkHero){
 	
 	try{
-        Hero hero{Hero::parse("Dark_Wanderer.json")};
-		Monster m1 = Monster::parse("Fallen.json");
-		Monster m2 = Monster::parse("Zombie.json");
-		Monster m3 = Monster::parse("Blood_Raven.json");
+        Hero hero{Hero::parse("scenarios/Dark_Wanderer.json")};
+		Monster m1 = Monster::parse("scenarios/Fallen.json");
+		Monster m2 = Monster::parse("scenarios/Zombie.json");
+		Monster m3 = Monster::parse("scenarios/Blood_Raven.json");
 		
 		hero.fightTilDeath(m1);
 		hero.fightTilDeath(m1);
@@ -150,10 +222,10 @@ TEST(HPTest, checkHero){
 TEST(XPTest, checkHero){
 	
 	try{
-        Hero hero{Hero::parse("Dark_Wanderer.json")};
-		Monster m1 = Monster::parse("Fallen.json");
-		Monster m2 = Monster::parse("Zombie.json");
-		Monster m3 = Monster::parse("Blood_Raven.json");
+        Hero hero{Hero::parse("scenarios/Dark_Wanderer.json")};
+		Monster m1 = Monster::parse("scenarios/Fallen.json");
+		Monster m2 = Monster::parse("scenarios/Zombie.json");
+		Monster m3 = Monster::parse("scenarios/Blood_Raven.json");
 		
 		hero.fightTilDeath(m1);
 		hero.fightTilDeath(m1);
