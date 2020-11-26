@@ -1,4 +1,4 @@
-OBJS := JSON.o Monster.o Hero.o main.o 
+OBJS := JSON.o Monster.o Hero.o Game.o Map.o main.o
 CGFLAGS := -std=c++17 -Wall
 CC := g++-9
 SCENARIO1 := scenarios/scenario1.json
@@ -15,8 +15,14 @@ Hero.o: Hero.cpp Hero.h Monster.h
 
 JSON.o: JSON.cpp JSON.h Monster.h
 	$(CC) $(CGFLAGS) -c JSON.cpp
+	
+Map.o: Map.h Map.cpp
+	$(CC) $(CGFLAGS) -c Map.cpp
 
-main.o: main.cpp Monster.h Hero.h JSON.h
+Game.o: Game.cpp Game.h Map.h Hero.h Monster.h
+	$(CC) $(CGFLAGS) -c Game.cpp
+	
+main.o: main.cpp Monster.h Hero.h JSON.h Map.h Game.h
 	$(CC) $(CGFLAGS) -c main.cpp
 
 clean:
