@@ -158,7 +158,7 @@ void Game::mapDraw()
 			}
 			else if (heroPos.first == i && heroPos.second == j)
 			{
-				std::cout << "┣┫░";
+				std::cout << "┣┫";
 			}
 			else if (monsterCount(i, j) == 1)
 			{
