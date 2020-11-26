@@ -33,15 +33,15 @@ cppcheck:
 	cppcheck *.cpp --enable=performance,style --output-file=cppcheck_performance.txt
 
 check_memoryleak:
-	valgrind --leak-check=yes --error-exitcode=1 ./mosze_01 scenarios/scenario1.json
-	valgrind --leak-check=yes --error-exitcode=1 ./mosze_01 scenarios/scenario2.json
+	valgrind --leak-check=yes --error-exitcode=1 cat input1.txt | ./mosze_01 scenarios/scenario1.json
+	valgrind --leak-check=yes --error-exitcode=1 cat input2.txt | ./mosze_01 scenarios/scenario2.json
 battle:
 	touch program_outputs.txt
 	> program_outputs.txt
-		./mosze_01 $(SCENARIO1) >> program_outputs.txt; \
+		cat input1.txt | ./mosze_01 $(SCENARIO1) >> program_outputs.txt; \
 	touch program_outputs2.txt
 	> program_outputs2.txt
-		./mosze_01 $(SCENARIO2) >> program_outputs2.txt; \
+		cat input2.txt | ./mosze_01 $(SCENARIO2) >> program_outputs2.txt; \
 	
 battle_diff: battle
 	diff program_outputs.txt good_outputs.txt
