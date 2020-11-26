@@ -55,7 +55,7 @@ int main(int argc, char** argv) {
 			monsters.push_back(Monster::parse(monster_file));
 		try
 		{
-			Game game("map.txt");
+			Game game("maps/map.txt");
 			game.putHero(hero, 3, 2);
 			for (auto m : monsters)
 			{
