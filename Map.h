@@ -15,14 +15,14 @@ class Map
 */
 
 public:
+	Map() {};
 	Map(std::string filename);
 	
 	///brief The enum ,,type" for the map
 	enum type
-	{	///This represents the free spaces: ' '
-		Free, 
-		///This represents the walls: '#'
-		Wall 
+	{
+		Free, ///This represents the free spaces: ' '
+		Wall ///This represents the walls: '#'
 	};
 
 	class WrongIndexException : std::exception
@@ -42,6 +42,9 @@ public:
 	///\param y The columns of the map
 	///\return Map::type
 	Map::type get(int x, int y) const;
+	int getColumns(int x);
+	int getRows();
+	int getMaxCols();
 
 private:
 	std::vector<std::string> map;

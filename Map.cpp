@@ -5,13 +5,21 @@ Map::Map(std::string filename)
 {
 	std::ifstream ifst;
 	std::string line;
-	
-	ifst.open(filename);
-	while(!ifst.eof())
+	try
+	{
+		ifst.open(filename);
+	}
+	catch (const std::exception& e)
+	{
+		throw e.what();
+	}
+
+	while(!ifst.eof() && ifst.is_open())
 	{
 		std::getline(ifst, line);
 		map.push_back(line);
 	}
+	ifst.close();
 }
 
 Map::type Map::get(int x, int y) const
@@ -27,4 +35,27 @@ Map::type Map::get(int x, int y) const
 
 	std::string types = " #";
 	return type(types.find(map[x][y]));
+}
+
+int Map::getColumns(int x)
+{
+	return map[x].length();
+}
+
+int Map::getRows()
+{
+	return map.size();
+}
+
+int Map::getMaxCols()
+{
+	int max = 0;
+	for (int i = 0; i < map.size(); i++)
+	{
+		if (max < map[i].length())
+		{
+			max = map[i].length();
+		}
+	}
+	return max;
 }

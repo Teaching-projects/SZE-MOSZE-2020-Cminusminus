@@ -6,8 +6,9 @@
 #include <algorithm>
 #include <iterator>
 #include <list>
-#include "Map.h"
 
+#include "Map.h"
+#include "Game.h"
 #include "JSON.h"
 #include "Hero.h"
 #include "Monster.h"
@@ -52,22 +53,44 @@ int main(int argc, char** argv) {
 		std::list<Monster> monsters;
 		for (const auto& monster_file : monster_files)
 			monsters.push_back(Monster::parse(monster_file));
-
-		while (hero.isAlive() && !monsters.empty()) {
-			std::cout
-				<< hero.getName() << "(" << hero.getLevel() << ")"
-				<< " vs "
-				<< monsters.front().getName()
-				<< std::endl;
-			hero.fightTilDeath(monsters.front());
-			if (!monsters.front().isAlive()) monsters.pop_front();
+		try
+		{
+			Game game("map.txt");
+			game.putHero(hero, 3, 2);
+			for (auto m : monsters)
+			{
+				game.putMonster(m, 1, 1);
+			}
+			game.putMonster(monsters.front(), 3, 1);
+			game.run();
 		}
-		std::cout << (hero.isAlive() ? "The hero won." : "The hero died.") << std::endl;
-		std::cout << hero.getName() << ": LVL" << hero.getLevel() << std::endl
-			<< "   HP: " << hero.getHealthPoints() << "/" << hero.getMaxHealthPoints() << std::endl
-			<< "  DMG: Physical: " << hero.getPhysicalDmg()<<", Magical: "<<hero.getMagicalDmg()<< std::endl
-			<< "  ACD: " << hero.getAttackCoolDown() << std::endl
-			;
+		catch (const Map::WrongIndexException& e)
+		{
+			std::cout << "WrongIndexException!\n";
+		}
+		catch (const Game::AlreadyHasUnitsException& e)
+		{
+			std::cout << "AlreadyHasUnitsException\n";
+		}
+		catch (const Game::GameAlreadyStartedException& e)
+		{
+			std::cout << "GameAlreadyStartedException\n";
+		}
+		catch (const Game::OccupiedException& e)
+		{
+			std::cout << "OccupiedException\n";
+		}
+		catch (const Game::AlreadyHasHeroException& e)
+		{
+			std::cout << "AlreadyHasHeroException\n";
+		}
+		catch (const Game::NotInitializedException& e)
+		{
+			std::cout << "NotInitializedException\n";
+		}
+		
 	}
 	catch (const JSON::ParseException& e) { bad_exit(4); }
+
+
 }
