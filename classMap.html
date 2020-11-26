@@ -80,7 +80,7 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
 Public Types</h2></td></tr>
-<tr class="memitem:a41697b848ea9a5aad1910714e0196b7b"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMap.html#a41697b848ea9a5aad1910714e0196b7b">type</a> { <a class="el" href="classMap.html#a41697b848ea9a5aad1910714e0196b7ba35b413f9e0aa940cb9c0f22be9930343">Free</a>, 
+<tr class="memitem:a41697b848ea9a5aad1910714e0196b7b"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMap.html#a41697b848ea9a5aad1910714e0196b7b">type</a> { <b>Free</b>, 
 <a class="el" href="classMap.html#a41697b848ea9a5aad1910714e0196b7ba874474147b8fcfcec145b20926fc83bf">Wall</a>
  }</td></tr>
 <tr class="memdesc:a41697b848ea9a5aad1910714e0196b7b"><td class="mdescLeft">&#160;</td><td class="mdescRight">brief The enum ,,type" for the map  <a href="classMap.html#a41697b848ea9a5aad1910714e0196b7b">More...</a><br /></td></tr>
@@ -88,11 +88,23 @@ Public Types</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ab124c12c6c9dec693aedb1a4b6384ecd"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMap.html#ab124c12c6c9dec693aedb1a4b6384ecd">Map</a> (std::string filename)</td></tr>
-<tr class="memdesc:ab124c12c6c9dec693aedb1a4b6384ecd"><td class="mdescLeft">&#160;</td><td class="mdescRight">A class for loading a map.  <a href="classMap.html#ab124c12c6c9dec693aedb1a4b6384ecd">More...</a><br /></td></tr>
+<tr class="memitem:a0f5ad0fd4563497b4214038cbca8b582"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMap.html#a0f5ad0fd4563497b4214038cbca8b582">Map</a> ()</td></tr>
+<tr class="memdesc:a0f5ad0fd4563497b4214038cbca8b582"><td class="mdescLeft">&#160;</td><td class="mdescRight">A class for loading a map.  <a href="classMap.html#a0f5ad0fd4563497b4214038cbca8b582">More...</a><br /></td></tr>
+<tr class="separator:a0f5ad0fd4563497b4214038cbca8b582"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab124c12c6c9dec693aedb1a4b6384ecd"><td class="memItemLeft" align="right" valign="top"><a id="ab124c12c6c9dec693aedb1a4b6384ecd"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Map</b> (std::string filename)</td></tr>
 <tr class="separator:ab124c12c6c9dec693aedb1a4b6384ecd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a74d5010209ad0da6b05595a33f36fc76"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMap.html#a41697b848ea9a5aad1910714e0196b7b">Map::type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMap.html#a74d5010209ad0da6b05595a33f36fc76">get</a> (int x, int y) const</td></tr>
 <tr class="separator:a74d5010209ad0da6b05595a33f36fc76"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af9c24181dbc1abe3be22601291e978d1"><td class="memItemLeft" align="right" valign="top"><a id="af9c24181dbc1abe3be22601291e978d1"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>getColumns</b> (int x)</td></tr>
+<tr class="separator:af9c24181dbc1abe3be22601291e978d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaba68b1888e45ee37202a30cc29fd2f7"><td class="memItemLeft" align="right" valign="top"><a id="aaba68b1888e45ee37202a30cc29fd2f7"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>getRows</b> ()</td></tr>
+<tr class="separator:aaba68b1888e45ee37202a30cc29fd2f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a01708a470d028fa6263a082f127ce3cf"><td class="memItemLeft" align="right" valign="top"><a id="a01708a470d028fa6263a082f127ce3cf"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>getMaxCols</b> ()</td></tr>
+<tr class="separator:a01708a470d028fa6263a082f127ce3cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Enumeration Documentation</h2>
 <a id="a41697b848ea9a5aad1910714e0196b7b"></a>
@@ -109,29 +121,35 @@ Public Member Functions</h2></td></tr>
 
 <p>brief The enum ,,type" for the map </p>
 <table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a41697b848ea9a5aad1910714e0196b7ba35b413f9e0aa940cb9c0f22be9930343"></a>Free&#160;</td><td class="fielddoc"><p>This represents the free spaces: ' '. </p>
-</td></tr>
-<tr><td class="fieldname"><a id="a41697b848ea9a5aad1910714e0196b7ba874474147b8fcfcec145b20926fc83bf"></a>Wall&#160;</td><td class="fielddoc"><p>This represents the walls: '#'. </p>
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a41697b848ea9a5aad1910714e0196b7ba874474147b8fcfcec145b20926fc83bf"></a>Wall&#160;</td><td class="fielddoc"><p>This represents the free spaces: ' '. </p>
+<p>This represents the walls: '#' </p>
 </td></tr>
 </table>
 
 </div>
 </div>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="ab124c12c6c9dec693aedb1a4b6384ecd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab124c12c6c9dec693aedb1a4b6384ecd">&#9670;&nbsp;</a></span>Map()</h2>
+<a id="a0f5ad0fd4563497b4214038cbca8b582"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0f5ad0fd4563497b4214038cbca8b582">&#9670;&nbsp;</a></span>Map()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">Map::Map </td>
           <td>(</td>
-          <td class="paramtype">std::string&#160;</td>
-          <td class="paramname"><em>filename</em></td><td>)</td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 <p>A class for loading a map. </p>

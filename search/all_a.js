@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['setdefense_27',['setDefense',['../classMonster.html#a78cab29b853da85ca41ec86ec85139b6',1,'Monster']]],
-  ['sethealth_28',['SetHealth',['../classMonster.html#a0f0ba4f958809baa4d1440eb7f9a0bab',1,'Monster']]]
+  ['occupiedexception_26',['OccupiedException',['../classGame_1_1OccupiedException.html',1,'Game::OccupiedException'],['../classGame_1_1OccupiedException.html#a8f6b1d66f433ebe15c86392d427f62e2',1,'Game::OccupiedException::OccupiedException()']]]
 ];
