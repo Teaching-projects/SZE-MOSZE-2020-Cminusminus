@@ -1,4 +1,4 @@
-#include "Game.h"
+﻿#include "Game.h"
 
 Game::Game() {}
 
@@ -141,28 +141,28 @@ void Game::run()
 
 void Game::mapDraw()
 {
-	std::cout << "-";
+	std::cout << "╔";
 	for (int i = 0; i < maxColumns; i++)
 	{
-		std::cout << "==";
+		std::cout << "══";
 	}
-	std::cout << "�\n";
+	std::cout << "╗\n";
 	for (int i = 0; i < mapToSet.getRows(); i++)
 	{
-		std::cout << "�";
+		std::cout << "║";
 		for (int j = 0; j < mapToSet.getColumns(i); j++)
 		{
 			if (mapToSet.get(i, j) == 1)
 			{
-				std::cout << "--";
+				std::cout << "██";
 			}
 			else if (heroPos.first == i && heroPos.second == j)
 			{
-				std::cout << "??";
+				std::cout << "┣┫";
 			}
 			else if (monsterCount(i, j) == 1)
 			{
-				std::cout << "M-";
+				std::cout << "M░";
 			}
 			else if (monsterCount(i, j) > 1)
 			{
@@ -170,21 +170,21 @@ void Game::mapDraw()
 			}
 			else
 			{
-				std::cout << "--";
+				std::cout << "░░";
 			}
 		}
 		for (int k = mapToSet.getColumns(i); k < maxColumns; k++)
 		{
-			std::cout << "--";
+			std::cout << "██";
 		}
-		std::cout << "�\n";;
+		std::cout << "║\n";;
 	}
-	std::cout << "L";
+	std::cout << "╚";
 	for (int i = 0; i < maxColumns; i++)
 	{
-		std::cout << "==";
+		std::cout << "══";
 	}
-	std::cout << "-\n";
+	std::cout << "╝\n";
 	std::cout << "To move the hero write north, south, west, or east" << std::endl;
 }
 
