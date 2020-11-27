@@ -257,21 +257,21 @@ TEST(checkWrongMapName, checkGame){
 
 TEST(checkWall, checkMap){
 	
-	Map mapp("map2.txt");
+	Map mapp("maps/map2.txt");
 	ASSERT_EQ(1,mapp.get(0,5));
 
 }
 
 TEST(checkFree, checkMap){
 	
-	Map mapp("map2.txt");
+	Map mapp("maps/map2.txt");
 	ASSERT_EQ(0,mapp.get(3,1));
 
 }
 
 TEST(checkWrongIndex, checkMap){
 	try{
-	Map mapp("map2.txt");
+	Map mapp("maps/map2.txt");
 	
 	ASSERT_EQ(0,mapp.get(20,20));
 	}catch(std::runtime_error& e)
@@ -284,7 +284,7 @@ TEST(MultipleHeroCheck, checkGame){
 	try{
 	Hero hero{Hero::parse("Dark_Wanderer.json")};
 	
-	Game gamme("map2.txt");
+	Game gamme("maps/map2.txt");
 	gamme.putHero(hero,3,1);
 	gamme.putHero(hero,3,2);
 	}catch(std::runtime_error& e)
@@ -299,11 +299,11 @@ TEST(mapResetCheck, checkGame){
 	Hero hero{Hero::parse("Dark_Wanderer.json")};
 	Monster monster = Monster::parse("Fallen.json");
 	
-	Game gamme("map2.txt");
+	Game gamme("maps/map2.txt");
 	gamme.putHero(hero,3,1);
 	gamme.putMonster(monster,1,1);
 	
-	Map mapp("map2.txt");
+	Map mapp("maps/map2.txt");
 	gamme.setMap(mapp);
 	
 	}catch(std::runtime_error& e)
@@ -317,7 +317,7 @@ TEST(HeroOnWallCheck, checkGame){
 	try{
 	Hero hero{Hero::parse("Dark_Wanderer.json")};
 	
-	Game gamme("map2.txt");
+	Game gamme("maps/map2.txt");
 	gamme.putHero(hero,0,2);
 	
 	}catch(std::runtime_error& e)
@@ -331,7 +331,7 @@ TEST(MonsterOnWallCheck, checkGame){
 	try{
 	Monster monster = Monster::parse("Fallen.json");
 	
-	Game gamme("map2.txt");
+	Game gamme("maps/map2.txt");
 	gamme.putMonster(monster,0,1);
 	
 	}catch(std::runtime_error& e)
