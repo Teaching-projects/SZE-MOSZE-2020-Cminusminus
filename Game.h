@@ -46,64 +46,58 @@ public:
 	///\param y the y coordinates
 	void moveHero(int x, int y);
 
-	class OccupiedException : std::exception
+	class OccupiedException : public std::runtime_error
 	{
 		/**
 		*\brief A class to occupied exception.
 		*\param exceptionString The string we name the exception.
 		*/
 	public:
-		OccupiedException(std::string exceptionString) : exceptionString(exceptionString) {}
-	private:
-		std::string exceptionString;
+		OccupiedException(std::string exceptionString) : std::runtime_error(exceptionString) {}
 	};
 
-	class AlreadyHasHeroException : std::exception
+	class AlreadyHasHeroException : public std::runtime_error
 	{
 		/**
 		*\brief A class to handle already has a hero exception.
 		*\param exceptionString The string we name the exception.
 		*/
 	public:
-		AlreadyHasHeroException(std::string exceptionString) : exceptionString(exceptionString) {}
-	private:
-		std::string exceptionString;
+		AlreadyHasHeroException(std::string exceptionString) : std::runtime_error(exceptionString) {}
+
 	};
 
-	class AlreadyHasUnitsException : std::exception
+	class AlreadyHasUnitsException : public std::runtime_error
 	{
 		/**
 		*\brief A class to handle already has units exception.
 		*\param exceptionString The string we name the exception.
 		*/
 	public:
-		AlreadyHasUnitsException(std::string exceptionString) : exceptionString(exceptionString) {}
-	private:
-		std::string exceptionString;
+		AlreadyHasUnitsException(std::string exceptionString) : std::runtime_error(exceptionString) {}
+
 	};
 
-	class NotInitializedException : std::exception
+	class NotInitializedException : public std::runtime_error
 	{
 		/**
 		*\brief A class to handle not initialized exception.
 		*\param exceptionString The string we name the exception.
 		*/
 	public:
-		NotInitializedException(std::string exceptionString) : exceptionString(exceptionString) {}
-	private:
-		std::string exceptionString;
+		NotInitializedException(std::string exceptionString) : std::runtime_error(exceptionString) {}
+
 	};
 
-	class GameAlreadyStartedException : std::exception
+	class GameAlreadyStartedException : public std::runtime_error
 	{
 		/**
 		*\brief A class to handle game already started exception.
 		*\param exceptionString The string we name the exception.
 		*/
 	public:
-		GameAlreadyStartedException(std::string exceptionString) : exceptionString(exceptionString) {}
-	private:
-		std::string exceptionString;
+		GameAlreadyStartedException(std::string exceptionString) : std::runtime_error(exceptionString) {}
+
 	};
 private:
 	Map mapToSet;

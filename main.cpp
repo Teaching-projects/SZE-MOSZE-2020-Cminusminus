@@ -66,27 +66,27 @@ int main(int argc, char** argv) {
 		}
 		catch (const Map::WrongIndexException& e)
 		{
-			std::cout << "WrongIndexException!\n";
+			std::cout << e.what();
 		}
 		catch (const Game::AlreadyHasUnitsException& e)
 		{
-			std::cout << "AlreadyHasUnitsException\n";
+			std::cout << e.what();
 		}
 		catch (const Game::GameAlreadyStartedException& e)
 		{
-			std::cout << "GameAlreadyStartedException\n";
+			std::cout << e.what();
 		}
 		catch (const Game::OccupiedException& e)
 		{
-			std::cout << "OccupiedException\n";
+			std::cout << e.what();
 		}
 		catch (const Game::AlreadyHasHeroException& e)
 		{
-			std::cout << "AlreadyHasHeroException\n";
+			std::cout << e.what();
 		}
 		catch (const Game::NotInitializedException& e)
 		{
-			std::cout << "NotInitializedException\n";
+			std::cout << e.what();
 		}
 		
 	}

@@ -27,16 +27,14 @@ public:
 		Wall 
 	};
 
-	class WrongIndexException : std::exception
+	class WrongIndexException : public std::runtime_error
 	{
 	/**
 	*\brief A class to handle out of index.
 	*\param exceptionString The string we name the exception.
 	*/
 	public:
-		WrongIndexException(std::string exceptionString) : exceptionString(exceptionString) {}
-	private:
-		std::string exceptionString;
+		WrongIndexException(const std::string& exceptionString) : std::runtime_error(exceptionString) {};
 	};
 
 	///\brief Function to get the free spaces or the walls on the map.
