@@ -258,7 +258,7 @@ TEST(checkWrongIndex, checkMap){
 	
 	
 	try{
-	Map map("maps/map2.txt");
+	Map map("map2.txt");
 	map.get(20,30);
 	
     } catch(std::exception& e){
