@@ -276,7 +276,20 @@ TEST(checkWrongIndex, checkMap){
 	ASSERT_EQ(0,mapp.get(20,20));
 	}catch(std::runtime_error& e)
 	{
-		ASSERT_STREQ(e.what(), "WrongIndexException!");
+		ASSERT_STREQ(e.what(), "Wrong index!");
+	}
+}
+
+TEST(MultipleHeroCheck, checkGame){
+	try{
+	Hero hero{Hero::parse("Dark_Wanderer.json")};
+	
+	Game gamme("map2.txt");
+	gamme.putHero(hero,3,1);
+	gamme.putHero(hero,3,2);
+	}catch(std::runtime_error& e)
+	{
+		ASSERT_STREQ(e.what(), "A hero has already been set!");
 	}
 
 }
