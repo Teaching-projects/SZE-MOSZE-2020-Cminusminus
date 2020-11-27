@@ -255,10 +255,25 @@ TEST(checkWrongMapName, checkGame){
 
 }
 
-TEST(checkWrongIndex, checkMap){
+TEST(checkWall, checkMap){
 	
 	Map mapp("map2.txt");
 	ASSERT_EQ(1,mapp.get(0,5));
+
+}
+
+TEST(checkMultipleHeros, checkGame){
+	
+	try{
+       Game game("map2.txt");
+	   Hero hero{Hero::parse("Dark_Wanderer.json")};
+	   
+		game.putHero(hero, 3, 2);
+		game.putHero(hero, 3, 2);	  
+	   
+    } catch(std::exception& e){
+        ASSERT_STREQ(e.what(), "AlreadyHasHeroException");
+    }
 
 }
 
