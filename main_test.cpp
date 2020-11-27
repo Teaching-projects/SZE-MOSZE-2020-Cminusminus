@@ -4,6 +4,8 @@
 #include "Monster.h"
 #include "Hero.h"
 #include "JSON.h"
+#include "Map.h"
+#include "Game.h"
 #include <string>
 #include <vector>
 #include <gtest/gtest.h>
@@ -239,6 +241,16 @@ TEST(XPTest, checkHero){
         ASSERT_EQ(131,hero.GetXP());
     } catch(std::runtime_error& e){
         ASSERT_STREQ(e.what(), "Wrong JSON syntax!");
+    }
+
+}
+
+TEST(checkWrongMapName, checkGame){
+	
+	try{
+       Game game("mapx.txt");
+    } catch(std::exception& e){
+        ASSERT_STREQ(e.what(), "WrongIndexException!");
     }
 
 }
