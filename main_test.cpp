@@ -260,7 +260,7 @@ TEST(checkWrongIndex, checkMap){
 	try{
 	Map map("map2.txt");
 	map.get(20,30);
-	
+	ASSERT_EQ(1,map.get(0,5);
     } catch(std::exception& e){
         ASSERT_STREQ(e.what(), "WrongIndexException!");
     }
