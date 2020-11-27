@@ -71,3 +71,17 @@ Ebben a feladatrészben a *Monster* és *Hero* osztályok sima *int damage* vál
 }
 ```
 Támadás során a karakterek *defense* változója csak a *physical damage* ellen védekezik, a *magical damage* ellen viszont nem.
+
+**Feladat 10 - Game** \
+Ebben a feladatban egy új osztályt hoztunk létre *Game* néven, amely betölt egy térképet, és ezen a térképen elhelyez *Herokat* és *Monstereket*, majd a ,,north", ,,east", ,,west", valamint a "south" parancsokkal lehet irányítani a Herot, és ha az azonos mezőn van egy Monsterrel, vagy több Monsterrel, akkor harcol velük, és ez mindaddig megy, amíg a Hero meg nem hal, vagy meg nem öli a térképen található összes Monstert.
+Példa kimenet:
+╔══════════════════════════════╗
+║██████████████████████████████║
+║██MM░░░░████░░░░░░░░░░░░██░░██║
+║██░░████████░░░░████░░░░░░░░██║
+║██M░┣┫░░██░░░░████░░░░██░░░░██║
+║██████░░██░░████░░░░██░░░░░░██║
+║██░░░░░░██░░░░░░░░░░██░░░░░░██║
+║██████████████████████████████║
+╚══════════════════════════════╝
+To move the hero write north, south, west, or east
