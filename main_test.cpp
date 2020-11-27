@@ -258,7 +258,7 @@ TEST(checkWrongMapName, checkGame){
 TEST(checkWrongIndex, checkMap){
 	
 	Map mapp("map2.txt");
-	ASSERT_EQ(1,mapp.get(0,5))
+	ASSERT_EQ(1,mapp.get(0,5));
 
 }
 
