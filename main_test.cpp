@@ -254,6 +254,19 @@ TEST(checkWrongMapName, checkGame){
     }
 
 }
+TEST(checkPutMultipleHeros, checkGame){
+	
+	try{
+		Hero hero{Hero::parse("Dark_Wanderer.json")};
+       Game game("maps/map2.txt");
+	   game.putHero(hero, 3, 2);
+	   game.putHero(hero, 3, 2);
+	   
+    } catch(std::exception& e){
+        ASSERT_STREQ(e.what(), "AlreadyHasHeroException!");
+    }
+
+}
 
 int main(int argc, char **argv){
     ::testing::InitGoogleTest(&argc, argv);
