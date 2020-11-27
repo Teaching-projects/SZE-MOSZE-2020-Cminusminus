@@ -20,28 +20,28 @@ public:
 	{
 		delete mapHero;
 	};
-	///brief A function to set the map for the game.
+	///\brief A function to set the map for the game.
 	///\param map The map we set.
 	void setMap(Map map);
-	///brief A function to put a hero on the map.
+	///\brief A function to put a hero on the map.
 	///\param hero The hero we put.
 	///\param x the x coordinates.
 	///\param y the y coordinates
 	void putHero(Hero hero, int x, int y);
-	///brief A function to put a monster on the map.
+	///\brief A function to put a monster on the map.
 	///\param monster The monster we put.
 	///\param x the x coordinates.
 	///\param y the y coordinates
 	void putMonster(Monster monster, int x, int y);
-	///brief A function to run a game.
+	///\brief A function to run a game.
 	void run();
-	///brief A function to draw the map for the game.
+	///\brief A function to draw the map for the game.
 	void mapDraw();
-	///brief A function to count the monsters on the map.
+	///\brief A function to count the monsters on the map.
 	///\param x The x coordinates
 	///\param y the y coordinates
 	int monsterCount(int x, int y);
-	///brief A function to move the hero to a given coordinate.
+	///\brief A function to move the hero to a given coordinate.
 	///\param x The x coordinates
 	///\param y the y coordinates
 	void moveHero(int x, int y);

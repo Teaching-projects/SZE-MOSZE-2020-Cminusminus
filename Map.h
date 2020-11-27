@@ -18,7 +18,7 @@ public:
 	Map() {};
 	Map(std::string filename);
 	
-	///brief The enum ,,type" for the map
+	///\brief The enum ,,type" for the map
 	enum type
 	{
 		///This represents the free spaces: ' '
@@ -39,19 +39,19 @@ public:
 		std::string exceptionString;
 	};
 
-	///brief Function to get the free spaces or the walls on the map.
+	///\brief Function to get the free spaces or the walls on the map.
 	///\param x The rows of the map
 	///\param y The columns of the map
 	///\return Map::type
 	Map::type get(int x, int y) const;
-	///brief A function to get the columns number of the map.
+	///\brief A function to get the columns number of the map.
 	///\param x The x coordinates
 	///\return int
 	int getColumns(int x);
-	///brief A function to get the rows number of the map.
+	///\brief A function to get the rows number of the map.
 	///\return int
 	int getRows();
-	///brief A function to get the max columns number of the map.
+	///\brief A function to get the max columns number of the map.
 	///\return int
 	int getMaxCols();
 
