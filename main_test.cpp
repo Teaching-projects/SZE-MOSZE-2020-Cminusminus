@@ -268,11 +268,10 @@ TEST(checkMultipleHeros, checkGame){
        Game game("map2.txt");
 	   Hero hero{Hero::parse("Dark_Wanderer.json")};
 	   
-		game.putHero(hero, 3, 2);
-		game.putHero(hero, 3, 2);	  
+		game.putHero(hero, 0, 5);	  
 	   
     } catch(std::exception& e){
-        ASSERT_STREQ(e.what(), "AlreadyHasHeroException");
+        ASSERT_STREQ(e.what(), "OccupiedException");
     }
 
 }
