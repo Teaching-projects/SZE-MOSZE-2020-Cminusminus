@@ -249,7 +249,7 @@ TEST(checkWrongMapName, checkGame){
 	
 	try{
        Game game("mapx.txt");
-    } catch(std::exception& e){
+    } catch(std::runtime_error& e){
         ASSERT_STREQ(e.what(), "WrongIndexException!");
     }
 
@@ -270,7 +270,7 @@ TEST(checkMultipleHeros, checkGame){
 	   
 		game.putHero(hero, 0, 5);	  
 	   
-    } catch(std::exception& e){
+    } catch(std::runtime_error& e){
         ASSERT_STREQ(e.what(), "OccupiedException");
     }
 
