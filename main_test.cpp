@@ -294,6 +294,53 @@ TEST(MultipleHeroCheck, checkGame){
 
 }
 
+TEST(mapResetCheck, checkGame){
+	try{
+	Hero hero{Hero::parse("Dark_Wanderer.json")};
+	Monster monster = Monster::parse("Fallen.json");
+	
+	Game gamme("map2.txt");
+	gamme.putHero(hero,3,1);
+	gamme.putMonster(monster,1,1);
+	
+	Map mapp("map2.txt");
+	game.setMap(mapp);
+	
+	}catch(std::runtime_error& e)
+	{
+		ASSERT_STREQ(e.what(), "The units are already set up. Map cannot be changed.");
+	}
+
+}
+
+TEST(HeroOnWallCheck, checkGame){
+	try{
+	Hero hero{Hero::parse("Dark_Wanderer.json")};
+	
+	Game gamme("map2.txt");
+	gamme.putHero(hero,0,2);
+	
+	}catch(std::runtime_error& e)
+	{
+		ASSERT_STREQ(e.what(), "There's a wall in this position!");
+	}
+
+}
+
+TEST(MonsterOnWallCheck, checkGame){
+	try{
+	Monster monster = Monster::parse("Fallen.json");
+	
+	Game gamme("map2.txt");
+	gamme.putMonster(monster,0,1);
+	
+	}catch(std::runtime_error& e)
+	{
+		ASSERT_STREQ(e.what(), "There's a wall in this position!");
+	}
+
+}
+
 int main(int argc, char **argv){
     ::testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
