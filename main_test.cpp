@@ -322,7 +322,7 @@ TEST(HeroOnWallCheck, checkGame){
 	
 	}catch(std::runtime_error& e)
 	{
-		ASSERT_STREQ(e.what(), "There's a wall in this position!");
+		ASSERT_STREQ(e.what(), "There's a wall in this position!\n");
 	}
 
 }
