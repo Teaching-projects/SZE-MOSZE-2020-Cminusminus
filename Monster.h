@@ -9,9 +9,17 @@
 
 struct Damage
 {
+	/**
+	*\brief A stuct to represent physical and magical damages.
+	*/
+	///This represents the physical damage.
 	int physical;
+	///This represents the magical damage.
 	int magical;
 
+	///\brief Operator override for operator+ in Damage struct.
+	///\param Damage& dmg
+	///\return Damage
 	Damage operator+(const Damage& dmg) 
 	{
 		Damage return_dmg;
@@ -21,7 +29,9 @@ struct Damage
 
 		return return_dmg;
 	}
-
+	///\brief Operator override for operator+= in Damage struct.
+	///\param Damage& dmg
+	///\return Damage&
 	Damage& operator+=(const Damage& dmg) 
 	{
 		this->physical += dmg.physical;
@@ -29,7 +39,9 @@ struct Damage
 
 		return *this;
 	}
-
+	///\brief Operator override for operator*= in Damage struct.
+	///\param Damage& dmg
+	///\return Damage&
 	Damage& operator*=(const Damage& dmg) 
 	{
 		this->physical *= dmg.physical;
