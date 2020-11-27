@@ -254,17 +254,15 @@ TEST(checkWrongMapName, checkGame){
     }
 
 }
-TEST(checkPutMultipleHeros, checkGame){
+TEST(checkWrongIndex, checkMap){
 	
-	Hero hero{Hero::parse("Dark_Wanderer.json")};
-	Game game("maps/map2.txt");
-	game.putHero(hero, 3, 2);
 	
 	try{
-	   game.putHero(hero, 3, 2);
-	   
+	Map map("maps/map2.txt");
+	map.get(20,30);
+	
     } catch(std::exception& e){
-        ASSERT_STREQ(e.what(), "AlreadyHasAHeroException");
+        ASSERT_STREQ(e.what(), "WrongIndexException!");
     }
 
 }
