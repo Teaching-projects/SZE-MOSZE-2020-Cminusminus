@@ -263,7 +263,7 @@ TEST(checkPutMultipleHeros, checkGame){
 	   game.putHero(hero, 3, 2);
 	   
     } catch(std::exception& e){
-        ASSERT_STREQ(e.what(), "AlreadyHasHeroException");
+        ASSERT_STREQ(e.what(), "WrongIndexException!");
     }
 
 }
