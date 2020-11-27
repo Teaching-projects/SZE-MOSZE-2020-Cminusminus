@@ -304,7 +304,7 @@ TEST(mapResetCheck, checkGame){
 	gamme.putMonster(monster,1,1);
 	
 	Map mapp("map2.txt");
-	game.setMap(mapp);
+	gamme.setMap(mapp);
 	
 	}catch(std::runtime_error& e)
 	{
