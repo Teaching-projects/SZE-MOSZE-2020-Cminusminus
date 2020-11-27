@@ -262,17 +262,22 @@ TEST(checkWall, checkMap){
 
 }
 
-TEST(checkMultipleHeros, checkGame){
+TEST(checkFree, checkMap){
 	
+	Map mapp("map2.txt");
+	ASSERT_EQ(0,mapp.get(3,1));
+
+}
+
+TEST(checkWrongIndex, checkMap){
 	try{
-       Game game("map2.txt");
-	   Hero hero{Hero::parse("Dark_Wanderer.json")};
-	   
-		game.putHero(hero, 0, 5);	  
-	   
-    } catch(std::runtime_error& e){
-        ASSERT_STREQ(e.what(), "OccupiedException");
-    }
+	Map mapp("map2.txt");
+	
+	ASSERT_EQ(0,mapp.get(20,20));
+	}catch(std::runtime_error& e)
+	{
+		ASSERT_STREQ(e.what(), "WrongIndexException!");
+	}
 
 }
 
