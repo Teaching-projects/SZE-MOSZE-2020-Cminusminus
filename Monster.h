@@ -9,9 +9,7 @@
 
 struct Damage
 {
-	/**
-	*\brief A stuct to represent physical and magical damages.
-	*/
+
 	///This represents the physical damage.
 	int physical;
 	///This represents the magical damage.
