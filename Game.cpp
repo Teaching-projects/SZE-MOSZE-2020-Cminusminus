@@ -1,12 +1,12 @@
 ﻿#include "Game.h"
 
-Game::Game() {}
+Game::Game() { }
 
 Game::Game(std::string mapfilename)
 {
 	Map map(mapfilename);
 	setMap(map);
-	maxColumns = map.getMaxCols();
+	setMaxCols(map.getMaxCols());
 }
 
 void Game::setMap(Map map)
@@ -141,21 +141,23 @@ void Game::run()
 
 void Game::mapDraw()
 {
+
 	int firsti = 0;
 	int secondi = mapToSet.getRows();
 	int tmc = maxColumns;
 
-	if (heroPos.first - mapHero->getRadius() > 0)
+	if ((heroPos.first - mapHero->getRadius()) > 0)
 	{
 		firsti = heroPos.first - mapHero->getRadius();
 	}
-	if (heroPos.first + mapHero->getRadius() < mapToSet.getRows())
+	if ((heroPos.first + mapHero->getRadius()) < mapToSet.getRows())
 	{
 		secondi = heroPos.first + mapHero->getRadius();
 	}
 
 	std::cout << "╔";
-	if ((heroPos.second + mapHero->getRadius())<maxColumns)
+	
+	if ((heroPos.second + mapHero->getRadius()) < maxColumns)
 	{
 		tmc = heroPos.second + mapHero->getRadius();
 	}
@@ -182,14 +184,17 @@ void Game::mapDraw()
 			if (mapToSet.get(i, j) == 1)
 			{
 				std::cout << "██";
+				//std::cout << "||";
 			}
 			else if (heroPos.first == i && heroPos.second == j)
 			{
 				std::cout << "┣┫";
+				//std::cout << "H";
 			}
 			else if (monsterCount(i, j) == 1)
 			{
 				std::cout << "M░";
+				//std::cout << "M ";
 			}
 			else if (monsterCount(i, j) > 1)
 			{
@@ -198,6 +203,7 @@ void Game::mapDraw()
 			else
 			{
 				std::cout << "░░";
+				//std::cout << "  ";
 			}
 		}
 		
@@ -237,4 +243,9 @@ void Game::moveHero(int x, int y)
 	}
 
 	heroPos = std::make_pair(x, y);
+}
+
+void Game::setMaxCols(int mc)
+{
+	maxColumns = mc;
 }

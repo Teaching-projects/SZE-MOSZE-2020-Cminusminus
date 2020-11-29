@@ -8,6 +8,8 @@
 #include <list>
 
 #include "Map.h"
+#include "PreparedGame.h"
+#include "MarkedMap.h"
 #include "Game.h"
 #include "JSON.h"
 #include "Hero.h"
@@ -31,7 +33,7 @@ void bad_exit(int exitcode) {
 }
 
 int main(int argc, char** argv) {
-	if (argc != 2) bad_exit(1);
+	/*if (argc != 2) bad_exit(1);
 	if (!std::filesystem::exists(argv[1])) bad_exit(2);
 
 	std::string hero_file;
@@ -55,7 +57,7 @@ int main(int argc, char** argv) {
 			monsters.push_back(Monster::parse(monster_file));
 		try
 		{
-			Game game("maps/map.txt");
+			Game game("map.txt");
 			game.putHero(hero, 3, 2);
 			for (auto m : monsters)
 			{
@@ -91,5 +93,7 @@ int main(int argc, char** argv) {
 		}
 		
 	}
-	catch (const JSON::ParseException& e) { bad_exit(4); }
+	catch (const JSON::ParseException& e) { bad_exit(4); }*/
+	PreparedGame game("game.json");
+	game.run();
 }

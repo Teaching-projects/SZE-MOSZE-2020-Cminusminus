@@ -4,6 +4,7 @@
 #include "Map.h"
 #include "Hero.h"
 #include "Monster.h"
+#include "MarkedMap.h"
 #include <vector>
 
 
@@ -20,6 +21,9 @@ public:
 	{
 		delete mapHero;
 	};
+	///\brief A function to run a game.
+	void run();
+protected:
 	///\brief A function to set the map for the game.
 	///\param map The map we set.
 	void setMap(Map map);
@@ -33,8 +37,6 @@ public:
 	///\param x the x coordinates.
 	///\param y the y coordinates
 	void putMonster(Monster monster, int x, int y);
-	///\brief A function to run a game.
-	void run();
 	///\brief A function to draw the map for the game.
 	void mapDraw();
 	///\brief A function to count the monsters on the map.
@@ -45,7 +47,7 @@ public:
 	///\param x The x coordinates
 	///\param y the y coordinates
 	void moveHero(int x, int y);
-
+	void setMaxCols(int mc);
 	class OccupiedException : public std::runtime_error
 	{
 		/**
