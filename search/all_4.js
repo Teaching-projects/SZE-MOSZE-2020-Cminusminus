@@ -17,6 +17,7 @@ var searchData=
   ['getmonsterposition_21',['getMonsterPosition',['../classMarkedMap.html#a85e266640feb5a022406f0abc96c1513',1,'MarkedMap']]],
   ['getname_22',['getName',['../classMonster.html#a28ae1112e37262ce150e3c02465b3dd5',1,'Monster']]],
   ['getphysicaldmg_23',['getPhysicalDmg',['../classMonster.html#af8c3d7ee763deee7e445cc9837014633',1,'Monster']]],
-  ['getrows_24',['getRows',['../classMap.html#aaba68b1888e45ee37202a30cc29fd2f7',1,'Map']]],
-  ['getxp_25',['GetXP',['../classHero.html#a0cf6a0fc295388d1036eba449c7a5387',1,'Hero']]]
+  ['getradius_24',['getRadius',['../classHero.html#a2acbbf80830d31d6c176b1d5d3a111af',1,'Hero']]],
+  ['getrows_25',['getRows',['../classMap.html#aaba68b1888e45ee37202a30cc29fd2f7',1,'Map']]],
+  ['getxp_26',['GetXP',['../classHero.html#a0cf6a0fc295388d1036eba449c7a5387',1,'Hero']]]
 ];
