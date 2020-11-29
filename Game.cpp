@@ -84,7 +84,7 @@ void Game::run()
 	{
 		for (int i = 0; i < mapMonsters.size(); i++)
 		{
-			if ((mapMonsters[i].second.first == heroPos.first) && (mapMonsters[i].second.second == heroPos.second))
+			if (((mapMonsters[i].second.first == heroPos.first) && (mapMonsters[i].second.second == heroPos.second))&&(mapMonsters[i].first.isAlive()))
 			{
 				mapHero->fightTilDeath(mapMonsters[i].first);
 				if (mapMonsters[i].first.isAlive() == false)
@@ -141,16 +141,43 @@ void Game::run()
 
 void Game::mapDraw()
 {
+	int firsti = 0;
+	int secondi = mapToSet.getRows();
+	int tmc = maxColumns;
+
+	if (heroPos.first - mapHero->getRadius() > 0)
+	{
+		firsti = heroPos.first - mapHero->getRadius();
+	}
+	if (heroPos.first + mapHero->getRadius() < mapToSet.getRows())
+	{
+		secondi = heroPos.first + mapHero->getRadius();
+	}
+
 	std::cout << "╔";
-	for (int i = 0; i < maxColumns; i++)
+	if ((heroPos.second + mapHero->getRadius())<maxColumns)
+	{
+		tmc = heroPos.second + mapHero->getRadius();
+	}
+	for (int i = 0; i < tmc; i++)
 	{
 		std::cout << "══";
 	}
 	std::cout << "╗\n";
-	for (int i = 0; i < mapToSet.getRows(); i++)
+	for (int i = firsti; i < secondi; i++)
 	{
+		int firstj = 0;
+		int secondj = mapToSet.getColumns(i);
+		if (heroPos.second - mapHero->getRadius()>0)
+		{
+			firstj = heroPos.second - mapHero->getRadius();
+		}
+		if (heroPos.second + mapHero->getRadius()<mapToSet.getColumns(i))
+		{
+			secondj = heroPos.second + mapHero->getRadius();
+		}
 		std::cout << "║";
-		for (int j = 0; j < mapToSet.getColumns(i); j++)
+		for (int j = firstj; j < secondj ; j++)
 		{
 			if (mapToSet.get(i, j) == 1)
 			{
@@ -173,14 +200,15 @@ void Game::mapDraw()
 				std::cout << "░░";
 			}
 		}
-		for (int k = mapToSet.getColumns(i); k < maxColumns; k++)
+		
+		for (int k = mapToSet.getColumns(i); k < tmc; k++)
 		{
 			std::cout << "██";
 		}
-		std::cout << "║\n";;
+		std::cout << "║\n";
 	}
 	std::cout << "╚";
-	for (int i = 0; i < maxColumns; i++)
+	for (int i = 0; i < tmc; i++)
 	{
 		std::cout << "══";
 	}

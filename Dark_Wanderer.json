@@ -10,5 +10,7 @@
   "defense": 1,
   "defense_bonus_per_level": 1,
   "magical-damage": 1,
-  "magical_bonus_per_level": 1
+  "magical_bonus_per_level": 1,
+  "light_radius": 2,
+  "light_radius_bonus_per_level": 2
 }

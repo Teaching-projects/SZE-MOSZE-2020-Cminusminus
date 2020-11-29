@@ -55,13 +55,14 @@ int main(int argc, char** argv) {
 			monsters.push_back(Monster::parse(monster_file));
 		try
 		{
-			Game game("maps/map2.txt");
+			Game game("maps/map.txt");
 			game.putHero(hero, 3, 2);
 			for (auto m : monsters)
 			{
 				game.putMonster(m, 1, 1);
 			}
 			game.putMonster(monsters.front(), 3, 1);
+			game.putMonster(monsters.front(), 5, 3);
 			game.run();
 		}
 		catch (const Map::WrongIndexException& e)
@@ -91,6 +92,4 @@ int main(int argc, char** argv) {
 		
 	}
 	catch (const JSON::ParseException& e) { bad_exit(4); }
-
-
 }

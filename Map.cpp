@@ -33,8 +33,14 @@ Map::type Map::get(int x, int y) const
 		throw WrongIndexException("Wrong index!");
 	}
 
-	std::string types = " #";
-	return type(types.find(map[x][y]));
+	if (map[x][y] == '#')
+	{
+		return type(1);
+	}
+	else if(map[x][y] == ' ')
+	{
+		return type(0);
+	}
 }
 
 int Map::getColumns(int x)

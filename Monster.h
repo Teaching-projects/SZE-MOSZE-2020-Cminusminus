@@ -64,7 +64,7 @@ class Monster
 public:
 
 	Monster(std::string name, int health, Damage damage, double attackCooldown, int defense);
-	Monster() {};
+	Monster() { damage.magical = 0; damage.physical = 0; };
 	///It returns the defense of the Monster
 	///\return defense
 	int getDefense();

@@ -4,9 +4,9 @@
 #include <fstream>
 
 Hero::Hero(const std::string name, int base_health, Damage damage, double base_attackCooldown, int defense, int xpPerLevel,
-	int hpPerLevel, int dmgBonusPerLevel, double atcdMultiplier,int defBonusPerLevel, int magbonperlev) :
+	int hpPerLevel, int dmgBonusPerLevel, double atcdMultiplier,int defBonusPerLevel, int magbonperlev, int lightr, int lightrbonusPerLevel) :
 	Monster(name, base_health, damage, base_attackCooldown, defense),
-	xpPerLevel(xpPerLevel), hpPerLevel(hpPerLevel), dmgBonusPerLevel(dmgBonusPerLevel), atcdMultiplier(atcdMultiplier), defBonusPerLevel(defBonusPerLevel), magicalBonusPerLevel(magbonperlev)
+	xpPerLevel(xpPerLevel), hpPerLevel(hpPerLevel), dmgBonusPerLevel(dmgBonusPerLevel), atcdMultiplier(atcdMultiplier), defBonusPerLevel(defBonusPerLevel), magicalBonusPerLevel(magbonperlev), lightRadius(lightr), lightRadiusBonusPerLevel(lightrbonusPerLevel)
 {
 }
 
@@ -15,6 +15,7 @@ Hero Hero::parse(const std::string& s)
 
 	JSON file = JSON::parseFromFile(s);
 	Damage dmg;
+	int lr;
 	if (file.count("base_damage"))
 	{
 		dmg.physical = file.get<int>("base_damage");
@@ -32,6 +33,15 @@ Hero Hero::parse(const std::string& s)
 	{
 		dmg.magical = 0;
 	}
+
+	if (file.count("light_radius_bonus_per_level"))
+	{
+		lr = file.get<int>("light_radius_bonus_per_level");
+	}
+	else
+	{
+		lr = 1;
+	}
 	return Hero
 	(file.get<std::string>("name"),
 		file.get<int>("base_health_points"),
@@ -43,13 +53,16 @@ Hero Hero::parse(const std::string& s)
 		file.get<int>("damage_bonus_per_level"),
 		file.get<double>("cooldown_multiplier_per_level"),
 		file.get<int>("defense_bonus_per_level"),
-		file.get<int>("magical_bonus_per_level")
+		file.get<int>("magical_bonus_per_level"),
+		file.get<int>("light_radius"),
+		lr
 	);
 }
 Hero Hero::parse(std::istream& stream) {
 
 	JSON file = JSON::parseFromStream(stream);
 	Damage dmg;
+	int lr;
 	if (file.count("base_damage"))
 	{
 		dmg.physical = file.get<int>("base_damage");
@@ -67,6 +80,15 @@ Hero Hero::parse(std::istream& stream) {
 	{
 		dmg.magical = 0;
 	}
+
+	if (file.count("light_radius_bonus_per_level"))
+	{
+		lr = file.get<int>("light_radius_bonus_per_level");
+	}
+	else
+	{
+		lr = 1;
+	}
 	return Hero
 	(file.get<std::string>("name"),
 		file.get<int>("base_health_points"),
@@ -78,7 +100,9 @@ Hero Hero::parse(std::istream& stream) {
 		file.get<int>("damage_bonus_per_level"),
 		file.get<double>("cooldown_multiplier_per_level"),
 		file.get<int>("defense_bonus_per_level"),
-		file.get<int>("magical_bonus_per_level")
+		file.get<int>("magical_bonus_per_level"),
+		file.get<int>("light_radius"),
+		lr
 	);
 }
 
@@ -95,6 +119,11 @@ int Hero::getMaxHealthPoints() const
 int Hero::GetXP() const
 {
 	return xp;
+}
+
+int Hero::getRadius() const
+{
+	return lightRadius;
 }
 
 void Hero::Attack(Monster& enemy) {
@@ -128,6 +157,7 @@ void Hero::XPManager(Monster& enemy)
 		GainDamage(dmgBonusPerLevel,"physical");
 		GainDamage(magicalBonusPerLevel, "magical");
 		setDefense(defBonusPerLevel);
+		lightRadius += lightRadiusBonusPerLevel;
 	}
 
 
