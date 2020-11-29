@@ -76,8 +76,7 @@ TEST(phDMGTest, checkHero){
 	{
 		lr = 1;
 	}
-	return Hero
-	(heroData.get<std::string>("name"),
+	Hero h = Hero(heroData.get<std::string>("name"),
 		heroData.get<int>("base_health_points"),
 		dmg,
 		heroData.get<double>("base_attack_cooldown"),
@@ -89,8 +88,8 @@ TEST(phDMGTest, checkHero){
 		heroData.get<int>("defense_bonus_per_level"),
 		heroData.get<int>("magical_bonus_per_level"),
 		heroData.get<int>("light_radius"),
-		lr
-	);
+		lr);
+		
 		Damage dmg2;
 	if (monsterData.count("damage"))
 	{
@@ -155,8 +154,7 @@ TEST(mgicalDMGAfterFightTest, checkHero){
 		lr = 1;
 	}
 	
-	return Hero
-	(heroData.get<std::string>("name"),
+	Hero h = Hero (heroData.get<std::string>("name"),
 		heroData.get<int>("base_health_points"),
 		dmg,
 		heroData.get<double>("base_attack_cooldown"),
