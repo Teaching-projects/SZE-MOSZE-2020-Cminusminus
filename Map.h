@@ -41,7 +41,7 @@ public:
 	///\param x The rows of the map
 	///\param y The columns of the map
 	///\return Map::type
-	Map::type get(int x, int y) const;
+	virtual Map::type get(int x, int y) const;
 	///\brief A function to get the columns number of the map.
 	///\param x The x coordinates
 	///\return int
