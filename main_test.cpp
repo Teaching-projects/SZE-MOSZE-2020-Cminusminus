@@ -305,66 +305,6 @@ TEST(checkWrongIndex, checkMap){
 	}
 }
 
-TEST(MultipleHeroCheck, checkGame){
-	try{
-	Hero hero{Hero::parse("Dark_Wanderer.json")};
-	
-	Game gamme("maps/map2.txt");
-	gamme.putHero(hero,3,1);
-	gamme.putHero(hero,3,2);
-	}catch(std::runtime_error& e)
-	{
-		ASSERT_STREQ(e.what(), "A hero has already been set!");
-	}
-
-}
-
-TEST(mapResetCheck, checkGame){
-	try{
-	Hero hero{Hero::parse("Dark_Wanderer.json")};
-	Monster monster = Monster::parse("Fallen.json");
-	
-	Game gamme("maps/map2.txt");
-	gamme.putHero(hero,3,1);
-	gamme.putMonster(monster,1,1);
-	
-	Map mapp("maps/map2.txt");
-	gamme.setMap(mapp);
-	
-	}catch(std::runtime_error& e)
-	{
-		ASSERT_STREQ(e.what(), "The units are already set up. Map cannot be changed.");
-	}
-
-}
-
-TEST(HeroOnWallCheck, checkGame){
-	try{
-	Hero hero{Hero::parse("Dark_Wanderer.json")};
-	
-	Game gamme("maps/map2.txt");
-	gamme.putHero(hero,0,2);
-	
-	}catch(std::runtime_error& e)
-	{
-		ASSERT_STREQ(e.what(), "There's a wall in this position!\n");
-	}
-
-}
-
-TEST(MonsterOnWallCheck, checkGame){
-	try{
-	Monster monster = Monster::parse("Fallen.json");
-	
-	Game gamme("maps/map2.txt");
-	gamme.putMonster(monster,0,1);
-	
-	}catch(std::runtime_error& e)
-	{
-		ASSERT_STREQ(e.what(), "There's a wall in this position!");
-	}
-
-}
 
 int main(int argc, char **argv){
     ::testing::InitGoogleTest(&argc, argv);
