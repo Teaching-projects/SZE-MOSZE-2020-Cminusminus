@@ -49,6 +49,7 @@ TEST(phDMGTest, checkHero){
         JSON heroData = JSON::parseFromFile(herofile);
 		JSON monsterData = JSON::parseFromFile(monsterfile);
 		Damage dmg;
+		int lr;
 	if (heroData.count("base_damage"))
 	{
 		dmg.physical = heroData.get<int>("base_damage");
@@ -66,7 +67,17 @@ TEST(phDMGTest, checkHero){
 	{
 		dmg.magical = 0;
 	}
-		Hero h = Hero(heroData.get<std::string>("name"),
+	
+	if (heroData.count("light_radius_bonus_per_level"))
+	{
+		lr = heroData.get<int>("light_radius_bonus_per_level");
+	}
+	else
+	{
+		lr = 1;
+	}
+	return Hero
+	(heroData.get<std::string>("name"),
 		heroData.get<int>("base_health_points"),
 		dmg,
 		heroData.get<double>("base_attack_cooldown"),
@@ -76,8 +87,10 @@ TEST(phDMGTest, checkHero){
 		heroData.get<int>("damage_bonus_per_level"),
 		heroData.get<double>("cooldown_multiplier_per_level"),
 		heroData.get<int>("defense_bonus_per_level"),
-		heroData.get<int>("magical_bonus_per_level"));
-		
+		heroData.get<int>("magical_bonus_per_level"),
+		heroData.get<int>("light_radius"),
+		lr
+	);
 		Damage dmg2;
 	if (monsterData.count("damage"))
 	{
@@ -115,6 +128,7 @@ TEST(mgicalDMGAfterFightTest, checkHero){
         JSON heroData = JSON::parseFromFile(herofile);
 		JSON monsterData = JSON::parseFromFile(monsterfile);
 		Damage dmg;
+		int lr;
 	if (heroData.count("base_damage"))
 	{
 		dmg.physical = heroData.get<int>("base_damage");
@@ -132,7 +146,17 @@ TEST(mgicalDMGAfterFightTest, checkHero){
 	{
 		dmg.magical = 0;
 	}
-		Hero h = Hero(heroData.get<std::string>("name"),
+	if (heroData.count("light_radius_bonus_per_level"))
+	{
+		lr = heroData.get<int>("light_radius_bonus_per_level");
+	}
+	else
+	{
+		lr = 1;
+	}
+	
+	return Hero
+	(heroData.get<std::string>("name"),
 		heroData.get<int>("base_health_points"),
 		dmg,
 		heroData.get<double>("base_attack_cooldown"),
@@ -142,7 +166,10 @@ TEST(mgicalDMGAfterFightTest, checkHero){
 		heroData.get<int>("damage_bonus_per_level"),
 		heroData.get<double>("cooldown_multiplier_per_level"),
 		heroData.get<int>("defense_bonus_per_level"),
-		heroData.get<int>("magical_bonus_per_level"));
+		heroData.get<int>("magical_bonus_per_level"),
+		heroData.get<int>("light_radius"),
+		lr
+	);
 		
 		Damage dmg2;
 	if (monsterData.count("damage"))
