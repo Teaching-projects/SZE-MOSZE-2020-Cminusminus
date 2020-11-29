@@ -21,10 +21,12 @@ class Hero : public Monster
 *\param atcdMultiplier The attack cooldown multiplier we multiply the attack cooldown after level up.
 *\param defBonusPerLevel The defense bonus we get after level up.
 *\param magbonperlev The magical damage bonus we get after level up.
+*\param lightr The light radius of the hero.
+*\param lightrbonusPerLevel The light radius bonus we get after level up.
 */
 public:
 	Hero(const std::string name, int base_health, Damage damage, double base_attackCooldown, int defense, int xpPerLevel, int hpPerLevel,
-		int dmgBonusPerLevel, double atcdMultiplier,  int defBonusPerLevel, int magbonperlev);
+		int dmgBonusPerLevel, double atcdMultiplier,  int defBonusPerLevel, int magbonperlev, int lightr, int lightrbonusPerLevel);
 	///This function parse a Hero from a file.
 	///\param s
 	///\return Hero
@@ -42,6 +44,9 @@ public:
 	///\brief Returns the hero's xp.
 	///\return int
 	int GetXP() const;
+	///\brief Returns the hero's light radius.
+	///\return int
+	int getRadius() const;
 private:
 	void XPManager(Monster& enemy);
 	void Attack(Monster& enemy) override;
@@ -55,6 +60,8 @@ private:
 	double atcdMultiplier = 0.0;
 	int defBonusPerLevel = 0;
 	int magicalBonusPerLevel = 0;
+	int lightRadius = 0;
+	int lightRadiusBonusPerLevel = 0;
 };
 
 #endif
