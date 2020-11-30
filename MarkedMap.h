@@ -1,3 +1,4 @@
+#pragma once
 #ifndef MARKEDMAP_H
 #define MARKEDMAP_H
 
