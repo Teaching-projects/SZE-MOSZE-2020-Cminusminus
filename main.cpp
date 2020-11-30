@@ -37,35 +37,7 @@ int main(int argc, char** argv) {
 		PreparedGame game("game.json");
 		game.run();
 	}
-	catch (const Map::WrongIndexException& e)
-	{
-		std::cout << e.what();
-	}
-	catch (const Game::AlreadyHasUnitsException& e)
-	{
-		std::cout << e.what();
-	}
-	catch (const Game::GameAlreadyStartedException& e)
-	{
-		std::cout << e.what();
-	}
-	catch (const Game::OccupiedException& e)
-	{
-		std::cout << e.what();
-	}
-	catch (const Game::AlreadyHasHeroException& e)
-	{
-		std::cout << e.what();
-	}
-	catch (const Game::NotInitializedException& e)
-	{
-		std::cout << e.what();
-	}
-	catch (const Game::NotInitializedException& e)
-	{
-		std::cout << e.what();
-	}
-	catch (const JSON::ParseException& e)
+	catch (const std::runtime_error& e)
 	{
 		std::cout << e.what();
 	}
