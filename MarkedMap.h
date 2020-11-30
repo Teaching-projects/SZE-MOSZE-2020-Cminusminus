@@ -27,6 +27,8 @@ public:
 	///\param c The monster's type we want to get
 	///\return std::list<std::pair<int,int>> Function to get a monster's position.
 	std::list<std::pair<int,int>> getMonsterPosition(char c) const;
+	///\brief A function to get the max columns number of the map.
+	///\return int
 	int getMaxCols() override;
 private:
 	std::vector<std::string> markedmap;

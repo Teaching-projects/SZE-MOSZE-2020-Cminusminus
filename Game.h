@@ -47,6 +47,8 @@ protected:
 	///\param x The x coordinates
 	///\param y the y coordinates
 	void moveHero(int x, int y);
+	///\brief A function to set the max columns.
+	///\param mc The value we set to max columns.
 	void setMaxCols(int mc);
 	class OccupiedException : public std::runtime_error
 	{
