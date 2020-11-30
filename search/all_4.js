@@ -12,7 +12,7 @@ var searchData=
   ['getheroposition_16',['getHeroPosition',['../classMarkedMap.html#aaa25768bfdd3ea4b21e847882a3f9ccd',1,'MarkedMap']]],
   ['getlevel_17',['getLevel',['../classHero.html#a17e77f3769e62aeb4e1807bbfc720f47',1,'Hero']]],
   ['getmagicaldmg_18',['getMagicalDmg',['../classMonster.html#a5afdecae8a2b299e41e2a6278e8fd7ab',1,'Monster']]],
-  ['getmaxcols_19',['getMaxCols',['../classMap.html#a01708a470d028fa6263a082f127ce3cf',1,'Map']]],
+  ['getmaxcols_19',['getMaxCols',['../classMap.html#a01708a470d028fa6263a082f127ce3cf',1,'Map::getMaxCols()'],['../classMarkedMap.html#a12c8ed6d0340126daa67af7003f1311d',1,'MarkedMap::getMaxCols()']]],
   ['getmaxhealthpoints_20',['getMaxHealthPoints',['../classHero.html#ac6a7deeb6e390a23536d622042f4c48e',1,'Hero']]],
   ['getmonsterposition_21',['getMonsterPosition',['../classMarkedMap.html#a85e266640feb5a022406f0abc96c1513',1,'MarkedMap']]],
   ['getname_22',['getName',['../classMonster.html#a28ae1112e37262ce150e3c02465b3dd5',1,'Monster']]],

@@ -139,17 +139,14 @@ $(function() {
 <div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;        }</div>
 <div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    }</div>
 <div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160; </div>
-<div class="line"><a name="l00095"></a><span class="lineno"><a class="line" href="classJSON_1_1ParseException.html">   95</a></span>&#160;    <span class="keyword">class </span><a class="code" href="classJSON_1_1ParseException.html">ParseException</a> : <span class="keyword">public</span> std::string</div>
+<div class="line"><a name="l00095"></a><span class="lineno"><a class="line" href="classJSON_1_1ParseException.html">   95</a></span>&#160;    <span class="keyword">class </span><a class="code" href="classJSON_1_1ParseException.html">ParseException</a> : <span class="keyword">public</span> std::runtime_error</div>
 <div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    {</div>
 <div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00102"></a><span class="lineno"><a class="line" href="classJSON_1_1ParseException.html#ad96059edc94b0fb14a0d5824eb285866">  102</a></span>&#160;        <a class="code" href="classJSON_1_1ParseException.html#ad96059edc94b0fb14a0d5824eb285866">ParseException</a>(std::string exceptionString) : exceptionString(exceptionString) {}</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        ~<a class="code" href="classJSON_1_1ParseException.html">ParseException</a>() {}</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;        std::string exceptionString;</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    };</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;};</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160; </div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;<span class="preprocessor">#endif </span></div>
+<div class="line"><a name="l00102"></a><span class="lineno"><a class="line" href="classJSON_1_1ParseException.html#ad96059edc94b0fb14a0d5824eb285866">  102</a></span>&#160;        <a class="code" href="classJSON_1_1ParseException.html#ad96059edc94b0fb14a0d5824eb285866">ParseException</a>(std::string exceptionString) : std::runtime_error(exceptionString) {}</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;    };</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;};</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160; </div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;<span class="preprocessor">#endif </span></div>
 </div><!-- fragment --></div><!-- contents -->
 <div class="ttc" id="aclassJSON_html_a7f7086275931b0d7145d3f37963e513c"><div class="ttname"><a href="classJSON.html#a7f7086275931b0d7145d3f37963e513c">JSON::parseFromString</a></div><div class="ttdeci">static JSON parseFromString(const std::string &amp;inputtext)</div><div class="ttdoc">It parses a JSON from a string.</div><div class="ttdef"><b>Definition:</b> JSON.cpp:58</div></div>
 <div class="ttc" id="aclassJSON_html_a2e3d7b3d03297c4b09ce1f64ad4187d7"><div class="ttname"><a href="classJSON.html#a2e3d7b3d03297c4b09ce1f64ad4187d7">JSON::get</a></div><div class="ttdeci">std::enable_if&lt;!std::is_same&lt; T, JSON::list &gt;::value, T &gt;::type get(const std::string &amp;key)</div><div class="ttdoc">Get function for the JSON class.</div><div class="ttdef"><b>Definition:</b> JSON.h:84</div></div>

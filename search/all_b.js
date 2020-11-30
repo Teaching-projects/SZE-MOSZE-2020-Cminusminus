@@ -6,6 +6,7 @@ var searchData=
   ['parsefromstream_45',['parseFromStream',['../classJSON.html#a18f4f9f42ecc8e22fd7f2108f0a7b1ce',1,'JSON']]],
   ['parsefromstring_46',['parseFromString',['../classJSON.html#a7f7086275931b0d7145d3f37963e513c',1,'JSON']]],
   ['physical_47',['physical',['../structDamage.html#aee70c6c924eac810d02f61efbc90c719',1,'Damage']]],
-  ['puthero_48',['putHero',['../classGame.html#a2c9bbc80ff60480af1bbdf06cd3380a7',1,'Game']]],
-  ['putmonster_49',['putMonster',['../classGame.html#a5fc59a7c9f21b26c9b6502217dc5aa5d',1,'Game']]]
+  ['preparedgame_48',['PreparedGame',['../classPreparedGame.html',1,'']]],
+  ['puthero_49',['putHero',['../classGame.html#a2c9bbc80ff60480af1bbdf06cd3380a7',1,'Game']]],
+  ['putmonster_50',['putMonster',['../classGame.html#a5fc59a7c9f21b26c9b6502217dc5aa5d',1,'Game']]]
 ];
