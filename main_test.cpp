@@ -6,8 +6,8 @@
 #include "JSON.h"
 #include "Map.h"
 #include "Game.h"
-#include "MarkedMap"
-#include "PreparedGame"
+#include "MarkedMap.h"
+#include "PreparedGame.h"
 #include <string>
 #include <vector>
 #include <gtest/gtest.h>
