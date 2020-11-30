@@ -345,7 +345,7 @@ TEST(checkHeroPosition, checkMarkedMap){
 	MarkedMap map("maps/markedmap.txt");
 	
 	ASSERT_EQ(1,map.getHeroPosition().first);
-	ASSERT_EQ(2,map.getHeroPosition().first);
+	ASSERT_EQ(2,map.getHeroPosition().second);
 	}catch(std::runtime_error& e)
 	{
 		ASSERT_STREQ(e.what(), "Map or parse error!");
