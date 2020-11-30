@@ -311,7 +311,7 @@ TEST(checkWall, checkMarkedMap){
 	try{
 	MarkedMap map("maps/markedmap.txt");
 	
-	ASSERT_EQ(1,mapp.get(0,3));
+	ASSERT_EQ(1,map.get(0,3));
 	}catch(std::runtime_error& e)
 	{
 		ASSERT_STREQ(e.what(), "Wrong index!");
@@ -322,7 +322,7 @@ TEST(checkFree, checkMarkedMap){
 	try{
 	MarkedMap map("maps/markedmap.txt");
 	
-	ASSERT_EQ(0,mapp.get(5,3));
+	ASSERT_EQ(0,map.get(5,3));
 	}catch(std::runtime_error& e)
 	{
 		ASSERT_STREQ(e.what(), "Wrong index!");
@@ -333,7 +333,7 @@ TEST(checkWrongIndex, checkMarkedMap){
 	try{
 	MarkedMap map("maps/markedmap.txt");
 	
-	ASSERT_EQ(0,mapp.get(30,3));
+	ASSERT_EQ(0,map.get(30,3));
 	}catch(std::runtime_error& e)
 	{
 		ASSERT_STREQ(e.what(), "Wrong index!");
@@ -363,7 +363,7 @@ TEST(checkMonstersPosition, checkMarkedMap){
 	}
 }
 
-zint main(int argc, char **argv){
+int main(int argc, char **argv){
     ::testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
 }
