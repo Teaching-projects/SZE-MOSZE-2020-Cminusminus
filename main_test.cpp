@@ -6,6 +6,8 @@
 #include "JSON.h"
 #include "Map.h"
 #include "Game.h"
+#include "MarkedMap"
+#include "PreparedGame"
 #include <string>
 #include <vector>
 #include <gtest/gtest.h>
@@ -305,8 +307,63 @@ TEST(checkWrongIndex, checkMap){
 	}
 }
 
+TEST(checkWall, checkMarkedMap){
+	try{
+	MarkedMap map("maps/markedmap.txt");
+	
+	ASSERT_EQ(1,mapp.get(0,3));
+	}catch(std::runtime_error& e)
+	{
+		ASSERT_STREQ(e.what(), "Wrong index!");
+	}
+}
 
-int main(int argc, char **argv){
+TEST(checkFree, checkMarkedMap){
+	try{
+	MarkedMap map("maps/markedmap.txt");
+	
+	ASSERT_EQ(0,mapp.get(5,3));
+	}catch(std::runtime_error& e)
+	{
+		ASSERT_STREQ(e.what(), "Wrong index!");
+	}
+}
+
+TEST(checkWrongIndex, checkMarkedMap){
+	try{
+	MarkedMap map("maps/markedmap.txt");
+	
+	ASSERT_EQ(0,mapp.get(30,3));
+	}catch(std::runtime_error& e)
+	{
+		ASSERT_STREQ(e.what(), "Wrong index!");
+	}
+}
+
+TEST(checkHeroPosition, checkMarkedMap){
+	try{
+	MarkedMap map("maps/markedmap.txt");
+	
+	ASSERT_EQ(1,map.getHeroPosition().first);
+	ASSERT_EQ(2,map.getHeroPosition().first);
+	}catch(std::runtime_error& e)
+	{
+		ASSERT_STREQ(e.what(), "Map or parse error!");
+	}
+}
+TEST(checkMonstersPosition, checkMarkedMap){
+	try{
+	MarkedMap map("maps/markedmap.txt");
+	
+	ASSERT_EQ(3,map.getMonsterPosition('3').begin()->first);
+	ASSERT_EQ(6,map.getMonsterPosition('3').begin()->second);
+	}catch(std::runtime_error& e)
+	{
+		ASSERT_STREQ(e.what(), "Map or parse error!");
+	}
+}
+
+zint main(int argc, char **argv){
     ::testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
 }
