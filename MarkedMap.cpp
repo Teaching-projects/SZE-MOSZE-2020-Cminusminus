@@ -1,6 +1,6 @@
 #include "MarkedMap.h"
 
-MarkedMap::MarkedMap(std::string filename)
+MarkedMap::MarkedMap(std::string filename) : Map(filename)
 {
 	std::ifstream ifst;
 	std::string line;
@@ -32,8 +32,14 @@ Map::type MarkedMap::get(int x, int y) const
 		throw WrongIndexException("Wrong index!");
 	}
 
-	std::string types = " #";
-	return type(types.find(markedmap[x][y]));
+	if (markedmap[x][y] == '#')
+	{
+		return type(1);
+	}
+	else if (markedmap[x][y] == ' ')
+	{
+		return type(0);
+	}
 }
 
 std::pair<int, int> MarkedMap::getHeroPosition() const
@@ -71,4 +77,17 @@ std::list<std::pair<int, int>> MarkedMap::getMonsterPosition(char c) const
 	}
 	return templist;
 	
+}
+
+int MarkedMap::getMaxCols()
+{
+	int max = 0;
+	for (int i = 0; i < markedmap.size(); i++)
+	{
+		if (max < markedmap[i].length())
+		{
+			max = markedmap[i].length();
+		}
+	}
+	return max;
 }

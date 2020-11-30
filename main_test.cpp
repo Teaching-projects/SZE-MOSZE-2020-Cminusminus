@@ -6,6 +6,8 @@
 #include "JSON.h"
 #include "Map.h"
 #include "Game.h"
+#include "MarkedMap.h"
+#include "PreparedGame.h"
 #include <string>
 #include <vector>
 #include <gtest/gtest.h>
@@ -305,65 +307,60 @@ TEST(checkWrongIndex, checkMap){
 	}
 }
 
-TEST(MultipleHeroCheck, checkGame){
+TEST(checkWall, checkMarkedMap){
 	try{
-	Hero hero{Hero::parse("Dark_Wanderer.json")};
+	MarkedMap map("maps/markedmap.txt");
 	
-	Game gamme("maps/map2.txt");
-	gamme.putHero(hero,3,1);
-	gamme.putHero(hero,3,2);
+	ASSERT_EQ(1,map.get(0,3));
 	}catch(std::runtime_error& e)
 	{
-		ASSERT_STREQ(e.what(), "A hero has already been set!");
+		ASSERT_STREQ(e.what(), "Wrong index!");
 	}
-
 }
 
-TEST(mapResetCheck, checkGame){
+TEST(checkFree, checkMarkedMap){
 	try{
-	Hero hero{Hero::parse("Dark_Wanderer.json")};
-	Monster monster = Monster::parse("Fallen.json");
+	MarkedMap map("maps/markedmap.txt");
 	
-	Game gamme("maps/map2.txt");
-	gamme.putHero(hero,3,1);
-	gamme.putMonster(monster,1,1);
-	
-	Map mapp("maps/map2.txt");
-	gamme.setMap(mapp);
-	
+	ASSERT_EQ(0,map.get(5,3));
 	}catch(std::runtime_error& e)
 	{
-		ASSERT_STREQ(e.what(), "The units are already set up. Map cannot be changed.");
+		ASSERT_STREQ(e.what(), "Wrong index!");
 	}
-
 }
 
-TEST(HeroOnWallCheck, checkGame){
+TEST(checkWrongIndex, checkMarkedMap){
 	try{
-	Hero hero{Hero::parse("Dark_Wanderer.json")};
+	MarkedMap map("maps/markedmap.txt");
 	
-	Game gamme("maps/map2.txt");
-	gamme.putHero(hero,0,2);
-	
+	ASSERT_EQ(0,map.get(30,3));
 	}catch(std::runtime_error& e)
 	{
-		ASSERT_STREQ(e.what(), "There's a wall in this position!\n");
+		ASSERT_STREQ(e.what(), "Wrong index!");
 	}
-
 }
 
-TEST(MonsterOnWallCheck, checkGame){
+TEST(checkHeroPosition, checkMarkedMap){
 	try{
-	Monster monster = Monster::parse("Fallen.json");
+	MarkedMap map("maps/markedmap.txt");
 	
-	Game gamme("maps/map2.txt");
-	gamme.putMonster(monster,0,1);
-	
+	ASSERT_EQ(1,map.getHeroPosition().first);
+	ASSERT_EQ(2,map.getHeroPosition().second);
 	}catch(std::runtime_error& e)
 	{
-		ASSERT_STREQ(e.what(), "There's a wall in this position!");
+		ASSERT_STREQ(e.what(), "Map or parse error!");
 	}
-
+}
+TEST(checkMonstersPosition, checkMarkedMap){
+	try{
+	MarkedMap map("maps/markedmap.txt");
+	
+	ASSERT_EQ(3,map.getMonsterPosition('3').begin()->first);
+	ASSERT_EQ(6,map.getMonsterPosition('3').begin()->second);
+	}catch(std::runtime_error& e)
+	{
+		ASSERT_STREQ(e.what(), "Map or parse error!");
+	}
 }
 
 int main(int argc, char **argv){

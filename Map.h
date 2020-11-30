@@ -51,7 +51,7 @@ public:
 	int getRows();
 	///\brief A function to get the max columns number of the map.
 	///\return int
-	int getMaxCols();
+	virtual int getMaxCols();
 
 private:
 	std::vector<std::string> map;

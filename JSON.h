@@ -92,17 +92,14 @@ public:
 		}
 	}
 
-	class ParseException : public std::string
+	class ParseException : public std::runtime_error
 	{
 		/**
   *\brief A class for JSON errors.
   *\param exceptionString The string for the error.
   */
 	public:
-		ParseException(std::string exceptionString) : exceptionString(exceptionString) {}
-		~ParseException() {}
-	private:
-		std::string exceptionString;
+		ParseException(std::string exceptionString) : std::runtime_error(exceptionString) {}
 	};
 };
 
