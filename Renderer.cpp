@@ -123,7 +123,7 @@ void CharacterSVGRenderer::render(const Game& g) const {
     std::ofstream svg(output);   
     std::string wallTexture;
 
-    if (!std::filesystem::exists(parser.get<std::string>("wall_texture"))
+    if (!std::filesystem::exists(parser.get<std::string>("wall_texture")))
     {
        wallTexture = "svg/not_found.svg";
     }
@@ -132,7 +132,7 @@ void CharacterSVGRenderer::render(const Game& g) const {
         wallTexture = parser.get<std::string>("wall_texture");
     }
     std::string freeTexture;
-    if (!std::filesystem::exists(parser.get<std::string>("free_texture"))
+    if (!std::filesystem::exists(parser.get<std::string>("free_texture")))
     {
         freeTexture = "svg/not_found.svg";
     }
