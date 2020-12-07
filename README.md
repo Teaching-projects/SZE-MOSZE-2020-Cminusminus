@@ -1,17 +1,15 @@
 # SZE-MOSZE-2020-Cminusminus
 
-Ez a program egy RPG játékot fog szimulálni.
-Jelenleg 2 **fájlból** beolvasott karakter jön létre, majd harcol egymás ellen, amíg az egyiknek az élete el nem éri a 0-t.
+Csapattagok: \
+Markup: *Mihalovics Fruzsina - I6283S(@fruzsin)
+		*Kurucz Ádám - VPX27T(@kurucc)
+		*Bólya Richárd - DAWOBY(@bricsi0000000000000)
+		
 
-A fájlok **JSON** formátumúak, és az alábbi képpen néznek ki:
+Ez a program egy RPG játékot szimulál, amelyben egy *Hero* küzd meg egy vagy több *Monster*rel, egy adott pályán. A játék elindításához, a futtatni kívánt *game* fájlt kell megadni parancssori argumentumként. A harc addig tart, amíg a *Hero* le nem győzi a pályán lévő összes *Monster*t vagy meg nem hal. 
 
-```json
-{
-    "name": "Béla",
-    "hp": 1500000,
-    "dmg": 14
-}
-```
+
+
 **Feladat 2** \
 A program először leellenőrzi, hogy a parancssori argumentumok száma megfelelő-e *(Kettő fájl van-e megadva)*, majd, ha igen, akkor, annak a két fájlnak a létezését ellenőrzi le a **fileExists** nevű függvénnyel. Ha bármely fájl nem létezik a program kilép és kiírja melyik fájl az, amelyik nem létezik. Ha mindkét fájl létezik, akkor lefut a **battle** nevű függvény és kiírja, hogy *character_name* wins. Remaining HP: *xxx*.
 
