@@ -2,7 +2,7 @@
 
 Game::Game() { }
 
-Game::Game(const std::string mapfilename)
+Game::Game(const std::string mapfilename) : fileName(mapfilename)
 {
 	Map map(mapfilename);
 	setMap(map);
