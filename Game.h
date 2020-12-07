@@ -1,14 +1,12 @@
 #pragma once
 
 #include <string>
-#include "Map.h"
 #include "Hero.h"
-#include "Monster.h"
 #include "MarkedMap.h"
 #include "Renderer.h"
 #include <vector>
 
-class Renderer;
+class Renderer; ///Forward declaration of the Renderer class.
 class Game
 {
 /**
@@ -22,10 +20,15 @@ public:
 	{
 		delete mapHero;
 	};
+	///\brief It returns the stored monsters and their positions.
+	///\return std::vector<std::pair<Monster, std::pair<int, int>>>
 	std::vector<std::pair<Monster, std::pair<int, int>>> getMonsters() const;
+	///\brief It returns the stored hero's pointer
+	///\return Hero*
 	Hero* getHero() const;
+	///\brief It returns the stored hero's positions.
+	///\return std::pair<int,int>
 	std::pair<int, int> getHeroPos() const;
-	std::vector<std::pair<std::string, std::string>> getMonsterTexture() const;
 	///\brief A function to run a game.
 	void run();
 	///\brief A function to set the map for the game.
@@ -41,11 +44,14 @@ public:
 	///\param x the x coordinates.
 	///\param y the y coordinates
 	void putMonster(const Monster monster, const int x, const int y);
+	///\brief It returns the stored map.
+	///\return Map
 	Map getMap() const;
 	///\brief A function to count the monsters on the map.
 	///\param x The x coordinates
 	///\param y the y coordinates
 	int monsterCount(const int x, const int y) const;
+	///\brief It pushes the given renderer's pointer into a vector.
 	void registerRenderer(Renderer* renderer);
 
 protected:

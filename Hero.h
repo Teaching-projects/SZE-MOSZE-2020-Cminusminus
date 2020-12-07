@@ -3,7 +3,6 @@
 
 #include<iostream>
 #include "Monster.h"
-#include "JSON.h"
 
 class Hero : public Monster
 {

@@ -52,6 +52,8 @@ public:
 	///\brief A function to get the max columns number of the map.
 	///\return int
 	int getMaxCols() const;
+	///\brief It returns the stored map
+	///\return int
 	std::vector<std::string> getMap() const;
 
 private:

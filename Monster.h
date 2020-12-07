@@ -52,7 +52,7 @@ struct Damage
 
 class Monster
 {
-	/**
+   /**
   *\brief A class for creating a monster.
   *\param name The name of the monster.
   *\param health The health of the monster.
@@ -65,6 +65,8 @@ public:
 
 	Monster(const std::string name, const int health, Damage damage, const double attackCooldown, const int defense, const std::string texture);
 	Monster() { damage.magical = 0; damage.physical = 0; };
+	///It returns the texture of the monster.
+	///\return string
 	std::string getTexture() const;
 	///It returns the defense of the Monster
 	///\return defense
@@ -84,7 +86,7 @@ public:
 	///\return name
 	std::string getName() const;
 	///It returns the health of the monster.
-	  ///\return health
+	///\return health
 	int getHealthPoints() const;
 	///It sets the health of the monster.
 	///\param health The current health of the monster

@@ -1,12 +1,6 @@
 #include <iostream>
 #include <string>
-#include "Map.h"
 #include "PreparedGame.h"
-#include "MarkedMap.h"
-#include "Game.h"
-#include "JSON.h"
-#include "Hero.h"
-#include "Monster.h"
 #include "Renderer.h"
 
 int main(int argc, char** argv) {

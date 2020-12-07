@@ -88,16 +88,6 @@ std::pair<int, int> Game::getHeroPos() const
 	return heroPos;
 }
 
-std::vector<std::pair<std::string, std::string>> Game::getMonsterTexture() const
-{
-	std::vector<std::pair<std::string, std::string>> textures;
-	for (auto p : mapMonsters)
-	{
-		textures.push_back(std::make_pair(p.first.getName(), p.first.getTexture()));
-	}
-	return textures;
-}
-
 void Game::run()
 {
 
