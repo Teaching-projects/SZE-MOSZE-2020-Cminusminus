@@ -91,10 +91,10 @@ Ebben a feladatban egy új osztályt hoztunk létre *Game* néven, amely betölt
 - **MarkedMap**\
 A **Map** osztályból származik ez az osztály, és ezen a térképen a *Hero* helyét egy *H* betű jelöli, a *Monster*ek helyét pedig számok, attól függően, hogy milyen típusú *Monster* az.
 
--**Light Radius**\
+- **Light Radius**\
 Ennek a feladat során a **Game** *drawMap* függvénye változott meg, úgy hogy a *Hero* már rendelkezik egy *lightRadius* és egy *lightRadiusBonusPerLevel* taggal, amelynek hatására nem az egész térkép rajzolódik ki, hanem csak a *lightRadius* hatóköre. Ez a *lightRadius* szintlépsékor ugyanúgy növekszik, így a játék lefolyása során egyre több minden rajzolódik ki.
 
--**Prepared Game**\
+- **Prepared Game**\
 A **Game** osztályból származik ez az osztály, a konstruktorában egy *json* filet vár, amely így néz ki:
 ```json
 {
@@ -105,7 +105,7 @@ A **Game** osztályból származik ez az osztály, a konstruktorában egy *json*
   "monster-3" : "BloodRaven.json"
 }
 ```
-A fájlt betölti és elhelyezi a *Hero*kat és a *Monster*eket, majd itt is, mint a **Game**nél a "north", "south", "east" és "west" parancsokkal lehet irányítani a *Hero*t és a játék addig meg, amíg az meg nem hal vagy az le nem győzi az összes *Monster*t.
+A fájlt betölti és elhelyezi a *Hero*kat és a *Monster*eket, majd itt is,mint a **Game**nél a "north", "south", "east" és "west" parancsokkal lehet irányítani a *Hero*t és a játék addig meg, amíg az meg nem hal vagy az le nem győzi az összes *Monster*t.
 
--**SVGRendering**\
+- **SVGRendering**\
 Az SVGRendering feladatban 7 új osztály került létrehozásra. A **Renderer** osztályból származik a **TextRenderer** és az **SVGRenderer**. A **TextRenderer**ből származik az **ObserverTextRenderer**, valamint a **HeroTextRenderer**. Az **ObserverTextRenderer** az egész map kirajzolását csinálja a coutra, valamint ha nem default constructorral szeretnénk dolgozni, ebben az esetben meg lehet adni egy fájlnevet, ahova logolja a kimenetet. A **HeroTextRenderer** gyakorlatilag ugyanazt csinálja mint az **ObserverTextRenderer**, ellenben itt csak az előzőleg bevezetett karakterünk által látott területet rajzolja ki, és itt szintén meg tudjuk adni, hogy cout-ra történjen a kiíratás, vagy egy fájlba. Az **SVGRenderer**ből származik a **CharacterSVGRenderer**, és az **ObserverSVGRenderer** osztály. Előbbi megadott svg fájlok felhasználásával a karakter által látott területet logolja szintén egy svg fájlba. Utóbbi pedig szintén svg fájlok felhasználásával az egész map területét logolja szintén egy svg fájlba.
