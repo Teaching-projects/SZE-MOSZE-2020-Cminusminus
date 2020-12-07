@@ -90,7 +90,8 @@ TEST(phDMGTest, checkHero){
 		heroData.get<int>("defense_bonus_per_level"),
 		heroData.get<int>("magical_bonus_per_level"),
 		heroData.get<int>("light_radius"),
-		lr);
+		lr,
+		heroData.get<std::string>("texture"));
 		
 		Damage dmg2;
 	if (monsterData.count("damage"))
@@ -111,7 +112,7 @@ TEST(phDMGTest, checkHero){
 		dmg2.magical = 0;
 	}
 		Monster m = Monster(monsterData.get<std::string>("name"), monsterData.get<int>("health_points"),
-		dmg2, monsterData.get<double>("attack_cooldown"), monsterData.get<int>("defense"));
+		dmg2, monsterData.get<double>("attack_cooldown"), monsterData.get<int>("defense"), monsterData.get<std::string>("texture"));
 		
         ASSERT_EQ(5,h.getPhysicalDmg());
     } catch(std::runtime_error& e){
@@ -168,7 +169,8 @@ TEST(mgicalDMGAfterFightTest, checkHero){
 		heroData.get<int>("defense_bonus_per_level"),
 		heroData.get<int>("magical_bonus_per_level"),
 		heroData.get<int>("light_radius"),
-		lr
+		lr,
+		heroData.get<std::string>("texture")
 	);
 		
 		Damage dmg2;
@@ -190,7 +192,7 @@ TEST(mgicalDMGAfterFightTest, checkHero){
 		dmg2.magical = 0;
 	}
 		Monster m = Monster(monsterData.get<std::string>("name"), monsterData.get<int>("health_points"),
-		dmg2, monsterData.get<double>("attack_cooldown"), monsterData.get<int>("defense"));
+		dmg2, monsterData.get<double>("attack_cooldown"), monsterData.get<int>("defense"), monsterData.get<std::string>("texture"));
 		h.fightTilDeath(m);
 		
         ASSERT_EQ(6,h.getMagicalDmg());
