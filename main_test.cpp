@@ -353,12 +353,60 @@ TEST(checkHeroPosition, checkMarkedMap){
 		ASSERT_STREQ(e.what(), "Map or parse error!");
 	}
 }
+
 TEST(checkMonstersPosition, checkMarkedMap){
 	try{
 	MarkedMap map("maps/markedmap.txt");
 	
 	ASSERT_EQ(3,map.getMonsterPosition('3').begin()->first);
 	ASSERT_EQ(6,map.getMonsterPosition('3').begin()->second);
+	}catch(std::runtime_error& e)
+	{
+		ASSERT_STREQ(e.what(), "Map or parse error!");
+	}
+}
+
+TEST(checkRowsAndCols, checkMarkedMap){
+	
+	try{
+	MarkedMap map("markedmap.txt");
+	
+	ASSERT_EQ(14,map.getMaxCols());
+	ASSERT_EQ(7,map.getRows());
+	}catch(std::runtime_error& e)
+	{
+		ASSERT_STREQ(e.what(), "Map or parse error!");
+	}
+}
+
+TEST(checkTextures, checkSVGRenderer){
+	try{
+	Hero hero{ Hero::parse("Dark_Wanderer.json") };
+	Monster m1 = Monster::parse("Fallen.json");
+	Monster m2 = Monster::parse("Zombie.json");
+	Monster m3 = Monster::parse("Blood_Raven.json");
+	
+	ASSERT_EQ("Dark_Wanderer.svg",hero.getTexture());
+	ASSERT_EQ("Fallen.svg",m1.getTexture());
+	ASSERT_EQ("Zombie.svg",m2.getTexture());
+	ASSERT_EQ("Blood_Raven.svg",m3.getTexture());
+	
+	}catch(std::runtime_error& e)
+	{
+		ASSERT_STREQ(e.what(), "Map or parse error!");
+	}
+}
+
+TEST(checkPositionsOnMarkedMap, checkPreparedGame){
+	try{
+	PreparedGame game("game.json");
+	
+	ASSERT_EQ(1,game.getHeroPos().first);
+	ASSERT_EQ(2,game.getHeroPos().second);	
+	ASSERT_EQ("Fallen",game.getMonsters().front().first.getName());
+	ASSERT_EQ(3,game.getMonsters().front().second.first);
+	ASSERT_EQ(2,game.getMonsters().front().second.second);
+	
 	}catch(std::runtime_error& e)
 	{
 		ASSERT_STREQ(e.what(), "Map or parse error!");
