@@ -14,28 +14,17 @@
 #include "JSON.h"
 #include "Hero.h"
 #include "Monster.h"
-
-
-
-
-const std::map<int, std::string> error_messages = {
-	{ 1 , "Bad number of arguments. Only a single scenario file should be provided." },
-	{ 2 , "The provided scenario file is not accessible." },
-	{ 3 , "The provided scenario file is invalid." },
-	{ 4 , "JSON parsing error." }
-};
-
-void bad_exit(int exitcode) {
-	std::cerr
-		<< (error_messages.count(exitcode) ? error_messages.at(exitcode) : "Unknown error")
-		<< std::endl;
-	exit(exitcode);
-}
+#include "Renderer.h"
 
 int main(int argc, char** argv) {
 	try{
-		PreparedGame game("game.json");
-		game.run();
+			PreparedGame game("game.json");
+			game.registerRenderer(new HeroTextRenderer());
+			game.registerRenderer(new ObserverTextRenderer(new std::ofstream("log.txt")));
+			game.registerRenderer(new HeroTextRenderer(new std::ofstream("log2.txt")));
+			game.registerRenderer(new CharacterSVGRenderer("pretty.svg"));
+			game.registerRenderer(new ObserverSVGRenderer("pretty2.svg"));
+			game.run();
 	}
 	catch (const std::runtime_error& e)
 	{

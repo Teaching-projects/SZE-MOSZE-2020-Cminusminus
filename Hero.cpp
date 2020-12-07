@@ -4,8 +4,8 @@
 #include <fstream>
 
 Hero::Hero(const std::string name, int base_health, Damage damage, double base_attackCooldown, int defense, int xpPerLevel,
-	int hpPerLevel, int dmgBonusPerLevel, double atcdMultiplier,int defBonusPerLevel, int magbonperlev, int lightr, int lightrbonusPerLevel) :
-	Monster(name, base_health, damage, base_attackCooldown, defense),
+	int hpPerLevel, int dmgBonusPerLevel, double atcdMultiplier,int defBonusPerLevel, int magbonperlev, int lightr, int lightrbonusPerLevel, std::string texture) :
+	Monster(name, base_health, damage, base_attackCooldown, defense,texture),
 	xpPerLevel(xpPerLevel), hpPerLevel(hpPerLevel), dmgBonusPerLevel(dmgBonusPerLevel), atcdMultiplier(atcdMultiplier), defBonusPerLevel(defBonusPerLevel), magicalBonusPerLevel(magbonperlev), lightRadius(lightr), lightRadiusBonusPerLevel(lightrbonusPerLevel)
 {
 }
@@ -55,7 +55,8 @@ Hero Hero::parse(const std::string& s)
 		file.get<int>("defense_bonus_per_level"),
 		file.get<int>("magical_bonus_per_level"),
 		file.get<int>("light_radius"),
-		lr
+		lr,
+		file.get<std::string>("texture")
 	);
 }
 Hero Hero::parse(std::istream& stream) {
@@ -102,7 +103,8 @@ Hero Hero::parse(std::istream& stream) {
 		file.get<int>("defense_bonus_per_level"),
 		file.get<int>("magical_bonus_per_level"),
 		file.get<int>("light_radius"),
-		lr
+		lr,
+		file.get<std::string>("texture")
 	);
 }
 

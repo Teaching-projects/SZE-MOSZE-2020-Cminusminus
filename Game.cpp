@@ -68,6 +68,36 @@ void Game::putMonster(Monster monster, int x, int y)
 	}
 }
 
+Map Game::getMap() const
+{
+	return mapToSet;
+}
+
+std::vector<std::pair<Monster, std::pair<int, int>>> Game::getMonsters() const
+{
+	return mapMonsters;
+}
+
+Hero* Game::getHero() const
+{
+	return mapHero;
+}
+
+std::pair<int, int> Game::getHeroPos() const
+{
+	return heroPos;
+}
+
+std::vector<std::pair<std::string, std::string>> Game::getMonsterTexture() const
+{
+	std::vector<std::pair<std::string, std::string>> textures;
+	for (auto p : mapMonsters)
+	{
+		textures.push_back(std::make_pair(p.first.getName(), p.first.getTexture()));
+	}
+	return textures;
+}
+
 void Game::run()
 {
 
@@ -82,7 +112,7 @@ void Game::run()
 
 	while (mapMonsters.size() > deadMonsterCount && mapHero != nullptr)
 	{
-		for (int i = 0; i < mapMonsters.size(); i++)
+		for (int i = 0; i < (int)mapMonsters.size(); i++)
 		{
 			if (((mapMonsters[i].second.first == heroPos.first) && (mapMonsters[i].second.second == heroPos.second))&&(mapMonsters[i].first.isAlive()))
 			{
@@ -92,7 +122,6 @@ void Game::run()
 					deadMonsterCount++;
 					if (deadMonsterCount == mapMonsters.size())
 					{
-						std::cout << mapHero->getName() << " cleared the map." << std::endl;
 						break;
 					}
 				}
@@ -100,17 +129,19 @@ void Game::run()
 				{
 					std::cout << "The hero died." << std::endl;
 					heroPut = false;
-					mapHero = nullptr;
 				}
 
 			}
 		}
-		if (mapHero == nullptr || mapMonsters.size() == deadMonsterCount)
+		if (heroPut==false || mapMonsters.size() == deadMonsterCount)
 		{
 			gameStarted = false;
 			break;
 		}
-		mapDraw();
+		for (auto p : renderers)
+		{
+			p->render(*this);
+		}
 		std::cin >> move;
 		try
 		{
@@ -137,103 +168,27 @@ void Game::run()
 			continue;
 		}
 	}
-}
-
-void Game::mapDraw()
-{
-
-	int firsti = 0;
-	int secondi = mapToSet.getRows();
-	int tmc = maxColumns;
-	int tm = 0;
-
-	if ((heroPos.first - mapHero->getRadius()) > 0)
-	{
-		firsti = heroPos.first - mapHero->getRadius();
-	}
-	if ((heroPos.first + mapHero->getRadius()+1) < mapToSet.getRows())
-	{
-		secondi = heroPos.first + mapHero->getRadius()+1;
-	}
-
-	std::cout << "╔";
-	if ((heroPos.second - mapHero->getRadius()) > 0)
-	{
-		tm= ((heroPos.second) - (mapHero->getRadius()));
-	}
-	if ((heroPos.second + mapHero->getRadius()+1) < maxColumns)
-	{
-		tmc = ((heroPos.second) + (mapHero->getRadius())+1);
 	
-	}
-	for (int i = tm; i < tmc; i++)
+	if (deadMonsterCount == mapMonsters.size())
 	{
-		std::cout << "══";
+		for (auto p : renderers)
+		{
+			p->render(*this);
+		}
+		std::cout << mapHero->getName() << " cleared the map." << std::endl;
 	}
-	std::cout << "╗\n";
-	for (int i = firsti; i < secondi; i++)
+	if (heroPut == false)
 	{
-		int firstj = 0;
-		int secondj = mapToSet.getColumns(i);
-		if ((heroPos.second - mapHero->getRadius())>0)
-		{
-			firstj = ((heroPos.second)-(mapHero->getRadius()));
-		}
-		if ((heroPos.second + mapHero->getRadius()+1)<mapToSet.getColumns(i))
-		{
-			secondj = ((heroPos.second) + (mapHero->getRadius())+1);
-		}
-		std::cout << "║";
-		for (int j = firstj; j < secondj ; j++)
-		{
-			if (mapToSet.get(i, j) == 1)
-			{
-				std::cout << "██";
-				
-			}
-			else if (heroPos.first == i && heroPos.second == j)
-			{
-				std::cout << "┣┫";
-				
-				
-			}
-			else if (monsterCount(i, j) == 1)
-			{
-				std::cout << "M░";
-				
-				
-			}
-			else if (monsterCount(i, j) > 1)
-			{
-				std::cout << "MM";
-			}
-			else
-			{
-				std::cout << "░░";
-				
-				
-			}
-		}
-		
-		for (int k = mapToSet.getColumns(i); k < tmc; k++)
-		{
-			std::cout << "██";
-		}
-		std::cout << "║\n";
+		mapHero = nullptr;
 	}
-	std::cout << "╚";
-	for (int i = tm; i < tmc; i++)
-	{
-		std::cout << "══";
-	}
-	std::cout << "╝\n";
-	std::cout << "To move the hero write north, south, west, or east" << std::endl;
+
+
 }
 
-int Game::monsterCount(int x, int y)
+int Game::monsterCount(int x, int y) const
 {
 	int count = 0;
-	for (int i = 0; i < mapMonsters.size(); i++)
+	for (int i = 0; i < (int)mapMonsters.size(); i++)
 	{
 		if (mapMonsters[i].second.first == x && mapMonsters[i].second.second == y && mapMonsters[i].first.isAlive())
 		{
@@ -241,6 +196,11 @@ int Game::monsterCount(int x, int y)
 		}
 	}
 	return count;
+}
+
+void Game::registerRenderer(Renderer* renderer)
+{
+	renderers.push_back(renderer);
 }
 
 void Game::moveHero(int x, int y)

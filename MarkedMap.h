@@ -29,7 +29,7 @@ public:
 	std::list<std::pair<int,int>> getMonsterPosition(char c) const;
 	///\brief A function to get the max columns number of the map.
 	///\return int
-	int getMaxCols() override;
+	int getMaxCols() const override;
 private:
 	std::vector<std::string> markedmap;
 };

@@ -5,9 +5,10 @@
 #include "Hero.h"
 #include "Monster.h"
 #include "MarkedMap.h"
+#include "Renderer.h"
 #include <vector>
 
-
+class Renderer;
 class Game
 {
 /**
@@ -21,9 +22,12 @@ public:
 	{
 		delete mapHero;
 	};
+	std::vector<std::pair<Monster, std::pair<int, int>>> getMonsters() const;
+	Hero* getHero() const;
+	std::pair<int, int> getHeroPos() const;
+	std::vector<std::pair<std::string, std::string>> getMonsterTexture() const;
 	///\brief A function to run a game.
 	void run();
-protected:
 	///\brief A function to set the map for the game.
 	///\param map The map we set.
 	void setMap(Map map);
@@ -37,12 +41,14 @@ protected:
 	///\param x the x coordinates.
 	///\param y the y coordinates
 	void putMonster(Monster monster, int x, int y);
-	///\brief A function to draw the map for the game.
-	void mapDraw();
+	Map getMap() const;
 	///\brief A function to count the monsters on the map.
 	///\param x The x coordinates
 	///\param y the y coordinates
-	int monsterCount(int x, int y);
+	int monsterCount(int x, int y) const;
+	void registerRenderer(Renderer* renderer);
+
+protected:
 	///\brief A function to move the hero to a given coordinate.
 	///\param x The x coordinates
 	///\param y the y coordinates
@@ -108,6 +114,7 @@ private:
 	Hero* mapHero = nullptr;
 	std::pair<int, int> heroPos;
 	std::vector<std::pair<Monster,std::pair<int,int>>> mapMonsters;
+	std::vector<Renderer*> renderers;
 	int maxColumns = 0;
 	bool mapSet = false;
 	bool heroPut = false;

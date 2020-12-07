@@ -3,14 +3,20 @@
 #include <cmath>
 #include <fstream>
 
-Monster::Monster(std::string name, int health, Damage damage, double attackCooldown, int defense) :
+Monster::Monster(std::string name, int health, Damage damage, double attackCooldown, int defense, std::string texture) :
 	name(name),
 	health(health),
 	damage(damage),
 	attackCooldown(attackCooldown),
-	defense(defense){}
+	defense(defense),
+	texture(texture){}
 
-int Monster::getDefense()
+std::string Monster::getTexture() const
+{
+	return texture;
+}
+
+int Monster::getDefense() const
 {
 	return defense;
 }
@@ -47,7 +53,8 @@ Monster Monster::parse(const std::string& s)
 		file.get<int>("health_points"),
 		dmg,
 		file.get<double>("attack_cooldown"),
-		file.get<int>("defense")
+		file.get<int>("defense"),
+		file.get<std::string>("texture")
 	);
 }
 
@@ -79,7 +86,8 @@ Monster Monster::parse(std::istream& stream)
 		file.get<int>("health_points"),
 		dmg,
 		file.get<double>("attack_cooldown"),
-		file.get<int>("defense")
+		file.get<int>("defense"),
+		file.get<std::string>("texture")
 	);
 }
 

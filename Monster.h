@@ -60,14 +60,16 @@ class Monster
   *\param damage The damage of the monster (physical and magical).
   *\param attackCooldown The speed of the monster's attack.
   *\param defense The defense of the monster.
+  *\param texture The texture of the monster in svg.
   */
 public:
 
-	Monster(std::string name, int health, Damage damage, double attackCooldown, int defense);
+	Monster(std::string name, int health, Damage damage, double attackCooldown, int defense, std::string texture);
 	Monster() { damage.magical = 0; damage.physical = 0; };
+	std::string getTexture() const;
 	///It returns the defense of the Monster
 	///\return defense
-	int getDefense();
+	int getDefense() const;
 	///It sets the defense of the Hero when it levels up
 	///\param bonus The amount we add to the defense
 	void setDefense(int bonus);
@@ -120,9 +122,7 @@ private:
 	Damage damage;
 	double attackCooldown = 0;
 	int defense = 0;
-	std::string lore = "";
-	std::string add_info = "";
-	std::string race = "";
+	std::string texture = "";
 };
 
 #endif // CHARACTER_H

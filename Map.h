@@ -45,13 +45,13 @@ public:
 	///\brief A function to get the columns number of the map.
 	///\param x The x coordinates
 	///\return int
-	int getColumns(int x);
+	int getColumns(int x) const;
 	///\brief A function to get the rows number of the map.
 	///\return int
-	int getRows();
+	int getRows() const;
 	///\brief A function to get the max columns number of the map.
 	///\return int
-	virtual int getMaxCols();
+	virtual int getMaxCols() const;
 
 private:
 	std::vector<std::string> map;

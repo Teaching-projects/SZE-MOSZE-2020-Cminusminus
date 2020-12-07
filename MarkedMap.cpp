@@ -40,13 +40,14 @@ Map::type MarkedMap::get(int x, int y) const
 	{
 		return type(0);
 	}
+	return type(-1);
 }
 
 std::pair<int, int> MarkedMap::getHeroPosition() const
 {
-	for (int i = 0; i < markedmap.size(); i++)
+	for (int i = 0; i < (int)markedmap.size(); i++)
 	{
-		for (int j = 0; j < markedmap[i].length(); j++)
+		for (int j = 0; j < (int)markedmap[i].length(); j++)
 		{
 
 			if (markedmap[i][j] == 'H')
@@ -64,9 +65,9 @@ std::list<std::pair<int, int>> MarkedMap::getMonsterPosition(char c) const
 	char type = c;
 	std::list <std::pair<int, int>> templist;
 
-	for (int i = 0; i < markedmap.size(); i++)
+	for (int i = 0; i < (int)markedmap.size(); i++)
 	{
-		for (int j = 0; j < markedmap[i].length(); j++)
+		for (int j = 0; j < (int)markedmap[i].length(); j++)
 		{
 			if (markedmap[i][j] == type)
 			{
@@ -79,12 +80,12 @@ std::list<std::pair<int, int>> MarkedMap::getMonsterPosition(char c) const
 	
 }
 
-int MarkedMap::getMaxCols()
+int MarkedMap::getMaxCols() const
 {
 	int max = 0;
-	for (int i = 0; i < markedmap.size(); i++)
+	for (int i = 0; i < (int)markedmap.size(); i++)
 	{
-		if (max < markedmap[i].length())
+		if (max < (int)markedmap[i].length())
 		{
 			max = markedmap[i].length();
 		}
