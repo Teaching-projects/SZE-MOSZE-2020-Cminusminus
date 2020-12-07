@@ -88,6 +88,11 @@ std::pair<int, int> Game::getHeroPos() const
 	return heroPos;
 }
 
+std::string Game::getFileName() const
+{
+	return fileName;
+}
+
 void Game::run()
 {
 

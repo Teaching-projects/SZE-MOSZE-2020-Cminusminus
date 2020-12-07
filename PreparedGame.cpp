@@ -1,6 +1,6 @@
 #include "PreparedGame.h"
 
-PreparedGame::PreparedGame(const std::string filename) : Game()
+PreparedGame::PreparedGame(const std::string filename) : Game(filename)
 {
 	JSON file = JSON::parseFromFile(filename);
 

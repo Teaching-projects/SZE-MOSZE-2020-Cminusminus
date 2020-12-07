@@ -23,6 +23,9 @@ public:
 	///\brief It returns the stored monsters and their positions.
 	///\return std::vector<std::pair<Monster, std::pair<int, int>>>
 	std::vector<std::pair<Monster, std::pair<int, int>>> getMonsters() const;
+	///\brief It returns the stored filename.
+	///\return std::string
+	std::string getFileName() const;
 	///\brief It returns the stored hero's pointer
 	///\return Hero*
 	Hero* getHero() const;
@@ -122,6 +125,7 @@ private:
 	std::vector<std::pair<Monster,std::pair<int,int>>> mapMonsters;
 	std::vector<Renderer*> renderers;
 	int maxColumns = 0;
+	std::string fileName = "";
 	bool mapSet = false;
 	bool heroPut = false;
 	bool monsterPut = false;

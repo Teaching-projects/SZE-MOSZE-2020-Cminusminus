@@ -8,7 +8,8 @@ void ObserverSVGRenderer::render(const Game& g) const {
     Hero* hero = g.getHero();
     std::pair<int, int> heropos = g.getHeroPos();
     std::string heroTexture;
-
+	JSON parser = JSON::parseFromFile(g.getFileName());
+	
     if (!std::filesystem::exists(hero->getTexture()))
     {
         heroTexture = "svg/not_found.svg";
@@ -22,24 +23,24 @@ void ObserverSVGRenderer::render(const Game& g) const {
     std::ofstream svg(output);
     std::string wallTexture;
 
-    if (!std::filesystem::exists("svg/wall.svg"))
+    if (!std::filesystem::exists(parser.get<std::string>("wall_texture")))
     {
         wallTexture = "svg/not_found.svg";
     }
     else
     {
-        wallTexture = "svg/wall.svg";
+        wallTexture = parser.get<std::string>("wall_texture");
     }
 
     std::string freeTexture;
 
-    if (!std::filesystem::exists("svg/free.svg"))
+    if (!std::filesystem::exists(parser.get<std::string>("free_texture")))
     {
-        freeTexture = "not_found.svg";
+        freeTexture = "svg/not_found.svg";
     }
     else
     {
-        freeTexture = "svg/free.svg";
+        freeTexture = parser.get<std::string>("free_texture");
     }
 
     int svgXCoords = 0;
@@ -70,7 +71,7 @@ void ObserverSVGRenderer::render(const Game& g) const {
                     {
                         if (!std::filesystem::exists(p.first.getTexture()))
                         {
-                            monsterTexture = "not_found.svg";
+                            monsterTexture = "svg/not_found.svg";
                         }
                         else
                         {
@@ -107,7 +108,8 @@ void CharacterSVGRenderer::render(const Game& g) const {
     Hero* hero = g.getHero();
     std::pair<int, int> heropos = g.getHeroPos();
     std::string heroTexture;
-
+	JSON parser = JSON::parseFromFile(g.getFileName());
+	
     if (!std::filesystem::exists(hero->getTexture()))
     {
         heroTexture = "svg/not_found.svg";
@@ -121,22 +123,22 @@ void CharacterSVGRenderer::render(const Game& g) const {
     std::ofstream svg(output);   
     std::string wallTexture;
 
-    if (!std::filesystem::exists("svg/wall.svg"))
+    if (!std::filesystem::exists(parser.get<std::string>("wall_texture"))
     {
        wallTexture = "svg/not_found.svg";
     }
     else
     {
-        wallTexture = "svg/wall.svg";
+        wallTexture = parser.get<std::string>("wall_texture");
     }
     std::string freeTexture;
-    if (!std::filesystem::exists("svg/free.svg"))
+    if (!std::filesystem::exists(parser.get<std::string>("free_texture"))
     {
         freeTexture = "svg/not_found.svg";
     }
     else
     {
-        freeTexture = "svg/free.svg";
+        freeTexture = parser.get<std::string>("free_texture");
     }
 
     int firsti = 0;
@@ -199,7 +201,7 @@ void CharacterSVGRenderer::render(const Game& g) const {
                     {
                         if (!std::filesystem::exists(p.first.getTexture()))
                         {
-                            monsterTexture = "not_found.svg";
+                            monsterTexture = "svg/not_found.svg";
                         }
                         else
                         {
