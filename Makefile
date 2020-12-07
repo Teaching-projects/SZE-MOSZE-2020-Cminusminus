@@ -1,4 +1,4 @@
-OBJS := JSON.o Monster.o Hero.o Game.o Map.o MarkedMap.o PreparedGame.o main.o
+OBJS := JSON.o Monster.o Hero.o Game.o Map.o MarkedMap.o PreparedGame.o Renderer.o main.o
 CGFLAGS := -std=c++17 -Wall
 CC := g++-9
 SCENARIO1 := scenarios/scenario1.json
@@ -30,6 +30,9 @@ PreparedGame.o: PreparedGame.cpp PreparedGame.h MarkedMap.h Game.h
 
 main.o: main.cpp Monster.h Hero.h JSON.h Map.h Game.h PreparedGame.h MarkedMap.h
 	$(CC) $(CGFLAGS) -c main.cpp
+
+Renderer.o: Renderer.h Renderer.cpp Game.h
+	$(CC) $(CGFLAGS) -c Renderer.cpp
 
 clean:
 	rm -rf *.o mosze_01 *.out ./docs 
