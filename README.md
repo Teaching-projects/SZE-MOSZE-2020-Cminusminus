@@ -1,12 +1,9 @@
 # SZE-MOSZE-2020-Cminusminus
 
 Csapattagok: \
-
-	* Mihalovics Fruzsina I6283S(@fruzsin)
-
-	* Kurucz Ádám VPX27T(@kurucc)
-
-	* Bólya Richárd DAWOBY(@bricsi0000000000000)
+- Mihalovics Fruzsina I6283S(@fruzsin)
+- Kurucz Ádám VPX27T(@kurucc)
+- Bólya Richárd DAWOBY(@bricsi0000000000000)
 
 Ez a program egy RPG játékot szimulál, amelyben egy *Hero* küzd meg egy vagy több *Monster*rel, egy adott pályán. A játék elindításához, a futtatni kívánt *game* fájlt kell megadni parancssori argumentumként. A harc addig tart, amíg a *Hero* le nem győzi a pályán lévő összes *Monster*t vagy meg nem hal. 
 
