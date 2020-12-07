@@ -67,7 +67,7 @@ $(function() {
 <div class="title">SZE-MOSZE-2020-Cminusminus </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p>Csapattagok: \</p><ul>
+<div class="textblock"><p>Csapattagok:</p><ul>
 <li>Mihalovics Fruzsina I6283S(@fruzsin)</li>
 <li>Kurucz Ádám VPX27T(@kurucc)</li>
 <li>Bólya Richárd DAWOBY(@bricsi0000000000000)</li>
@@ -81,7 +81,7 @@ $(function() {
 <div class="line">    &quot;dmg&quot;: 14,</div>
 <div class="line">}</div>
 </div><!-- fragment --><p>A program először leellenőrzi, hogy a parancssori argumentumok száma megfelelő-e *(Kettő fájl van-e megadva)*, majd, ha igen, akkor, annak a két fájlnak a létezését ellenőrzi le a <b>fileExists</b> nevű függvénnyel. Ha bármely fájl nem létezik a program kilép és kiírja, hogy valamelyik fájl nem létezik. Ha mindkét fájl létezik, akkor lefut a <b>battle</b> nevű függvény és kiírja, hogy <em>character_name</em> wins. Remaining HP: <em>xxx</em>.</p>
-<p><b>Feladat 3</b>\</p><ul>
+<p><b>Feladat 3</b></p><ul>
 <li><b>Attack speed</b> \ A <b><a class="el" href="classJSON.html">JSON</a></b> fájl kiegészül egy újabb sorral <b>attackCooldown</b> néven, amely felvehet nem egész értéket is. <div class="fragment"><div class="line">{</div>
 <div class="line">    &quot;name&quot;: &quot;Béla&quot;,</div>
 <div class="line">    &quot;hp&quot;: 1500000,</div>
@@ -97,7 +97,7 @@ $(function() {
 <li><b>Level up</b> \ A program kiegészül egy új osztállyal, amely a <em>Character</em> osztályból származik és <em>Player</em> a neve. A <em>Player</em> annyiban különbözik a <em>Character</em>-től, hogy rendelkezik <em>level*lel, valamint *XP</em>-vel és hogyha az eléri a <em>100</em>-at, akkor szintet lép, amely következtében a <em>damage</em> megnövekszik <em>10</em>%-kal, valamint a <em>maxHP</em> szintúgy megnövekszik <em>10</em>%-kal és a <em>HP</em> a <em>maxHP</em>-vel lesz egyenlő.</li>
 <li><b><a class="el" href="classJSON.html">JSON</a> Parser</b> \ Ebben a feladatban egy json parsert valósítottam meg, ami 3 féle képpen képes működni. Paraméterként kaphat egy fájl <b>nevet</b>, fájl <b>tartalmát</b> vagy egy <b>istreamet</b>.</li>
 </ul>
-<p><b>Feladat 4</b> \</p><ul>
+<p><b>Feladat 4</b></p><ul>
 <li><b>Documentation</b> \ A program kimaradt függvényeit kiegészítettük, amelyekben hiányoztak a doxygen-hez szükséges kommentek.</li>
 <li><b>Makefile</b> \ Ebben a feladatrészben a ,,miniscripteket" egységesen egy <b>Makefile</b> fájlba helyeztük, ami kicsit egységesíti a GHA kódokat és a doxygen dokumentáció generálást.</li>
 <li><b>Unittests</b> \ Ebben a feladatban különböző <b>Unittesteket</b> hoztunk létre a különböző funkciók teszteléséhez.</li>
@@ -106,7 +106,9 @@ $(function() {
 <p><b>Feladat 5</b></p><ul>
 <li><b>Docker</b> \ Ebben a feladatrészben <b>Docker</b> segítségével a különböző sudo-kat, installokat helyeztük egységesen egy <b>imagebe</b>, <b>containerbe</b>.</li>
 </ul>
-<p><b>Feladat 6 - JSONPimp</b> \ Ebben a feladatrészben a main.cpp-ben és a különböző scenariok-ban lévő változtatásokhoz kiegészítettük a <a class="el" href="classJSON.html">JSON</a> parzerünket, és hozzáadtuk a listbe való parzolást is.</p>
+<p><b>Feladat 6</b></p><ul>
+<li><b>JSONPimp</b> \ Ebben a feladatrészben a main.cpp-ben és a különböző scenariok-ban lévő változtatásokhoz kiegészítettük a <a class="el" href="classJSON.html">JSON</a> parzerünket, és hozzáadtuk a listbe való parzolást is.</li>
+</ul>
 <p><b>Feladat 7</b></p><ul>
 <li><b><a class="el" href="classMap.html">Map</a></b> \ Ebben a feladatban egy új osztály került létrehozásra, melynek <b><a class="el" href="classMap.html">Map</a></b> a neve, és a célja az, hogy egy adott fájlból egy térképet töltsön be.</li>
 <li><b>Defense</b> \ Ebben a feladatban a <em><a class="el" href="classMonster.html">Monster</a></em> és a <em><a class="el" href="classHero.html">Hero</a></em> osztályokhoz kellett új funkciókat bevezetni. A karakterek támadás során most már védekezni is tudnak. Továbbá a <em>Hero*nak a *defense</em> tagja szintlépéskor ugyanúgy megnő.</li>
@@ -120,7 +122,7 @@ $(function() {
 <ul>
 <li><b><a class="el" href="classGame.html">Game</a></b> \ Ebben a feladatban egy új osztályt hoztunk létre <em><a class="el" href="classGame.html">Game</a></em> néven, amely betölt egy térképet, és ezen a térképen elhelyez <em>Herokat</em> és <em>Monstereket</em>, majd a ,,north", ,,east", ,,west", valamint a "south" parancsokkal lehet irányítani a Herot, és ha az azonos mezőn van egy Monsterrel, vagy több Monsterrel, akkor harcol velük, és ez mindaddig megy, amíg a <a class="el" href="classHero.html">Hero</a> meg nem hal, vagy meg nem öli a térképen található összes Monstert. Példa kimenet megtalálható a <em>good-outputs.txt</em> fájlban.</li>
 </ul>
-<p><b>Feladat 8</b> \</p><ul>
+<p><b>Feladat 8</b></p><ul>
 <li><b><a class="el" href="classMarkedMap.html">MarkedMap</a></b>\ A <b><a class="el" href="classMap.html">Map</a></b> osztályból származik ez az osztály, és ezen a térképen a <em><a class="el" href="classHero.html">Hero</a></em> helyét egy <em>H</em> betű jelöli, a <em>Monster*ek helyét pedig számok, attól függően, hogy milyen típusú *Monster</em> az.</li>
 </ul>
 <p>-**Light Radius**\ Ennek a feladat során a <b><a class="el" href="classGame.html">Game</a></b> <em>drawMap</em> függvénye változott meg, úgy hogy a <em><a class="el" href="classHero.html">Hero</a></em> már rendelkezik egy <em>lightRadius</em> és egy <em>lightRadiusBonusPerLevel</em> taggal, amelynek hatására nem az egész térkép rajzolódik ki, hanem csak a <em>lightRadius</em> hatóköre. Ez a <em>lightRadius</em> szintlépsékor ugyanúgy növekszik, így a játék lefolyása során egyre több minden rajzolódik ki.</p>
