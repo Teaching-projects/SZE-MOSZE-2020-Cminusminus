@@ -7,7 +7,7 @@
 #include <fstream>
 #include <iostream>
 
-class Game; ///Forward declaration of the Game class.
+class Game; //Forward declaration of the Game class.
 
 class Renderer {
 	/**

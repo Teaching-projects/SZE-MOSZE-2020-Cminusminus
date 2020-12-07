@@ -6,7 +6,7 @@
 #include "Renderer.h"
 #include <vector>
 
-class Renderer; ///Forward declaration of the Renderer class.
+class Renderer; //Forward declaration of the Renderer class.
 class Game
 {
 /**
