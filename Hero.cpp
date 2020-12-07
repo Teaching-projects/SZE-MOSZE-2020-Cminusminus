@@ -135,7 +135,7 @@ void Hero::Attack(Monster& enemy) {
 	}
 
 }
-void Hero::XPManager(const Monster& enemy)
+void Hero::XPManager(Monster& enemy)
 {
 	if (enemy.getHealthPoints() < ((this->getPhysicalDmg()-enemy.getDefense())+this->getMagicalDmg()))
 	{

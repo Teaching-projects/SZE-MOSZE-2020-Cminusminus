@@ -49,7 +49,7 @@ public:
 	int getRadius() const;
 private:
 	void XPManager(Monster& enemy);
-	void Attack(const Monster& enemy) override;
+	void Attack(Monster& enemy) override;
 
 	int level = 1;
 	int xp = 0;
