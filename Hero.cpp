@@ -3,8 +3,8 @@
 #include <cmath>
 #include <fstream>
 
-Hero::Hero(const std::string name, int base_health, Damage damage, double base_attackCooldown, int defense, int xpPerLevel,
-	int hpPerLevel, int dmgBonusPerLevel, double atcdMultiplier,int defBonusPerLevel, int magbonperlev, int lightr, int lightrbonusPerLevel, std::string texture) :
+Hero::Hero(const std::string name, const int base_health, Damage damage, const double base_attackCooldown, const int defense, const int xpPerLevel,
+	const int hpPerLevel, const int dmgBonusPerLevel, const double atcdMultiplier,const int defBonusPerLevel, const int magbonperlev, const int lightr, const int lightrbonusPerLevel, const std::string texture) :
 	Monster(name, base_health, damage, base_attackCooldown, defense,texture),
 	xpPerLevel(xpPerLevel), hpPerLevel(hpPerLevel), dmgBonusPerLevel(dmgBonusPerLevel), atcdMultiplier(atcdMultiplier), defBonusPerLevel(defBonusPerLevel), magicalBonusPerLevel(magbonperlev), lightRadius(lightr), lightRadiusBonusPerLevel(lightrbonusPerLevel)
 {
@@ -135,7 +135,7 @@ void Hero::Attack(Monster& enemy) {
 	}
 
 }
-void Hero::XPManager(Monster& enemy)
+void Hero::XPManager(const Monster& enemy)
 {
 	if (enemy.getHealthPoints() < ((this->getPhysicalDmg()-enemy.getDefense())+this->getMagicalDmg()))
 	{

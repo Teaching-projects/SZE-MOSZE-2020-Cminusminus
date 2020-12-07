@@ -16,7 +16,7 @@ class Map
 
 public:
 	Map() {};
-	Map(std::string filename);
+	Map(const std::string filename);
 	
 	///\brief The enum ,,type" for the map
 	enum type
@@ -41,17 +41,18 @@ public:
 	///\param x The rows of the map
 	///\param y The columns of the map
 	///\return Map::type
-	virtual Map::type get(int x, int y) const;
+	virtual Map::type get(const int x, const int y) const;
 	///\brief A function to get the columns number of the map.
 	///\param x The x coordinates
 	///\return int
-	int getColumns(int x) const;
+	int getColumns(const int x) const;
 	///\brief A function to get the rows number of the map.
 	///\return int
 	int getRows() const;
 	///\brief A function to get the max columns number of the map.
 	///\return int
-	virtual int getMaxCols() const;
+	int getMaxCols() const;
+	std::vector<std::string> getMap() const;
 
 private:
 	std::vector<std::string> map;

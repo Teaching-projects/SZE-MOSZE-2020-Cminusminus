@@ -3,7 +3,7 @@
 #include <cmath>
 #include <fstream>
 
-Monster::Monster(std::string name, int health, Damage damage, double attackCooldown, int defense, std::string texture) :
+Monster::Monster(const std::string name, const int health, Damage damage, const double attackCooldown, const int defense, const std::string texture) :
 	name(name),
 	health(health),
 	damage(damage),
@@ -21,7 +21,7 @@ int Monster::getDefense() const
 	return defense;
 }
 
-void Monster::setDefense(int bonus)
+void Monster::setDefense(const int bonus)
 {
 	defense += bonus;
 }
@@ -116,7 +116,7 @@ int Monster::getMagicalDmg() const
 }
 
 
-void Monster::GainDamage(const int bonus, std::string type)
+void Monster::GainDamage(const int bonus, const std::string type)
 {
 	if (type == "physical")
 	{
@@ -128,7 +128,7 @@ void Monster::GainDamage(const int bonus, std::string type)
 	}
 }
 
-void Monster::AcdMultiplier(double multiplier)
+void Monster::AcdMultiplier(const double multiplier)
 {
 	attackCooldown *= multiplier;
 }
@@ -138,7 +138,7 @@ bool Monster::isAlive() const {
 }
 
 
-void Monster::getAttacked(int damage) {
+void Monster::getAttacked(const int damage) {
 	health -= damage;
 	if (health < 0) {
 		health = 0;

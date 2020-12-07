@@ -3,7 +3,6 @@
 
 #include<iostream>
 #include "Monster.h"
-#include<memory>
 #include "JSON.h"
 
 class Hero : public Monster
@@ -26,8 +25,8 @@ class Hero : public Monster
 *\param texture The texture of the hero in svg.
 */
 public:
-	Hero(const std::string name, int base_health, Damage damage, double base_attackCooldown, int defense, int xpPerLevel, int hpPerLevel,
-		int dmgBonusPerLevel, double atcdMultiplier,  int defBonusPerLevel, int magbonperlev, int lightr, int lightrbonusPerLevel,std::string texture);
+	Hero(const std::string name, const int base_health, Damage damage, const double base_attackCooldown, const int defense, const int xpPerLevel, const int hpPerLevel,
+		const int dmgBonusPerLevel, const double atcdMultiplier, const int defBonusPerLevel, const int magbonperlev, const int lightr, const int lightrbonusPerLevel, const std::string texture);
 	///This function parse a Hero from a file.
 	///\param s
 	///\return Hero
@@ -50,7 +49,7 @@ public:
 	int getRadius() const;
 private:
 	void XPManager(Monster& enemy);
-	void Attack(Monster& enemy) override;
+	void Attack(const Monster& enemy) override;
 
 	int level = 1;
 	int xp = 0;

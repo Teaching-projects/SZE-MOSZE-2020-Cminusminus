@@ -64,7 +64,7 @@ public:
 	///\brief Count function for the JSON class.
 	///\param key The name of the key
 	///\return bool
-	bool count(std::string key) const { return input_datas.count(key); }
+	bool count(const std::string key) const { return input_datas.count(key); }
 	///\brief It parses a JSON from a file.
 	///\param filename The name of the file we parse
 	///\return JSON

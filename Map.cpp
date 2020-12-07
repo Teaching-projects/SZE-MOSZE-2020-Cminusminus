@@ -1,7 +1,7 @@
 #include "Map.h"
 
 
-Map::Map(std::string filename)
+Map::Map(const std::string filename)
 {
 	std::ifstream ifst;
 	std::string line;
@@ -22,7 +22,7 @@ Map::Map(std::string filename)
 	ifst.close();
 }
 
-Map::type Map::get(int x, int y) const
+Map::type Map::get(const int x, const int y) const
 {
 	if (x < 0 || x >= (int)map.size())
 	{
@@ -44,7 +44,7 @@ Map::type Map::get(int x, int y) const
 	return type(-1);
 }
 
-int Map::getColumns(int x) const
+int Map::getColumns(const int x) const
 {
 	return map[x].length();
 }
@@ -65,4 +65,9 @@ int Map::getMaxCols() const
 		}
 	}
 	return max;
+}
+
+std::vector<std::string> Map::getMap() const
+{
+	return map;
 }

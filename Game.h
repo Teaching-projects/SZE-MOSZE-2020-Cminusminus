@@ -17,7 +17,7 @@ class Game
 */
 public:
 	Game();
-	Game(std::string mapfilename);
+	Game(const std::string mapfilename);
 	~Game()
 	{
 		delete mapHero;
@@ -30,22 +30,22 @@ public:
 	void run();
 	///\brief A function to set the map for the game.
 	///\param map The map we set.
-	void setMap(Map map);
+	void setMap(const Map map);
 	///\brief A function to put a hero on the map.
 	///\param hero The hero we put.
 	///\param x the x coordinates.
 	///\param y the y coordinates
-	void putHero(Hero hero, int x, int y);
+	void putHero(const Hero hero, const int x, const int y);
 	///\brief A function to put a monster on the map.
 	///\param monster The monster we put.
 	///\param x the x coordinates.
 	///\param y the y coordinates
-	void putMonster(Monster monster, int x, int y);
+	void putMonster(const Monster monster, const int x, const int y);
 	Map getMap() const;
 	///\brief A function to count the monsters on the map.
 	///\param x The x coordinates
 	///\param y the y coordinates
-	int monsterCount(int x, int y) const;
+	int monsterCount(const int x, const int y) const;
 	void registerRenderer(Renderer* renderer);
 
 protected:

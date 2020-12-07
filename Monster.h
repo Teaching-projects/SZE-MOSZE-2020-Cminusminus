@@ -3,7 +3,6 @@
 #define MONSTER_H
 
 #include<string>
-#include<memory>
 #include <vector>
 #include "JSON.h"
 
@@ -64,7 +63,7 @@ class Monster
   */
 public:
 
-	Monster(std::string name, int health, Damage damage, double attackCooldown, int defense, std::string texture);
+	Monster(const std::string name, const int health, Damage damage, const double attackCooldown, const int defense, const std::string texture);
 	Monster() { damage.magical = 0; damage.physical = 0; };
 	std::string getTexture() const;
 	///It returns the defense of the Monster
@@ -72,7 +71,7 @@ public:
 	int getDefense() const;
 	///It sets the defense of the Hero when it levels up
 	///\param bonus The amount we add to the defense
-	void setDefense(int bonus);
+	void setDefense(const int bonus);
 	///This function parse a Monster from a file.
 	///\param s The file name we parse.
 	///\return Monster
@@ -98,10 +97,10 @@ public:
 	int getMagicalDmg() const;
 	///It sets the damage of the hero after level up
 	///\param bonus, type The damage the hero gains after level up and the type of damage it gains
-	void GainDamage(const int bonus, std::string type);
+	void GainDamage(const int bonus, const std::string type);
 	///It multiplies the attack cooldown with the given amount.
 	///\param multplier The amound we multiply the attack cooldown.
-	void AcdMultiplier(double multiplier);
+	void AcdMultiplier(const double multiplier);
 	///It checks if the monster is alive.
 	///\return true or false.
 	bool isAlive() const;
@@ -113,7 +112,7 @@ public:
 	double getAttackCoolDown() const;
 	///Attacks the enemy.
 	///\param damage The damage we attack the enemy with
-	void getAttacked(int damage);
+	void getAttacked(const int damage);
 private:
 	virtual void Attack(Monster& enemy);
 
