@@ -369,7 +369,7 @@ TEST(checkMonstersPosition, checkMarkedMap){
 TEST(checkRowsAndCols, checkMarkedMap){
 	
 	try{
-	MarkedMap map("markedmap.txt");
+	MarkedMap map("maps/markedmap.txt");
 	
 	ASSERT_EQ(14,map.getMaxCols());
 	ASSERT_EQ(7,map.getRows());
@@ -386,10 +386,10 @@ TEST(checkTextures, checkSVGRenderer){
 	Monster m2 = Monster::parse("Zombie.json");
 	Monster m3 = Monster::parse("Blood_Raven.json");
 	
-	ASSERT_EQ("Dark_Wanderer.svg",hero.getTexture());
-	ASSERT_EQ("Fallen.svg",m1.getTexture());
-	ASSERT_EQ("Zombie.svg",m2.getTexture());
-	ASSERT_EQ("Blood_Raven.svg",m3.getTexture());
+	ASSERT_EQ("svg/Dark_Wanderer.svg",hero.getTexture());
+	ASSERT_EQ("svg/Fallen.svg",m1.getTexture());
+	ASSERT_EQ("svg/Zombie.svg",m2.getTexture());
+	ASSERT_EQ("svg/Blood_Raven.svg",m3.getTexture());
 	
 	}catch(std::runtime_error& e)
 	{
