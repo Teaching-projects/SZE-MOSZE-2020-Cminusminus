@@ -397,22 +397,6 @@ TEST(checkTextures, checkSVGRenderer){
 	}
 }
 
-TEST(checkPositionsOnMarkedMap, checkPreparedGame){
-	try{
-	PreparedGame game("game.json");
-	
-	ASSERT_EQ(1,game.getHeroPos().first);
-	ASSERT_EQ(2,game.getHeroPos().second);	
-	ASSERT_EQ("Fallen",game.getMonsters().front().first.getName());
-	ASSERT_EQ(3,game.getMonsters().front().second.first);
-	ASSERT_EQ(2,game.getMonsters().front().second.second);
-	
-	}catch(std::runtime_error& e)
-	{
-		ASSERT_STREQ(e.what(), "Map or parse error!");
-	}
-}
-
 int main(int argc, char **argv){
     ::testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
