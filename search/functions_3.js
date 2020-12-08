@@ -1,7 +1,7 @@
 var searchData=
 [
   ['gaindamage_104',['GainDamage',['../classMonster.html#a7b2f4d9db377ad3e7f90a5595de1372c',1,'Monster']]],
-  ['game_105',['Game',['../classGame.html#ad59df6562a58a614fda24622d3715b65',1,'Game::Game()'],['../classGame.html#add77b97f96e152b5621b62d1c143df28',1,'Game::Game(const std::string mapfilename)']]],
+  ['game_105',['Game',['../classGame.html#ad59df6562a58a614fda24622d3715b65',1,'Game::Game()'],['../classGame.html#a77dfcde1a12c4d13e6e6e38a149fdb2c',1,'Game::Game(const std::string &amp;mapfilename)']]],
   ['gamealreadystartedexception_106',['GameAlreadyStartedException',['../classGame_1_1GameAlreadyStartedException.html#a5855d67ff09b6aa532efd2115cdd8367',1,'Game::GameAlreadyStartedException']]],
   ['get_107',['get',['../classJSON.html#a8de84d9d127678670c65199e150ac6d4',1,'JSON::get(const std::string &amp;key)'],['../classJSON.html#a2e3d7b3d03297c4b09ce1f64ad4187d7',1,'JSON::get(const std::string &amp;key)'],['../classMap.html#a7f8fcdae37aa3637b4aa679555a2a001',1,'Map::get()']]],
   ['getattackcooldown_108',['getAttackCoolDown',['../classMonster.html#ad84dbe06c7a2aa7f75164dd9db52daf3',1,'Monster']]],
