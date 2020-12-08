@@ -163,7 +163,7 @@ void CharacterSVGRenderer::render(const Game& g) const {
 
     }
 
-    int svgXCoords = 0;
+    int svgXCoords;
     int svgYCoords = 0;
     int svgWidth = map.getMaxCols() * 10;
     int svgHeight = map.getRows() * 10;
