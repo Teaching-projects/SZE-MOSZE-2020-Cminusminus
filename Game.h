@@ -9,13 +9,20 @@
 class Renderer; //Forward declaration of the Renderer class.
 class Game
 {
+
+public:
 /**
+*\brief Default constructor of the class
+*/
+	Game();
+	/**
 *\brief A class for load and initialize a game.
 *\param mapfilename The name of the map file we load.
 */
-public:
-	Game();
 	explicit Game(const std::string mapfilename);
+	/**
+*\brief Destructor of the class
+*/
 	~Game()
 	{
 		delete mapHero;
