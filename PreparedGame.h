@@ -12,7 +12,7 @@ class PreparedGame : public Game
 *\param filename The filename we load from.
 */
 public:
-	PreparedGame(const std::string& filename);
+	explicit PreparedGame(const std::string& filename);
 
 };
 #endif

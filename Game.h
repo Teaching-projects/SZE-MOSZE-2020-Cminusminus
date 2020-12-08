@@ -43,17 +43,17 @@ public:
 	void run();
 	///\brief A function to set the map for the game.
 	///\param map The map we set.
-	void setMap(const Map map);
+	void setMap(const Map& map);
 	///\brief A function to put a hero on the map.
 	///\param hero The hero we put.
 	///\param x the x coordinates.
 	///\param y the y coordinates
-	void putHero(const Hero hero, const int x, const int y);
+	void putHero(const Hero& hero, const int x, const int y);
 	///\brief A function to put a monster on the map.
 	///\param monster The monster we put.
 	///\param x the x coordinates.
 	///\param y the y coordinates
-	void putMonster(const Monster monster, const int x, const int y);
+	void putMonster(const Monster& monster, const int x, const int y);
 	///\brief It returns the stored map.
 	///\return Map
 	Map getMap() const;

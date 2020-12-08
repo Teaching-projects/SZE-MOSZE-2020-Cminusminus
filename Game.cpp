@@ -9,7 +9,7 @@ Game::Game(const std::string& mapfilename) : fileName(mapfilename)
 	setMaxCols(map.getMaxCols());
 }
 
-void Game::setMap(const Map map)
+void Game::setMap(const Map& map)
 {
 	if (heroPut || monsterPut)
 	{
@@ -23,7 +23,7 @@ void Game::setMap(const Map map)
 	mapSet = true;
 }
 
-void Game::putHero(const Hero hero, const int x, const int y)
+void Game::putHero(const Hero& hero, const int x, const int y)
 {
 	if (mapSet == false)
 	{
@@ -47,7 +47,7 @@ void Game::putHero(const Hero hero, const int x, const int y)
 	heroPut = true;
 }
 
-void Game::putMonster(const Monster monster, const int x, const int y)
+void Game::putMonster(const Monster& monster, const int x, const int y)
 {
 	if (mapSet == false)
 	{
