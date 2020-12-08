@@ -286,21 +286,24 @@ TEST(checkWrongMapName, checkGame){
 
 TEST(checkWall, checkMap){
 	
-	Map mapp("maps/map2.txt");
+	std::string m="maps/map2.txt";
+	Map mapp(m);
 	ASSERT_EQ(1,mapp.get(0,5));
 
 }
 
 TEST(checkFree, checkMap){
 	
-	Map mapp("maps/map2.txt");
+	std::string m="maps/map2.txt";
+	Map mapp(m);
 	ASSERT_EQ(0,mapp.get(3,1));
 
 }
 
 TEST(checkWrongIndex, checkMap){
 	try{
-	Map mapp("maps/map2.txt");
+		std::string m="maps/map2.txt";
+	Map mapp(m);
 	
 	ASSERT_EQ(0,mapp.get(20,20));
 	}catch(std::runtime_error& e)
@@ -311,7 +314,8 @@ TEST(checkWrongIndex, checkMap){
 
 TEST(checkWall, checkMarkedMap){
 	try{
-	MarkedMap map("maps/markedmap.txt");
+	std::string mm="maps/markedmap.txt";
+	MarkedMap map(mm);
 	
 	ASSERT_EQ(1,map.get(0,3));
 	}catch(std::runtime_error& e)
@@ -322,7 +326,8 @@ TEST(checkWall, checkMarkedMap){
 
 TEST(checkFree, checkMarkedMap){
 	try{
-	MarkedMap map("maps/markedmap.txt");
+	std::string mm="maps/markedmap.txt";
+	MarkedMap map(mm);
 	
 	ASSERT_EQ(0,map.get(5,3));
 	}catch(std::runtime_error& e)
@@ -333,7 +338,8 @@ TEST(checkFree, checkMarkedMap){
 
 TEST(checkWrongIndex, checkMarkedMap){
 	try{
-	MarkedMap map("maps/markedmap.txt");
+	std::string mm="maps/markedmap.txt";
+	MarkedMap map(mm);
 	
 	ASSERT_EQ(0,map.get(30,3));
 	}catch(std::runtime_error& e)
@@ -344,8 +350,8 @@ TEST(checkWrongIndex, checkMarkedMap){
 
 TEST(checkHeroPosition, checkMarkedMap){
 	try{
-	MarkedMap map("maps/markedmap.txt");
-	
+	std::string mm="maps/markedmap.txt";
+	MarkedMap map(mm);
 	ASSERT_EQ(1,map.getHeroPosition().first);
 	ASSERT_EQ(2,map.getHeroPosition().second);
 	}catch(std::runtime_error& e)
@@ -356,7 +362,8 @@ TEST(checkHeroPosition, checkMarkedMap){
 
 TEST(checkMonstersPosition, checkMarkedMap){
 	try{
-	MarkedMap map("maps/markedmap.txt");
+		std::string mm="maps/markedmap.txt";
+	MarkedMap map(mm);
 	
 	ASSERT_EQ(3,map.getMonsterPosition('3').begin()->first);
 	ASSERT_EQ(6,map.getMonsterPosition('3').begin()->second);
@@ -369,7 +376,8 @@ TEST(checkMonstersPosition, checkMarkedMap){
 TEST(checkRowsAndCols, checkMarkedMap){
 	
 	try{
-	MarkedMap map("maps/markedmap.txt");
+    std::string mm="maps/markedmap.txt";
+	MarkedMap map(mm);
 	
 	ASSERT_EQ(14,map.getMaxCols());
 	ASSERT_EQ(7,map.getRows());

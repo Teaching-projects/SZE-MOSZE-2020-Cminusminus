@@ -1,7 +1,7 @@
 #include "Map.h"
 
 
-Map::Map(const std::string filename)
+Map::Map(const std::string& filename)
 {
 	std::ifstream ifst;
 	std::string line;

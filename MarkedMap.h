@@ -14,7 +14,7 @@ class MarkedMap : public Map
 */
 
 public:
-	explicit MarkedMap(std::string filename);
+	explicit MarkedMap(std::string& filename);
 	///\brief Function to get the hero's position.
 	///\return std::pair<int,int>
 	std::pair<int,int> getHeroPosition() const;
