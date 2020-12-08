@@ -105,7 +105,7 @@ void Game::run()
 	gameStarted = true;
 	unsigned int deadMonsterCount = 0;
 
-	while (mapMonsters.size() > deadMonsterCount && mapHero != nullptr)
+	while (mapMonsters.size() > deadMonsterCount && mapHero->isAlive())
 	{
 		for (int i = 0; i < (int)mapMonsters.size(); i++)
 		{
@@ -172,12 +172,6 @@ void Game::run()
 		}
 		std::cout << mapHero->getName() << " cleared the map." << std::endl;
 	}
-	if (heroPut == false)
-	{
-		mapHero = nullptr;
-	}
-
-
 }
 
 int Game::monsterCount(const int x, const int y) const
