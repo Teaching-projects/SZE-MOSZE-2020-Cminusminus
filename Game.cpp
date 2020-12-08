@@ -157,7 +157,7 @@ void Game::run()
 				moveHero(heroPos.first, heroPos.second + 1);
 			}
 		}
-		catch (OccupiedException e)
+		catch (OccupiedException& e)
 		{
 			std::cout << "There's a wall in this position!\n";
 			continue;

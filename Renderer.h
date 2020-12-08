@@ -36,7 +36,7 @@ public:
     TextRenderer(std::ostream* stream) : outputStream(*stream) { }
 	///\brief A function to render.
 	///\param Game& The game we want to render from.
-    virtual void render(const Game&) const = 0;
+    virtual void render(const Game&) const override = 0;
 	///\brief A function to set the output stream.
 	///\param std::ostream& The output stream we want to set.
     void setOutputStream(std::ostream& stream) const
@@ -95,7 +95,7 @@ public:
     SVGRenderer(const std::string& output) : output(output) {}
 	///\brief A function to render.
 	///\param Game& The game we want to render from.
-    virtual void render(const Game&) const = 0;
+    virtual void render(const Game&) const override = 0;
 
 protected:
     const std::string output = ""; ///The file we open.
@@ -111,7 +111,7 @@ public:
     explicit CharacterSVGRenderer(const std::string& output) : SVGRenderer(output) {}
 	///\brief A function to render.
 	///\param Game& The game we want to render from.
-    virtual void render(const Game&) const;
+    virtual void render(const Game&) const override;
 };
 
 class ObserverSVGRenderer : public SVGRenderer {
@@ -123,7 +123,7 @@ public:
     explicit ObserverSVGRenderer(const std::string& output) : SVGRenderer(output) {}
 	///\brief A function to render.
 	///\param Game& The game we want to render from.
-    virtual void render(const Game&) const;
+    virtual void render(const Game&) const override;
 };
 
 #endif 
