@@ -19,7 +19,7 @@ public:
 *\brief A class for load and initialize a game.
 *\param mapfilename The name of the map file we load.
 */
-	explicit Game(const std::string mapfilename);
+	explicit Game(const std::string& mapfilename);
 	/**
 *\brief Destructor of the class
 */

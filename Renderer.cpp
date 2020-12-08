@@ -43,7 +43,6 @@ void ObserverSVGRenderer::render(const Game& g) const {
         freeTexture = parser.get<std::string>("free_texture");
     }
 
-    unsigned int svgXCoords;
     int svgYCoords = 0;
     int svgWidth = map.getMaxCols() * 10;
     int svgHeight = map.getRows() * 10;
@@ -51,7 +50,7 @@ void ObserverSVGRenderer::render(const Game& g) const {
     svg << "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"" << svgWidth << "\" height=\"" << svgHeight << "\">\n";
     for (int x = 0; x < map.getRows(); x++)
     {
-        svgXCoords = 0;
+        int svgXCoords = 0;
         for (int y = 0; y < map.getColumns(x); y++)
         {
             if (map.get(x, y) == 1)
@@ -144,7 +143,6 @@ void CharacterSVGRenderer::render(const Game& g) const {
     int firsti = 0;
     int secondi = g.getMap().getRows();
     int tmc = g.getMap().getMaxCols();
-	unsigned int tm;
     if ((g.getHeroPos().first - g.getHero()->getRadius()) > 0)
     {
         firsti = g.getHeroPos().first - g.getHero()->getRadius();
@@ -153,21 +151,12 @@ void CharacterSVGRenderer::render(const Game& g) const {
     {
         secondi = g.getHeroPos().first + g.getHero()->getRadius() + 1;
     } 
-    if ((g.getHeroPos().second - g.getHero()->getRadius()) > 0)
-    {
-        tm = (unsigned int)((g.getHeroPos().second) - (g.getHero()->getRadius()));
-    }
-	else
-	{
-		tm = 0;
-	}
     if ((g.getHeroPos().second + g.getHero()->getRadius() + 1) < g.getMap().getMaxCols())
     {
         tmc = ((g.getHeroPos().second) + (g.getHero()->getRadius()) + 1);
 
     }
 
-    unsigned int svgXCoords;
     int svgYCoords = 0;
     int svgWidth = map.getMaxCols() * 10;
     int svgHeight = map.getRows() * 10;
@@ -175,7 +164,7 @@ void CharacterSVGRenderer::render(const Game& g) const {
     svg << "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"" << svgWidth << "\" height=\"" << svgHeight << "\">\n";
     for (int i = firsti; i < secondi; i++)
     {
-		svgXCoords = 0;
+		int svgXCoords = 0;
         int firstj = 0;
         int secondj = g.getMap().getColumns(i);
         if ((g.getHeroPos().second - g.getHero()->getRadius()) > 0)
@@ -188,6 +177,7 @@ void CharacterSVGRenderer::render(const Game& g) const {
         }
         for (int j = firstj; j < secondj; j++)
         {
+			
             if (map.get(i, j) == 1)
             {
                 svg << "<image href=\"" << wallTexture << "\" width=\"10\" height=\"10\" x=\"" << svgXCoords << "\" y=\"" << svgYCoords << "\"/>\n";
