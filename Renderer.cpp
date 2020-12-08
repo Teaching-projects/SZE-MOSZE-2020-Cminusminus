@@ -144,7 +144,7 @@ void CharacterSVGRenderer::render(const Game& g) const {
     int firsti = 0;
     int secondi = g.getMap().getRows();
     int tmc = g.getMap().getMaxCols();
-    int tm = 0;
+	unsigned int tm;
     if ((g.getHeroPos().first - g.getHero()->getRadius()) > 0)
     {
         firsti = g.getHeroPos().first - g.getHero()->getRadius();
@@ -155,8 +155,12 @@ void CharacterSVGRenderer::render(const Game& g) const {
     } 
     if ((g.getHeroPos().second - g.getHero()->getRadius()) > 0)
     {
-        tm = ((g.getHeroPos().second) - (g.getHero()->getRadius()));
+        tm = (unsigned int)((g.getHeroPos().second) - (g.getHero()->getRadius()));
     }
+	else
+	{
+		tm = 0;
+	}
     if ((g.getHeroPos().second + g.getHero()->getRadius() + 1) < g.getMap().getMaxCols())
     {
         tmc = ((g.getHeroPos().second) + (g.getHero()->getRadius()) + 1);
@@ -171,7 +175,7 @@ void CharacterSVGRenderer::render(const Game& g) const {
     svg << "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"" << svgWidth << "\" height=\"" << svgHeight << "\">\n";
     for (int i = firsti; i < secondi; i++)
     {
-        svgXCoords = 0;
+		svgXCoords = 0;
         int firstj = 0;
         int secondj = g.getMap().getColumns(i);
         if ((g.getHeroPos().second - g.getHero()->getRadius()) > 0)
