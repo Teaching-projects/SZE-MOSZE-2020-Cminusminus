@@ -56,12 +56,12 @@ public:
 	*\brief A class for rendering text.
 	*\param std::ostream& The stream we want to render to.
 	*/
-    HeroTextRenderer(std::ostream& stream) : TextRenderer(stream) {}
+    explicit HeroTextRenderer(std::ostream& stream) : TextRenderer(stream) {}
 	/**
 	*\brief A class for rendering text.
 	*\param std::ostream* The stream we want to render to.
 	*/
-    HeroTextRenderer(std::ostream* stream) : TextRenderer(stream) { }
+    explicit HeroTextRenderer(std::ostream* stream) : TextRenderer(stream) { }
 	///\brief A function to render.
 	///\param Game& The game we want to render from.
     void render(const Game&) const override;
@@ -74,12 +74,12 @@ public:
 	*\brief A class for rendering text.
 	*\param std::ostream& The stream we want to render to.
 	*/
-    ObserverTextRenderer(std::ostream& stream) : TextRenderer(stream) {}
+    explicit ObserverTextRenderer(std::ostream& stream) : TextRenderer(stream) {}
 	/**
 	*\brief A class for rendering text.
 	*\param std::ostream* The stream we want to render to.
 	*/
-    ObserverTextRenderer(std::ostream* stream) : TextRenderer(stream) { }
+    explicit ObserverTextRenderer(std::ostream* stream) : TextRenderer(stream) { }
 	///\brief A function to render.
 	///\param Game& The game we want to render from.
     void render(const Game&) const override;
@@ -108,7 +108,7 @@ public:
 	*\brief A class for rendering output to svg file.
 	*\param std::string& The file we want to render to.
 	*/
-    CharacterSVGRenderer(const std::string& output) : SVGRenderer(output) {}
+    explicit CharacterSVGRenderer(const std::string& output) : SVGRenderer(output) {}
 	///\brief A function to render.
 	///\param Game& The game we want to render from.
     virtual void render(const Game&) const;
@@ -120,7 +120,7 @@ public:
 	*\brief A class for rendering output to svg file.
 	*\param std::string& The file we want to render to.
 	*/
-    ObserverSVGRenderer(const std::string& output) : SVGRenderer(output) {}
+    explicit ObserverSVGRenderer(const std::string& output) : SVGRenderer(output) {}
 	///\brief A function to render.
 	///\param Game& The game we want to render from.
     virtual void render(const Game&) const;

@@ -71,3 +71,5 @@ std::vector<std::string> Map::getMap() const
 {
 	return map;
 }
+
+Map::WrongIndexException::WrongIndexException(const std::string& exceptionString) : std::runtime_error(exceptionString) {}

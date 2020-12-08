@@ -15,7 +15,7 @@ class Game
 */
 public:
 	Game();
-	Game(const std::string mapfilename);
+	explicit Game(const std::string mapfilename);
 	~Game()
 	{
 		delete mapHero;
@@ -72,7 +72,7 @@ protected:
 		*\param exceptionString The string we name the exception.
 		*/
 	public:
-		OccupiedException(std::string exceptionString) : std::runtime_error(exceptionString) {}
+		explicit OccupiedException(std::string exceptionString) : std::runtime_error(exceptionString) {}
 	};
 
 	class AlreadyHasHeroException : public std::runtime_error
@@ -82,7 +82,7 @@ protected:
 		*\param exceptionString The string we name the exception.
 		*/
 	public:
-		AlreadyHasHeroException(std::string exceptionString) : std::runtime_error(exceptionString) {}
+		explicit AlreadyHasHeroException(std::string exceptionString) : std::runtime_error(exceptionString) {}
 
 	};
 
@@ -93,7 +93,7 @@ protected:
 		*\param exceptionString The string we name the exception.
 		*/
 	public:
-		AlreadyHasUnitsException(std::string exceptionString) : std::runtime_error(exceptionString) {}
+		explicit AlreadyHasUnitsException(std::string exceptionString) : std::runtime_error(exceptionString) {}
 
 	};
 
@@ -104,7 +104,7 @@ protected:
 		*\param exceptionString The string we name the exception.
 		*/
 	public:
-		NotInitializedException(std::string exceptionString) : std::runtime_error(exceptionString) {}
+		explicit NotInitializedException(std::string exceptionString) : std::runtime_error(exceptionString) {}
 
 	};
 
@@ -115,7 +115,7 @@ protected:
 		*\param exceptionString The string we name the exception.
 		*/
 	public:
-		GameAlreadyStartedException(std::string exceptionString) : std::runtime_error(exceptionString) {}
+		explicit GameAlreadyStartedException(std::string exceptionString) : std::runtime_error(exceptionString) {}
 
 	};
 private:

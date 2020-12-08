@@ -16,7 +16,7 @@ class Map
 
 public:
 	Map() {};
-	Map(const std::string filename);
+	explicit Map(const std::string filename);
 	
 	///\brief The enum ,,type" for the map
 	enum type
@@ -34,7 +34,7 @@ public:
 	*\param exceptionString The string we name the exception.
 	*/
 	public:
-		WrongIndexException(const std::string& exceptionString) : std::runtime_error(exceptionString) {};
+		explicit WrongIndexException(const std::string& exceptionString);
 	};
 
 	///\brief Function to get the free spaces or the walls on the map.
