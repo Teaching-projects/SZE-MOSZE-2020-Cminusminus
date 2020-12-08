@@ -9,13 +9,17 @@
 
 class Map
 {
+public:
 /**
-*\brief A class for loading a map.
+*\brief The default constructor of the class
+*/
+
+	Map() {};
+/**
+*\brief A constructor of the class.
 *\param filename The filename we load.
 */
 
-public:
-	Map() {};
 	explicit Map(const std::string filename);
 	
 	///\brief The enum ,,type" for the map
