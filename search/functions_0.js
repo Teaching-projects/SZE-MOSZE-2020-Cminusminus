@@ -1,6 +1,6 @@
 var searchData=
 [
   ['acdmultiplier_98',['AcdMultiplier',['../classMonster.html#af9d0518ff151772214bf15ecbfa977b4',1,'Monster']]],
-  ['alreadyhasheroexception_99',['AlreadyHasHeroException',['../classGame_1_1AlreadyHasHeroException.html#a0b14f418bdbd22fb317a73caf2d9e2a9',1,'Game::AlreadyHasHeroException']]],
-  ['alreadyhasunitsexception_100',['AlreadyHasUnitsException',['../classGame_1_1AlreadyHasUnitsException.html#aa6f6e819b7e6055518e4a1d83800497c',1,'Game::AlreadyHasUnitsException']]]
+  ['alreadyhasheroexception_99',['AlreadyHasHeroException',['../classGame_1_1AlreadyHasHeroException.html#af9c800da4ea4a3bbff36c2cc62c8a7a1',1,'Game::AlreadyHasHeroException']]],
+  ['alreadyhasunitsexception_100',['AlreadyHasUnitsException',['../classGame_1_1AlreadyHasUnitsException.html#a80200ab59941435c1bedb8cfed5455e4',1,'Game::AlreadyHasUnitsException']]]
 ];
