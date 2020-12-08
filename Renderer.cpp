@@ -43,7 +43,7 @@ void ObserverSVGRenderer::render(const Game& g) const {
         freeTexture = parser.get<std::string>("free_texture");
     }
 
-    int svgXCoords = 0;
+    unsigned int svgXCoords;
     int svgYCoords = 0;
     int svgWidth = map.getMaxCols() * 10;
     int svgHeight = map.getRows() * 10;
@@ -167,7 +167,7 @@ void CharacterSVGRenderer::render(const Game& g) const {
 
     }
 
-    int svgXCoords;
+    unsigned int svgXCoords;
     int svgYCoords = 0;
     int svgWidth = map.getMaxCols() * 10;
     int svgHeight = map.getRows() * 10;
