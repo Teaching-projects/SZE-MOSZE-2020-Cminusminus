@@ -80,7 +80,7 @@ $(function() {
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;{</div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keyword">public</span>:</div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <a class="code" href="classGame.html#ad59df6562a58a614fda24622d3715b65">Game</a>();</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <a class="code" href="classGame.html#ad59df6562a58a614fda24622d3715b65">Game</a>(<span class="keyword">const</span> std::string mapfilename);</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="keyword">explicit</span> <a class="code" href="classGame.html#ad59df6562a58a614fda24622d3715b65">Game</a>(<span class="keyword">const</span> std::string mapfilename);</div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    ~<a class="code" href="classGame.html">Game</a>()</div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    {</div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        <span class="keyword">delete</span> mapHero;</div>
@@ -103,34 +103,34 @@ $(function() {
 <div class="line"><a name="l00068"></a><span class="lineno"><a class="line" href="classGame_1_1OccupiedException.html">   68</a></span>&#160;    <span class="keyword">class </span><a class="code" href="classGame_1_1OccupiedException.html">OccupiedException</a> : <span class="keyword">public</span> std::runtime_error</div>
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    {</div>
 <div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00075"></a><span class="lineno"><a class="line" href="classGame_1_1OccupiedException.html#a8f6b1d66f433ebe15c86392d427f62e2">   75</a></span>&#160;        <a class="code" href="classGame_1_1OccupiedException.html#a8f6b1d66f433ebe15c86392d427f62e2">OccupiedException</a>(std::string exceptionString) : std::runtime_error(exceptionString) {}</div>
+<div class="line"><a name="l00075"></a><span class="lineno"><a class="line" href="classGame_1_1OccupiedException.html#a8f6b1d66f433ebe15c86392d427f62e2">   75</a></span>&#160;        <span class="keyword">explicit</span> <a class="code" href="classGame_1_1OccupiedException.html#a8f6b1d66f433ebe15c86392d427f62e2">OccupiedException</a>(std::string exceptionString) : std::runtime_error(exceptionString) {}</div>
 <div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    };</div>
 <div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; </div>
 <div class="line"><a name="l00078"></a><span class="lineno"><a class="line" href="classGame_1_1AlreadyHasHeroException.html">   78</a></span>&#160;    <span class="keyword">class </span><a class="code" href="classGame_1_1AlreadyHasHeroException.html">AlreadyHasHeroException</a> : <span class="keyword">public</span> std::runtime_error</div>
 <div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    {</div>
 <div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00085"></a><span class="lineno"><a class="line" href="classGame_1_1AlreadyHasHeroException.html#a0b14f418bdbd22fb317a73caf2d9e2a9">   85</a></span>&#160;        <a class="code" href="classGame_1_1AlreadyHasHeroException.html#a0b14f418bdbd22fb317a73caf2d9e2a9">AlreadyHasHeroException</a>(std::string exceptionString) : std::runtime_error(exceptionString) {}</div>
+<div class="line"><a name="l00085"></a><span class="lineno"><a class="line" href="classGame_1_1AlreadyHasHeroException.html#a0b14f418bdbd22fb317a73caf2d9e2a9">   85</a></span>&#160;        <span class="keyword">explicit</span> <a class="code" href="classGame_1_1AlreadyHasHeroException.html#a0b14f418bdbd22fb317a73caf2d9e2a9">AlreadyHasHeroException</a>(std::string exceptionString) : std::runtime_error(exceptionString) {}</div>
 <div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160; </div>
 <div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    };</div>
 <div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160; </div>
 <div class="line"><a name="l00089"></a><span class="lineno"><a class="line" href="classGame_1_1AlreadyHasUnitsException.html">   89</a></span>&#160;    <span class="keyword">class </span><a class="code" href="classGame_1_1AlreadyHasUnitsException.html">AlreadyHasUnitsException</a> : <span class="keyword">public</span> std::runtime_error</div>
 <div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    {</div>
 <div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00096"></a><span class="lineno"><a class="line" href="classGame_1_1AlreadyHasUnitsException.html#aa6f6e819b7e6055518e4a1d83800497c">   96</a></span>&#160;        <a class="code" href="classGame_1_1AlreadyHasUnitsException.html#aa6f6e819b7e6055518e4a1d83800497c">AlreadyHasUnitsException</a>(std::string exceptionString) : std::runtime_error(exceptionString) {}</div>
+<div class="line"><a name="l00096"></a><span class="lineno"><a class="line" href="classGame_1_1AlreadyHasUnitsException.html#aa6f6e819b7e6055518e4a1d83800497c">   96</a></span>&#160;        <span class="keyword">explicit</span> <a class="code" href="classGame_1_1AlreadyHasUnitsException.html#aa6f6e819b7e6055518e4a1d83800497c">AlreadyHasUnitsException</a>(std::string exceptionString) : std::runtime_error(exceptionString) {}</div>
 <div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160; </div>
 <div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    };</div>
 <div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160; </div>
 <div class="line"><a name="l00100"></a><span class="lineno"><a class="line" href="classGame_1_1NotInitializedException.html">  100</a></span>&#160;    <span class="keyword">class </span><a class="code" href="classGame_1_1NotInitializedException.html">NotInitializedException</a> : <span class="keyword">public</span> std::runtime_error</div>
 <div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    {</div>
 <div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;    <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00107"></a><span class="lineno"><a class="line" href="classGame_1_1NotInitializedException.html#a5e0647790051e966cd3fb1b9451909ae">  107</a></span>&#160;        <a class="code" href="classGame_1_1NotInitializedException.html#a5e0647790051e966cd3fb1b9451909ae">NotInitializedException</a>(std::string exceptionString) : std::runtime_error(exceptionString) {}</div>
+<div class="line"><a name="l00107"></a><span class="lineno"><a class="line" href="classGame_1_1NotInitializedException.html#a5e0647790051e966cd3fb1b9451909ae">  107</a></span>&#160;        <span class="keyword">explicit</span> <a class="code" href="classGame_1_1NotInitializedException.html#a5e0647790051e966cd3fb1b9451909ae">NotInitializedException</a>(std::string exceptionString) : std::runtime_error(exceptionString) {}</div>
 <div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160; </div>
 <div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    };</div>
 <div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160; </div>
 <div class="line"><a name="l00111"></a><span class="lineno"><a class="line" href="classGame_1_1GameAlreadyStartedException.html">  111</a></span>&#160;    <span class="keyword">class </span><a class="code" href="classGame_1_1GameAlreadyStartedException.html">GameAlreadyStartedException</a> : <span class="keyword">public</span> std::runtime_error</div>
 <div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;    {</div>
 <div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00118"></a><span class="lineno"><a class="line" href="classGame_1_1GameAlreadyStartedException.html#a5855d67ff09b6aa532efd2115cdd8367">  118</a></span>&#160;        <a class="code" href="classGame_1_1GameAlreadyStartedException.html#a5855d67ff09b6aa532efd2115cdd8367">GameAlreadyStartedException</a>(std::string exceptionString) : std::runtime_error(exceptionString) {}</div>
+<div class="line"><a name="l00118"></a><span class="lineno"><a class="line" href="classGame_1_1GameAlreadyStartedException.html#a5855d67ff09b6aa532efd2115cdd8367">  118</a></span>&#160;        <span class="keyword">explicit</span> <a class="code" href="classGame_1_1GameAlreadyStartedException.html#a5855d67ff09b6aa532efd2115cdd8367">GameAlreadyStartedException</a>(std::string exceptionString) : std::runtime_error(exceptionString) {}</div>
 <div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160; </div>
 <div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    };</div>
 <div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;<span class="keyword">private</span>:</div>
