@@ -22,7 +22,7 @@ public:
 	*\brief A class for JSON parsing.
 	*\param input_datas The map_data we give.
 	*/
-	JSON(map_data input_datas) : input_datas(input_datas) {}
+	JSON(map_data input_datas);
 
 	typedef std::list<std::variant<std::string, int, double>> list;
 	
@@ -99,7 +99,7 @@ public:
   *\param exceptionString The string for the error.
   */
 	public:
-		ParseException(std::string exceptionString) : std::runtime_error(exceptionString) {}
+		ParseException(std::string exceptionString);
 	};
 };
 

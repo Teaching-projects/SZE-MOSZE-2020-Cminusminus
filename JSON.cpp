@@ -1,6 +1,8 @@
 #include "JSON.h"
 #include <string>
 
+JSON::JSON(map_data input_datas) : input_datas(input_datas) {}
+
 JSON JSON::parseFromStream(std::istream& inputStream) 
 {
 
@@ -164,4 +166,6 @@ JSON JSON::parseFromString(const std::string& inputtext)
 	}
 	return JSON(hero_data);
 }
+
+JSON::ParseException::ParseException(std::string exceptionString) : std::runtime_error(exceptionString) {}
 
