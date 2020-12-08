@@ -27,7 +27,7 @@ std::string JSON::word_split(std::string& line)
 	{ 
 		first_index++; 
 	}
-	while (last_index >= 0 && (line[last_index] == ' ' || line[last_index] == '\t' || line[last_index] == '\"' || line[last_index] == '[' || line[last_index] == ']' || line[last_index] == '}')) 
+	while ((line[last_index] == ' ' || line[last_index] == '\t' || line[last_index] == '\"' || line[last_index] == '[' || line[last_index] == ']' || line[last_index] == '}')) 
 	{
 		last_index--; 
 	}
@@ -66,15 +66,15 @@ JSON JSON::parseFromString(const std::string& inputtext)
 	std::size_t comma_num = 0;
 	std::size_t data_num = 0;
 
-	std::string key = "";
-	std::string key_value = "";
-	std::string monsterList = "";
+	std::string key;
+	std::string key_value;
+	std::string monsterList;
 
 	while (current_position < inputtext.length())
 	{
 		bool position_good = true;
 		int colon_position = inputtext.find(':', current_position);
-		std::size_t comma_position = current_position;
+		int comma_position = current_position;
 
 		while (comma_position < (int)inputtext.length() && (!position_good || inputtext[comma_position] != ','))
 		{
