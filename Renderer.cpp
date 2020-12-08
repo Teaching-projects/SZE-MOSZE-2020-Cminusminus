@@ -103,7 +103,6 @@ void ObserverSVGRenderer::render(const Game& g) const {
 void CharacterSVGRenderer::render(const Game& g) const {
 
     Map map = g.getMap();
-    int maxCols = map.getMaxCols();
     Hero* hero = g.getHero();
     std::pair<int, int> heropos = g.getHeroPos();
     std::string heroTexture;

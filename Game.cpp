@@ -13,11 +13,13 @@ void Game::setMap(const Map& map)
 {
 	if (heroPut || monsterPut)
 	{
-		throw AlreadyHasUnitsException("The units are already set up. Map cannot be changed.");
+		const std::string hasUnits = "The units are already set up. Map cannot be changed.";
+		throw AlreadyHasUnitsException(hasUnits);
 	}
 	if (gameStarted)
 	{
-		throw GameAlreadyStartedException("Game already started!");
+		const std::string gameStarted = "Game already started!";
+		throw GameAlreadyStartedException(gameStarted);
 	}
 	mapToSet = map;
 	mapSet = true;
@@ -31,15 +33,18 @@ void Game::putHero(const Hero& hero, const int x, const int y)
 	}
 	if (mapToSet.get(x, y) == 1)
 	{
-		throw OccupiedException("There's a wall in this position!\n");
+		const std::string wall = "There's a wall in this position!\n";
+		throw OccupiedException(wall);
 	}
 	if (heroPut)
 	{
-		throw AlreadyHasHeroException("A hero has already been set!");
+		const std::string hasHero = "A hero has already been set!";
+		throw AlreadyHasHeroException(hasHero);
 	}
 	if (gameStarted)
 	{
-		throw GameAlreadyStartedException("The game has already started!");
+		const std::string gameStarted = "Game has already started!";
+		throw GameAlreadyStartedException(gameStarted);
 	}
 
 	heroPos = std::make_pair(x,y);
@@ -55,7 +60,8 @@ void Game::putMonster(const Monster& monster, const int x, const int y)
 	}
 	if (mapToSet.get(x, y) == 1)
 	{
-		throw OccupiedException("There's a wall in this position!");
+		const std::string wall = "There's a wall in this position!\n";
+		throw OccupiedException(wall);
 	}
 	if (monsterPut == false)
 	{
@@ -98,7 +104,8 @@ void Game::run()
 
 	if ((heroPut == false) || (mapSet == false))
 	{
-		throw NotInitializedException("The game is not initialized!");
+		const std::string notInit = "The game is not initialized!";
+		throw NotInitializedException(notInit);
 	}
 
 	std::string move;
@@ -196,7 +203,8 @@ void Game::moveHero(int x, int y)
 {
 	if (mapToSet.get(x, y) == 1) 
 	{
-		throw OccupiedException("There's a wall in this position!\n");
+		const std::string wall = "There's a wall in this position!\n";
+		throw OccupiedException(wall);
 	}
 
 	heroPos = std::make_pair(x, y);

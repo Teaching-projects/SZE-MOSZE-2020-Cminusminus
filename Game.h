@@ -79,7 +79,7 @@ protected:
 		*\param exceptionString The string we name the exception.
 		*/
 	public:
-		explicit OccupiedException(std::string exceptionString) : std::runtime_error(exceptionString) {}
+		explicit OccupiedException(const std::string& exceptionString) : std::runtime_error(exceptionString) {}
 	};
 
 	class AlreadyHasHeroException : public std::runtime_error
@@ -89,7 +89,7 @@ protected:
 		*\param exceptionString The string we name the exception.
 		*/
 	public:
-		explicit AlreadyHasHeroException(std::string exceptionString) : std::runtime_error(exceptionString) {}
+		explicit AlreadyHasHeroException(const std::string& exceptionString) : std::runtime_error(exceptionString) {}
 
 	};
 
@@ -100,7 +100,7 @@ protected:
 		*\param exceptionString The string we name the exception.
 		*/
 	public:
-		explicit AlreadyHasUnitsException(std::string exceptionString) : std::runtime_error(exceptionString) {}
+		explicit AlreadyHasUnitsException(const std::string& exceptionString) : std::runtime_error(exceptionString) {}
 
 	};
 
@@ -111,7 +111,7 @@ protected:
 		*\param exceptionString The string we name the exception.
 		*/
 	public:
-		explicit NotInitializedException(std::string exceptionString) : std::runtime_error(exceptionString) {}
+		explicit NotInitializedException(const std::string& exceptionString) : std::runtime_error(exceptionString) {}
 
 	};
 
@@ -122,7 +122,7 @@ protected:
 		*\param exceptionString The string we name the exception.
 		*/
 	public:
-		explicit GameAlreadyStartedException(std::string exceptionString) : std::runtime_error(exceptionString) {}
+		explicit GameAlreadyStartedException(const std::string& exceptionString) : std::runtime_error(exceptionString) {}
 
 	};
 private:
