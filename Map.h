@@ -20,7 +20,7 @@ public:
 *\param filename The filename we load.
 */
 
-	explicit Map(const std::string filename);
+	explicit Map(const std::string& filename);
 	
 	///\brief The enum ,,type" for the map
 	enum type
