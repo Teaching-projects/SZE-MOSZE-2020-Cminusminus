@@ -54,7 +54,7 @@ TEST(ParseTest, ParseExceptionTest) {
 }
 
 TEST(HeroTests, checkHero){
-	
+	try{
 		Hero h{ Hero::parse("Dark_Wanderer.json") };
 		
         ASSERT_EQ(5,h.getPhysicalDmg());
@@ -71,9 +71,10 @@ TEST(HeroTests, checkHero){
     } catch(std::runtime_error& e){
         ASSERT_STREQ(e.what(), "Wrong JSON syntax!");
 }
+}
 
 TEST(checkIsAlive, checkHeroAndMonster){
-	
+	try{
 		Hero hero{Hero::parse("Dark_Wanderer.json")};
 		Monster monster = Monster::parse("Fallen.json");
 		
@@ -85,6 +86,7 @@ TEST(checkIsAlive, checkHeroAndMonster){
     } catch(std::runtime_error& e){
         ASSERT_STREQ(e.what(), "Wrong JSON syntax!");
     }
+}
 
 TEST(LVLupAndXPTest, checkHero){
 	
@@ -104,7 +106,7 @@ TEST(LVLupAndXPTest, checkHero){
 		hero.fightTilDeath(m3);
 		
         ASSERT_EQ(7,hero.getLevel());
-		ASSERT_EQ(130,hero.getXP());
+		ASSERT_EQ(130,hero.GetXP());
     } catch(std::runtime_error& e){
         ASSERT_STREQ(e.what(), "Wrong JSON syntax!");
     }
