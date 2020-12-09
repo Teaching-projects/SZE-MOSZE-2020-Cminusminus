@@ -22,7 +22,7 @@ public:
 	*\brief A class for JSON parsing.
 	*\param input_datas The map_data we give.
 	*/
-	explicit JSON(map_data input_datas);
+	explicit JSON(const map_data& input_datas);
 
 	typedef std::list<std::variant<std::string, int, double>> list;
 	
@@ -64,7 +64,7 @@ public:
 	///\brief Count function for the JSON class.
 	///\param key The name of the key
 	///\return bool
-	bool count(const std::string key) const { return input_datas.count(key); }
+	bool count(const std::string& key) const { return input_datas.count(key); }
 	///\brief It parses a JSON from a file.
 	///\param filename The name of the file we parse
 	///\return JSON
@@ -99,7 +99,7 @@ public:
   *\param exceptionString The string for the error.
   */
 	public:
-		explicit ParseException(std::string exceptionString);
+		explicit ParseException(const std::string& exceptionString);
 	};
 };
 
