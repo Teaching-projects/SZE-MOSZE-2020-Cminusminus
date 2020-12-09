@@ -3,8 +3,8 @@
 #include <cmath>
 #include <fstream>
 
-Hero::Hero(const std::string name, const int base_health, Damage damage, const double base_attackCooldown, const int defense, const int xpPerLevel,
-	const int hpPerLevel, const int dmgBonusPerLevel, const double atcdMultiplier,const int defBonusPerLevel, const int magbonperlev, const int lightr, const int lightrbonusPerLevel, const std::string texture) :
+Hero::Hero(const std::string& name, const int base_health, Damage damage, const double base_attackCooldown, const int defense, const int xpPerLevel,
+	const int hpPerLevel, const int dmgBonusPerLevel, const double atcdMultiplier,const int defBonusPerLevel, const int magbonperlev, const int lightr, const int lightrbonusPerLevel, const std::string& texture) :
 	Monster(name, base_health, damage, base_attackCooldown, defense,texture),
 	xpPerLevel(xpPerLevel), hpPerLevel(hpPerLevel), dmgBonusPerLevel(dmgBonusPerLevel), atcdMultiplier(atcdMultiplier), defBonusPerLevel(defBonusPerLevel), magicalBonusPerLevel(magbonperlev), lightRadius(lightr), lightRadiusBonusPerLevel(lightrbonusPerLevel)
 {

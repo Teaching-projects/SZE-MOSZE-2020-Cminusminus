@@ -24,8 +24,8 @@ class Hero : public Monster
 *\param texture The texture of the hero in svg.
 */
 public:
-	Hero(const std::string name, const int base_health, Damage damage, const double base_attackCooldown, const int defense, const int xpPerLevel, const int hpPerLevel,
-		const int dmgBonusPerLevel, const double atcdMultiplier, const int defBonusPerLevel, const int magbonperlev, const int lightr, const int lightrbonusPerLevel, const std::string texture);
+	Hero(const std::string& name, const int base_health, Damage damage, const double base_attackCooldown, const int defense, const int xpPerLevel, const int hpPerLevel,
+		const int dmgBonusPerLevel, const double atcdMultiplier, const int defBonusPerLevel, const int magbonperlev, const int lightr, const int lightrbonusPerLevel, const std::string& texture);
 	///This function parse a Hero from a file.
 	///\param s
 	///\return Hero

@@ -63,7 +63,7 @@ class Monster
   */
 public:
 
-	Monster(const std::string name, const int health, Damage damage, const double attackCooldown, const int defense, const std::string texture);
+	Monster(const std::string& name, const int health, Damage damage, const double attackCooldown, const int defense, const std::string& texture);
 	Monster() { damage.magical = 0; damage.physical = 0; };
 	///It returns the texture of the monster.
 	///\return string
@@ -99,7 +99,7 @@ public:
 	int getMagicalDmg() const;
 	///It sets the damage of the hero after level up
 	///\param bonus, type The damage the hero gains after level up and the type of damage it gains
-	void GainDamage(const int bonus, const std::string type);
+	void GainDamage(const int bonus, const std::string& type);
 	///It multiplies the attack cooldown with the given amount.
 	///\param multplier The amound we multiply the attack cooldown.
 	void AcdMultiplier(const double multiplier);

@@ -3,7 +3,7 @@
 #include <cmath>
 #include <fstream>
 
-Monster::Monster(const std::string name, const int health, Damage damage, const double attackCooldown, const int defense, const std::string texture) :
+Monster::Monster(const std::string& name, const int health, Damage damage, const double attackCooldown, const int defense, const std::string& texture) :
 	name(name),
 	health(health),
 	damage(damage),
@@ -116,7 +116,7 @@ int Monster::getMagicalDmg() const
 }
 
 
-void Monster::GainDamage(const int bonus, const std::string type)
+void Monster::GainDamage(const int bonus, const std::string& type)
 {
 	if (type == "physical")
 	{
