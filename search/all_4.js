@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['gaindamage_8',['GainDamage',['../classMonster.html#a7b2f4d9db377ad3e7f90a5595de1372c',1,'Monster']]],
+  ['gaindamage_8',['GainDamage',['../classMonster.html#a646d98d29427fd527818f3eb3af70f02',1,'Monster']]],
   ['game_9',['Game',['../classGame.html',1,'Game'],['../classGame.html#ad59df6562a58a614fda24622d3715b65',1,'Game::Game()'],['../classGame.html#a77dfcde1a12c4d13e6e6e38a149fdb2c',1,'Game::Game(const std::string &amp;mapfilename)']]],
   ['gamealreadystartedexception_10',['GameAlreadyStartedException',['../classGame_1_1GameAlreadyStartedException.html',1,'Game::GameAlreadyStartedException'],['../classGame_1_1GameAlreadyStartedException.html#a73606e825ed0a2fb2b2293139a07668f',1,'Game::GameAlreadyStartedException::GameAlreadyStartedException()']]],
   ['get_11',['get',['../classJSON.html#a8de84d9d127678670c65199e150ac6d4',1,'JSON::get(const std::string &amp;key)'],['../classJSON.html#a2e3d7b3d03297c4b09ce1f64ad4187d7',1,'JSON::get(const std::string &amp;key)'],['../classMap.html#a7f8fcdae37aa3637b4aa679555a2a001',1,'Map::get()']]],
