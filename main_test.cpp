@@ -106,7 +106,7 @@ TEST(LVLupAndXPTest, checkHero){
 		hero.fightTilDeath(m3);
 		
         ASSERT_EQ(7,hero.getLevel());
-		ASSERT_EQ(130,hero.GetXP());
+		ASSERT_EQ(131,hero.GetXP());
     } catch(std::runtime_error& e){
         ASSERT_STREQ(e.what(), "Wrong JSON syntax!");
     }
@@ -298,7 +298,7 @@ TEST(checkOccupiedException, checkGame){
 	
 	}catch(std::runtime_error& e)
 	{
-		ASSERT_STREQ(e.what(), "There's a wall in this position!");
+		ASSERT_STREQ(e.what(), "There's a wall in this position!\n");
 	}
 }
 
