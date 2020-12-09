@@ -9,14 +9,18 @@
 
 class Map
 {
+public:
 /**
-*\brief A class for loading a map.
+*\brief The default constructor of the class
+*/
+
+	Map() {};
+/**
+*\brief A constructor of the class.
 *\param filename The filename we load.
 */
 
-public:
-	Map() {};
-	Map(std::string filename);
+	explicit Map(const std::string& filename);
 	
 	///\brief The enum ,,type" for the map
 	enum type
@@ -34,24 +38,27 @@ public:
 	*\param exceptionString The string we name the exception.
 	*/
 	public:
-		WrongIndexException(const std::string& exceptionString) : std::runtime_error(exceptionString) {};
+		explicit WrongIndexException(const std::string& exceptionString);
 	};
 
 	///\brief Function to get the free spaces or the walls on the map.
 	///\param x The rows of the map
 	///\param y The columns of the map
 	///\return Map::type
-	virtual Map::type get(int x, int y) const;
+	virtual Map::type get(const int x, const int y) const;
 	///\brief A function to get the columns number of the map.
 	///\param x The x coordinates
 	///\return int
-	int getColumns(int x);
+	int getColumns(const int x) const;
 	///\brief A function to get the rows number of the map.
 	///\return int
-	int getRows();
+	int getRows() const;
 	///\brief A function to get the max columns number of the map.
 	///\return int
-	virtual int getMaxCols();
+	int getMaxCols() const;
+	///\brief It returns the stored map
+	///\return int
+	std::vector<std::string> getMap() const;
 
 private:
 	std::vector<std::string> map;

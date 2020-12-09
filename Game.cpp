@@ -2,28 +2,30 @@
 
 Game::Game() { }
 
-Game::Game(std::string mapfilename)
+Game::Game(const std::string& mapfilename) : fileName(mapfilename)
 {
 	Map map(mapfilename);
 	setMap(map);
 	setMaxCols(map.getMaxCols());
 }
 
-void Game::setMap(Map map)
+void Game::setMap(const Map& map)
 {
 	if (heroPut || monsterPut)
 	{
-		throw AlreadyHasUnitsException("The units are already set up. Map cannot be changed.");
+		const std::string hasUnits = "The units are already set up. Map cannot be changed.";
+		throw AlreadyHasUnitsException(hasUnits);
 	}
 	if (gameStarted)
 	{
-		throw GameAlreadyStartedException("Game already started!");
+		const std::string gameStarted = "Game already started!";
+		throw GameAlreadyStartedException(gameStarted);
 	}
 	mapToSet = map;
 	mapSet = true;
 }
 
-void Game::putHero(Hero hero, int x, int y)
+void Game::putHero(const Hero& hero, const int x, const int y)
 {
 	if (mapSet == false)
 	{
@@ -31,15 +33,18 @@ void Game::putHero(Hero hero, int x, int y)
 	}
 	if (mapToSet.get(x, y) == 1)
 	{
-		throw OccupiedException("There's a wall in this position!\n");
+		const std::string wall = "There's a wall in this position!\n";
+		throw OccupiedException(wall);
 	}
 	if (heroPut)
 	{
-		throw AlreadyHasHeroException("A hero has already been set!");
+		const std::string hasHero = "A hero has already been set!";
+		throw AlreadyHasHeroException(hasHero);
 	}
 	if (gameStarted)
 	{
-		throw GameAlreadyStartedException("The game has already started!");
+		const std::string gameStarted = "Game has already started!";
+		throw GameAlreadyStartedException(gameStarted);
 	}
 
 	heroPos = std::make_pair(x,y);
@@ -47,7 +52,7 @@ void Game::putHero(Hero hero, int x, int y)
 	heroPut = true;
 }
 
-void Game::putMonster(Monster monster, int x, int y)
+void Game::putMonster(const Monster& monster, const int x, const int y)
 {
 	if (mapSet == false)
 	{
@@ -55,7 +60,8 @@ void Game::putMonster(Monster monster, int x, int y)
 	}
 	if (mapToSet.get(x, y) == 1)
 	{
-		throw OccupiedException("There's a wall in this position!");
+		const std::string wall = "There's a wall in this position!\n";
+		throw OccupiedException(wall);
 	}
 	if (monsterPut == false)
 	{
@@ -68,21 +74,47 @@ void Game::putMonster(Monster monster, int x, int y)
 	}
 }
 
+Map Game::getMap() const
+{
+	return mapToSet;
+}
+
+std::vector<std::pair<Monster, std::pair<int, int>>> Game::getMonsters() const
+{
+	return mapMonsters;
+}
+
+Hero* Game::getHero() const
+{
+	return mapHero;
+}
+
+std::pair<int, int> Game::getHeroPos() const
+{
+	return heroPos;
+}
+
+std::string Game::getFileName() const
+{
+	return fileName;
+}
+
 void Game::run()
 {
 
 	if ((heroPut == false) || (mapSet == false))
 	{
-		throw NotInitializedException("The game is not initialized!");
+		const std::string notInit = "The game is not initialized!";
+		throw NotInitializedException(notInit);
 	}
 
 	std::string move;
 	gameStarted = true;
 	unsigned int deadMonsterCount = 0;
 
-	while (mapMonsters.size() > deadMonsterCount && mapHero != nullptr)
+	while (mapMonsters.size() > deadMonsterCount && mapHero->isAlive())
 	{
-		for (int i = 0; i < mapMonsters.size(); i++)
+		for (int i = 0; i < (int)mapMonsters.size(); i++)
 		{
 			if (((mapMonsters[i].second.first == heroPos.first) && (mapMonsters[i].second.second == heroPos.second))&&(mapMonsters[i].first.isAlive()))
 			{
@@ -92,7 +124,6 @@ void Game::run()
 					deadMonsterCount++;
 					if (deadMonsterCount == mapMonsters.size())
 					{
-						std::cout << mapHero->getName() << " cleared the map." << std::endl;
 						break;
 					}
 				}
@@ -100,17 +131,19 @@ void Game::run()
 				{
 					std::cout << "The hero died." << std::endl;
 					heroPut = false;
-					mapHero = nullptr;
 				}
 
 			}
 		}
-		if (mapHero == nullptr || mapMonsters.size() == deadMonsterCount)
+		if (heroPut==false || mapMonsters.size() == deadMonsterCount)
 		{
 			gameStarted = false;
 			break;
 		}
-		mapDraw();
+		for (auto p : renderers)
+		{
+			p->render(*this);
+		}
 		std::cin >> move;
 		try
 		{
@@ -131,109 +164,27 @@ void Game::run()
 				moveHero(heroPos.first, heroPos.second + 1);
 			}
 		}
-		catch (OccupiedException e)
+		catch (OccupiedException& e)
 		{
 			std::cout << "There's a wall in this position!\n";
 			continue;
 		}
 	}
-}
-
-void Game::mapDraw()
-{
-
-	int firsti = 0;
-	int secondi = mapToSet.getRows();
-	int tmc = maxColumns;
-	int tm = 0;
-
-	if ((heroPos.first - mapHero->getRadius()) > 0)
-	{
-		firsti = heroPos.first - mapHero->getRadius();
-	}
-	if ((heroPos.first + mapHero->getRadius()+1) < mapToSet.getRows())
-	{
-		secondi = heroPos.first + mapHero->getRadius()+1;
-	}
-
-	std::cout << "╔";
-	if ((heroPos.second - mapHero->getRadius()) > 0)
-	{
-		tm= ((heroPos.second) - (mapHero->getRadius()));
-	}
-	if ((heroPos.second + mapHero->getRadius()+1) < maxColumns)
-	{
-		tmc = ((heroPos.second) + (mapHero->getRadius())+1);
 	
-	}
-	for (int i = tm; i < tmc; i++)
+	if (deadMonsterCount == mapMonsters.size())
 	{
-		std::cout << "══";
+		for (auto p : renderers)
+		{
+			p->render(*this);
+		}
+		std::cout << mapHero->getName() << " cleared the map." << std::endl;
 	}
-	std::cout << "╗\n";
-	for (int i = firsti; i < secondi; i++)
-	{
-		int firstj = 0;
-		int secondj = mapToSet.getColumns(i);
-		if ((heroPos.second - mapHero->getRadius())>0)
-		{
-			firstj = ((heroPos.second)-(mapHero->getRadius()));
-		}
-		if ((heroPos.second + mapHero->getRadius()+1)<mapToSet.getColumns(i))
-		{
-			secondj = ((heroPos.second) + (mapHero->getRadius())+1);
-		}
-		std::cout << "║";
-		for (int j = firstj; j < secondj ; j++)
-		{
-			if (mapToSet.get(i, j) == 1)
-			{
-				std::cout << "██";
-				
-			}
-			else if (heroPos.first == i && heroPos.second == j)
-			{
-				std::cout << "┣┫";
-				
-				
-			}
-			else if (monsterCount(i, j) == 1)
-			{
-				std::cout << "M░";
-				
-				
-			}
-			else if (monsterCount(i, j) > 1)
-			{
-				std::cout << "MM";
-			}
-			else
-			{
-				std::cout << "░░";
-				
-				
-			}
-		}
-		
-		for (int k = mapToSet.getColumns(i); k < tmc; k++)
-		{
-			std::cout << "██";
-		}
-		std::cout << "║\n";
-	}
-	std::cout << "╚";
-	for (int i = tm; i < tmc; i++)
-	{
-		std::cout << "══";
-	}
-	std::cout << "╝\n";
-	std::cout << "To move the hero write north, south, west, or east" << std::endl;
 }
 
-int Game::monsterCount(int x, int y)
+int Game::monsterCount(const int x, const int y) const
 {
 	int count = 0;
-	for (int i = 0; i < mapMonsters.size(); i++)
+	for (int i = 0; i < (int)mapMonsters.size(); i++)
 	{
 		if (mapMonsters[i].second.first == x && mapMonsters[i].second.second == y && mapMonsters[i].first.isAlive())
 		{
@@ -243,11 +194,17 @@ int Game::monsterCount(int x, int y)
 	return count;
 }
 
+void Game::registerRenderer(Renderer* renderer)
+{
+	renderers.push_back(renderer);
+}
+
 void Game::moveHero(int x, int y)
 {
 	if (mapToSet.get(x, y) == 1) 
 	{
-		throw OccupiedException("There's a wall in this position!\n");
+		const std::string wall = "There's a wall in this position!\n";
+		throw OccupiedException(wall);
 	}
 
 	heroPos = std::make_pair(x, y);

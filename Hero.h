@@ -3,12 +3,10 @@
 
 #include<iostream>
 #include "Monster.h"
-#include<memory>
-#include "JSON.h"
 
 class Hero : public Monster
 {
-	/**
+/**
 *\brief A class for creating a hero.
 *\param name The name of the hero.
 *\param base_health The health of the hero.
@@ -23,10 +21,11 @@ class Hero : public Monster
 *\param magbonperlev The magical damage bonus we get after level up.
 *\param lightr The light radius of the hero.
 *\param lightrbonusPerLevel The light radius bonus we get after level up.
+*\param texture The texture of the hero in svg.
 */
 public:
-	Hero(const std::string name, int base_health, Damage damage, double base_attackCooldown, int defense, int xpPerLevel, int hpPerLevel,
-		int dmgBonusPerLevel, double atcdMultiplier,  int defBonusPerLevel, int magbonperlev, int lightr, int lightrbonusPerLevel);
+	Hero(const std::string& name, const int base_health, Damage damage, const double base_attackCooldown, const int defense, const int xpPerLevel, const int hpPerLevel,
+		const int dmgBonusPerLevel, const double atcdMultiplier, const int defBonusPerLevel, const int magbonperlev, const int lightr, const int lightrbonusPerLevel, const std::string& texture);
 	///This function parse a Hero from a file.
 	///\param s
 	///\return Hero
@@ -54,14 +53,14 @@ private:
 	int level = 1;
 	int xp = 0;
 	int maxHP = getHealthPoints();
-	int xpPerLevel = 0;
-	int hpPerLevel = 0;
-	int dmgBonusPerLevel = 0;
-	double atcdMultiplier = 0.0;
-	int defBonusPerLevel = 0;
-	int magicalBonusPerLevel = 0;
+	const int xpPerLevel = 0;
+	const int hpPerLevel = 0;
+	const int dmgBonusPerLevel = 0;
+	const double atcdMultiplier = 0.0;
+	const int defBonusPerLevel = 0;
+	const int magicalBonusPerLevel = 0;
 	int lightRadius = 0;
-	int lightRadiusBonusPerLevel = 0;
+	const int lightRadiusBonusPerLevel = 0;
 };
 
 #endif

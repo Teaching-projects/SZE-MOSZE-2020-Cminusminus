@@ -90,7 +90,8 @@ TEST(phDMGTest, checkHero){
 		heroData.get<int>("defense_bonus_per_level"),
 		heroData.get<int>("magical_bonus_per_level"),
 		heroData.get<int>("light_radius"),
-		lr);
+		lr,
+		heroData.get<std::string>("texture"));
 		
 		Damage dmg2;
 	if (monsterData.count("damage"))
@@ -111,7 +112,7 @@ TEST(phDMGTest, checkHero){
 		dmg2.magical = 0;
 	}
 		Monster m = Monster(monsterData.get<std::string>("name"), monsterData.get<int>("health_points"),
-		dmg2, monsterData.get<double>("attack_cooldown"), monsterData.get<int>("defense"));
+		dmg2, monsterData.get<double>("attack_cooldown"), monsterData.get<int>("defense"), monsterData.get<std::string>("texture"));
 		
         ASSERT_EQ(5,h.getPhysicalDmg());
     } catch(std::runtime_error& e){
@@ -168,7 +169,8 @@ TEST(mgicalDMGAfterFightTest, checkHero){
 		heroData.get<int>("defense_bonus_per_level"),
 		heroData.get<int>("magical_bonus_per_level"),
 		heroData.get<int>("light_radius"),
-		lr
+		lr,
+		heroData.get<std::string>("texture")
 	);
 		
 		Damage dmg2;
@@ -190,7 +192,7 @@ TEST(mgicalDMGAfterFightTest, checkHero){
 		dmg2.magical = 0;
 	}
 		Monster m = Monster(monsterData.get<std::string>("name"), monsterData.get<int>("health_points"),
-		dmg2, monsterData.get<double>("attack_cooldown"), monsterData.get<int>("defense"));
+		dmg2, monsterData.get<double>("attack_cooldown"), monsterData.get<int>("defense"), monsterData.get<std::string>("texture"));
 		h.fightTilDeath(m);
 		
         ASSERT_EQ(6,h.getMagicalDmg());
@@ -284,21 +286,24 @@ TEST(checkWrongMapName, checkGame){
 
 TEST(checkWall, checkMap){
 	
-	Map mapp("maps/map2.txt");
+	std::string m="maps/map2.txt";
+	Map mapp(m);
 	ASSERT_EQ(1,mapp.get(0,5));
 
 }
 
 TEST(checkFree, checkMap){
 	
-	Map mapp("maps/map2.txt");
+	std::string m="maps/map2.txt";
+	Map mapp(m);
 	ASSERT_EQ(0,mapp.get(3,1));
 
 }
 
 TEST(checkWrongIndex, checkMap){
 	try{
-	Map mapp("maps/map2.txt");
+		std::string m="maps/map2.txt";
+	Map mapp(m);
 	
 	ASSERT_EQ(0,mapp.get(20,20));
 	}catch(std::runtime_error& e)
@@ -309,7 +314,8 @@ TEST(checkWrongIndex, checkMap){
 
 TEST(checkWall, checkMarkedMap){
 	try{
-	MarkedMap map("maps/markedmap.txt");
+	std::string mm="maps/markedmap.txt";
+	MarkedMap map(mm);
 	
 	ASSERT_EQ(1,map.get(0,3));
 	}catch(std::runtime_error& e)
@@ -320,7 +326,8 @@ TEST(checkWall, checkMarkedMap){
 
 TEST(checkFree, checkMarkedMap){
 	try{
-	MarkedMap map("maps/markedmap.txt");
+	std::string mm="maps/markedmap.txt";
+	MarkedMap map(mm);
 	
 	ASSERT_EQ(0,map.get(5,3));
 	}catch(std::runtime_error& e)
@@ -331,7 +338,8 @@ TEST(checkFree, checkMarkedMap){
 
 TEST(checkWrongIndex, checkMarkedMap){
 	try{
-	MarkedMap map("maps/markedmap.txt");
+	std::string mm="maps/markedmap.txt";
+	MarkedMap map(mm);
 	
 	ASSERT_EQ(0,map.get(30,3));
 	}catch(std::runtime_error& e)
@@ -342,8 +350,8 @@ TEST(checkWrongIndex, checkMarkedMap){
 
 TEST(checkHeroPosition, checkMarkedMap){
 	try{
-	MarkedMap map("maps/markedmap.txt");
-	
+	std::string mm="maps/markedmap.txt";
+	MarkedMap map(mm);
 	ASSERT_EQ(1,map.getHeroPosition().first);
 	ASSERT_EQ(2,map.getHeroPosition().second);
 	}catch(std::runtime_error& e)
@@ -351,12 +359,46 @@ TEST(checkHeroPosition, checkMarkedMap){
 		ASSERT_STREQ(e.what(), "Map or parse error!");
 	}
 }
+
 TEST(checkMonstersPosition, checkMarkedMap){
 	try{
-	MarkedMap map("maps/markedmap.txt");
+		std::string mm="maps/markedmap.txt";
+	MarkedMap map(mm);
 	
 	ASSERT_EQ(3,map.getMonsterPosition('3').begin()->first);
 	ASSERT_EQ(6,map.getMonsterPosition('3').begin()->second);
+	}catch(std::runtime_error& e)
+	{
+		ASSERT_STREQ(e.what(), "Map or parse error!");
+	}
+}
+
+TEST(checkRowsAndCols, checkMarkedMap){
+	
+	try{
+    std::string mm="maps/markedmap.txt";
+	MarkedMap map(mm);
+	
+	ASSERT_EQ(14,map.getMaxCols());
+	ASSERT_EQ(7,map.getRows());
+	}catch(std::runtime_error& e)
+	{
+		ASSERT_STREQ(e.what(), "Map or parse error!");
+	}
+}
+
+TEST(checkTextures, checkSVGRenderer){
+	try{
+	Hero hero{ Hero::parse("Dark_Wanderer.json") };
+	Monster m1 = Monster::parse("Fallen.json");
+	Monster m2 = Monster::parse("Zombie.json");
+	Monster m3 = Monster::parse("Blood_Raven.json");
+	
+	ASSERT_EQ("svg/Dark_Wanderer.svg",hero.getTexture());
+	ASSERT_EQ("svg/Fallen.svg",m1.getTexture());
+	ASSERT_EQ("svg/Zombie.svg",m2.getTexture());
+	ASSERT_EQ("svg/Blood_Raven.svg",m3.getTexture());
+	
 	}catch(std::runtime_error& e)
 	{
 		ASSERT_STREQ(e.what(), "Map or parse error!");

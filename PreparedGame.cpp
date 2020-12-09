@@ -1,10 +1,10 @@
 #include "PreparedGame.h"
 
-PreparedGame::PreparedGame(std::string filename) : Game()
+PreparedGame::PreparedGame(const std::string& filename) : Game(filename)
 {
 	JSON file = JSON::parseFromFile(filename);
-
-	MarkedMap mm(file.get<std::string>("map"));
+    std::string mapFile = file.get<std::string>("map");
+	MarkedMap mm(mapFile);
 
 	Game::setMap(mm);
 	setMaxCols(mm.getMaxCols());

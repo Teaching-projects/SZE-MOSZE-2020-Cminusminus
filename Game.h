@@ -1,48 +1,70 @@
 #pragma once
 
 #include <string>
-#include "Map.h"
 #include "Hero.h"
-#include "Monster.h"
 #include "MarkedMap.h"
+#include "Renderer.h"
 #include <vector>
 
-
+class Renderer; //Forward declaration of the Renderer class.
 class Game
 {
+
+public:
 /**
+*\brief Default constructor of the class
+*/
+	Game();
+	/**
 *\brief A class for load and initialize a game.
 *\param mapfilename The name of the map file we load.
 */
-public:
-	Game();
-	Game(std::string mapfilename);
+	explicit Game(const std::string& mapfilename);
+	/**
+*\brief Destructor of the class
+*/
 	~Game()
 	{
 		delete mapHero;
 	};
+	///\brief It returns the stored monsters and their positions.
+	///\return std::vector<std::pair<Monster, std::pair<int, int>>>
+	std::vector<std::pair<Monster, std::pair<int, int>>> getMonsters() const;
+	///\brief It returns the stored filename.
+	///\return std::string
+	std::string getFileName() const;
+	///\brief It returns the stored hero's pointer
+	///\return Hero*
+	Hero* getHero() const;
+	///\brief It returns the stored hero's positions.
+	///\return std::pair<int,int>
+	std::pair<int, int> getHeroPos() const;
 	///\brief A function to run a game.
 	void run();
-protected:
 	///\brief A function to set the map for the game.
 	///\param map The map we set.
-	void setMap(Map map);
+	void setMap(const Map& map);
 	///\brief A function to put a hero on the map.
 	///\param hero The hero we put.
 	///\param x the x coordinates.
 	///\param y the y coordinates
-	void putHero(Hero hero, int x, int y);
+	void putHero(const Hero& hero, const int x, const int y);
 	///\brief A function to put a monster on the map.
 	///\param monster The monster we put.
 	///\param x the x coordinates.
 	///\param y the y coordinates
-	void putMonster(Monster monster, int x, int y);
-	///\brief A function to draw the map for the game.
-	void mapDraw();
+	void putMonster(const Monster& monster, const int x, const int y);
+	///\brief It returns the stored map.
+	///\return Map
+	Map getMap() const;
 	///\brief A function to count the monsters on the map.
 	///\param x The x coordinates
 	///\param y the y coordinates
-	int monsterCount(int x, int y);
+	int monsterCount(const int x, const int y) const;
+	///\brief It pushes the given renderer's pointer into a vector.
+	void registerRenderer(Renderer* renderer);
+
+protected:
 	///\brief A function to move the hero to a given coordinate.
 	///\param x The x coordinates
 	///\param y the y coordinates
@@ -57,7 +79,7 @@ protected:
 		*\param exceptionString The string we name the exception.
 		*/
 	public:
-		OccupiedException(std::string exceptionString) : std::runtime_error(exceptionString) {}
+		explicit OccupiedException(const std::string& exceptionString) : std::runtime_error(exceptionString) {}
 	};
 
 	class AlreadyHasHeroException : public std::runtime_error
@@ -67,7 +89,7 @@ protected:
 		*\param exceptionString The string we name the exception.
 		*/
 	public:
-		AlreadyHasHeroException(std::string exceptionString) : std::runtime_error(exceptionString) {}
+		explicit AlreadyHasHeroException(const std::string& exceptionString) : std::runtime_error(exceptionString) {}
 
 	};
 
@@ -78,7 +100,7 @@ protected:
 		*\param exceptionString The string we name the exception.
 		*/
 	public:
-		AlreadyHasUnitsException(std::string exceptionString) : std::runtime_error(exceptionString) {}
+		explicit AlreadyHasUnitsException(const std::string& exceptionString) : std::runtime_error(exceptionString) {}
 
 	};
 
@@ -89,7 +111,7 @@ protected:
 		*\param exceptionString The string we name the exception.
 		*/
 	public:
-		NotInitializedException(std::string exceptionString) : std::runtime_error(exceptionString) {}
+		explicit NotInitializedException(const std::string& exceptionString) : std::runtime_error(exceptionString) {}
 
 	};
 
@@ -100,7 +122,7 @@ protected:
 		*\param exceptionString The string we name the exception.
 		*/
 	public:
-		GameAlreadyStartedException(std::string exceptionString) : std::runtime_error(exceptionString) {}
+		explicit GameAlreadyStartedException(const std::string& exceptionString) : std::runtime_error(exceptionString) {}
 
 	};
 private:
@@ -108,7 +130,9 @@ private:
 	Hero* mapHero = nullptr;
 	std::pair<int, int> heroPos;
 	std::vector<std::pair<Monster,std::pair<int,int>>> mapMonsters;
+	std::vector<Renderer*> renderers;
 	int maxColumns = 0;
+	std::string fileName = "";
 	bool mapSet = false;
 	bool heroPut = false;
 	bool monsterPut = false;

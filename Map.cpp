@@ -1,7 +1,7 @@
 #include "Map.h"
 
 
-Map::Map(std::string filename)
+Map::Map(const std::string& filename)
 {
 	std::ifstream ifst;
 	std::string line;
@@ -22,7 +22,7 @@ Map::Map(std::string filename)
 	ifst.close();
 }
 
-Map::type Map::get(int x, int y) const
+Map::type Map::get(const int x, const int y) const
 {
 	if (x < 0 || x >= (int)map.size())
 	{
@@ -41,27 +41,35 @@ Map::type Map::get(int x, int y) const
 	{
 		return type(0);
 	}
+	return type(-1);
 }
 
-int Map::getColumns(int x)
+int Map::getColumns(const int x) const
 {
 	return map[x].length();
 }
 
-int Map::getRows()
+int Map::getRows() const
 {
 	return map.size();
 }
 
-int Map::getMaxCols()
+int Map::getMaxCols() const
 {
 	int max = 0;
-	for (int i = 0; i < map.size(); i++)
+	for (int i = 0; i < (int)map.size(); i++)
 	{
-		if (max < map[i].length())
+		if (max < (int)map[i].length())
 		{
 			max = map[i].length();
 		}
 	}
 	return max;
 }
+
+std::vector<std::string> Map::getMap() const
+{
+	return map;
+}
+
+Map::WrongIndexException::WrongIndexException(const std::string& exceptionString) : std::runtime_error(exceptionString) {}
