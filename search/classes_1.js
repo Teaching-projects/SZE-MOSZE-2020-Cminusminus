@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['charactersvgrenderer_78',['CharacterSVGRenderer',['../classCharacterSVGRenderer.html',1,'']]]
+  ['charactersvgrenderer_79',['CharacterSVGRenderer',['../classCharacterSVGRenderer.html',1,'']]]
 ];
