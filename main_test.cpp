@@ -42,167 +42,53 @@ TEST(ParseTest, goodInputTest) {
     }
 }
 
-TEST(phDMGTest, checkHero){
-	
-	 std::string herofile = "Dark_Wanderer.json";
-	 std::string monsterfile = "Fallen.json";
-	 
-	try{
-        JSON heroData = JSON::parseFromFile(herofile);
-		JSON monsterData = JSON::parseFromFile(monsterfile);
-		Damage dmg;
-		int lr;
-	if (heroData.count("base_damage"))
-	{
-		dmg.physical = heroData.get<int>("base_damage");
-	}
-	else
-	{
-		dmg.physical = 0;
-	}
+TEST(ParseTest, ParseExceptionTest) {
+    std::string testfile = "notexists.json";
 
-	if (heroData.count("magical-damage"))
-	{
-		dmg.magical = heroData.get<int>("magical-damage");
-	}
-	else
-	{
-		dmg.magical = 0;
-	}
-	
-	if (heroData.count("light_radius_bonus_per_level"))
-	{
-		lr = heroData.get<int>("light_radius_bonus_per_level");
-	}
-	else
-	{
-		lr = 1;
-	}
-	Hero h = Hero(heroData.get<std::string>("name"),
-		heroData.get<int>("base_health_points"),
-		dmg,
-		heroData.get<double>("base_attack_cooldown"),
-		heroData.get<int>("defense"),
-		heroData.get<int>("experience_per_level"),
-		heroData.get<int>("health_point_bonus_per_level"),
-		heroData.get<int>("damage_bonus_per_level"),
-		heroData.get<double>("cooldown_multiplier_per_level"),
-		heroData.get<int>("defense_bonus_per_level"),
-		heroData.get<int>("magical_bonus_per_level"),
-		heroData.get<int>("light_radius"),
-		lr,
-		heroData.get<std::string>("texture"));
+    try{
+        JSON::parseFromFile(testfile);
 		
-		Damage dmg2;
-	if (monsterData.count("damage"))
-	{
-		dmg2.physical = monsterData.get<int>("damage");
-	}
-	else
-	{
-		dmg2.physical = 0;
-	}
+    } catch(std::runtime_error& e){
+        ASSERT_STREQ(e.what(), "Can't open the json file.");
+    }
+}
 
-	if (monsterData.count("magical-damage"))
-	{
-		dmg2.magical = monsterData.get<int>("magical-damage");
-	}
-	else
-	{
-		dmg2.magical = 0;
-	}
-		Monster m = Monster(monsterData.get<std::string>("name"), monsterData.get<int>("health_points"),
-		dmg2, monsterData.get<double>("attack_cooldown"), monsterData.get<int>("defense"), monsterData.get<std::string>("texture"));
+TEST(HeroTests, checkHero){
+	try{
+		Hero h{ Hero::parse("Dark_Wanderer.json") };
 		
         ASSERT_EQ(5,h.getPhysicalDmg());
+		ASSERT_EQ(1.2,h.getAttackCoolDown());
+		ASSERT_EQ(1,h.getDefense());
+		ASSERT_EQ(85,h.getHealthPoints());
+		ASSERT_EQ(1,h.getLevel());
+		ASSERT_EQ(1,h.getMagicalDmg());
+		ASSERT_EQ(85,h.getMaxHealthPoints());
+		ASSERT_EQ("Prince Aidan of Khanduras",h.getName());
+		ASSERT_EQ(2,h.getRadius());
+		ASSERT_EQ("svg/Dark_Wanderer.svg",h.getTexture());
+		
     } catch(std::runtime_error& e){
         ASSERT_STREQ(e.what(), "Wrong JSON syntax!");
-    }
-
+}
 }
 
-TEST(mgicalDMGAfterFightTest, checkHero){
-	
-	 std::string herofile = "Dark_Wanderer.json";
-	 std::string monsterfile = "Blood_Raven.json";
-	 
+TEST(checkIsAlive, checkHeroAndMonster){
 	try{
-        JSON heroData = JSON::parseFromFile(herofile);
-		JSON monsterData = JSON::parseFromFile(monsterfile);
-		Damage dmg;
-		int lr;
-	if (heroData.count("base_damage"))
-	{
-		dmg.physical = heroData.get<int>("base_damage");
-	}
-	else
-	{
-		dmg.physical = 0;
-	}
-
-	if (heroData.count("magical-damage"))
-	{
-		dmg.magical = heroData.get<int>("magical-damage");
-	}
-	else
-	{
-		dmg.magical = 0;
-	}
-	if (heroData.count("light_radius_bonus_per_level"))
-	{
-		lr = heroData.get<int>("light_radius_bonus_per_level");
-	}
-	else
-	{
-		lr = 1;
-	}
-	
-	Hero h = Hero (heroData.get<std::string>("name"),
-		heroData.get<int>("base_health_points"),
-		dmg,
-		heroData.get<double>("base_attack_cooldown"),
-		heroData.get<int>("defense"),
-		heroData.get<int>("experience_per_level"),
-		heroData.get<int>("health_point_bonus_per_level"),
-		heroData.get<int>("damage_bonus_per_level"),
-		heroData.get<double>("cooldown_multiplier_per_level"),
-		heroData.get<int>("defense_bonus_per_level"),
-		heroData.get<int>("magical_bonus_per_level"),
-		heroData.get<int>("light_radius"),
-		lr,
-		heroData.get<std::string>("texture")
-	);
+		Hero hero{Hero::parse("Dark_Wanderer.json")};
+		Monster monster = Monster::parse("Fallen.json");
 		
-		Damage dmg2;
-	if (monsterData.count("damage"))
-	{
-		dmg2.physical = monsterData.get<int>("damage");
-	}
-	else
-	{
-		dmg2.physical = 0;
-	}
-
-	if (monsterData.count("magical-damage"))
-	{
-		dmg2.magical = monsterData.get<int>("magical-damage");
-	}
-	else
-	{
-		dmg2.magical = 0;
-	}
-		Monster m = Monster(monsterData.get<std::string>("name"), monsterData.get<int>("health_points"),
-		dmg2, monsterData.get<double>("attack_cooldown"), monsterData.get<int>("defense"), monsterData.get<std::string>("texture"));
-		h.fightTilDeath(m);
+		hero.fightTilDeath(monster);
 		
-        ASSERT_EQ(6,h.getMagicalDmg());
+        ASSERT_EQ(true,hero.isAlive());
+		ASSERT_EQ(false,monster.isAlive());
+		
     } catch(std::runtime_error& e){
         ASSERT_STREQ(e.what(), "Wrong JSON syntax!");
     }
-
 }
 
-TEST(LVLupTest, checkHero){
+TEST(LVLupAndXPTest, checkHero){
 	
 	try{
         Hero hero{Hero::parse("Dark_Wanderer.json")};
@@ -220,54 +106,7 @@ TEST(LVLupTest, checkHero){
 		hero.fightTilDeath(m3);
 		
         ASSERT_EQ(7,hero.getLevel());
-    } catch(std::runtime_error& e){
-        ASSERT_STREQ(e.what(), "Wrong JSON syntax!");
-    }
-
-}
-
-TEST(HPTest, checkHero){
-	
-	try{
-        Hero hero{Hero::parse("Dark_Wanderer.json")};
-		Monster m1 = Monster::parse("Fallen.json");
-		Monster m2 = Monster::parse("Zombie.json");
-		Monster m3 = Monster::parse("Blood_Raven.json");
-		
-		hero.fightTilDeath(m1);
-		hero.fightTilDeath(m1);
-		hero.fightTilDeath(m2);
-		hero.fightTilDeath(m1);
-		hero.fightTilDeath(m1);
-		hero.fightTilDeath(m2);
-		hero.fightTilDeath(m1);
-		hero.fightTilDeath(m3);
-		
-        ASSERT_EQ(113,hero.getHealthPoints());
-    } catch(std::runtime_error& e){
-        ASSERT_STREQ(e.what(), "Wrong JSON syntax!");
-    }
-
-}
-
-TEST(XPTest, checkHero){
-	
-	try{
-        Hero hero{Hero::parse("Dark_Wanderer.json")};
-		Monster m1 = Monster::parse("Fallen.json");
-		Monster m2 = Monster::parse("Zombie.json");
-		Monster m3 = Monster::parse("Blood_Raven.json");
-		
-		hero.fightTilDeath(m1);
-		hero.fightTilDeath(m1);
-		hero.fightTilDeath(m2);
-		hero.fightTilDeath(m1);
-		hero.fightTilDeath(m1);
-		hero.fightTilDeath(m2);
-		hero.fightTilDeath(m1);
-		hero.fightTilDeath(m3);
-		
-        ASSERT_EQ(131,hero.GetXP());
+		ASSERT_EQ(131,hero.GetXP());
     } catch(std::runtime_error& e){
         ASSERT_STREQ(e.what(), "Wrong JSON syntax!");
     }
@@ -404,6 +243,104 @@ TEST(checkTextures, checkSVGRenderer){
 		ASSERT_STREQ(e.what(), "Map or parse error!");
 	}
 }
+
+TEST(checkHeroPut, checkGame){
+	try{
+		
+	Game game("maps/map.txt");
+	Hero hero{ Hero::parse("Dark_Wanderer.json") };
+	game.putHero(hero, 1, 1);
+	game.putHero(hero, 1, 2);
+	
+	}catch(std::runtime_error& e)
+	{
+		ASSERT_STREQ(e.what(), "A hero has already been set!");
+	}
+}
+
+TEST(checkSetMapException, checkGame){
+	try{
+	Hero hero{ Hero::parse("Dark_Wanderer.json") };
+	Monster m1 = Monster::parse("Fallen.json");
+	
+	Game game("maps/map.txt");
+	game.putHero(hero, 1, 1);
+	game.putMonster(m1, 1, 2);
+	Map map("maps/map.txt");
+	game.setMap(map);
+	
+	}catch(std::runtime_error& e)
+	{
+		ASSERT_STREQ(e.what(), "The units are already set up. Map cannot be changed.");
+	}
+}
+
+TEST(checkNotInitializedException, checkGame){
+	try{
+	Monster m1 = Monster::parse("Fallen.json");
+	
+	Game game("maps/map.txt");
+	game.putMonster(m1, 1, 2);
+	game.run();
+	
+	}catch(std::runtime_error& e)
+	{
+		ASSERT_STREQ(e.what(), "The game is not initialized!");
+	}
+}
+
+TEST(checkOccupiedException, checkGame){
+	try{
+	Hero hero{ Hero::parse("Dark_Wanderer.json") };
+	
+	Game game("maps/map.txt");
+	game.putHero(hero, 0, 0);
+	
+	}catch(std::runtime_error& e)
+	{
+		ASSERT_STREQ(e.what(), "There's a wall in this position!\n");
+	}
+}
+
+TEST(checkMonsterCount, checkGame){
+	try{
+	Hero hero{ Hero::parse("Dark_Wanderer.json") };
+	Monster m1 = Monster::parse("Fallen.json");
+	
+	Game game("maps/map.txt");
+	game.putHero(hero, 1, 2);
+	game.putMonster(m1, 1, 1);
+	game.putMonster(m1, 1, 1);
+	game.putMonster(m1, 1, 1);
+	game.putMonster(m1, 1, 1);
+	game.putMonster(m1, 1, 1);
+	
+	ASSERT_EQ(5,game.monsterCount(1,1));
+	
+	}catch(std::runtime_error& e)
+	{
+		ASSERT_STREQ(e.what(), "");
+	}
+}
+
+TEST(checkGetHeroPos, checkGame){
+	try{
+	Hero hero{ Hero::parse("Dark_Wanderer.json") };
+
+	
+	Game game("maps/map.txt");
+	game.putHero(hero, 1, 2);
+	
+	ASSERT_EQ(1,game.getHeroPos().first);
+	ASSERT_EQ(2,game.getHeroPos().second);
+	
+	}catch(std::runtime_error& e)
+	{
+		ASSERT_STREQ(e.what(), "");
+	}
+}
+
+
 
 int main(int argc, char **argv){
     ::testing::InitGoogleTest(&argc, argv);
